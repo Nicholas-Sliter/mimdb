@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "lts/fermium"
+before_script:
+  - export TZ=America/New_York
+cache:
+  directories:
+    - node_modules
+script:
+  - npm run build
+  - npm test
+  - npm run lint
