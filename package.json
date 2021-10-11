@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "contributors": [
-    "Your names here"
+    "Becca",
+    "Wayne",
+    "Jaiqi",
+    "Nick M.",
+    "Katie K.",
+    "Alex",
+    "Nicholas S."
   ],
   "scripts": {
     "dev": "next dev",
