@@ -1,5 +1,5 @@
 {
-  "name": "project-template",
+  "name": "Mimdb",
   "version": "0.1.0",
   "private": true,
   "contributors": [
@@ -47,5 +47,9 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{js,css,md,json,jsx}": "prettier --write"
+  },
+  "repository": {
+    "url" : "https://github.com/csci0312-f21/project-mimdb.git"
+
   }
 }
