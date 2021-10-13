@@ -1,3 +1,7 @@
+## Heroku link
+Visit the deployed application on heroku at https://mimdb.herokuapp.com/
+
+
 This is the starter template for CS312 projects based on Next.js](https://nextjs.org/). _You should replace this portion with a description of your project._
 
 The project was bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), and includes a number of additional libraries, including the Rest Testing Library, Jest, and ESLint, among others. It also includes the basic configuration for using Travis CI.
