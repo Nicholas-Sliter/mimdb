@@ -14,6 +14,7 @@ export default function Home() {
       </Head>
 
       <main>
+        <img src="/mimdb-logo-full.svg" />
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
         <p>Now go and give it some content...</p>
