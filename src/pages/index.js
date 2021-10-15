@@ -3,6 +3,7 @@
 import Head from "next/head";
 
 import styles from "../styles/Home.module.css";
+import Header from "../components/Header";
 
 export default function Home() {
 
@@ -12,9 +13,8 @@ export default function Home() {
         <title>Final Project</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Header>  </Header>
       <main>
-        <img src="/mimdb-logo-full.svg" />
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
         <p>Now go and give it some content...</p>
