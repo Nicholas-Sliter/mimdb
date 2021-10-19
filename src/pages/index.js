@@ -2,7 +2,6 @@
 import CustomHead from "../components/CustomHead";
 import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
-import Header from "../components/Header";
 
 export default function Home() {
 
