@@ -48,7 +48,11 @@ header {
   height: 100px;
   border-bottom: 1px solid #eaeaea;
   display: flex;
-  align-items: center;
+  align-items: left;
+}
+
+header img {
+  padding-top: 1em;
 }
 
 header a {

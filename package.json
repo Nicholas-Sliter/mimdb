@@ -37,7 +37,7 @@
     "jest": "^27.2.5",
     "lint-staged": "^11.2.3",
     "prettier": "^2.4.1"
-    },
+  },
   "jest": {
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
@@ -55,7 +55,6 @@
     "*.{js,css,md,json,jsx}": "prettier --write"
   },
   "repository": {
-    "url" : "https://github.com/csci0312-f21/project-mimdb.git"
-
+    "url": "https://github.com/csci0312-f21/project-mimdb.git"
   }
 }
