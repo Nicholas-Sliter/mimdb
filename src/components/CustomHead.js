@@ -6,8 +6,6 @@ export default function CustomHead({ pageTitle }) {
       ? pageTitle
       : "MIMDB | Middlebury Movie Database";
 
-
-  const favicons = <Head></Head>
     
   return (
     <Head>
