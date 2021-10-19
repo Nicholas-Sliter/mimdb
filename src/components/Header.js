@@ -4,6 +4,7 @@ export default function Header() {
       <div>
         <img
           className="noselect"
+          alt="MIMBD"
           draggable="false"
           src="/mimdb-logo-full.svg"
           width="80%"
