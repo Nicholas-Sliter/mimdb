@@ -5,12 +5,13 @@
   "contributors": [
     "Becca",
     "Wayne",
-    "Jaiqi",
+    "Jiaqi",
     "Nick M.",
     "Katie K.",
     "Alex",
     "Nicholas S."
   ],
+  "description": "Middlebury Movie Database (Mimdb) is a project for CS312-Software Development that aims to provide a platform for films created by students and professors in Middlebury film department",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -37,7 +38,7 @@
     "jest": "^27.2.5",
     "lint-staged": "^11.2.3",
     "prettier": "^2.4.1"
-    },
+  },
   "jest": {
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
@@ -55,7 +56,6 @@
     "*.{js,css,md,json,jsx}": "prettier --write"
   },
   "repository": {
-    "url" : "https://github.com/csci0312-f21/project-mimdb.git"
-
+    "url": "https://github.com/csci0312-f21/project-mimdb.git"
   }
 }
