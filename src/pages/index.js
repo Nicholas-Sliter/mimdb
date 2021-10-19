@@ -1,19 +1,15 @@
 
-
-import Head from "next/head";
+import CustomHead from "../components/CustomHead";
+import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Final Project</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+      <CustomHead/>
+      <Header/>
       <main>
-        <img src="/mimdb-logo-full.svg" />
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
         <p>Now go and give it some content...</p>
