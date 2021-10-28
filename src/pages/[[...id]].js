@@ -1,9 +1,12 @@
-
+import { useRouter } from "next/router";
 import CustomHead from "../components/CustomHead";
 import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  const router = useRouter();
+  const {id} = router.query;
+
 
   return (
     <div className={styles.container}>
