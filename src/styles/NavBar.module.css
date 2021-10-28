@@ -1,0 +1,29 @@
+.navbar{
+    overflow: hidden;
+    padding: 20px;
+    width: 100%;
+    border-bottom: 3px solid black;
+}
+
+
+.logo{
+    width: 12rem;
+    float: left;
+    padding: 12px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.filter{
+    float: right;
+    padding-top: 1rem;
+}
+
+.filterCrit{
+    padding-right: 3rem;
+    color: lightslategray;
+}
+
+.searchbar{
+    
+}

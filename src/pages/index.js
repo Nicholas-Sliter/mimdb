@@ -2,19 +2,28 @@
 
 import Head from "next/head";
 
+import NavBar from "../components/NavBar"
+
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
 
+
+
+
+
+
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Final Project</title>
+        <title>MiddIMDB</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <img src="/mimdb-logo-full.svg" />
+        <NavBar/>
+        
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
         <p>Now go and give it some content...</p>
