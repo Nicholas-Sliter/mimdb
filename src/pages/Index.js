@@ -1,12 +1,8 @@
-
 import CustomHead from "../components/CustomHead";
 import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
 
-export const server = "https://mimdb-server..........";
-
 export default function Home() {
-
 
   return (
     <div className={styles.container}>
@@ -22,4 +18,3 @@ export default function Home() {
     </div>
   );
 }
-
