@@ -11,5 +11,5 @@ export default function Film({films}) {
 
     console.log(currFilm);
 
-    return <p>{currFilm}</p>
+    return <p>{id}</p>
 }
