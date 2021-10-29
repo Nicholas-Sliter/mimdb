@@ -7,9 +7,8 @@ export default function Film({films}) {
     let currFilm;
     if (id !== undefined) {
         currFilm = films.find( (film)=>film.id === parseInt(id));
-    };
-
-    console.log(currFilm);
-
-    return <p>{id}</p>
+        return <p>{currFilm.title}</p>
+    } else {
+        return <p>Choose a Film!</p>
+    }
 }
