@@ -1,4 +1,5 @@
 [![Build Status](https://app.travis-ci.com/csci0312-f21/project-mimdb.svg?token=9FUSzHxaob7ve215Ksba&branch=main)](https://app.travis-ci.com/csci0312-f21/project-mimdb)
+![alt text](./public/mimdb-logo-full.svg)
 ## Heroku link
 Visit the deployed application on heroku at https://mimdb.herokuapp.com/
 
