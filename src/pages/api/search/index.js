@@ -10,8 +10,6 @@
  * Currently supporting the following parameters:
  * 1. generalTerm: a string of the search term
  * 
- * TODO:
- * - search different keys based on different search parameters. e.g. "/api/search?title=Inception&actor=John_doe"
  */
 
 import nc from "next-connect";
