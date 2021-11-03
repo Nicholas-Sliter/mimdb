@@ -14,21 +14,17 @@ export default function Home({films}) {
   const [searchResults, setSearchResults] = useState();
   const [ filterResults, setFilterResults] = useState();
 
-  
-  const genreTemp = films.map((x) => x["genre_ids"]);
-  const genreSet = new Set(genreTemp);
-  const genreList = [...genreSet].sort();
-
-  const classTemp = films.map((x) => x["class"]);
-  const classSet = new Set(classTemp);
-  const classList = [...classSet].sort();
+  function uniqueField(field) {
+    const fieldSet = new Set(films.map((x) => x[field]));
+    return [...fieldSet].sort();
+  }
 
   return (
     <div className={styles.container}>
           <CustomHead/>
           <Header  
             searchResults={searchResults} filterResults={filterResults}
-            genreList={genreList} classList={classList}/>
+            genreList={uniqueField("genre_ids")} classList={uniqueField("class")}/>
       <main>
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
