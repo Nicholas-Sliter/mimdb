@@ -1,29 +1,39 @@
 import Category from "./Category";
 import { screen, fireEvent, render } from "@testing-library/react";
 
-import { genres } from "../lib/test-utils";
+import { classes, genre_ids } from "../lib/test-utils";
 
 describe("Header tests", () => {
+    // eslint-disable-next-line no-unused-vars
     let selectFunction;
-  
-    beforeEach(() => {
-      selectFunction = jest.fn();
-      render(<Category fieldName={"Genre"} fieldList={genres}/>);
-    });
-  
-  
-  
+
     test("Genres to display", async () => {
-      const section = await screen.findByText("Genre");
-  
-      fireEvent.mouseOver(screen.getByText("Genre"));
+    selectFunction = jest.fn();
+
+      render(<Category fieldName={"Genre"} fieldList={genre_ids}/>);
+      fireEvent.mouseOver(await screen.getByText("Genre"));
   
       const genreShown = await screen.findAllByTestId("dropdown");
   
-      expect(genreShown).toHaveLength(genres.length);
+      expect(genreShown).toHaveLength(genre_ids.length);
   
-      genres.forEach((genre) => {
+      genre_ids.forEach((genre) => {
         expect(screen.getByText(genre)).toBeVisible();
       });
     })   
+
+    test("Classes to display", async () => {
+        selectFunction = jest.fn();
+    
+          render(<Category fieldName={"Class"} fieldList={classes}/>);
+          fireEvent.mouseOver(await screen.getByText("Class"));
+      
+          const genreShown = await screen.findAllByTestId("dropdown");
+      
+          expect(genreShown).toHaveLength(classes.length);
+      
+          classes.forEach((genre) => {
+            expect(screen.getByText(genre)).toBeVisible();
+          });
+        })   
   });
