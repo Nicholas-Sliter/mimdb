@@ -2,11 +2,11 @@
 import styles from "../styles/NavBar.module.css";
 
 
-export default function Header(searchResults, filterResults) {
+export default function Header(genres, classes, searchResults, filterResults) {
 
-
-
-
+  //const genreArticles = genres.entries(element => {
+    
+  //});
 
 
   return (
@@ -17,7 +17,7 @@ export default function Header(searchResults, filterResults) {
                 <div className={styles.dropdown}>
                   <div className={styles.filterCrit}>Genres
                       <div className={styles.dropdownContainer}>
-                        <a onClick>Fantasy</a>
+                        <a>Fantasy</a>
                         <a>Sci-Fi</a>
                         <a>Documentary</a>
                       </div>
