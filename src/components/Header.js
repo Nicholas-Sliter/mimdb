@@ -2,7 +2,7 @@
 import styles from "../styles/NavBar.module.css";
 import Category from "./Category";
 
-export default function Header({searchResults, filterResults, genreList, classList}) {
+export default function Header({genreList, classList}) {
 
   return (
     <header>

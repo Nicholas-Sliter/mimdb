@@ -6,7 +6,8 @@ Display a category of drop down menu that is used in Header.js
 import styles from "../styles/NavBar.module.css";
 
 export default function Category({fieldName, fieldList}){
-    const uniqueFields = fieldList.map((field, index)=><a key={index}>{field}</a>);
+    let key = 0;
+    const uniqueFields = fieldList.map((field)=><a key={key++}>{field}</a>);
 
     return (
         <div className={styles.dropdown}>
