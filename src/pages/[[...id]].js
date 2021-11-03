@@ -15,27 +15,20 @@ export default function Home({films}) {
   const [ filterResults, setFilterResults] = useState();
 
   
-/*
-  const genreTemp = films.forEach((x) => {
-    if (x.genre_ids.length() > 1){
-      x.genre_ids.forEach((y) => {
-        genres.add(y)
-      })
-    }
-    else{
-      genres.add(x.genre_ids)
-    }
-  })
+  const genreTemp = films.map((x) => x["genre_ids"]);
+  const genreSet = new Set(genreTemp);
+  const genreList = [...genreSet].sort();
 
-  const genres = new Set(genreTemp);
-*/
-
-
+  const classTemp = films.map((x) => x["class"]);
+  const classSet = new Set(classTemp);
+  const classList = [...classSet].sort();
 
   return (
     <div className={styles.container}>
           <CustomHead/>
-          <Header  searchResults={searchResults} filterResults={filterResults}/>
+          <Header  
+            searchResults={searchResults} filterResults={filterResults}
+            genreList={genreList} classList={classList}/>
       <main>
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>

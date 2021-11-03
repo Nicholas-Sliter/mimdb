@@ -2,12 +2,10 @@
 import styles from "../styles/NavBar.module.css";
 
 
-export default function Header(genres, classes, searchResults, filterResults) {
+export default function Header({searchResults, filterResults, genreList, classList}) {
 
-  //const genreArticles = genres.entries(element => {
-    
-  //});
-
+  const genres = genreList.map((genre) => <a>{genre}</a>);
+  const classes = classList.map((cl) => <a>{cl}</a>);
 
   return (
     <header>
@@ -17,18 +15,14 @@ export default function Header(genres, classes, searchResults, filterResults) {
                 <div className={styles.dropdown}>
                   <div className={styles.filterCrit}>Genres
                       <div className={styles.dropdownContainer}>
-                        <a>Fantasy</a>
-                        <a>Sci-Fi</a>
-                        <a>Documentary</a>
+                        {genres}
                       </div>
                   </div>
                 </div>
                 <div className={styles.dropdown}>
                   <div className={styles.filterCrit}>Classes
                       <div className={styles.dropdownContainer}>
-                        <a>Sight and Sound</a>
-                        <a>Documentary</a>
-                        <a>Film101</a>
+                        {classes}
                       </div>
                   </div>
                 </div>
