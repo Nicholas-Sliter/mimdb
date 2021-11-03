@@ -10,7 +10,9 @@ export default function Home({films}) {
 
 
   function uniqueField(field) {
-    const fieldSet = new Set(films.map((x) => x[field]));
+    const tempArr = films.map((x) => x[field]);
+    const flatArr = tempArr.flat(1);
+    const fieldSet = new Set(flatArr);
     return [...fieldSet].sort();
   }
 
@@ -18,7 +20,7 @@ export default function Home({films}) {
     <div className={styles.container}>
           <CustomHead/>
           <Header
-            genreList={uniqueField("genre_ids")} classList={uniqueField("class")}
+            genreList={uniqueField("genre")} classList={uniqueField("class")}
           />
       <main>
         <h1 className="title">Final Project</h1>
