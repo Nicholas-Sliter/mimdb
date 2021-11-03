@@ -13,7 +13,7 @@ import process from "process";
 
 export function resetData() {
   const dataDirectory = path.join(process.cwd(), "data");
-  const orig = path.join(dataDirectory, "mockData.json");
+  const orig = path.join(dataDirectory, "data.json");
   const dest = path.join(dataDirectory, "tempData.json");
   fs.copyFileSync(orig, dest);
 }
