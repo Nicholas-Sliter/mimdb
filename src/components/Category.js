@@ -5,6 +5,7 @@ Display a category of drop down menu that is used in Header.js
 */
 import styles from "../styles/NavBar.module.css";
 
+
 export default function Category({fieldName, fieldList}){
     let uniqueFields = "";
     if (fieldList === undefined){

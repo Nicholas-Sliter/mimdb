@@ -28,7 +28,7 @@
     },
     {
       "backdrop_path": "/dMZxEdrWIzUmUoOz2zvmFuutbj7.jpg",
-      "genre_ids": "",
+      "genre_ids": "blank",
       "id": 3,
       "original_title": "The Empire Strikes Back",
       "overview": "The epic saga continues as Luke Skywalker, in hopes of defeating the evil Galactic Empire, learns the ways of the Jedi from aging master Yoda. But Darth Vader is more determined than ever to capture Luke. Meanwhile, rebel leader Princess Leia, cocky Han Solo, Chewbacca, and droids C-3PO and R2-D2 are thrown into various stages of capture, betrayal and despair.",
@@ -41,7 +41,7 @@
     },
     {
       "backdrop_path": "/AfyuI3glMCBDFmNPj9PY6DwbgGp.jpg",
-      "genre_ids": [],
+      "genre_ids": "blank",
       "id": 4,
       "original_language": "ja",
       "overview": "The second of two theatrically released follow-ups to the Neon Genesis Evangelion series. Comprising of two alternate episodes which were first intended to take the place of episodes 25 and 26, this finale answers many of the questions surrounding the series, while also opening up some new possibilities.",
@@ -54,7 +54,7 @@
     },
     {
       "backdrop_path": "/s3TBrRGB1iav7gFOCNx3H31MoES.jpg",
-      "genre_ids": "",
+      "genre_ids": "blank",
       "id": 5,
       "original_language": "en",
       "overview": "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
@@ -69,8 +69,7 @@
     {
       "adult": false,
       "backdrop_path": "/xJHokMbljvjADYdit5fK5VQsXEG.jpg",
-      "genre_ids": ["sci-fi, thriller"
-      ],
+      "genre_ids": "sci-fi",
       "id": 6,
       "original_language": "en",
       "original_title": "Interstellar",
@@ -85,8 +84,7 @@
     },
     {
       "backdrop_path": "/jxCg8DJasmZHE5BjDncpkpyNtTu.jpg",
-      "genre_ids": [
-      ],
+      "genre_ids": "blank",
       "id": 7,
       "original_title": "Doctor Who: The Day of the Doctor",
       "overview": "In 2013, something terrible is awakening in London's National Gallery; in 1562, a murderous plot is afoot in Elizabethan England; and somewhere in space an ancient battle reaches its devastating conclusion. All of reality is at stake as the Doctor's own dangerous past comes back to haunt him.",
@@ -100,8 +98,7 @@
     {
       "adult": false,
       "backdrop_path": "/fq3wyOs1RHyz2yfzsb4sck7aWRG.jpg",
-      "genre_ids": [
-      ],
+      "genre_ids": "blank",
       "id": 8,
       "original_language": "en",
       "original_title": "Back to the Future",
@@ -116,8 +113,7 @@
     {
       "adult": false,
       "backdrop_path": "/w6WPxexN3QWWAawJUdLVFUYIQBG.jpg",
-      "genre_ids": [
-      ],
+      "genre_ids": "blank",
       "id": 9,
       "overview": "Near a gray and unnamed city is the Zone, a place guarded by barbed wire and soldiers, and where the normal laws of physics are victim to frequent anomalies. A stalker guides two men into the Zone, specifically to an area in which deep-seated desires are granted.",
       "poster_path": "/lUE0Bp7wH0EterJ44qMRsqtKFnp.jpg",
@@ -130,8 +126,7 @@
     {
       "adult": false,
       "backdrop_path": "/lmZFxXgJE3vgrciwuDib0N8CfQo.jpg",
-      "genre_ids": [
-      ],
+      "genre_ids": "blank",
       "id": 10,
       "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
       "popularity": 288.539,
@@ -145,7 +140,7 @@
     },
     {
       "backdrop_path": "/keblhZFIZYiWflmURWNHEuS2jqL.jpg",
-      "genre_ids": [],
+      "genre_ids": "blank",
       "id": 11,
       "overview": "In a near-future Britain, young Alexander DeLarge and his pals get their kicks beating and raping anyone they please. When not destroying the lives of others, Alex swoons to the music of Beethoven. The state, eager to crack down on juvenile crime, gives an incarcerated Alex the option to undergo an invasive procedure that'll rob him of all personal agency. In a time when conscience is a commodity, can Alex change his tune?",
       "poster_path": "/4sHeTAp65WrSSuc05nRBKddhBxO.jpg",
@@ -158,7 +153,7 @@
     },
     {
       "backdrop_path": "/zqkmTXzjkAgXmEWLRsY4UpTWCeo.jpg",
-      "genre_ids": [],
+      "genre_ids": "blank",
       "id": 12,
       "overview": "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.",
       "poster_path": "/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
@@ -171,7 +166,7 @@
     },
     {
       "backdrop_path": "/r8pUcom5Mw8igtBpj3AHSAUvH0R.jpg",
-      "genre_ids": [],
+      "genre_ids": "blank",
       "id": 13,
       "overview": "In a futuristic city sharply divided between the working class and the city planners, the son of the city's mastermind falls in love with a working class prophet who predicts the coming of a savior to mediate their differences.",
       "popularity": 17.295,
@@ -185,7 +180,7 @@
     },
     {
       "backdrop_path": "/fNG7i7RqMErkcqhohV2a6cV1Ehy.jpg",
-      "genre_ids": ["thriller"],
+      "genre_ids": "thriller",
       "id": 14,
       "original_language": "en",
       "original_title": "The Matrix",
@@ -200,7 +195,7 @@
     },
     {
       "backdrop_path": "/1qmefUkrzXW4XDKVtEGFFxHPBeI.jpg",
-      "genre_ids": ["Documentary"],
+      "genre_ids": "Documentary",
       "id": 15,
       "overview": "Amy Pond and Rory Williams are trapped on a crashing space liner, and the only way the Eleventh Doctor can rescue them is to save the soul of a lonely old miser. But is Kazran Sardick, the richest man in Sardicktown, beyond redemption? And what is lurking in the fogs of Christmas Eve?",
       "poster_path": "/hBcRd2e52ddwjjLzjxUJzdD4EEk.jpg",

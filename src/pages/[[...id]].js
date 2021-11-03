@@ -8,10 +8,6 @@ import styles from "../styles/Home.module.css";
 
 export default function Home({films}) {
 
-  //const router = useRouter();
-  //const {id} = router.query;
-  //const [searchResults, setSearchResults] = useState();
-  //const [ filterResults, setFilterResults] = useState();
 
   function uniqueField(field) {
     const fieldSet = new Set(films.map((x) => x[field]));
