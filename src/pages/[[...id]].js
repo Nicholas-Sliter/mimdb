@@ -28,7 +28,7 @@ export default function Home({films}) {
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
         <p>Now go and give it some content...</p>
-        <WideCard film={films[2]} onClickFunction={(url)=>{}}/>
+        <WideCard film={films[2]} onClickFunction={()=>{}}/>
         <FilmRow films={films} title="Testing!"/>
       </main>
 
