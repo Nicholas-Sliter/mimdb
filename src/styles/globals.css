@@ -22,6 +22,7 @@ main {
   flex-direction: column;
   justify-content: top;
   align-items: center;
+  width: 100%;
 }
 
 footer {
@@ -51,15 +52,7 @@ header {
   align-items: left;
 }
 
-header img {
-  padding-top: 1em;
-}
 
-header a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
 .noselect {
