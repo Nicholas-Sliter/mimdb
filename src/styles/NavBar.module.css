@@ -39,13 +39,13 @@
 .dropdownContainer{
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: rgba(241, 241, 241,0.2);
+    backdrop-filter: blur(1px);
     border-radius: 12px;
     text-transform: capitalize;
     min-width: 50px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 100;
-    opacity: 0.85;
 }
 
 .dropdownContainer a{

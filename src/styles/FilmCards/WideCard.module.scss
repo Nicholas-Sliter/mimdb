@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
+
+.cardMain{
+  margin: 0;
+  background: white;
+  font-family: 'Montserrat', helvetica, arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0px;
+}
+
+.card{
+  position: relative;
+  display: block;
+  width: 800px;
+  height: 350px;
+  margin: 20px; //auto
+  overflow: hidden;
+  //border-radius: 10px;
+  border-radius: 32px;
+  transition: all 0.4s;
+  box-shadow: 0px 0px 120px -25px rgba(0,0,0, 0.5);
+
+  &:hover{
+    transform: scale(1.02);
+    box-shadow: 0px 0px 80px -25px rgba(0,0,0, 0.5);
+    transition: all 0.4s;
+  }
+
+  .infoSection{
+    position: relative;
+    width: 100%;
+    height: 100%;
+	  background-blend-mode: multiply;
+    z-index: 2;
+    border-radius: 10px;
+    
+    .movieHeader{
+      position: relative;
+      padding: 1em; /*25px*/
+      padding-bottom: 0em;
+      height: 40%;
+      .title{
+        color: black;
+        font-weight: 400;
+      }
+      h1 {
+        margin: 0;
+        margin-bottom: 0;
+      }
+      .year{
+        color: #555;
+        font-weight: 400;
+      }
+      .duration{
+        display: inline-block;
+        margin-top: 1px;
+        color: #555;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
+      .genre{
+        display: inline-block;
+        color: #959595;
+        margin-left: 10px;
+      }
+      .poster{
+        position: relative;
+        float: left;
+        margin-right: 20px;
+        height: 20em; /* 120px  20vw*/
+        border-radius: 32px;
+        box-shadow: 0 0 20px -10px rgba(0,0,0,0.5);
+      }
+    }
+    .movieDescription{
+      padding: 1px;
+      height: 50%;
+      width: 65%;
+      display: inline;
+      .text{
+        color: #545454;
+      }
+    }
+  }
+  .blurBackground{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    height: 100%; right: 0;
+    background-size: cover;
+    border-radius: 32px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .movieHeader{
+    width: 65%;
+  }
+  
+  .movieDescription{
+    width: 50%;
+  }
+  
+  .infoSection{
+    background: linear-gradient(to right, #e5e6e6 50%, transparent 100%);
+  }
+  
+  .blurBackground{
+    width: 80%;
+    background-position: -100% 10% !important;  
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card{
+    width: 95%;
+    margin: 70px auto; 
+    min-height: 350px;
+    height: auto;
+  }
+  
+  .blurBackground{
+    width: 100%;
+    background-position: 50% 50% !important;  
+  }
+  
+  .movieHeader{
+    width: 100%;
+    margin-top: 85px;
+  }
+  
+  .movieDescription{
+    width: 100%;
+  }
+  
+  .infoSection{
+    background: linear-gradient(to top, #e5e6e6 50%, transparent 100%);
+    display: inline-grid;
+  }
+}
+

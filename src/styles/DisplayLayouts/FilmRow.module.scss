@@ -1,0 +1,28 @@
+
+$row-padding: 140px;
+
+.row {
+width: 100%;
+  margin: 0px;
+  padding: 0px;
+  padding-right: $row-padding;
+  padding-left: $row-padding;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: transparent;
+  justify-content: center; //center
+  align-items: center;
+  //overflow:hidden;
+}
+
+.rowCard {
+   //margin-right: 10px;
+   //margin-left: 10px;
+   margin: 24px;
+}
+
+
+.title {
+   padding-left: $row-padding;
+
+}
