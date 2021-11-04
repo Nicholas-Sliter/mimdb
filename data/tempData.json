@@ -12,7 +12,7 @@
     "title": "Spider-Man: Into the Spider-Verse",
     "video": false,
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -38,7 +38,7 @@
     "title": "Justice League Dark: Apokolips War",
     "video": false,
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -63,7 +63,7 @@
     "release_date": "1980-05-20",
     "title": "The Empire Strikes Back",
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -88,7 +88,7 @@
     "release_date": "1997-07-19",
     "title": "Neon Genesis Evangelion: The End of Evangelion",
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -114,7 +114,7 @@
     "title": "Inception",
     "video": false,
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -140,7 +140,7 @@
     "title": "Interstellar",
     "video": false,
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -165,7 +165,7 @@
     "release_date": "2013-11-23",
     "title": "Doctor Who: The Day of the Doctor",
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -190,7 +190,7 @@
     "release_date": "1985-07-03",
     "title": "Back to the Future",
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -215,7 +215,7 @@
     "release_date": "1979-05-25",
     "title": "Stalker",
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -241,7 +241,7 @@
     "title": "Avengers: Infinity War",
     "video": false,
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -267,7 +267,7 @@
     "title": "A Clockwork Orange",
     "video": false,
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -293,7 +293,7 @@
     "title": "Star Wars",
     "video": false,
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -319,7 +319,7 @@
     "title": "Metropolis",
     "video": false,
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -345,7 +345,7 @@
     "title": "The Matrix",
     "video": false,
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",
@@ -371,7 +371,7 @@
     "title": "Doctor Who: A Christmas Carol",
     "video": false,
     "vimeo_id": "12345678",
-    "course": "Sight and Sound",
+    "course": ["Sight and Sound"],
     "directors": ["Wayne Wang"],
     "actors": [
       "Nicholas Sliter",

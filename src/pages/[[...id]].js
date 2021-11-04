@@ -18,7 +18,7 @@ export default function Home({films}) {
     <div className={styles.container}>
           <CustomHead/>
           <Header
-            genreList={uniqueField("genre")} classList={uniqueField("class")}
+            genreList={uniqueField("genre")} classList={uniqueField("course")}
           />
       <main>
         <h1 className="title">Final Project</h1>
