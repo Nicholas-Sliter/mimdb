@@ -16,6 +16,7 @@ export default function SmallCard({ film }) {
         <h3>{film.title}</h3>
         <span className={styles.duration}>{film.duration}</span>
         <span className={styles.genre}>{film.genre.join(", ")}</span>
+        <p className={styles.description}>{film.description}</p>
       </div>
     </div>
   );
