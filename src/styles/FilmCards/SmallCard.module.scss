@@ -1,0 +1,44 @@
+.card {
+  width: 200px;
+  height: 300px;
+  background-color: rgba(255, 255, 255, 0);
+
+  .card_poster {
+    background-color: rgba(255, 255, 255, 0);
+    display: inline-block;
+
+    img {
+      width: 100%;
+      object-fit: contain;
+      border-radius: 32px;
+      cursor: pointer;
+    }
+
+    &:hover {
+      img {
+        filter: brightness(0.9);
+        //transition: all 0.5s ease;
+      }
+
+      & + .card_info {
+         visibility: visible;
+         opacity: 1;
+         //transition: visibility 0.5s, opacity 0.5s ease;
+      }
+
+    }
+  }
+  .card_info {
+    visibility: hidden;
+    display: inline-block;
+    width: 100%;
+    margin-top: 0px;
+    background-color: #8f8f8f;
+  }
+}
+
+.card:hover {
+  transform: scale(1.08);
+  box-shadow: 0px 0px 80px -25px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s;
+}
