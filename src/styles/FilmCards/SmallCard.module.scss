@@ -3,10 +3,14 @@
 //   height: 300px;
 //   background-color: rgba(255, 255, 255, 0);
 //   white-space: nowrap;
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
+
+$grey-background: #e5e6e6;
 
 .card {
   width: 200px;
   height: 300px;
+  font-family: 'Montserrat', helvetica, arial, sans-serif;
   background-color: rgba(255, 255, 255, 0);
   white-space: nowrap;
 
@@ -32,13 +36,17 @@
       & + .card_info {
         visibility: visible;
         opacity: 1;
+        display: inline-block;
       }
     }
   }
   .card_info {
-    visibility: hidden;
+    //visibility: hidden;
+      display: none;
     white-space: pre-line;
-    display: inline-block;
+    //display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
     height: 300px;
     width: 200px;
     vertical-align: top;
