@@ -10,9 +10,7 @@ export default function Home({films}) {
 
 
   function uniqueField(field) {
-    const tempArr = films.map((x) => x[field]);
-    const flatArr = tempArr.flat(1);
-    const fieldSet = new Set(flatArr);
+    const fieldSet = new Set(films.map((x) => x[field]).flat(1));
     return [...fieldSet].sort();
   }
 
@@ -28,7 +26,7 @@ export default function Home({films}) {
         <p>Now go and give it some content...</p>
       </main>
 
-      <footer>A CS 312 Project</footer>
+      <footer>2021 Middlebury Movie Database</footer>
     </div>
   );
 }
