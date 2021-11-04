@@ -1,5 +1,5 @@
 {
-  "name": "Mimdb",
+  "name": "mimdb",
   "version": "0.1.0",
   "private": true,
   "contributors": [
@@ -22,11 +22,13 @@
   "dependencies": {
     "fuse": "^0.0.8",
     "fuse.js": "^6.4.6",
+    "knex": "^0.95.13",
     "next": "11.1.2",
     "next-connect": "^0.11.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "sass": "^1.43.4"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.15.8",
