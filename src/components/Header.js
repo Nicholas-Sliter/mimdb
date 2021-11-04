@@ -16,7 +16,7 @@ export default function Header({genreList, classList}) {
         </Link>
         <div className={styles.filter}>
           <Category fieldName={"Genre"} fieldList={genreList} /> 
-          <Category fieldName={"Class"} fieldList={classList} />
+          <Category fieldName={"Course"} fieldList={classList} />
           <a className={styles.searchbar}>
             <input type="text" placeholder="Search..." />
           </a>
