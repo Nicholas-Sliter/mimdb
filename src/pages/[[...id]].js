@@ -27,7 +27,7 @@ export default function Home({films}) {
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
         <p>Now go and give it some content...</p>
-        <FilmRow films={films}/>
+        <FilmRow films={films} title="Testing!"/>
       </main>
 
       <footer>2021 Middlebury Movie Database</footer>
