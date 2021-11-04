@@ -13,7 +13,7 @@ export default function FilmRow({
          <h2 className={styles.title}>{title}</h2>
          <div className={styles.row}>
             {films.map(film => (
-               <div className={styles.rowCard}><SmallCard key={film.id} film={film} /></div>
+               <div className={styles.rowCard} key={film.id}><SmallCard key={film.id} film={film} /></div>
             ))}
          </div>
       </div>

@@ -2,18 +2,22 @@
 
 
 .row {
+width: 100%;
   margin: 0px;
   padding: 0px;
+  padding-right: 280px;
+  padding-left: 280px;
   display: flex;
   flex-wrap: wrap;
   background-color: transparent;
   justify-content: center;
   align-items: center;
+  overflow:hidden;
 }
 
 .rowCard {
    //margin-right: 10px;
    //margin-left: 10px;
-   margin: 20px;
+   margin: 24px;
    
 }

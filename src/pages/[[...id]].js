@@ -3,7 +3,7 @@
 
 import CustomHead from "../components/CustomHead";
 import Header from "../components/Header";
-import SmallCard from "../components/FilmCards/SmallCard";
+//import SmallCard from "../components/FilmCards/SmallCard";
 import FilmRow from "../components/DisplayLayouts/FilmRow";
 
 import styles from "../styles/Home.module.css";
@@ -27,7 +27,6 @@ export default function Home({films}) {
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
         <p>Now go and give it some content...</p>
-        <SmallCard film={films[0]}/>
         <FilmRow films={films}/>
       </main>
 
