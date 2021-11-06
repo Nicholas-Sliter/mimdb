@@ -5,7 +5,7 @@ export function convertToSlug(Text) {
     .replace(/[^\w-]+/g, "");
 }
 
-//uri component that returns null if a string cannot be converted to a valid URI
+//uri component that returns null if a URI cannot be converted to a valid string
 export function decodeURIComponentSafe(str) {
    try {
       return decodeURIComponent(str);
