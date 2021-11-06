@@ -1,8 +1,8 @@
-
 $row-padding: 140px;
+$wide-row-padding: 20px;
 
 .row {
-width: 100%;
+  width: 100%;
   margin: 0px;
   padding: 0px;
   padding-right: $row-padding;
@@ -15,14 +15,25 @@ width: 100%;
   //overflow:hidden;
 }
 
-.rowCard {
-   //margin-right: 10px;
-   //margin-left: 10px;
-   margin: 24px;
+.wideRow {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  padding-right: $wide-row-padding;
+  padding-left: $wide-row-padding;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: transparent;
+  justify-content: center; //center
+  align-items: center;
 }
 
+.rowCard {
+  //margin-right: 10px;
+  //margin-left: 10px;
+  margin: 24px;
+}
 
 .title {
-   padding-left: $row-padding;
-
+  padding-left: $row-padding;
 }

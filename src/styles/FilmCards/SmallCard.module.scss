@@ -22,7 +22,8 @@ $grey-background: #e5e6e6;
 
     img {
       width: 100%;
-      object-fit: contain;
+      height: 300px;
+      object-fit: cover;
       border-radius: 32px;
       cursor: pointer;
     }
