@@ -41,7 +41,5 @@ export default function useQueryBuilder({
     pageSize,
     searchTerm]);
 
-
     return query;
-
 }

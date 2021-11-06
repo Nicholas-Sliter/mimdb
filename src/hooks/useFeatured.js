@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function Featured({ collection }) {
-    const [featuredFilms, setFeatured] = useState()
+export default function useFeatured(films) {
 
     /* Randomize array in-place using Durstenfeld shuffle algorithm */
     function shuffleArray(array) {
@@ -9,21 +8,20 @@ export default function Featured({ collection }) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
-        return array
+        return array;
     }
 
     // numWanted is an integer parameter for how many random films need to be generated
     function getFeatured(numWanted) {
-        let collectionCopy = collection.map((movie) => movie);
+        let collectionCopy = films.map((movie) => movie);
 
-        collectionCopy = shuffleArray(collectionCopy);
+        shuffleArray(collectionCopy);
 
-        const featured = collectionCopy.slice(0, Math.min(numWanted + 1, collection.length))
-        setFeatured(featured)
+        const featured = collectionCopy.slice(0, Math.min(numWanted + 1, films.length));
+        //setFeatured(featured);
+
+        return featured;
     }
 
-    useEffect(() => getFeatured(), [])
-
-
-    return featuredFilms
+    return getFeatured(1);
 }
