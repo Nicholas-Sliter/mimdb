@@ -16,6 +16,14 @@ export default function useQueryBuilder({
 
   useEffect(() => {
     //build query string
+    //where filerBy is an object of key value pairs to filter by
+    if (filterBy) {
+      let queryString = "?";
+      for (let key in filterBy) {
+        queryString += `${key}=${filterBy[key]}&`;
+      }
+      setQuery(queryString);
+    }
     let queryString = `${SERVER}/films/`;
     if (filterBy) {
       queryString += `filterBy=${filterBy.join(",")}`;
@@ -41,5 +49,7 @@ export default function useQueryBuilder({
     pageSize,
     searchTerm]);
 
+
     return query;
+
 }
