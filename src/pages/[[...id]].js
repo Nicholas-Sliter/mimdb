@@ -7,6 +7,8 @@ import Header from "../components/Header";
 import FilmRow from "../components/DisplayLayouts/FilmRow";
 import WideCard from "../components/FilmCards/WideCard";
 
+import useFeatured from "../hooks/useFeatured";
+
 import styles from "../styles/Home.module.css";
 
 
@@ -17,6 +19,9 @@ export default function Home({films}) {
     const fieldSet = new Set(films.map((x) => x[field]).flat(1));
     return [...fieldSet].sort();
   }
+
+  //const featured = useFeatured({ collection: films, number : 2 });
+  //console.log(featured)
 
   return (
     <div className={styles.container}>
