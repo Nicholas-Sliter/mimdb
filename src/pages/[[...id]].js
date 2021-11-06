@@ -19,11 +19,8 @@ export default function Home({films, genres, courses}) {
       <CustomHead />
       <Header genreList={genres} classList={courses} />
       <main>
-        <h1 className="title">Final Project</h1>
-        <p>Hooray, you got the project deployed!</p>
-        <p>Now go and give it some content...</p>
-        <WideCard film={films[2]} onClickFunction={() => {}} />
-        <FilmRow films={films} title="Testing!" />
+        <FilmRow displayType="wide" films={useFeatured(films)} title="Featured!" />
+        <FilmRow films={films} title="All Films!" />
       </main>
 
       <footer>2021 Middlebury Movie Database</footer>

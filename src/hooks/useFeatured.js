@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 
 export default function useFeatured(films) {
 
@@ -18,10 +17,8 @@ export default function useFeatured(films) {
         shuffleArray(collectionCopy);
 
         const featured = collectionCopy.slice(0, Math.min(numWanted + 1, films.length));
-        //setFeatured(featured);
 
         return featured;
     }
-
     return getFeatured(1);
 }
