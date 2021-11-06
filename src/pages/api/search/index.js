@@ -18,12 +18,12 @@ import Fuse from "fuse.js";
 
 const searchHandler = (params) => {
   const films = readData();
-  const searchTerm = params.generalTerm;
-  
+  const searchTerm = params.keyword;
+
   const options = {
     threshold: 0.3, // range (0, 1), a lower threshold means a more strict search rule
     includeScore: true, // Wheter includes the score Fuse gives to each result.
-    keys: ["title", "genre_ids", "id", "overview", "release_date", "class", "director", "actors"]
+    keys: Object.keys(films[0]) // Search all fields of a film object
   }
   const fuse = new Fuse(films, options);
   
