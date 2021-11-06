@@ -12,13 +12,14 @@ import { useState, useEffect } from "react";
 
 
 
-export default function SearchPage() {
+export default function SearchPage({genres, courses}) {
   const router = useRouter();
   const { keyword } = router.query;
   const [searchTerm, setSearchTerm] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
 
-  useEffect(async() => {
+  //useEffect to fetch search results from API at /api/search?keyword=searchTerm
+  useEffect(async () => {
     setSearchTerm(decodeURIComponentSafe(keyword));
     //search the api and get the results
     const res = await fetch(`/api/search?keyword=${keyword}`);
@@ -26,24 +27,12 @@ export default function SearchPage() {
     setSearchResults(data);
   }, [keyword]);
 
-  //useEffect to fetch search results from API at /api/search?keyword=searchTerm
-  //const { loading, results, error } = useSearch(searchTerm);
-
-  // useEffect(async () => {
-  //   const res = await fetch(`/api/search?keyword=${searchTerm}`);
-  //   if (!res.ok) {
-  //     throw new Error(`Could not fetch search results for ${searchTerm}`);
-  //   }
-  //   const data = await res.json();
-  //   setSearchResults(data);
-  // }, [searchTerm]);
-
   //default page for no search term or malformed search term
   if (!searchTerm) {
     return (
       <div>
         <CustomHead title="Search" />
-        <Header />
+        <Header genreList={genres} classList={courses} />
         <div className={styles.container}>
           <h1>Search</h1>
           <p>Enter a search term above to get started.</p>
@@ -52,10 +41,13 @@ export default function SearchPage() {
     );
   }
 
+  //const films = searchResults.map((result) => result.item);
+
+
   return (
     <div className={styles.container}>
       <CustomHead />
-      <Header />
+      <Header genreList={genres} classList={courses} />
       <main>
         <h1>
           Search results for{" "}
