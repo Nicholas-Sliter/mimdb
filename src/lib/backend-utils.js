@@ -37,7 +37,7 @@ export function saveData(films) {
   if (!fs.existsSync(fullPath)) {
     resetData();
   }
-  fs.writeFileSync(fullPath, JSON.stringify(films), "utf8");
+  fs.writeFileSync(fullPath, JSON.stringify(films, null, "\t"), "utf8"); // Pretty write the mock data
 }
 
 
