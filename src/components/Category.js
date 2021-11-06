@@ -14,7 +14,7 @@ export default function Category({ fieldName, fieldList }) {
     uniqueFields = <a />;
   } else {
     uniqueFields = fieldList.map((field) => (
-      <Link href="/search/" passHref key={field}>
+      <Link href={`/films/${fieldName.toLowerCase()}/${encodeURIComponent(field)}`} passHref key={field}>
         <a data-testid="dropdown">
           {field}
         </a>
