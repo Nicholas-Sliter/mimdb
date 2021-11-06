@@ -5,7 +5,7 @@ import CustomHead from "../../../components/CustomHead";
 import { useEffect, useState } from "react";
 import useFilmsByCategory from "../../../hooks/useFilmsByCategory";
 
-export default function FilmsByGenre() {
+export default function FilmsByGenre({genres,courses}) {
   const router = useRouter();
   const { genre } = router.query;
 
@@ -19,7 +19,7 @@ export default function FilmsByGenre() {
   return (
     <div>
       <CustomHead />
-      <Header />
+      <Header genreList={genres} classList={courses} />
       <main>
         <div className="container">
           <h1>{`${genreName}`} Films</h1>

@@ -5,7 +5,7 @@ import CustomHead from "../../../components/CustomHead"
 import { useEffect, useState } from "react"
 
 
-export default function FilmsByCourse(){
+export default function FilmsByCourse({ genres, courses }) {
 
    const router = useRouter()
    const { course } = router.query
@@ -32,7 +32,7 @@ export default function FilmsByCourse(){
 return (
   <div>
     <CustomHead />
-    <Header />
+    <Header classList={courses} genreList={genres} />
     <main>
       <div className="container">
         <h1>Films created in {courseName}</h1>
