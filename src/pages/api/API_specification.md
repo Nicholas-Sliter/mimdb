@@ -25,7 +25,7 @@
         - `/api/search?keyword=drama`
         - `/api/search?keyword=love`
     - Return value: A list of all results
-        - Each result is an object with three fiels:
+        - Each result is an object with three fields:
             - "item": the film object
             - "refIndex": the index of the result film in the searched films array
             - "score": the score Fuse gives to the result, ranging from 0 to 1 (a lower value means a more accurate match)
