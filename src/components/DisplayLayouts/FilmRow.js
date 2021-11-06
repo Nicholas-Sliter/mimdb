@@ -35,7 +35,7 @@ export default function FilmRow({
    return (
       <div className={styles.container}>
          <h2 className={styles.title}>{title}</h2>
-         <div className={styles.row}>
+         <div className={(displayType==="small") ? styles.row : styles.wideRow}>
             {cards}
          </div>
       </div>

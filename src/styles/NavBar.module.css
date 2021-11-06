@@ -39,7 +39,7 @@
 .dropdownContainer{
     display: none;
     position: absolute;
-    background-color: rgba(241, 241, 241,0.2);
+    background-color: rgba(241, 241, 241,0.7);
     backdrop-filter: blur(1px);
     border-radius: 12px;
     text-transform: capitalize;
