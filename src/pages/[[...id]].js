@@ -2,9 +2,9 @@ import CustomHead from "../components/CustomHead";
 import Header from "../components/Header";
 import FilmRow from "../components/DisplayLayouts/FilmRow";
 
-import styles from "../styles/Home.module.css";
-
 import useFeatured from "../hooks/useFeatured";
+
+import styles from "../styles/Home.module.css";
 
 export default function Home({films, genres, courses}) {
 
@@ -13,6 +13,7 @@ export default function Home({films, genres, courses}) {
       <CustomHead />
       <Header genreList={genres} classList={courses} />
       <main>
+
         <FilmRow
           displayType="wide"
           films={useFeatured(films)}

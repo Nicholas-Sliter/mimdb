@@ -10,20 +10,19 @@ export default function SmallCard({ film }) {
   //const poster_path = (filmObj.poster_path) ? `${POSTER_SERVER}${filmObj.poster_path}` : "#";
   const poster_path = `/filmImages${film.poster_path}`//"/sp.jpg";
   return (
+
     <Link href={`/films/${film.slug}`} passHref>
-      <a>
-        <div className={styles.card}>
-          <div className={styles.card_poster}>
-            <img src={poster_path} alt={film.title} />
-          </div>
-          <div className={styles.card_info}>
-            <h3>{film.title}</h3>
-            <span className={styles.duration}>{film.duration}</span>
-            <span className={styles.genre}>{film.genre.join(", ")}</span>
-            <p className={styles.description}>{film.description}</p>
-          </div>
+      <div className={styles.card}>
+        <div className={styles.card_poster} data-testid="smallPosterTest">
+          <img src={poster_path} alt={film.title} />
         </div>
-      </a>
+        <div className={styles.card_info}>
+          <h3>{film.title}</h3>
+          <span className={styles.duration}>{film.duration}</span>
+          <span className={styles.genre}>{film.genre.join(", ")}</span>
+          <p className={styles.description}>{film.description}</p>
+        </div>
+      </div>
     </Link>
   );
 }
