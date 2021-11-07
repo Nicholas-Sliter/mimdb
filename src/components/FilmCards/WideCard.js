@@ -20,7 +20,7 @@ export default function WideCard({ film, onClickFunction }) {
     >
       <div className={styles.infoSection}>
         <div className={styles.movieHeader}>
-          <div>
+          <div data-testid="widePosterTest">
             <img
               className={styles.poster}
               draggable={false}

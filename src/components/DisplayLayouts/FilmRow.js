@@ -15,7 +15,7 @@ export default function FilmRow({
    if (displayType === "small") {
       films.forEach(film => {
          cards.push(
-           <div className={styles.rowCard} key={film.id}>
+           <div className={styles.rowCard} key={film.id} data-testid="smallTestCard">
              <SmallCard film={film} key={film.id} id={film.id} />
            </div>
          );
@@ -24,7 +24,7 @@ export default function FilmRow({
    else if (displayType === "wide"){
       films.forEach(film => {
          cards.push(
-           <div className={styles.rowCard} key={film.id}>
+           <div className={styles.rowCard} key={film.id} data-testid="wideTestCard">
              <WideCard film={film} key={film.id} id={film.id} />
            </div>
          );

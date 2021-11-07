@@ -9,7 +9,7 @@ export default function SmallCard({ film }) {
   const poster_path = "/sp.jpg";
   return (
     <div className={styles.card}>
-      <div className={styles.card_poster}>
+      <div className={styles.card_poster} data-testid="smallPosterTest">
         <img src={poster_path} alt={film.title} />
       </div>
       <div className={styles.card_info}>

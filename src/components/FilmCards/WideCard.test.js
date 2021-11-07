@@ -1,5 +1,5 @@
 import { screen, render, fireEvent } from "@testing-library/react";
-import FilmRow from "./FilmRow";
+import WideCard from "./WideCard";
 
 const testFilms = [{
     "backdrop_path": "/7d6EY00g1c39SGZOoCJ5Py9nNth.jpg",
@@ -73,38 +73,35 @@ const testFilms = [{
     "term": "F20"
 }];
 
-const testTitle= "Animation";
-
-describe("Filmrow: Filmrow initialization", () => {
-    test("Filmrow: Handles empty films without error", () => {
-      render(<FilmRow films={[]} title={"haha"} />);
-    });
-  });
-
-
-describe("Film Row Tests", () => {
-
-    test("Title of Row Shows Up", async () => {
-
-        render(<FilmRow films={testFilms} title={testTitle} />);
-        const titleShown = await screen.findAllByTestId("title");
-        expect(titleShown[0].innerHTML).toEqual(testTitle);
-
+describe("WideCard: WideCard contents", ()=>{
+    test("Film title shows up", async () =>{
+        const { getByText } = render(<WideCard film={testFilms[0]}/>);
+        expect(getByText(testFilms[0].title)).toBeInTheDocument();
+        expect(getByText(testFilms[0].title)).toBeVisible();
     });
 
-    test("Test small card displays", async() => {
+    test("Film duration shows up", async () => {
+        const { getByText } = render(<WideCard film={testFilms[0]}/>);
+        expect(getByText(testFilms[0].duration)).toBeInTheDocument();
+        expect(getByText(testFilms[0].duration)).toBeVisible();
+    });
 
-        render(<FilmRow films={testFilms} title={testTitle} />);
-        const showSmall = await screen.findAllByTestId("smallTestCard");
-        expect(showSmall[0]).toBeVisible();
-        expect(showSmall[1]).toBeVisible();
-    })
+    test("Film genre shows up", async () => {
+        const { getByText } = render(<WideCard film={testFilms[0]}/>);
+        expect(getByText(testFilms[0].genre)).toBeInTheDocument();
+        expect(getByText(testFilms[0].genre)).toBeVisible();
+    });
 
-    test("Test wide card displays", async() => {
+    test("Film description shows up", async () => {
+        const { getByText } = render(<WideCard film={testFilms[0]}/>);
+        expect(getByText(testFilms[0].description)).toBeInTheDocument();
+        expect(getByText(testFilms[0].description)).toBeVisible();
+    });
 
-        render(<FilmRow films={testFilms} title={testTitle} displayType="wide"/>);
-        const showWide = await screen.findAllByTestId("wideTestCard");
-        expect(showWide[0]).toBeVisible();
-        expect(showWide[1]).toBeVisible();
-    })
-});
+    test("Test wide poster displays", async() => {
+        render(<WideCard film={testFilms[0]}/>);
+        const showWidePoster = await screen.findAllByTestId("widePosterTest");
+        expect(showWidePoster[0]).toBeVisible();
+    });
+
+})
