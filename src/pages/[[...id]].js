@@ -8,18 +8,12 @@ import useFeatured from "../hooks/useFeatured";
 
 export default function Home({films, genres, courses}) {
 
-
-  // function uniqueField(field) {
-  //   const fieldSet = new Set(films.map((x) => x[field]).flat(1));
-  //   return [...fieldSet].sort();
-  // }
-
   return (
     <div className={styles.container}>
       <CustomHead />
       <Header genreList={genres} classList={courses} />
       <main>
-        <FilmRow displayType="wide" films={useFeatured(films)} title="Featured!" />
+        <FilmRow displayType="wide" films={useFeatured(films)} title="Featured Films!" />
         <FilmRow films={films} title="All Films!" />
       </main>
 
