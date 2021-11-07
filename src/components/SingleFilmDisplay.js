@@ -11,8 +11,6 @@ import styles from "../styles/SingleFilmDisplay.module.scss";
 
 export default function SingleFilmDisplay({film}) {
 
-    console.log(film);
-
     //quick return if undefined film
     if (!film){
         return(
@@ -20,9 +18,9 @@ export default function SingleFilmDisplay({film}) {
         );
     }
 
-    const directors = film.directors.map((director)=><li>{director}</li>);
-    const actors = film.actors.map((actor)=><li>{actor}</li>);
-    const contributors = film.contributors.map((contrib)=><li>{contrib}</li>);
+    const directors = film.directors.map((director)=><li key={director}>{director}</li>);
+    const actors = film.actors.map((actor)=><li key={actor}>{actor}</li>);
+    const contributors = film.contributors.map((contrib)=><li key={contrib}>{contrib}</li>);
 
     return(
         <div className={styles.background}>
