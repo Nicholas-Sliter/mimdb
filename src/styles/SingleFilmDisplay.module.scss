@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
+
+.background{
+    background: white;
+    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
+    //font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 2rem;
+}
+
+
+.head{
+
+}
+
+.titleContainer{
+    padding-top: 1rem;
+    padding-left: 30px;
+    margin-left: 85px;
+}
+
+.title{
+    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
+}
+
+.dateContainer{
+    padding-left: 30px;
+    margin: -1.5rem 0rem 3rem 5.5rem;
+
+}
+
+
+.date{
+    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
+
+}
+
+
+.filmPageBody{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.filmContainer{
+
+}
+
+.overview{
+    margin: 1rem;
+}
+
+.overviewText{
+    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
+}
+
+.contributorsContainer{
+
+}
+
+.contributorsContainer ul {
+    padding: 0rem;
+    list-style-type: none;
+    text-align: center;
+}
+
+.contributorsContainer li {
+    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
+    padding-bottom: 1rem;
+}
+
+.directors{
+    float: left;
+    width: 33.33%;
+
+}
+
+
+.actors{
+    float: left;
+    width: 33.33%;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+
+}
+
+.contributors{
+    float: left;
+    width: 33.33%;
+
+}
+
+
+.content {
+    display: flex;
+  }
+  
+  .content img {
+    margin-right: 10px;
+    display: block;
+  }
+  
+  .content h3,
+  .content p {margin: 0;}
