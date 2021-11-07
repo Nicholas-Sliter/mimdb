@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react"
-import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Featured({ collection, number }) {
     const [featuredFilms, setFeatured] = useState([])
-
-    const router = useRouter()
 
     /* Randomize array in-place using Durstenfeld shuffle algorithm */
     function shuffleArray(array) {
@@ -26,9 +23,9 @@ export default function Featured({ collection, number }) {
         setFeatured(featured)
     }
 
-    useEffect(() => getFeatured(3), [])
+    //useEffect(() => getFeatured(3), [])
 
-   useEffect(() => getFeatured(number), [router.query])
+   useEffect(() => getFeatured(number), [])
    //getFeatured(number)
 
 

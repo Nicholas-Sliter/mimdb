@@ -20,7 +20,7 @@ export default function Home({films}) {
     return [...fieldSet].sort();
   }
 
-  //const featured = useFeatured({ collection: films, number : 2 });
+  const featured = useFeatured({ collection: films, number: 2 });
   //console.log(featured)
 
   return (
@@ -33,7 +33,7 @@ export default function Home({films}) {
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
         <p>Now go and give it some content...</p>
-        <WideCard film={films[2]} onClickFunction={()=>{}}/>
+        <WideCard film={featured[0]? featured[0] : films[2]} onClickFunction={()=>{}}/>
         <FilmRow films={films} title="Testing!"/>
       </main>
 

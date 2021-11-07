@@ -82,13 +82,8 @@ describe("Film Row Tests", () => {
     test("Title of Row Shows Up", async () => {
 
         render(<FilmRow films={testFilms} title={testTitle} />);
-        // is the title of the row visible
-        //const expectedTitle = `${testTitle}`;
-        //expect(screen.queryByText(testTitle)).toBeVisible();
-        //expect(screen.queryByRole("h2", { value: testTitle })).toBeInTheDocument()
-        //expect(screen.queryByText(testTitle)).toBeInTheDocument()
         const titleShown = await screen.findAllByTestId("title");
-        expect(titleShown).toEqual(testTitle);
+        expect(titleShown[0].innerHTML).toEqual(testTitle);
 
     });
 
