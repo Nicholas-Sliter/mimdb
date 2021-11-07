@@ -2,68 +2,66 @@
  * Props
  * Title, Overview, Poster Path, Directors, Actors, Video, Release Date, Contributors 
  * 
- * 
- * 
- * 
+
 ******/
 
 import styles from "../styles/SingleFilmDisplay.module.scss";
 
 
 
-export default function SingleFilmDisplay() {
+export default function SingleFilmDisplay({film}) {
 
+    console.log(film);
 
+    //quick return if undefined film
+    if (!film){
+        return(
+            <p>Choose a Film!</p>
+        );
+    }
+
+    const directors = film.directors.map((director)=><li>{director}</li>);
+    const actors = film.actors.map((actor)=><li>{actor}</li>);
+    const contributors = film.contributors.map((contrib)=><li>{contrib}</li>);
 
     return(
         <div className={styles.background}>
             <div className={styles.head}>
                 <div className={styles.titleContainer}>
-                    <h1 className={styles.title}>TITLE OF FILM</h1>
+                    <h1 className={styles.title}>{film.title}</h1>
                 </div>
                 <div className={styles.dateContainer}>
-                    <a className={styles.date}>11/11/11</a>
+                    <p className={styles.date}>{film.release_date}</p>
                 </div>
             </div>
-            <div className={styles.body}>
+            <div className={styles.filmPageBody}>
                 <div className={styles.filmContainer}>
-                    <img className={styles.video} src="/br_poster.jpg"/>
+                    <img className={styles.video} src={`/filmImages${film.poster_path}`}/>
                 </div>
                 <div className={styles.overview}>
-                    <p className={styles.overviewText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p className={styles.overviewText}>{film.overview}</p>
                 </div>
                 <div className={styles.contributorsContainer}>
                     <div className={styles.directors}>
                         <h3>Directors</h3>
                         <ul>
-                            <li>Wes Anderson</li>
+                            {directors}
                         </ul>
                     </div>
                     <div className={styles.actors}>
                         <h3>Actors</h3>
                         <ul>
-                            <li>Matt Damon</li>
-                            <li>Jessica Chastain</li>
-                            <li>Charlie Day</li>
+                            {actors}
                         </ul>
                     </div>
                     <div className={styles.contributors}>
                         <h3>Contributors</h3>
                         <ul>
-                            <li>helper 1</li>
-                            <li>helper 2</li>
-                            <li>helper 3</li>
+                            {contributors}
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
     )
-
-
-
-
 }
