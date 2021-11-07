@@ -29,6 +29,7 @@
 
 }
 
+
 .date{
     font-family: ‘Montserrat’, helvetica, arial, sans-serif;
 
@@ -89,3 +90,16 @@
     width: 33.33%;
 
 }
+
+
+.content {
+    display: flex;
+  }
+  
+  .content img {
+    margin-right: 10px;
+    display: block;
+  }
+  
+  .content h3,
+  .content p {margin: 0;}
