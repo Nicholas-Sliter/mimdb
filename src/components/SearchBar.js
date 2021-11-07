@@ -20,7 +20,6 @@ export default function SearchBar({ placeholder = "Search ..." }) {
 
   return (
     <div className={styles.container}>
-      <FiSearch />
       <input
         className={styles.searchBar}
         type="text"
@@ -28,6 +27,7 @@ export default function SearchBar({ placeholder = "Search ..." }) {
         onChange={(e) => handleChange(e)}
         onKeyUp={(e) => handleSubmit(e)}
       />
+      <FiSearch className={styles.searchIcon} />
     </div>
   );
 }

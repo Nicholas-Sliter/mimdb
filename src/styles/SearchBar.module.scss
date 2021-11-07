@@ -1,4 +1,6 @@
 
+$midd-blue: #0D395F;
+
 .container{
    display: inline-block;
    height: 2rem;
@@ -16,7 +18,9 @@
    padding: 0px;
 
     box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.15);
-   padding-left: 0.5rem;
+   //padding-left: 2rem;
+   padding-left: 1rem;
+   padding-right: 2.5rem;
    appearance: none;
    outline: none;
    border: none;
@@ -32,16 +36,47 @@
       outline: none;
         box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.15);
 
-      
-
    }
 
-   &::before{
+   &:hover {
+      ~ .searchIcon {
+         transform: scale(1.2);
+         box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.15);
 
-      //relative for icon positioning
-      position: relative;
-      content: '';
+      }
    }
+
 
 }
 
+
+
+// .searchIcon {
+//    position: relative;
+//    left: 1.75rem;
+//    top: 0.5rem;
+//    font-size: 1.5rem;
+//    color: #5a6674;
+//    transition: all 0.3s ease;
+
+// }
+
+.searchIcon {
+   position: relative;
+   //right: 1.75rem;
+   right: 2rem;
+   //top: 0.45rem;
+   top: 0.7rem;
+   font-size: 1.5rem;
+   //color: #5a6674;
+   color: #fff;
+   transition: all 0.3s ease;
+
+   //create a circle around search icon
+   border-radius: 50%;
+   background-color: $midd-blue;
+   padding: 0.5rem;
+   height: 2rem;
+   width: 2rem;
+
+}
