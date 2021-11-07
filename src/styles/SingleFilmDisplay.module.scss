@@ -9,8 +9,9 @@
 }
 
 
-.head{
-
+.image{
+    width: 20%;
+    height: auto;
 }
 
 .titleContainer{
@@ -62,6 +63,10 @@
 .contributorsContainer ul {
     padding: 0rem;
     list-style-type: none;
+    text-align: center;
+}
+
+.contributorsContainer h3{
     text-align: center;
 }
 

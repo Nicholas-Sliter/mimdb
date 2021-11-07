@@ -26,7 +26,7 @@ export default function SingleFilmDisplay({film}) {
     return(
         <div className={styles.background}>
             <div className={styles.content}>
-            <img src={`/filmImages${film.poster_path}`} />
+            <img className = {styles.image} src={`/filmImages${film.poster_path}`} />
                 <div className = {styles.text}>
                         <h3><strong>{film.title}</strong></h3>
                         <hr></hr>
