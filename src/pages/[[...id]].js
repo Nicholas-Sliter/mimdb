@@ -6,12 +6,7 @@ import useFeatured from "../hooks/useFeatured";
 
 import styles from "../styles/Home.module.css";
 
-import useFeatured from "../hooks/useFeatured";
-
 export default function Home({films, genres, courses}) {
-
-  const featured = useFeatured({ collection: films, number: 2 });
-  //console.log(featured)
 
   return (
     <div className={styles.container}>
