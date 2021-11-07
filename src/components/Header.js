@@ -18,9 +18,6 @@ export default function Header({genreList, classList}) {
         <div className={styles.filter}>
           <Category fieldName={"Genre"} fieldList={genreList} /> 
           <Category fieldName={"Course"} fieldList={classList} />
-          {/* <a className={styles.searchbar}>
-            <input type="text" placeholder="Search..." />
-          </a> */}
           <SearchBar />
         </div>
       </div>
