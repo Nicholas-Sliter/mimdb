@@ -1,4 +1,3 @@
-
 export default function useFeatured(films) {
 
     /* Randomize array in-place using Durstenfeld shuffle algorithm */
@@ -12,6 +11,7 @@ export default function useFeatured(films) {
 
     // numWanted is an integer parameter for how many random films need to be generated
     function getFeatured(numWanted) {
+
         const collectionCopy = films.map((movie) => movie);
 
         shuffleArray(collectionCopy);

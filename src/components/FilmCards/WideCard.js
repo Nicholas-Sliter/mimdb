@@ -13,12 +13,13 @@ export default function WideCard({ film }) {
   const backdrop_path = `/filmImages${film.backdrop_path}`;
 
   return (
+    
     <Link href={`/films/${film.slug}`} passHref>
       <a>
         <div className={styles.card}>
           <div className={styles.infoSection}>
             <div className={styles.movieHeader}>
-              <div>
+              <div data-testid="widePosterTest">
                 <img
                   className={styles.poster}
                   draggable={false}
