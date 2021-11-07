@@ -2,6 +2,7 @@
 
 //import SERVER constant from config
 //import SERVER from 
+import { useState, useEffect } from "react";
 const SERVER = "#";
 
 export default function useQueryBuilder({
@@ -11,15 +12,14 @@ export default function useQueryBuilder({
   pageSize,
 }) {
   const [query, setQuery] = useState("");
-  const [sort, setSort] = useState("");
-  const [pageSizeNumber, setPageSizeNumber] = useState(null);
+
 
   useEffect(() => {
     //build query string
     //where filerBy is an object of key value pairs to filter by
     if (filterBy) {
       let queryString = "?";
-      for (let key in filterBy) {
+      for (const key in filterBy) {
         queryString += `${key}=${filterBy[key]}&`;
       }
       setQuery(queryString);
@@ -38,16 +38,11 @@ export default function useQueryBuilder({
       queryString += `&pageSize=${pageSize}`;
     }
     setQuery(queryString);
-    setSort(sortBy);
-    setPageNumber(page);
-    setPageSizeNumber(pageSize);
   }, [
     filterBy,
     sortBy,
     sortOrder,
-    page,
-    pageSize,
-    searchTerm]);
+    pageSize]);
 
 
     return query;

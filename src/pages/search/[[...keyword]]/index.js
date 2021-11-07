@@ -2,9 +2,6 @@ import { useRouter } from "next/router";
 import styles from "../../../styles/Search.module.scss";
 
 import CustomHead from "../../../components/CustomHead";
-//import SearchForm from "../../components/SearchForm";
-//import SearchResults from "../../components/SearchResults";
-import { useSearch } from "../../../hooks/useSearch";
 import { decodeURIComponentSafe } from "../../../lib/frontend-utils";
 import FilmRow from "../../../components/DisplayLayouts/FilmRow";
 import Header from "../../../components/Header";
