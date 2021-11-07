@@ -10,8 +10,6 @@ export default function Film() {
     const router = useRouter();
     const {slug} = router.query;
 
-    console.log(slug);
-
     // function uniqueField(field) {
     //     const fieldSet = new Set(films.map((x) => x[field]).flat(1));
     //     return [...fieldSet].sort();
