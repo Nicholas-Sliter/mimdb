@@ -10,6 +10,7 @@
 import styles from "../styles/SingleFilmDisplay.module.scss";
 
 
+
 export default function SingleFilmDisplay() {
 
 
@@ -23,24 +24,23 @@ export default function SingleFilmDisplay() {
                 <div className={styles.dateContainer}>
                     <a className={styles.date}>11/11/11</a>
                 </div>
-                <div className={styles.authorContainer}>
-                    <a className={styles.author}>Christopher Andrews</a>
-                </div>
             </div>
             <div className={styles.body}>
                 <div className={styles.filmContainer}>
-                    <img className={styles.video} src="/mimdb-logo-full.svg"/>
+                    <img className={styles.video} src="/br_poster.jpg"/>
                 </div>
                 <div className={styles.overview}>
-                    <p className={styles.overviewText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p className={styles.overviewText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
                 <div className={styles.contributorsContainer}>
                     <div className={styles.directors}>
+                        <h3>Directors</h3>
                         <ul>
                             <li>Wes Anderson</li>
                         </ul>
                     </div>
                     <div className={styles.actors}>
+                        <h3>Actors</h3>
                         <ul>
                             <li>Matt Damon</li>
                             <li>Jessica Chastain</li>
@@ -48,6 +48,7 @@ export default function SingleFilmDisplay() {
                         </ul>
                     </div>
                     <div className={styles.contributors}>
+                        <h3>Contributors</h3>
                         <ul>
                             <li>helper 1</li>
                             <li>helper 2</li>
@@ -56,7 +57,6 @@ export default function SingleFilmDisplay() {
                     </div>
                 </div>
             </div>
-
         </div>
 
 
