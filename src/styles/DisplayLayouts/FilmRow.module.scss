@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
 
 $row-padding: 140px;
+$wide-row-padding: 20px;
 
 .row {
-width: 100%;
+  width: 100%;
   margin: 0px;
   padding: 0px;
   padding-right: $row-padding;
@@ -10,19 +12,28 @@ width: 100%;
   display: flex;
   flex-wrap: wrap;
   background-color: transparent;
-  justify-content: center; //center
+  justify-content: center;
   align-items: center;
-  //overflow:hidden;
+}
+
+.wideRow {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  padding-right: $wide-row-padding;
+  padding-left: $wide-row-padding;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
 }
 
 .rowCard {
-   //margin-right: 10px;
-   //margin-left: 10px;
-   margin: 24px;
+  margin: 24px;
 }
 
-
 .title {
-   padding-left: $row-padding;
-
+  padding-left: $row-padding;
+  font-family: 'Montserrat', helvetica, arial, sans-serif;
 }

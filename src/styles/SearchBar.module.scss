@@ -1,0 +1,82 @@
+
+$midd-blue: #0D395F;
+
+.container{
+   display: inline-block;
+   height: 2rem;
+}
+
+
+.searchBar {
+   display: inline-block;
+   width: 20rem;
+   font-size: 1rem;
+   font-weight: 500;
+   border-radius: 1rem;
+   height: 100%;
+   margin: 0px;
+   padding: 0px;
+
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.15);
+   //padding-left: 2rem;
+   padding-left: 1rem;
+   padding-right: 2.5rem;
+   appearance: none;
+   outline: none;
+   border: none;
+   background-color: #5a6674;
+
+   //light shadow around search bar
+   
+   background: #fff;
+   transition: all 0.3s ease;
+   
+
+   &:focus {
+      outline: none;
+        box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.15);
+
+   }
+
+   &:hover {
+      ~ .searchIcon {
+         transform: scale(1.2);
+         box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.15);
+
+      }
+   }
+
+
+}
+
+
+
+// .searchIcon {
+//    position: relative;
+//    left: 1.75rem;
+//    top: 0.5rem;
+//    font-size: 1.5rem;
+//    color: #5a6674;
+//    transition: all 0.3s ease;
+
+// }
+
+.searchIcon {
+   position: relative;
+   //right: 1.75rem;
+   right: 2rem;
+   //top: 0.45rem;
+   top: 0.7rem;
+   font-size: 1.5rem;
+   //color: #5a6674;
+   color: #fff;
+   transition: all 0.3s ease;
+
+   //create a circle around search icon
+   border-radius: 50%;
+   background-color: $midd-blue;
+   padding: 0.5rem;
+   height: 2rem;
+   width: 2rem;
+
+}
