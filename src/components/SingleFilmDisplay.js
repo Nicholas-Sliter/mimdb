@@ -29,9 +29,9 @@ export default function SingleFilmDisplay({film}) {
             <img src={`/filmImages${film.poster_path}`} />
                 <div className = {styles.text}>
                         <h3><strong>{film.title}</strong></h3>
-                        <hr></hr>
+                        <hr />
                         <p>{film.overview}</p>
-                        <hr></hr>
+                        <hr />
                         <div className={styles.contributorsContainer}>
                             <div className={styles.directors}>
                                 <h3>Directors</h3>
