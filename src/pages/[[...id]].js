@@ -13,11 +13,17 @@ export default function Home({films, genres, courses}) {
       <CustomHead />
       <Header genreList={genres} classList={courses} />
       <main>
-        <FilmRow displayType="wide" films={useFeatured(films)} title="Featured Films!" />
+        <FilmRow
+          displayType="wide"
+          films={useFeatured(films)}
+          title="Featured Films!"
+        />
         <FilmRow films={films} title="All Films!" />
       </main>
 
-      <footer>2021 Middlebury Movie Database</footer>
+      <footer>
+         © {`${new Date().getFullYear()}`} Middlebury Movie Database
+      </footer>
     </div>
   );
 }
