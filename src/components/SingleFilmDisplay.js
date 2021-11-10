@@ -29,6 +29,9 @@ export default function SingleFilmDisplay({ film }) {
                 <img className={styles.image} src={`/filmImages${film.poster_path}`} />
                 <div className={styles.text}>
                     <h3><strong>{film.title}</strong></h3>
+                    <div className={styles.filmContainer}>
+                        <iframe src="https://player.vimeo.com/video/644532680?h=89746a8c96&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1158" height="720" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Sample Video for Website"/>
+                    </div>
                     <hr />
                         <p>{film.overview}</p>
                     <hr />
