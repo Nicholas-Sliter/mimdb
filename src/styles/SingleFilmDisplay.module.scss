@@ -1,40 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
 
 .background{
-    background: white;
+    background: linear-gradient(white, grey, white);
     font-family: ‘Montserrat’, helvetica, arial, sans-serif;
     //font-size: 14px;
     font-weight: 400;
     padding-bottom: 2rem;
+    width: 100%;
 }
 
-
-.image{
-    width: 20%;
-    height: auto;
-}
 
 .titleContainer{
-    padding-top: 1rem;
-    padding-left: 30px;
-    margin-left: 85px;
+    padding-left: 3rem;
+    margin-left: 8.5rem;
+    padding-bottom: 2rem;
 }
 
 .title{
-    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
+    font-size: 2rem;
+    margin-bottom:0rem;
 }
-
-.dateContainer{
-    padding-left: 30px;
-    margin: -1.5rem 0rem 3rem 5.5rem;
-
-}
-
 
 .date{
-    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
-
+    font-size: 1rem;
+    margin-top:0.25rem;
 }
+
 
 
 .filmPageBody{
@@ -45,11 +36,33 @@
 }
 
 .filmContainer{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+    margin-bottom: 3rem;
+}
 
+.film{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.overviewContainer{
+    text-align: center;
 }
 
 .overview{
-    margin: 1rem;
+    margin: 0rem 1rem 1rem 1rem;
+    border: black 1px;
+    border-style: solid;
+    border-radius: 1rem;
+    background-color: rgb(255,255,255,0.5);
 }
 
 .overviewText{
@@ -61,18 +74,25 @@
 }
 
 .contributorsContainer ul {
+    margin: 0rem 1rem 0rem 1rem;
     padding: 0rem;
     list-style-type: none;
     text-align: center;
+    border: black 1px;
+    border-style: solid;
+    border-radius: 1rem;
+    background-color: rgb(255,255,255,0.5);
+    min-height: 20rem;
 }
 
 .contributorsContainer h3{
     text-align: center;
+    margin-bottom: 0rem;
 }
 
 .contributorsContainer li {
     font-family: ‘Montserrat’, helvetica, arial, sans-serif;
-    padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 .directors{
@@ -85,26 +105,9 @@
 .actors{
     float: left;
     width: 33.33%;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-
 }
 
 .contributors{
     float: left;
     width: 33.33%;
-
 }
-
-
-.content {
-    display: flex;
-  }
-  
-  .content img {
-    margin-right: 10px;
-    display: block;
-  }
-  
-  .content h3,
-  .content p {margin: 0;}

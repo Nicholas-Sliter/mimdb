@@ -26,15 +26,22 @@ export default function SingleFilmDisplay({ film }) {
     return (
         <div className={styles.background}>
             <div className={styles.content}>
-                <img className={styles.image} src={`/filmImages${film.poster_path}`} />
                 <div className={styles.text}>
-                    <h3><strong>{film.title}</strong></h3>
-                    <div className={styles.filmContainer}>
-                        <iframe src="https://player.vimeo.com/video/644532680?h=89746a8c96&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1158" height="720" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Sample Video for Website"/>
+                    <div className={styles.titleContainer}>
+                        <h3 className={styles.title}>
+                            <strong>{film.title}</strong>
+                        </h3>
+                        <h3 className={styles.date}>Release Date: {film.release_date}</h3>
                     </div>
-                    <hr />
-                        <p>{film.overview}</p>
-                    <hr />
+                    <div className={styles.filmContainer}>
+                        <iframe className={styles.film} src="https://player.vimeo.com/video/644532680?h=89746a8c96&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1158" height="720" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen title="Sample Video for Website"/>
+                    </div>
+                    <div className={styles.overviewContainer}>
+                        <h3>OVERVIEW</h3>
+                        <div className={styles.overview}>
+                            <p>{film.overview}</p>
+                        </div>
+                    </div>
                     <div className={styles.contributorsContainer}>
                         <div className={styles.directors}>
                             <h3>Directors</h3>
