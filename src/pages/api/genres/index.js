@@ -6,7 +6,6 @@ import { readData, getAllGenres } from "../../../lib/backend-utils";
 const handler = nc().get(async (req, res) => {
 
   const allGenres = await getAllGenres();
-  //console.log(allGenres);
   res.status(200).json(allGenres);
   /*
   const films = readData();

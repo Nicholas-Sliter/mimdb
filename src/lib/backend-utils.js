@@ -139,6 +139,18 @@ export async function getGenres(id){
 }
 
 /**
+ * Get the list of the names of all courses present in the database
+ * 
+ * @returns an array of all course names for all films in the database
+ */
+ export async function getAllCourses(id){
+  const allCourseEntries = await knex.select()
+    .from("Course");
+  const allCourseNames = new Set(allCourseEntries.map((entry) => entry.course_name).flat());
+  return Array.from(allCourseNames);
+}
+
+/**
  * Get all of the films from the database
  * 
  * @returns an array of all films
