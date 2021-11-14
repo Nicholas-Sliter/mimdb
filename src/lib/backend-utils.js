@@ -54,10 +54,10 @@ export const knex = knexInitializer(
  * @param {integer} id 
  * @returns an array of genre names for film with id id
  */
-export async function getGenres(id){
+export async function getGenres(id) {
   const genres = await knex.select("genre_name")
     .from("Genre")
-    .where({"film_id": id});
+    .where({ "film_id": id });
   return genres.map((entry) => entry.genre_name);
 }
 
@@ -67,10 +67,10 @@ export async function getGenres(id){
  * @param {integer} id 
  * @returns an array of languages for film with id id
  */
- export async function getLanguage(id){
+export async function getLanguage(id) {
   const languages = await knex.select("lang_name")
     .from("Language")
-    .where({"film_id": id});
+    .where({ "film_id": id });
   return languages.map((entry) => entry.lang_name);
 }
 
@@ -80,10 +80,10 @@ export async function getGenres(id){
  * @param {integer} id 
  * @returns an array of course names for film with id id
  */
- export async function getCourse(id){
+export async function getCourse(id) {
   const courses = await knex.select("course_name")
     .from("Course")
-    .where({"film_id": id});
+    .where({ "film_id": id });
   return courses.map((entry) => entry.course_name);
 }
 
@@ -93,10 +93,10 @@ export async function getGenres(id){
  * @param {integer} id 
  * @returns an array of director names for film with id id
  */
- export async function getDirectors(id){
+export async function getDirectors(id) {
   const directors = await knex.select("director_name")
     .from("Directors")
-    .where({"film_id": id});
+    .where({ "film_id": id });
   return directors.map((entry) => entry.director_name);
 }
 
@@ -106,10 +106,10 @@ export async function getGenres(id){
  * @param {integer} id 
  * @returns an array of actor names for film with id id
  */
- export async function getActors(id){
+export async function getActors(id) {
   const actors = await knex.select("actor_name")
     .from("Actors")
-    .where({"film_id": id});
+    .where({ "film_id": id });
   return actors.map((entry) => entry.actor_name);
 }
 
@@ -119,10 +119,10 @@ export async function getGenres(id){
  * @param {integer} id 
  * @returns an array of contributor names for film with id id
  */
- export async function getContributors(id){
+export async function getContributors(id) {
   const contributors = await knex.select("contributor_name")
     .from("Contributors")
-    .where({"film_id": id});
+    .where({ "film_id": id });
   return contributors.map((entry) => entry.contributor_name);
 }
 
@@ -131,7 +131,7 @@ export async function getGenres(id){
  * 
  * @returns an array of all genre names for all films in the database
  */
- export async function getAllGenres(){
+export async function getAllGenres() {
   const allGenreEntries = await knex.select()
     .from("Genre");
   const allGenreNames = new Set(allGenreEntries.map((entry) => entry.genre_name).flat());
@@ -143,7 +143,7 @@ export async function getGenres(id){
  * 
  * @returns an array of all course names for all films in the database
  */
- export async function getAllCourses(){
+export async function getAllCourses() {
   const allCourseEntries = await knex.select()
     .from("Course");
   const allCourseNames = new Set(allCourseEntries.map((entry) => entry.course_name).flat());
@@ -155,11 +155,19 @@ export async function getGenres(id){
  * 
  * @returns an array of all films
  */
- export async function getAllFilms(){
+export async function getAllFilms() {
   const films = await knex("Film").select();
   await Promise.all(
     films.map(async (film) => {
-      film.genres = await getGenres(film.id);
+      return {
+        ...film,
+        genre: await getGenres(film.id),
+        language: await getLanguage(film.id),
+        course: await getCourse(film.id),
+        directors: await getDirectors(film.id),
+        actors: await getActors(film.id),
+        contributors: await getContributors(film.id),
+      };
     }));
   return films;
 }
@@ -170,18 +178,19 @@ export async function getGenres(id){
  * @param {integer} id 
  * @returns the film associated with id id
  */
- export async function getFilmById (id) {
-  const [film] = await knex("Film").select().where({id: id});
+export async function getFilmById(id) {
+  const [film] = await knex("Film").select().where({ id: id });
+  
   if (film) {
     return {
       ...film,
-      genres: await getGenres(film.id),
+      genre: await getGenres(film.id),
       language: await getLanguage(film.id),
       course: await getCourse(film.id),
       directors: await getDirectors(film.id),
       actors: await getActors(film.id),
       contributors: await getContributors(film.id),
-    }
+    };
   } else {
     return null;
   }
@@ -193,12 +202,12 @@ export async function getGenres(id){
  * @param {string} slug 
  * @returns the film associated with slug
  */
- export async function getFilmBySlug (slug) {
-  const [film] = await knex("Film").select().where({slug: slug});
+export async function getFilmBySlug(slug) {
+  const [film] = await knex("Film").select().where({ slug: slug });
   if (film) {
     return {
       ...film,
-      genres: await getGenres(film.id),
+      genre: await getGenres(film.id),
       language: await getLanguage(film.id),
       course: await getCourse(film.id),
       directors: await getDirectors(film.id),
@@ -210,4 +219,74 @@ export async function getGenres(id){
   }
 }
 
+/**
+ * Get the list of films of the given genre 
+ * 
+ * @returns an array of all films of the genre
+ */
+export async function getFilmsByGenre(genre) {
+  const film_ids = await knex.select("film_id")
+    .from("Genre")
+    .where({ "genre_name": genre });
+  return film_ids;
+}
 
+/**
+ * Get the list of films of the given language
+ * 
+ * @returns an array of all films of the language
+ */
+export async function getFilmsByLanguage(lang) {
+  const film_ids = await knex.select("film_id")
+    .from("Language")
+    .where({ "lang_name": lang });
+  return film_ids;
+}
+
+/**
+ * Get the list of films of the given course
+ * 
+ * @returns an array of all films in the course
+ */
+export async function getFilmsByCourse(course) {
+  const film_ids = await knex.select("film_id")
+    .from("Course")
+    .where({ "course_name": course });
+  return film_ids;
+}
+
+/**
+ * Get the list of films by the given director
+ * 
+ * @returns an array of all films by the director
+ */
+export async function getFilmsByDirector(name) {
+  const film_ids = await knex.select("film_id")
+    .from("Directors")
+    .where({ "director_name": name });
+  return film_ids;
+}
+
+/**
+ * Get the list of films by the given actor
+ * 
+ * @returns an array of all films by the actor
+ */
+export async function getFilmsByActor(name) {
+  const film_ids = await knex.select("film_id")
+    .from("Actors")
+    .where({ "actor_name": name });
+  return film_ids;
+}
+
+/**
+ * Get the list of films by the given contributor
+ * 
+ * @returns an array of all films by the contributor
+ */
+export async function getFilmsByContributor(name) {
+  const film_ids = await knex.select("film_id")
+    .from("Contributors")
+    .where({ "contributor_name": name });
+  return film_ids;
+}
