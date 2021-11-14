@@ -26,18 +26,6 @@ exports.seed = async function(knex) {
         video,
         vimeo_id,
         duration }))(film);
-    /*
-    return {
-      "title": film.title,
-      "id": film.id,
-      "slug": film.slug,
-      "overview": 
-      "overview": film.overview,
-      "poster_path": film.poster_path,
-      "vote_average": film.vote_average,
-      "release_date": film.release_date,
-      "rating": 0
-    }*/
   });
   await knex("Film").del();
   await knex.batchInsert("Film", processedFilms, 100);
