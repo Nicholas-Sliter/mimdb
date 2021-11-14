@@ -131,7 +131,7 @@ export async function getGenres(id){
  * 
  * @returns an array of all genre names for all films in the database
  */
- export async function getAllGenres(id){
+ export async function getAllGenres(){
   const allGenreEntries = await knex.select()
     .from("Genre");
   const allGenreNames = new Set(allGenreEntries.map((entry) => entry.genre_name).flat());
@@ -143,7 +143,7 @@ export async function getGenres(id){
  * 
  * @returns an array of all course names for all films in the database
  */
- export async function getAllCourses(id){
+ export async function getAllCourses(){
   const allCourseEntries = await knex.select()
     .from("Course");
   const allCourseNames = new Set(allCourseEntries.map((entry) => entry.course_name).flat());
