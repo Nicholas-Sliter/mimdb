@@ -25,21 +25,6 @@ exports.up = function(knex) {
     table.string("genre_name");
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
   })
-  .createTable("Language", table => {
-    table.integer("film_id");
-    table.string("lang_name");
-    table.foreign("film_id").references("Film.id").onDelete("CASCADE");
-  })
-  .createTable("Course", table => {
-    table.integer("film_id");
-    table.string("course_name");
-    table.foreign("film_id").references("Film.id").onDelete("CASCADE");
-  })
-  .createTable("Directors", table => {
-    table.integer("film_id");
-    table.string("director_name");
-    table.foreign("film_id").references("Film.id").onDelete("CASCADE");
-  })
   .createTable("Actors", table => {
     table.integer("film_id");
     table.string("actor_name");
@@ -50,12 +35,37 @@ exports.up = function(knex) {
     table.string("contributor_name");
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
   })
+  .createTable("Course", table => {
+    table.string("course_name");
+    table.string("course_number");
+    table.string("course_description");
+  })
+  .createTable("Directors", table => {
+    table.string("director_name");
+    table.string("director_bio");
+    table.string("director_midd_email");
+    table.string("director_personal_email");
+    table.string("director_graduation_year");
+  })
+  .createTable("CourseFilm", table => {
+    // Affiliation table for Course and Film, two foreign keys
+    table.string("course_name");
+    table.integer("film_id");
+    table.foreign("film_id").references("Film.id").onDelete("CASCADE");
+    table.foreign("course_name").references("Course.course_name").onDelete("CASCADE");
+  })
+  .createTable("DirectorsFilm", table => {
+    // Affiliation table for Directors and Film, two foreign keys
+    table.string("director_name");
+    table.integer("film_id");
+    table.foreign("film_id").references("Film.id").onDelete("CASCADE");
+    table.foreign("director_name").references("Director.director_name").onDelete("CASCADE");
+  })
 };
 
 exports.down = function (knex) {
   return knex.schema.dropTableIfExists("Film")
                     .dropTableIfExists("Genre")
-                    .dropTableIfExists("Language")
                     .dropTableIfExists("Course")
                     .dropTableIfExists("Directors")
                     .dropTableIfExists("Actors")

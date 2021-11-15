@@ -31,7 +31,6 @@ exports.seed = async function(knex) {
   await knex.batchInsert("Film", processedFilms, 100);
 
   const genreMap = [];
-  const languageMap = [];
   const courseMap = [];
   const directorsMap = [];
   const actorsMap = [];
@@ -40,9 +39,6 @@ exports.seed = async function(knex) {
   films.forEach((film) => {
     film.genre.forEach((genre) => {
       genreMap.push({film_id: film.id, genre_name: genre});
-    });
-    film.language.forEach((lang) => {
-      languageMap.push({film_id: film.id, lang_name: lang});
     });
     film.course.forEach((course) => {
       courseMap.push({film_id: film.id, course_name: course});
@@ -60,9 +56,6 @@ exports.seed = async function(knex) {
 
   await knex("Genre").del();
   await knex.batchInsert("Genre", genreMap, 100);
-
-  await knex("Language").del();
-  await knex.batchInsert("Language", languageMap, 100);
 
   await knex("Course").del();
   await knex.batchInsert("Course", courseMap, 100);

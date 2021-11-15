@@ -62,19 +62,6 @@ export async function getGenres(id) {
 }
 
 /**
- * Get the list of languages for a film.
- * 
- * @param {integer} id 
- * @returns an array of languages for film with id id
- */
-export async function getLanguage(id) {
-  const languages = await knex.select("lang_name")
-    .from("Language")
-    .where({ "film_id": id });
-  return languages.map((entry) => entry.lang_name);
-}
-
-/**
  * Get the list of course names for a film.
  * 
  * @param {integer} id 
@@ -162,7 +149,6 @@ export async function getAllFilms() {
       return {
         ...film,
         genre: await getGenres(film.id),
-        language: await getLanguage(film.id),
         course: await getCourse(film.id),
         directors: await getDirectors(film.id),
         actors: await getActors(film.id),
@@ -185,7 +171,6 @@ export async function getFilmById(id) {
     return {
       ...film,
       genre: await getGenres(film.id),
-      language: await getLanguage(film.id),
       course: await getCourse(film.id),
       directors: await getDirectors(film.id),
       actors: await getActors(film.id),
@@ -208,7 +193,6 @@ export async function getFilmBySlug(slug) {
     return {
       ...film,
       genre: await getGenres(film.id),
-      language: await getLanguage(film.id),
       course: await getCourse(film.id),
       directors: await getDirectors(film.id),
       actors: await getActors(film.id),
@@ -228,18 +212,6 @@ export async function getFilmsByGenre(genre) {
   const film_ids = await knex.select("film_id")
     .from("Genre")
     .where({ "genre_name": genre });
-  return film_ids;
-}
-
-/**
- * Get the list of films of the given language
- * 
- * @returns an array of all films of the language
- */
-export async function getFilmsByLanguage(lang) {
-  const film_ids = await knex.select("film_id")
-    .from("Language")
-    .where({ "lang_name": lang });
   return film_ids;
 }
 
