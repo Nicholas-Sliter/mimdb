@@ -49,6 +49,19 @@ $midd-blue: #0D395F;
 
 }
 
+@media screen and (max-width: 840px){
+   .searchBar{
+      width: 12rem;
+   }
+}
+
+@media screen and (max-width: 500px){
+   .searchBar{
+      width: 8rem;
+   }
+}
+
+
 
 
 // .searchIcon {
