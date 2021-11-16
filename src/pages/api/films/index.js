@@ -1,37 +1,49 @@
 import nc from "next-connect";
-import { readData } from "../../../lib/backend-utils";
+import {
+  getFilmsByGenre,
+  getFilmsByCourse,
+  getFilmsByDirector,
+  getFilmsByActor,
+  getFilmsByContributor,
+  getFilmById
+} from "../../../lib/backend-utils";
+import { validateFilterTerm } from "../../../lib/backend-utils";
 
-const handler = nc().get((req, res) => {
-  const films = readData();
 
-  // Code used to generate the mock data with random term and course.
-  // This should serve as only reference purpose and should be removed as soon as we migrate to a database.
-  /*
-  const termArray = ["F21", "S21", "F20"];
-  const courseArray = ["Film History", "Sight and Sound", "Film Theory", "Television in the US"];
+// Filtering films
+const handler = nc().get(async (req, res) => {
 
-  const newFilms = films.map((film) => {
-    const randomTerm = termArray[Math.floor(Math.random() * termArray.length)];
-    const randomCourse = courseArray[Math.floor(Math.random() * courseArray.length)];
-    film.term = randomTerm;
-    film.course = [randomCourse];
-    return film;
-  });
-  saveData(newFilms);
-  res.status(200);
-  */
   const filters = req.query;
 
-  const result = films.filter((film) => {
-    let match = false;
-    Object.entries(filters).forEach(([filter, value]) => {
-      if (film[filter]) {
-        match = Array.isArray(film[filter]) ? film[filter].includes(value) : film[filter]===value;
-      }
-    });
-    return match;
-  });
+  const filter = Object.keys(filters)[0];
+  const value = filters[filter];
 
+  if (!validateFilterTerm(filter)) {
+    res.status(400).json({
+      error: `Invalid filter term: ${filter}`
+    });
+    return;
+  }
+
+  const func = {
+    "genre" : getFilmsByGenre,
+    "course" : getFilmsByCourse,
+    "director" : getFilmsByDirector,
+    "actor" : getFilmsByActor,
+    "contributor" : getFilmsByContributor,
+  };
+  
+  // having its format as [{film_id: 3}, {film_id:52}, ...]
+  const id_list = await func[filter](value);
+
+  if (!id_list || !Array.isArray(id_list)) {
+    res.status(500).json({
+      error: "Could not retrieve films",
+    });
+    return;
+  }
+  
+  const result = await Promise.all(id_list.map(async (film_id) => await getFilmById(film_id.film_id)));
   res.status(200).json(result);
 });
 export default handler;

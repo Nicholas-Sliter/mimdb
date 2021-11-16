@@ -13,7 +13,9 @@
 	  "video": false,
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -39,7 +41,9 @@
 	  "video": false,
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -64,7 +68,9 @@
 	  "title": "The Empire Strikes Back",
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -89,7 +95,9 @@
 	  "title": "Neon Genesis Evangelion: The End of Evangelion",
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -115,7 +123,9 @@
 	  "video": false,
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -141,7 +151,9 @@
 	  "video": false,
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -166,7 +178,9 @@
 	  "title": "Doctor Who: The Day of the Doctor",
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -191,7 +205,9 @@
 	  "title": "Back to the Future",
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -216,7 +232,9 @@
 	  "title": "Stalker",
 	  "vimeo_id": "12345678",
 	  "course": ["Independent Project"],
+	  "course_CRNs": ["FMMC 0507"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -242,7 +260,9 @@
 	  "video": false,
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -268,7 +288,9 @@
 	  "video": false,
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -294,7 +316,9 @@
 	  "video": false,
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -320,7 +344,9 @@
 	  "video": false,
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -346,7 +372,9 @@
 	  "video": false,
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
+	  "course_CRNs": ["FMMC 0105"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
