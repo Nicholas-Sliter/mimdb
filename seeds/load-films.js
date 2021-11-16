@@ -38,7 +38,7 @@ exports.seed = async function(knex) {
   await knex.batchInsert("Course", courses, 100);
 
   const directorContents = fs.readFileSync("./data/tempDirectors.json");
-  const directors = JSON.parse(courseContents);
+  const directors = JSON.parse(directorContents);
   await knex("Directors").del();
   await knex.batchInsert("Directors", directors, 100);
 
@@ -59,8 +59,8 @@ exports.seed = async function(knex) {
     film.contributors.forEach((name) => {
       contributorsMap.push({film_id: film.id, contributor_name: name});
     });
-    film.course.forEach((course) => {
-      courseMap.push({film_id: film.id, course_name: course});
+    film.course_CRNs.forEach((CRN) => {
+      courseMap.push({film_id: film.id, course_number: CRN});
     });
     film.director_ids.forEach((id) => {
       directorsMap.push({film_id: film.id, director_id: id});
@@ -79,6 +79,6 @@ exports.seed = async function(knex) {
   await knex("CourseFilm").del();
   await knex.batchInsert("CourseFilm", courseMap, 100);
 
-  await knex("DirectorFilm").del();
-  await knex.batchInsert("Directors", directorsMap, 100);
+  await knex("DirectorsFilm").del();
+  await knex.batchInsert("DirectorsFilm", directorsMap, 100);
 };

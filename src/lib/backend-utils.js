@@ -69,7 +69,8 @@ export async function getGenres(id) {
  */
 export async function getCourse(id) {
   const courses = await knex.select("course_name")
-    .from("Course")
+    .from("CourseFilm")
+    .join("Course", "Course.course_number", "CourseFilm.course_number")
     .where({ "film_id": id });
   return courses.map((entry) => entry.course_name);
 }
@@ -82,7 +83,8 @@ export async function getCourse(id) {
  */
 export async function getDirectors(id) {
   const directors = await knex.select("director_name")
-    .from("Directors")
+    .from("DirectorsFilm")
+    .join("Directors", "Directors.director_id", "DirectorsFilm.director_id")
     .where({ "film_id": id });
   return directors.map((entry) => entry.director_name);
 }
@@ -131,10 +133,27 @@ export async function getAllGenres() {
  * @returns an array of all course names for all films in the database
  */
 export async function getAllCourses() {
-  const allCourseEntries = await knex.select()
+  const allCourseEntries = await knex.select("course_name")
     .from("Course");
-  const allCourseNames = new Set(allCourseEntries.map((entry) => entry.course_name).flat());
-  return Array.from(allCourseNames);
+  return allCourseEntries.map((entry) => entry.course_name);
+}
+
+/**
+ * An internal helper function that fills a film object 
+ * with genre, course, directors, actors, and contributors information.
+ * 
+ * @param {Object} film
+ * @returns an film object with new fields added
+ */
+async function fillFilm(film) {
+  return {
+    ...film,
+    genre: await getGenres(film.id),
+    course: await getCourse(film.id),
+    directors: await getDirectors(film.id),
+    actors: await getActors(film.id),
+    contributors: await getContributors(film.id),
+  };
 }
 
 /**
@@ -144,17 +163,7 @@ export async function getAllCourses() {
  */
 export async function getAllFilms() {
   const films = await knex("Film").select();
-  await Promise.all(
-    films.map(async (film) => {
-      return {
-        ...film,
-        genre: await getGenres(film.id),
-        course: await getCourse(film.id),
-        directors: await getDirectors(film.id),
-        actors: await getActors(film.id),
-        contributors: await getContributors(film.id),
-      };
-    }));
+  await Promise.all(films.map((film) => fillFilm(film)));
   return films;
 }
 
@@ -166,19 +175,7 @@ export async function getAllFilms() {
  */
 export async function getFilmById(id) {
   const [film] = await knex("Film").select().where({ id: id });
-  
-  if (film) {
-    return {
-      ...film,
-      genre: await getGenres(film.id),
-      course: await getCourse(film.id),
-      directors: await getDirectors(film.id),
-      actors: await getActors(film.id),
-      contributors: await getContributors(film.id),
-    };
-  } else {
-    return null;
-  }
+  return film ? await fillFilm(film) : null;
 }
 
 /**
@@ -189,18 +186,7 @@ export async function getFilmById(id) {
  */
 export async function getFilmBySlug(slug) {
   const [film] = await knex("Film").select().where({ slug: slug });
-  if (film) {
-    return {
-      ...film,
-      genre: await getGenres(film.id),
-      course: await getCourse(film.id),
-      directors: await getDirectors(film.id),
-      actors: await getActors(film.id),
-      contributors: await getContributors(film.id),
-    }
-  } else {
-    return null;
-  }
+  return film ? await fillFilm(film) : null;
 }
 
 /**
@@ -222,7 +208,8 @@ export async function getFilmsByGenre(genre) {
  */
 export async function getFilmsByCourse(course) {
   const film_ids = await knex.select("film_id")
-    .from("Course")
+    .from("CourseFilm")
+    .join("Course", "Course.course_number", "CourseFilm.course_number")
     .where({ "course_name": course });
   return film_ids;
 }
@@ -234,7 +221,8 @@ export async function getFilmsByCourse(course) {
  */
 export async function getFilmsByDirector(name) {
   const film_ids = await knex.select("film_id")
-    .from("Directors")
+    .from("DirectorsFilm")
+    .join("Director", "Director.director_id", "DirectorsFilm.director_id")
     .where({ "director_name": name });
   return film_ids;
 }
@@ -266,10 +254,5 @@ export async function getFilmsByContributor(name) {
 
 export function validateFilterTerm(filterTerm) {
   const filters = ["genre","course","director","actor","contributor"];
-
-  if (filters.includes(filterTerm)) {
-    return true;
-  }
-
-  return false;
+  return filters.includes(filterTerm);
 }

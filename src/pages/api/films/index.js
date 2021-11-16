@@ -2,7 +2,6 @@ import nc from "next-connect";
 import {
   getFilmsByGenre,
   getFilmsByCourse,
-  getFilmsByLanguage,
   getFilmsByDirector,
   getFilmsByActor,
   getFilmsByContributor,

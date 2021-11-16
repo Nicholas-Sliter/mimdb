@@ -51,24 +51,26 @@ exports.up = function(knex) {
   .createTable("CourseFilm", table => {
     // Affiliation table for Course and Film, two foreign keys
     table.integer("film_id");
-    table.string("course_name");
+    table.string("course_number");
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
-    table.foreign("course_name").references("Course.course_name").onDelete("CASCADE");
+    table.foreign("course_number").references("Course.course_number").onDelete("CASCADE");
   })
   .createTable("DirectorsFilm", table => {
     // Affiliation table for Directors and Film, two foreign keys
     table.integer("film_id");
-    table.string("director_id");
+    table.integer("director_id");
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
-    table.foreign("director_id").references("Director.director_id").onDelete("CASCADE");
+    table.foreign("director_id").references("Directors.director_id").onDelete("CASCADE");
   })
 };
 
 exports.down = function (knex) {
   return knex.schema.dropTableIfExists("Film")
                     .dropTableIfExists("Genre")
+                    .dropTableIfExists("Actors")
+                    .dropTableIfExists("Contributors")
                     .dropTableIfExists("Course")
                     .dropTableIfExists("Directors")
-                    .dropTableIfExists("Actors")
-                    .dropTableIfExists("Contributors");
+                    .dropTableIfExists("CourseFilm")
+                    .dropTableIfExists("DirectorsFilm");
 };
