@@ -262,3 +262,14 @@ export async function getFilmsByContributor(name) {
     .where({ "contributor_name": name });
   return film_ids;
 }
+
+
+export function validateFilterTerm(filterTerm) {
+  const filters = ["genre","course","director","actor","contributor"];
+
+  if (filters.includes(filterTerm)) {
+    return true;
+  }
+
+  return false;
+}

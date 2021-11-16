@@ -8,6 +8,7 @@ import {
   getFilmsByContributor,
   getFilmById
 } from "../../../lib/backend-utils";
+import { validateFilterTerm } from "../../../lib/backend-utils";
 
 
 // Filtering films
@@ -17,6 +18,13 @@ const handler = nc().get(async (req, res) => {
 
   const filter = Object.keys(filters)[0];
   const value = filters[filter];
+
+  if (!validateFilterTerm(filter)) {
+    res.status(400).json({
+      error: `Invalid filter term: ${filter}`
+    });
+    return;
+  }
 
   const func = {
     "genre" : getFilmsByGenre,
