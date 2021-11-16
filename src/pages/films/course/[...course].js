@@ -13,6 +13,8 @@ export default function FilmsByCourse({ genres, courses }) {
    //convert from uri encoding to text
    const courseName = decodeURIComponent(course)
 
+
+   //TODO : should start using hooks!
    //get data from server api and store the data in the state for this page
    const [genreFilmList, setGenreFilmList] = useState([])
 
