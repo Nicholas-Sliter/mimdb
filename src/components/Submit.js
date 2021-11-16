@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import router from "next/router";
 
+import styles from "../styles/SubmitPage.module.css";
+
 export default function Submit({genres, courses}) {
     const [title, setTitle] = useState();
     const [logLine, setLogLine] = useState();
     const [overview, setOverview] = useState();
-
+    const [newGenre, addGenre] = useState(false);
+    const [newCourse, addCourse] = useState(false);
+    
     return (
-    <div>
+    <div className={styles.submitPage}>
         <form>
         <label htmlFor="title"> Title: </label>
         <input
@@ -26,12 +30,11 @@ export default function Submit({genres, courses}) {
              />
         <br /><br />
         <label htmlFor="overview"> Overview: </label><br />
-        <textarea
+        <textarea className={styles.textarea}
             id="overview"
             placeholder="Overview of Film"
             onChange={(event) => setOverview(event.target.value)}
-            rows="15"
-            cols="100"
+            
             />
         <br /><br />
         <label htmlFor="genres"> Genre: </label>
@@ -47,6 +50,20 @@ export default function Submit({genres, courses}) {
             <label htmlFor={genre}>{genre}</label><br />
         </div>
         )}
+        <input
+            type="checkbox"
+            id="other1"
+            name="other1"
+            value="other1"
+            onClick={() => addGenre(!newGenre)}
+            />
+        <label htmlFor="other1">Other</label>
+        {newGenre? <input 
+                        type="text"
+                        id="otherText1"
+                        placeholder="Other"
+                        />
+        : <div> </div>}
         </div>
         <br /><br />
         <label htmlFor="courses"> Course: </label>
@@ -62,6 +79,20 @@ export default function Submit({genres, courses}) {
             <label htmlFor={course}>{course}</label><br />
         </div>
         )}
+        <input
+            type="checkbox"
+            id="other2"
+            name="other2"
+            value="other2"
+            onClick={() => addCourse(!newCourse)}
+            />
+        <label htmlFor="other2">Other</label>
+        {newCourse? <input 
+                        type="text"
+                        id="otherText2"
+                        placeholder="Other"
+                        />
+        : <div> </div>}
         </div>
        <br /> <br />
        <label htmlFor="directors"> Directors: </label><br />
