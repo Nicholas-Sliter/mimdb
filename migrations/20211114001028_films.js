@@ -37,11 +37,12 @@ exports.up = function(knex) {
   })
   .createTable("Course", table => {
     table.string("course_name");
-    table.string("course_number");
+    table.string("course_number").unique().notNullable();
     table.string("course_description");
   })
   .createTable("Directors", table => {
     table.string("director_name");
+    table.integer("director_id").unique().notNullable();
     table.string("director_bio");
     table.string("director_midd_email");
     table.string("director_personal_email");
@@ -49,17 +50,17 @@ exports.up = function(knex) {
   })
   .createTable("CourseFilm", table => {
     // Affiliation table for Course and Film, two foreign keys
-    table.string("course_name");
     table.integer("film_id");
+    table.string("course_name");
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
     table.foreign("course_name").references("Course.course_name").onDelete("CASCADE");
   })
   .createTable("DirectorsFilm", table => {
     // Affiliation table for Directors and Film, two foreign keys
-    table.string("director_name");
     table.integer("film_id");
+    table.string("director_id");
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
-    table.foreign("director_name").references("Director.director_name").onDelete("CASCADE");
+    table.foreign("director_id").references("Director.director_id").onDelete("CASCADE");
   })
 };
 

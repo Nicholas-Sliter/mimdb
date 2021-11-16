@@ -40,6 +40,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -65,6 +66,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -90,6 +92,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -116,6 +119,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -142,6 +146,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -167,6 +172,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -192,6 +198,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -217,6 +224,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Independent Project"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -243,6 +251,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -269,6 +278,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -295,6 +305,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -321,6 +332,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
@@ -347,6 +359,7 @@
 	  "vimeo_id": "12345678",
 	  "course": ["Sight and Sound"],
 	  "directors": ["Wayne Wang"],
+	  "director_ids": [1],
 	  "actors": [
 		"Nicholas Sliter",
 		"Jiaqi Li",
