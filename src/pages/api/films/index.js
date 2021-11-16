@@ -21,7 +21,6 @@ const handler = nc().get(async (req, res) => {
   const func = {
     "genre" : getFilmsByGenre,
     "course" : getFilmsByCourse,
-    "language" : getFilmsByLanguage,
     "director" : getFilmsByDirector,
     "actor" : getFilmsByActor,
     "contributor" : getFilmsByContributor,
