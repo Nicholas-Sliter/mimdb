@@ -36,6 +36,13 @@ const handler = nc().get(async (req, res) => {
   
   // having its format as [{film_id: 3}, {film_id:52}, ...]
   const id_list = await func[filter](value);
+
+  if (!id_list || !Array.isArray(id_list)) {
+    res.status(500).json({
+      error: "Could not retrieve films",
+    });
+    return;
+  }
   
   const result = await Promise.all(id_list.map(async (film_id) => await getFilmById(film_id.film_id)));
   res.status(200).json(result);
