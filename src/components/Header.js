@@ -7,18 +7,10 @@ import { useState } from "react";
 
 
 export default function Header({genreList, classList}) {
-  const [categoriesOpen, setCategoriesOpen] = useState();
-  let button = false;
-
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
 
   const buttonFunc = () => {
-    if (button === true){
-      button = false
-    }
-    else{
-      button = true
-    }
-    setCategoriesOpen(button);
+    setCategoriesOpen(!categoriesOpen);
   };
 
 
@@ -41,19 +33,19 @@ export default function Header({genreList, classList}) {
 
 
             <div className={styles.smallScreen}>
-            <SearchBar />
+            <SearchBar/>
               <button className={styles.menuButton} onClick={() => buttonFunc()}>
                 <div/>
                 <div/>
                 <div/> 
               </button>
-                <div className={categoriesOpen ? styles.dropDownContainerShow : styles.dropDownContainer}> 
+                {(categoriesOpen) ? <div className={styles.dropDownContainerShow}> 
                   <ul className={styles.dropDownList}>
                     <li><a>Filter</a></li>
                     <li><a>Courses</a></li>
                   </ul>
 
-                </div>
+                </div> : null}
             </div>
             
 
