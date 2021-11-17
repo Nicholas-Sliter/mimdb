@@ -5,11 +5,20 @@
     align-items: center;
 }
 
-.largeTextarea {
+.submitPage input[type=text], .submitPage input[type=number]{
+    align-items: center;
+    box-sizing: border-box;
+    border: 2px solid #ccb36b;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+.submitPage .largeTextarea {
     width: 90vw;
     height: 30vw;
     /*padding: 12px 20px;*/
     box-sizing: border-box;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border: 0.25vw solid #203569;
     border-radius: 0.5vw;
     background-color: #dadada;
@@ -17,10 +26,11 @@
     resize:vertical;
 }
 
-.smallTextarea {
+.submitPage .smallTextarea {
     width: 90vw;
     height: 10vw;
     box-sizing: border-box;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border: 0.25vw solid #203569;
     border-radius: 0.5vw;
     background-color: #dadada;
@@ -28,13 +38,14 @@
 }
 
 .submitPage label {
+    padding: 0.5vw;
     font-family: 'Montserrat', helvetica, arial, sans-serif;
     font-size: 2vw;
     font-weight: medium;
     color: #203569;
 }
 
-#small {
+.submitPage .small {
     font-family: 'Montserrat', helvetica, arial, sans-serif;
     font-size: 1.5vw;
     font-weight: small;
