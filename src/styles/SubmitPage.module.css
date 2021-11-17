@@ -1,19 +1,27 @@
 .submitPage {
     padding: 1vw;
-    margin: 1vw;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     align-items: center;
 }
 
 .textarea {
-    width: 90vw;
-    height: 30vw;
-    /*padding: 12px 20px;*/
+    width: 57vw;
+    height: 20vw;
     box-sizing: border-box;
-    border: 0.5vw solid #ccc;
+    border: 0.3vw solid #ccc;
     border-radius: 0.5vw;
     background-color: #f8f8f8;
-    font-size: 2vw;
-    resize:vertical;
+    font-size: 1.3vw;
+    resize: none;
+}
+
+.column {
+    display: inline-block;
+    padding-right: 10vw;
+}
+
+.columnlist {
+    display: inline-block;
+    padding-right: 15vw;
 }
