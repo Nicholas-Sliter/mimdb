@@ -1,6 +1,6 @@
-import CustomHead from "../components/CustomHead";
-import Header from "../components/Header";
-import Submit from "../components/Submit";
+import CustomHead from "../../components/CustomHead";
+import Header from "../../components/Header";
+import Submit from "../../components/Submit";
 //import FilmRow from "../../components/DisplayLayouts/FilmRow";
 
 //import useFeatured from "../hooks/useFeatured";
