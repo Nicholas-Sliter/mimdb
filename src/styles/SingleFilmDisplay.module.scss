@@ -3,13 +3,14 @@
 .background{
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     display: flex;
 }
 
 .background{
     background: linear-gradient(rgb(255,255,255,0), grey, white);
     font-family: ‘Montserrat’, helvetica, arial, sans-serif;
-    margin-top: 5rem;
+    margin-top: 3rem;
     font-weight: 400;
     padding-bottom: 2rem;
     width: 100%;
@@ -19,8 +20,8 @@
 
 .titleContainer{
     padding-left: 3rem;
-    margin-left: 8.5rem;
-    padding-bottom: 2rem;
+    margin-left: 5%;
+    margin-bottom: 2rem;
     border: black 1px;
     border-style: solid;
     border-radius: 1rem;
@@ -30,7 +31,7 @@
 
 .title{
     font-size: 2rem;
-    margin-bottom:0rem;
+    margin:1rem 0rem 1rem 0rem;
 }
 
 .date{
@@ -67,6 +68,12 @@
 
 .overviewContainer{
     text-align: center;
+}
+
+.courseContainer{
+    margin: 3rem 0rem 2rem 0rem;
+    text-align: center;
+
 }
 
 .overview{

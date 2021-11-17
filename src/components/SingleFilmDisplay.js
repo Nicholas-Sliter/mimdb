@@ -5,9 +5,10 @@
 
 ******/
 
-import { urlObjectKeys } from "next/dist/shared/lib/utils";
+//import { urlObjectKeys } from "next/dist/shared/lib/utils";
 import styles from "../styles/SingleFilmDisplay.module.scss";
 
+import data from "../../data/tempData.json";
 
 
 export default function SingleFilmDisplay({ film }) {
@@ -24,10 +25,17 @@ export default function SingleFilmDisplay({ film }) {
     const contributors = film.contributors.map((contrib) => <li key={contrib}>{contrib}</li>);
 
 
-    //style={`background-image: url(${film.backdrop_path})`}
+    //While images are not stored in Database
+    const film_from_data = data.find((x) => x.title === film.title);
+    const backdrop_path = `/filmImages${film_from_data.backdrop_path}`;
+
+
+
+    //alert(film.backdrop_path);
+
 
     return (
-        <div className={styles.backgroundIMG} style={{ backgroundImage: `url(/filmImages${film.backdrop_path})`, backgroundSize: "cover" }}>
+        <div className={styles.backgroundIMG} style={{ backgroundImage: `url(${backdrop_path})`, backgroundSize: "cover", backgroundPosition: "center" }}>
             <div className={styles.background}>
                 <div className={styles.content}>
                     <div className={styles.text}>
@@ -44,6 +52,13 @@ export default function SingleFilmDisplay({ film }) {
                             <h3>OVERVIEW</h3>
                             <div className={styles.overview}>
                                 <p>{film.overview}</p>
+                            </div>
+                        </div>
+                        <div className={styles.courseContainer}>
+                            <h3>Course</h3>
+                            <div className={styles.overview}>
+                                <h4>{film.course}</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                             </div>
                         </div>
                         <div className={styles.contributorsContainer}>
