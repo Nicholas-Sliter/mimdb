@@ -18,23 +18,10 @@
 }
 
 
-
-/********* Screen Size ******/
 .smallScreen{
     display: none;
 }
 
-@media screen and (max-width: 840px) {
-    .bigScreen{
-        display: none;
-    }
-
-    .smallScreen{
-        position: relative;
-        display: inline-block;
-        top: -7px;
-    }
-}
 
 .menuButton{
     position: relative;
@@ -123,7 +110,15 @@
 }
 
 
-.dropdown{
+@media screen and (max-width: 840px) {
+    .bigScreen{
+        display: none;
+    }
 
+    .smallScreen{
+        position: relative;
+        display: inline-block;
+        top: -7px;
+    }
 }
 

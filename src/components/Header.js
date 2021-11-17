@@ -4,7 +4,8 @@ import Category from "./Category";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
 import { useState } from "react";
-
+import HamburgerButton from "./HamburgerButton";
+import MenuDropDown from "./MenuDropDown";
 
 export default function Header({genreList, classList}) {
   const [categoriesOpen, setCategoriesOpen] = useState(false);
@@ -34,18 +35,11 @@ export default function Header({genreList, classList}) {
 
             <div className={styles.smallScreen}>
             <SearchBar/>
-              <button className={styles.menuButton} onClick={() => buttonFunc()}>
-                <div/>
-                <div/>
-                <div/> 
-              </button>
-                {(categoriesOpen) ? <div className={styles.dropDownContainerShow}> 
-                  <ul className={styles.dropDownList}>
-                    <li><a>Filter</a></li>
-                    <li><a>Courses</a></li>
-                  </ul>
-
-                </div> : null}
+            <HamburgerButton style={styles.menuButton} select={buttonFunc} />
+                {(categoriesOpen) ? 
+                  <MenuDropDown styleCont={styles.dropDownContainerShow} styleList={styles.dropDownList} />
+                  : 
+                  null}
             </div>
             
 
