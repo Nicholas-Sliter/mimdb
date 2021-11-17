@@ -5,7 +5,7 @@ import Submit from "../../components/Submit";
 
 //import useFeatured from "../hooks/useFeatured";
 
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 
 export default function Home({films, genres, courses}) {
 
