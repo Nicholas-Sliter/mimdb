@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import router from "next/router";
+import { validateFilmSemester } from "../lib/frontend-utils";
 
 import styles from "../styles/SubmitPage.module.css";
 
