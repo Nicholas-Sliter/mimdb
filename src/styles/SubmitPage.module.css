@@ -15,7 +15,7 @@
 
 }
 
-.submitPage .largeTextarea {
+.submitPage .largeTextarea textarea{
     width: 75vw;
     height: 25vw;
     /*padding: 12px 20px;*/
@@ -28,7 +28,7 @@
     resize:vertical;
 }
 
-.submitPage .smallTextarea {
+.submitPage .smallTextarea textarea{
     width: 90vw;
     height: 10vw;
     box-sizing: border-box;
