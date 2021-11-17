@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
 
+$shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+$box_background: rgb(255,255,255,0.7);
+$border_rad: 0.5 rem;
+
+
 .background{
     background-repeat: no-repeat;
     background-size: cover;
@@ -8,35 +13,40 @@
 }
 
 .background{
-    background: linear-gradient(rgb(255,255,255,0), grey, white);
+    background: linear-gradient(rgb(255,255,255,0.0), rgb(255,255,255,0.8), rgb(255,255,255,0.9),  rgb(255,255,255,1));
     font-family: ‘Montserrat’, helvetica, arial, sans-serif;
     margin-top: 3rem;
     font-weight: 400;
     padding-bottom: 2rem;
     width: 100%;
     height: 100%;
+    text-align: center;
 }  
 
 
 .titleContainer{
-    padding-left: 3rem;
-    margin-left: 5%;
+    padding-left: 1rem;
+    text-align: left;
+    margin-left: 2%;
     margin-bottom: 2rem;
     border: black 1px;
     border-style: solid;
-    border-radius: 1rem;
-    background-color: rgb(255,255,255,0.5);
-    width: 30rem;
+    border-radius: $border_rad;
+    width: fit-content;
+    background-color: $box_background;
+    box-shadow: $shadow;
 }
 
 .title{
     font-size: 2rem;
-    margin:1rem 0rem 1rem 0rem;
+    margin:1rem 2rem 1rem 0rem;
+    display: inline-block;
+
 }
 
 .date{
     font-size: 1rem;
-    margin-top:0.25rem;
+    margin: 0.25rem 2rem 1rem 0rem;
 }
 
 
@@ -53,7 +63,8 @@
     overflow: hidden;
     width: 100%;
     padding-top: 56.25%;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+
 }
 
 .film{
@@ -68,20 +79,24 @@
 
 .overviewContainer{
     text-align: center;
+
 }
 
 .courseContainer{
-    margin: 3rem 0rem 2rem 0rem;
+    margin: -1rem 0rem 1rem 0rem;
     text-align: center;
+    
 
 }
 
 .overview{
     margin: 0rem 1rem 1rem 1rem;
+    padding: 0rem 1rem 1rem 1rem;
     border: black 1px;
     border-style: solid;
-    border-radius: 1rem;
-    background-color: rgb(255,255,255,0.5);
+    border-radius: $border_rad;
+    background-color: $box_background;
+    box-shadow: $shadow;
 }
 
 .overviewText{
@@ -89,7 +104,7 @@
 }
 
 .contributorsContainer{
-
+    box-shadow: $shadow;
 }
 
 .contributorsContainer ul {
@@ -99,9 +114,10 @@
     text-align: center;
     border: black 1px;
     border-style: solid;
-    border-radius: 1rem;
-    background-color: rgb(255,255,255,0.5);
+    border-radius: $border_rad;
+    background-color: $box_background;
     min-height: 20rem;
+    box-shadow: $shadow;
 }
 
 .contributorsContainer h3{
@@ -120,6 +136,18 @@
 
 }
 
+.largeColumnL{
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.largeColumnR{
+    float: right;
+    width: 50%;
+    text-align: center;
+}
+
 
 .actors{
     float: left;
@@ -129,4 +157,37 @@
 .contributors{
     float: left;
     width: 33.33%;
+}
+
+
+
+@media only screen and (max-width: 900px){
+    .largeColumnL{
+        float: auto;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .largeColumnR{
+        float: auto;
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+@media only screen and (max-width: 569px){
+    .actors{
+        width: 100%;
+    }
+    
+    .contributors{
+        width: 100%;
+    }
+
+    .directors{
+        width: 100%;
+    
+    }
+    
 }
