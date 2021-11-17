@@ -1,19 +1,42 @@
 .submitPage {
     padding: 1vw;
     margin: 1vw;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: 'Montserrat', helvetica, arial, sans-serif;
     align-items: center;
 }
 
-.textarea {
+.largeTextarea {
     width: 90vw;
     height: 30vw;
     /*padding: 12px 20px;*/
     box-sizing: border-box;
-    border: 0.5vw solid #ccc;
+    border: 0.25vw solid #203569;
     border-radius: 0.5vw;
-    background-color: #f8f8f8;
-    font-size: 2vw;
+    background-color: #dadada;
+    font-size: 1.5vw;
     resize:vertical;
+}
+
+.smallTextarea {
+    width: 90vw;
+    height: 10vw;
+    box-sizing: border-box;
+    border: 0.25vw solid #203569;
+    border-radius: 0.5vw;
+    background-color: #dadada;
+    font-size: 1.5vw;
+}
+
+.submitPage label {
+    font-family: 'Montserrat', helvetica, arial, sans-serif;
+    font-size: 2vw;
+    font-weight: medium;
+    color: #203569;
+}
+
+#small {
+    font-family: 'Montserrat', helvetica, arial, sans-serif;
+    font-size: 1.5vw;
+    font-weight: small;
+    color: #203569;
 }
