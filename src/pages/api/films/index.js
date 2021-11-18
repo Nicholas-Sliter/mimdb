@@ -15,7 +15,6 @@ import { validateFilterTerm } from "../../../lib/backend-utils";
 const handler = nc().get(async (req, res) => {
 
   const filters = req.query;
-  console.log(Object.keys(filters).length === 0);
 
   if (Object.keys(filters).length===0) {
     // No filters, returning all films.
