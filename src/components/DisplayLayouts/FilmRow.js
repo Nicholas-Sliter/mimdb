@@ -8,8 +8,12 @@ export default function FilmRow({
    films,
    title,
    displayType="small",
+   wrap=true
 }) {
 
+   //get rowStyle from combindation of displayType and wrap
+   const rowString = ((displayType === "small") ? "row" : "wideRow") + (wrap ? "" : "_nowrap");
+   const rowStyle = styles[rowString];
 
    const cards = []
    if (displayType === "small") {
@@ -35,7 +39,7 @@ export default function FilmRow({
    return (
       <div className={styles.container}>
          <h2 className={styles.title} data-testid = "title">{title}</h2>
-         <div className={(displayType==="small") ? styles.row_nowrap : styles.wideRow}>
+         <div className={rowStyle}>
             {cards}
          </div>
       </div>
