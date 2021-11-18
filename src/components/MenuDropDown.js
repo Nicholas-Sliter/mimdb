@@ -14,7 +14,11 @@ export default function HamburgerButton ({styleCont, styleList}){
                         <a>Filter</a>
                     </Link>
                 </li>
-                <li><a>Courses</a></li>
+                <li>
+                    <Link href={`/films/course/`} passHref>
+                        <a>Courses</a>
+                    </Link>
+                </li>
             </ul>
         </div> 
 
