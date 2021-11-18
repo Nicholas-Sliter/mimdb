@@ -1,7 +1,11 @@
 .submitPage {
     padding: 0;
-    margin-left: 15vw;
+    margin-left: 2vw;
     font-family: 'Montserrat', helvetica, arial, sans-serif;
+    
+}
+
+.submitPage .group2 {
     align-content: center;
     display:grid;
     grid-template-columns: 50% 50%;
@@ -9,33 +13,51 @@
 
 .submitPage div {
     padding: 1vw;
-    /*align-self: center;*/
-    
 }
 
-.submitPage input[type=text], .submitPage input[type=number]{
+.submitPage .group3 {
+    padding: 0;
+    align-content: center;
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.submitPage .largeInput input[type=text], .submitPage .largeInput input[type=number]{
     align-items: center;
-    box-sizing: border-box;
-    border: 2px solid #ccb36b;
+    border-radius: 2vw;
+    background-color: #e6e4e4;
+    width: 25vw;
+    height: 3vw;
+    border: 0.2vw solid #ccb36b;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+.submitPage .smallInput input[type=text], .submitPage .largeInput input[type=number]{
+    align-items: center;
+    border-radius: 2vw;
+    background-color: #e6e4e4;
+    width: 12vw;
+    height: 2vw;
+    border: 0.2vw solid #ccb36b;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
 }
 
 .submitPage .largeTextarea textarea{
-    width: 75vw;
+    width: 80vw;
     height: 25vw;
-    margin: 2vw;
-    box-sizing: border-box;
+    margin: 1vw;
+    border-radius: 0vw;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border: 0.25vw solid #203569;
-    border-radius: 0.5vw;
     background-color: #dadada;
     font-size: 1.5vw;
     resize:vertical;
 }
 
 .submitPage .smallTextarea textarea{
-    width: 90vw;
+    width: 80vw;
     height: 10vw;
     box-sizing: border-box;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -46,16 +68,16 @@
 }
 
 .submitPage label {
-    padding: 0.5vw;
+    padding: 0.1vw;
     font-family: 'Montserrat', helvetica, arial, sans-serif;
-    font-size: 2vw;
+    font-size: 1.5vw;
     font-weight: medium;
     color: #203569;
 }
 
 .submitPage .small label{
     font-family: 'Montserrat', helvetica, arial, sans-serif;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     font-weight: small;
     color: #203569;
 }
