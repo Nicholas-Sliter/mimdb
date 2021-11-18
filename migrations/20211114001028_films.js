@@ -3,7 +3,7 @@ exports.up = function(knex) {
   return knex.schema.createTable("Film", table => {
     table.string("backdrop_path");
     table.string("title").unique().notNullable();
-    table.integer("id").unique().notNullable();
+    table.increments("id");
     table.string("slug").unique().notNullable();
     table.text("overview");
     table.string("description");
