@@ -35,7 +35,7 @@ export default function FilmRow({
    return (
       <div className={styles.container}>
          <h2 className={styles.title} data-testid = "title">{title}</h2>
-         <div className={(displayType==="small") ? styles.row : styles.wideRow}>
+         <div className={(displayType==="small") ? styles.row_nowrap : styles.wideRow}>
             {cards}
          </div>
       </div>

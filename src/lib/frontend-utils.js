@@ -41,7 +41,7 @@ export function validateFilmSemester(semester) {
       return "Semester must be in the format FYY or WYY or SYY";
    }
   //check that the semester year is valid (that is is not in the future)
-   const year = parseInt(semester.substring(1, 3));
+   const year = parseInt(semester.substring(1, 3)) + 2000;
    if (year > new Date().getFullYear() + 1) { //not sure if we need this +1 but it might help on the edge cases
       return "Semester year must be in the past";
    }  
