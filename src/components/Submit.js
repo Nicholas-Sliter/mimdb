@@ -48,7 +48,7 @@ export default function Submit({ genres, courses }) {
             <AddedText name="Contributor"/>
         </div>
         <br />
-        <button onClick={() => { router.back() }}> Cancel </button>
+        <button onClick={() => { router.push("/") }}> Cancel </button>
     </div>
     )
 }
