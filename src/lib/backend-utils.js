@@ -251,8 +251,17 @@ export async function getFilmsByContributor(name) {
   return film_ids;
 }
 
-
 export function validateFilterTerm(filterTerm) {
   const filters = ["genre","course","director","actor","contributor"];
   return filters.includes(filterTerm);
+}
+
+/**
+ * Add the validated [film] into the film database
+ * TODO: currently DOES NOT ADD to linked databases
+ * @returns the inserted new film object.
+ */
+export async function addFilm(film) {
+  const newIDs = await knex("Film").insert(film);
+  return await getFilmById(newIDs[0]);
 }

@@ -5,7 +5,8 @@ import {
   getFilmsByDirector,
   getFilmsByActor,
   getFilmsByContributor,
-  getFilmById
+  getFilmById,
+  getAllFilms
 } from "../../../lib/backend-utils";
 import { validateFilterTerm } from "../../../lib/backend-utils";
 
@@ -14,6 +15,12 @@ import { validateFilterTerm } from "../../../lib/backend-utils";
 const handler = nc().get(async (req, res) => {
 
   const filters = req.query;
+
+  if (Object.keys(filters).length===0) {
+    // No filters, returning all films.
+    res.status(200).json(await getAllFilms());
+    return;
+  }
 
   const filter = Object.keys(filters)[0];
   const value = filters[filter];
