@@ -17,36 +17,41 @@ export default function Submit({ genres, courses }) {
 
     return (
     <div className={styles.submitPage}>
-        <div> 
-            <TextInput name="Title" setFunc={setTitle}/>
-        </div>
-        <div> 
-            <TextInput name="Log-Line" setFunc={setLogLine}/>
-        </div>
-        <div>
-            <TextInput name={"Semester"} moreText="eg. F21, W22, S22, etc."/>
-        </div>
-        <div>
-            <TextInput name={"Duration"} moreText="minutes"/>
+        <div className={styles.group2}>
+            <div className={styles.largeInput}> 
+                <TextInput name="Title" setFunc={setTitle}/>
+            </div>
+            <div className={styles.largeInput}> 
+                <TextInput name="Log-Line" setFunc={setLogLine}/>
+            </div>
+            <div className={styles.largeInput}>
+                <TextInput name={"Semester"} moreText="eg. F21, W22, S22, etc."/>
+            </div>
+            <div className={styles.largeInput}>
+                <TextInput name={"Duration"} moreText="minutes"/>
+            </div>
         </div>
         <div className={styles.largeTextarea}> 
             <TextArea name="Overview" setFunc={setOverview}/>
         </div>
-        <br/>
-        <div>
-            <Checkboxes name="Genre" array={genres} newVar={newGenre} setFunc={addGenre}/>
+        <div className={styles.group2}>
+            <div>
+                <Checkboxes name="Genre" array={genres} newVar={newGenre} setFunc={addGenre}/>
+            </div>
+            <div>
+                <Checkboxes name="Course" array={courses} newVar={newCourse} setFunc={addCourse}/>
+            </div>
         </div>
-        <div>
-            <Checkboxes name="Course" array={courses} newVar={newCourse} setFunc={addCourse}/>
-        </div>
-        <div>
-            <AddedText name="Director"/>
-        </div>
-        <div>
-            <AddedText name="Actor"/>
-        </div>
-        <div>
-            <AddedText name="Contributor"/>
+        <div className={styles.group3}>
+            <div className={styles.smallInput}>
+                <AddedText name="Director"/>
+            </div>
+            <div className={styles.smallInput}>
+                <AddedText name="Actor"/>
+            </div>
+            <div className={styles.smallInput}>
+                <AddedText name="Contributor"/>
+            </div>
         </div>
         <br />
         <button onClick={() => { router.push("/") }}> Cancel </button>
