@@ -6,7 +6,7 @@ export default function Checkboxes ({name, array, newVar, setFunc}) {
         <label htmlFor={`${name}s`}> {`${name}s:`} </label>
         <div id={`${name}s`}>
         {array.map((i) => 
-        <div key={i}>
+        <div key={i} className={styles.small}>
             <input
                 type="checkbox"
                 id={i}
@@ -16,20 +16,22 @@ export default function Checkboxes ({name, array, newVar, setFunc}) {
             <label htmlFor={i}>{i}</label><br />
         </div>
         )}
-        <input
-            type="checkbox"
-            id={`${name}_other`}
-            name={`${name}_other`}
-            value={`${name}_other`}
-            onClick={() => setFunc(!newVar)}
-            />
-        <label id="small" htmlFor={`${name}_other`}>Other</label>
-        {newVar? <input 
-                        type="text"
-                        id={`${name}_other`}
-                        placeholder="Other"
-                        />
-        : <div> </div>}
+        <div className={styles.small}>
+            <input
+                type="checkbox"
+                id={`${name}_other`}
+                name={`${name}_other`}
+                value={`${name}_other`}
+                onClick={() => setFunc(!newVar)}
+                />
+            <label id="small" htmlFor={`${name}_other`}>Other</label>
+            {newVar? <input 
+                            type="text"
+                            id={`${name}_other`}
+                            placeholder="Other"
+                            />
+            : <div> </div>}
+        </div>
         </div>
     </div>
     )
