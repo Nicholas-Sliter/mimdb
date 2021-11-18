@@ -13,21 +13,6 @@ export default function AddedText ({name}) {
     const addInput = (newName) => {
         setInputList[counter] = newName
     }
- 
-    // handle input change
-    /*const handleInputChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...inputList];
-        list[index][name] = value;
-        setInputList(list);
-    };*/
-    
-    // handle click event of the Remove button
-    const handleRemoveClick = index => {
-        const list = [...inputList];
-        list.splice(index, 1);
-        setInputList(list);
-    };
     
     // handle click event of the Add button
     const handleAddClick = () => {
