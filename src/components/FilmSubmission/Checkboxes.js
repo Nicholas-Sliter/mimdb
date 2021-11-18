@@ -1,3 +1,5 @@
+import styles from "../../styles/SubmitPage.module.css";
+
 export default function Checkboxes ({name, array, newVar, setFunc}) {
     return (
     <div>
