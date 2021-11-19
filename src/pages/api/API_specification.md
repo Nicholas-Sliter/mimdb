@@ -15,6 +15,7 @@
     - Return value: a list of film objects
     - Note: 
         - Now only supports one filter per query
+        - For queries with multiple filters, search by the primary filter in the database then filter through any additional filters in the backend logic.
         - Filter all movies and return the ones that has the value from the filter. 
         - If a film has a field with a list of values, any match results in a positive match. For example, if a film has `directors: ["John", "Emily"]`, a filter `directors=Emily` will result in a positive match for this film.
         - This differs from searching by requiring exact parameter(case-sensitive) and it retrieves directly from the json/database without going through the search engine.

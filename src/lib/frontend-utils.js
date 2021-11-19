@@ -15,6 +15,19 @@ export function decodeURIComponentSafe(str) {
 }
 
 
+export function buildQuery(queryObj){
+
+   let query = "";
+   for (var key in queryObj) {
+      if (queryObj.hasOwnProperty(key)) {
+         query += `${key}=${encodeURIComponent(queryObj[key])}&`;
+      }
+   }
+   return query;
+
+}
+
+
 
 export function validateFilmTitle(title) {
   if (title.length < 1) {
