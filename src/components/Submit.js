@@ -62,7 +62,7 @@ export default function Submit({ genres, courses }) {
             <br />
             <div className={styles.groupButton}>
                 <button className={styles.largeButton} onClick={() => {}}>Submit</button>
-                <button className={styles.largeButton} onClick={() => { router.push("/") }}> Cancel </button>
+                <button className={styles.largeButton} onClick={() => { router.back() }}> Cancel </button>
             </div>
         </div>
     )
