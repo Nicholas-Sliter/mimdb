@@ -222,7 +222,7 @@ export async function getFilmsByCourse(course) {
 export async function getFilmsByDirector(name) {
   const film_ids = await knex.select("film_id")
     .from("DirectorsFilm")
-    .join("Director", "Director.director_id", "DirectorsFilm.director_id")
+    .join("Directors", "Directors.director_id", "DirectorsFilm.director_id")
     .where({ "director_name": name });
   return film_ids;
 }

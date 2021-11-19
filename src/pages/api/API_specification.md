@@ -10,14 +10,15 @@
 - getting filtered films in `/api/films?[filter]=[value]`
     - Example usage: 
         - `/api?course=Sight%20and%20Sound` (%20 is equivalent to a space)
-        - `/api?genre=Drama`
-        - `/api?term=F21`
+        - `/api?genre=Drama&director=Wayne%20Wang`
     - Return value: a list of film objects
     - Note: 
-        - Now only supports one filter per query
-        - Filter all movies and return the ones that has the value from the filter. 
-        - If a film has a field with a list of values, any match results in a positive match. For example, if a film has `directors: ["John", "Emily"]`, a filter `directors=Emily` will result in a positive match for this film.
-        - This differs from searching by requiring exact parameter(case-sensitive) and it retrieves directly from the json/database without going through the search engine.
+        - Now only supports multiple filters per query
+        - Supported fiels: "genre", "course", "director", "actor", "contributor".
+        - MIND SINGULAR VS PLURAL!!
+        - For performance, when the API is called, filters should be sequenced from the most specific to the most specific.
+        - If a film has a field with a list of values, any match results in a positive match. For example, if a film has `directors: ["John", "Emily"]`, a filter `director=Emily` will result in a positive match for this film.
+        
 
 - searching in `/api/search?keyword=[search_term]`
     - Example usage: 
