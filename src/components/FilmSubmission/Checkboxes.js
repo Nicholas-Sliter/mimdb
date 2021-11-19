@@ -25,12 +25,11 @@ export default function Checkboxes({ name, array, newVar, setFunc }) {
                         onClick={() => setFunc(!newVar)}
                     />
                     <label id="small" htmlFor={`${name}_other`}>Other</label>
-                    {newVar ? <input
+                    {newVar && <input
                         type="text"
                         id={`${name}_other`}
                         placeholder="Other"
-                    />
-                        : <div> </div>}
+                    />}
                 </div>
             </div>
         </div>
