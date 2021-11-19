@@ -36,12 +36,8 @@ export default function Submit({ genres, courses }) {
                 <TextArea name="Overview" setFunc={setOverview} />
             </div>
             <div className={styles.group2}>
-                <div className={styles.group2}>
-                    <Checkboxes name="Genre" array={genres} newVar={newGenre} setFunc={addGenre} />
-                </div>
-                <div>
-                    <Checkboxes name="Course" array={courses} newVar={newCourse} setFunc={addCourse} />
-                </div>
+                <Checkboxes name="Genre" array={genres} newVar={newGenre} setFunc={addGenre} />
+                <Checkboxes name="Course" array={courses} newVar={newCourse} setFunc={addCourse} />
             </div>
             <div className={styles.group2}>
                 <div className={styles.largeInput}>
