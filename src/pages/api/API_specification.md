@@ -13,7 +13,7 @@
         - `/api?genre=Drama&director=Wayne%20Wang`
     - Return value: a list of film objects
     - Note: 
-        - Now only supports multiple filters per query
+        - Now supports multiple filters per query
         - Supported fiels: "genre", "course", "director", "actor", "contributor".
         - MIND SINGULAR VS PLURAL!!
         - For performance, when the API is called, filters should be sequenced from the most specific to the most specific.
