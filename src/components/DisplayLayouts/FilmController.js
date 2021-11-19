@@ -6,14 +6,14 @@ import useResolveQuery from "../../hooks/useResolveQuery";
 
 //sample queryObj
 // {
-// 
 //    genre: "",
-//    course: ""
+//    course: "",
+//    term: ""
 // }
 
 
 export default function FilmController({title, queryObj, rowStyleObject}) {
-   const [query, setQuery] = useState(buildQuery(queryObj));
+   const [query, setQuery] = useState("");
    const {displayType, wrap} = rowStyleObject;
 
    useEffect(() => {
