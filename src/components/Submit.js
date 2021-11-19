@@ -47,19 +47,13 @@ export default function Submit({ genres, courses }) {
                     <TextInput name="Vimeo ID" setFunc={setVimeoId} />
                 </div>
             </div>
+            <br />
             <div className={styles.group3}>
-                <div className={styles.smallInput}>
-                    <AddedText name="Director" />
-                </div>
-                <div className={styles.smallInput}>
-                    <AddedText name="Actor" />
-                </div>
-                <div className={styles.smallInput}>
-                    <AddedText name="Contributor" />
-                </div>
+                <AddedText name="Director" />
+                <AddedText name="Actor" />
+                <AddedText name="Contributor" />
             </div>
-            <br />
-            <br />
+            <br /><br />
             <div className={styles.groupButton}>
                 <button className={styles.largeButton} onClick={() => {}}>Submit</button>
                 <button className={styles.largeButton} onClick={() => { router.back() }}> Cancel </button>

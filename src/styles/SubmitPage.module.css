@@ -24,7 +24,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: 12px;
     width: 25vw;
     height: 2.5vw;
     border: 0.15vw solid #ccb36b;
@@ -33,7 +33,7 @@
 }
 
 .submitPage .smallInput input{
-    border-radius: 8px;
+    border-radius: 10px;
     width: 12vw;
     height: 2vw;
     border: 0.15vw solid #ccb36b;
@@ -78,7 +78,7 @@
 .submitPage button {
     text-align: center;
     cursor: pointer;
-    border-radius: 0.45vw;
+    border-radius: 10px;
     padding: 10px, 20px;
     font-size: 14px;
     background: none;

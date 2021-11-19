@@ -17,7 +17,7 @@ export default function AddedText({ name }) {
     };
 
     return (
-        <div>
+        <div className={styles.smallInput}>
             <label htmlFor={`${name} 1`}> {`${name}s`}</label>
             <div className={styles.small}>
                 {inputList.map((i, n) =>
