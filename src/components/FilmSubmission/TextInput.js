@@ -1,7 +1,8 @@
+import styles from "../../styles/SubmitPage.module.css";
 
 export default function TextInput({ name, setFunc, moreText }) {
     return (
-        <div>
+        <div className={styles.largeInput}>
             <label htmlFor={name}> {`${name}:`} </label>
             <input
                 type="text"
