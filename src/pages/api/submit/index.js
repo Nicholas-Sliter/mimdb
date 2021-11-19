@@ -7,14 +7,14 @@ import { convertToSlug } from "../../../lib/frontend-utils";
 const validateAndProcessNewFilm = async (inFilm) => {
   try {
     // let processedFilm = {...inFilm, slug: convertToSlug(processedFilm.title)};
-    let processedFilm = {
+    const processedFilm = {
       "overview": inFilm.overview,
       "description": inFilm.description,
       "release_date": inFilm.release_date,
       "title": inFilm.title,
       "vimeo_id": inFilm.vimeo_id,
       "duration": inFilm.duration,
-      slug: convertToSlug(inFilm.title)
+      "slug": convertToSlug(inFilm.title)
     }
 
     // check slug, increment if duplicates slug
@@ -29,7 +29,8 @@ const validateAndProcessNewFilm = async (inFilm) => {
     processedFilm.poster_path = "/sp_poster.jpg";
     
     // Generate vimeo boolean, simple
-    processedFilm.video = processedFilm.vimeo_id && processedFilm.vimeo_id!="12345678";
+    // TODO: remove check against test data mock vimeo_id
+    processedFilm.video = processedFilm.vimeo_id && processedFilm.vimeo_id!=="12345678";
 
     // Directore stuffs later
     return processedFilm;

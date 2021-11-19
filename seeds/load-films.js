@@ -13,6 +13,7 @@ exports.seed = async function(knex) {
         description,
         poster_path,
         release_date,
+        term,
         video,
         vimeo_id,
         duration
@@ -24,6 +25,7 @@ exports.seed = async function(knex) {
         description,
         poster_path,
         release_date,
+        term,
         video,
         vimeo_id,
         duration }))(film);
