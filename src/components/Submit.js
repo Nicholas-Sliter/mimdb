@@ -9,9 +9,11 @@ import AddedText from "./FilmSubmission/AddedText";
 import styles from "../styles/SubmitPage.module.css";
 
 export default function Submit({ genres, courses }) {
-    const [title, setTitle] = useState();
-    const [logLine, setLogLine] = useState();
-    const [overview, setOverview] = useState();
+    const [title, setTitle] = useState("");
+    const [logLine, setLogLine] = useState("");
+    const [semester, setSemester] = useState("");
+    const [duration, setDuration] = useState("");
+    const [overview, setOverview] = useState("");
     const [newGenre, addGenre] = useState(false);
     const [newCourse, addCourse] = useState(false);
 
@@ -26,10 +28,10 @@ export default function Submit({ genres, courses }) {
                     <TextInput name="Log-Line" setFunc={setLogLine} />
                 </div>
                 <div className={styles.largeInput}>
-                    <TextInput name={"Semester"} moreText="eg. F21, W22, S22, etc." />
+                    <TextInput name={"Semester"} setFunc={setSemester} moreText="eg. F21, W22, S22, etc." />
                 </div>
                 <div className={styles.largeInput}>
-                    <TextInput name={"Duration"} moreText="minutes" />
+                    <TextInput name={"Duration"} setFunc={setDuration} moreText="minutes" />
                 </div>
             </div>
             <div className={styles.largeTextarea}>

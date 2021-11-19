@@ -10,7 +10,7 @@
 }
 
 .submitPage div {
-    padding: 0.8vw;
+    padding: 0.6vw;
 }
 
 .submitPage .group3 {
@@ -19,25 +19,27 @@
     grid-template-columns: 33% 33% 33%;
 }
 
-.submitPage .largeInput input[type=text], .submitPage .largeInput input[type=number]{
+.submitPage .largeInput input{
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
     background-color: #e6e4e4;
     width: 25vw;
-    height: 3vw;
+    height: 2.5vw;
     border: 0.15vw solid #ccb36b;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-size: 1.2vw;
 }
 
-.submitPage .smallInput input[type=text], .submitPage .largeInput input[type=number]{
+.submitPage .smallInput input{
     border-radius: 20px;
     background-color: #e6e4e4;
     width: 12vw;
     height: 2vw;
     border: 0.15vw solid #ccb36b;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-size: 1vw;
 }
 
 .submitPage .largeTextarea textarea{
