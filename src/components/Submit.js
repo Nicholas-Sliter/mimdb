@@ -23,14 +23,10 @@ export default function Submit({ genres, courses }) {
             <div className={styles.group2}>
                 <div className={styles.largeInput}>
                     <TextInput name="Title" setFunc={setTitle} />
-                </div>
-                <div className={styles.largeInput}>
                     <TextInput name="Log-Line" setFunc={setLogLine} />
                 </div>
                 <div className={styles.largeInput}>
                     <TextInput name={"Semester"} setFunc={setSemester} moreText="eg. F21, W22, S22, etc." />
-                </div>
-                <div className={styles.largeInput}>
                     <TextInput name={"Duration"} setFunc={setDuration} moreText="minutes" />
                 </div>
             </div>
