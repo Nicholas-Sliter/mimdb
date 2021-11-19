@@ -16,10 +16,12 @@ export default function Submit({ genres, courses }) {
     const [overview, setOverview] = useState("");
     const [newGenre, addGenre] = useState(false);
     const [newCourse, addCourse] = useState(false);
+    const [courseId, setCourseId] = useState("");
+    const [vimeoId, setVimeoId] = useState("");
 
     return (
         <div className={styles.submitPage}>
-            <h1>Submit Your Film</h1>
+            <h1 style={{color: "#203569", marginLeft: "2vw"}}>Submit Your Film</h1>
             <div className={styles.group2}>
                 <div className={styles.largeInput}>
                     <TextInput name="Title" setFunc={setTitle} />
@@ -27,18 +29,26 @@ export default function Submit({ genres, courses }) {
                 </div>
                 <div className={styles.largeInput}>
                     <TextInput name={"Semester"} setFunc={setSemester} moreText="eg. F21, W22, S22, etc." />
-                    <TextInput name={"Duration"} setFunc={setDuration} moreText="minutes" />
+                    <TextInput name={"Duration"} setFunc={setDuration} moreText="Minutes" />
                 </div>
             </div>
             <div className={styles.largeTextarea}>
                 <TextArea name="Overview" setFunc={setOverview} />
             </div>
             <div className={styles.group2}>
-                <div>
+                <div className={styles.group2}>
                     <Checkboxes name="Genre" array={genres} newVar={newGenre} setFunc={addGenre} />
                 </div>
                 <div>
                     <Checkboxes name="Course" array={courses} newVar={newCourse} setFunc={addCourse} />
+                </div>
+            </div>
+            <div className={styles.group2}>
+                <div className={styles.largeInput}>
+                    <TextInput name="Course ID" setFunc={setCourseId} />
+                </div>
+                <div className={styles.largeInput}>
+                    <TextInput name="Vimeo ID" setFunc={setVimeoId} />
                 </div>
             </div>
             <div className={styles.group3}>
