@@ -22,33 +22,27 @@ export default function Submit({ genres, courses }) {
     return (
         <div className={styles.submitPage}>
             <h1 style={{color: "#203569", marginLeft: "2vw"}}>Submit Your Film</h1>
-            <div className={styles.group2}>
+            <div className={styles.group}>
                 <div className={styles.largeInput}>
                     <TextInput name="Title" setFunc={setTitle} />
                     <TextInput name="Log-Line" setFunc={setLogLine} />
+                    <TextInput name="Course ID" setFunc={setCourseId} />
                 </div>
                 <div className={styles.largeInput}>
                     <TextInput name={"Semester"} setFunc={setSemester} moreText="eg. F21, W22, S22, etc." />
                     <TextInput name={"Duration"} setFunc={setDuration} moreText="Minutes" />
-                </div>
-            </div>
-            <div className={styles.largeTextarea}>
-                <TextArea name="Overview" setFunc={setOverview} />
-            </div>
-            <div className={styles.group2}>
-                <Checkboxes name="Genre" array={genres} newVar={newGenre} setFunc={addGenre} />
-                <Checkboxes name="Course" array={courses} newVar={newCourse} setFunc={addCourse} />
-            </div>
-            <div className={styles.group2}>
-                <div className={styles.largeInput}>
-                    <TextInput name="Course ID" setFunc={setCourseId} />
-                </div>
-                <div className={styles.largeInput}>
                     <TextInput name="Vimeo ID" setFunc={setVimeoId} />
                 </div>
             </div>
+            <div className={styles.group}>
+                <TextArea name="Overview" setFunc={setOverview} />
+            </div>
+            <div className={styles.group}>
+                <Checkboxes name="Genre" array={genres} newVar={newGenre} setFunc={addGenre} />
+                <Checkboxes name="Course" array={courses} newVar={newCourse} setFunc={addCourse} />
+            </div>
             <br />
-            <div className={styles.group3}>
+            <div className={styles.group}>
                 <AddedText name="Director" />
                 <AddedText name="Actor" />
                 <AddedText name="Contributor" />
