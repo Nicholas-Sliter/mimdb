@@ -21,14 +21,14 @@ export default function Submit({ genres, courses }) {
 
     return (
         <div className={styles.submitPage}>
-            <h1 style={{color: "#203569", marginLeft: "2vw"}}>Submit Your Film</h1>
+            <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
             <div className={styles.group}>
-                <div className={styles.largeInput}>
+                <div>
                     <TextInput name="Title" setFunc={setTitle} />
                     <TextInput name="Log-Line" setFunc={setLogLine} />
                     <TextInput name="Course ID" setFunc={setCourseId} />
                 </div>
-                <div className={styles.largeInput}>
+                <div>
                     <TextInput name={"Semester"} setFunc={setSemester} moreText="eg. F21, W22, S22, etc." />
                     <TextInput name={"Duration"} setFunc={setDuration} moreText="Minutes" />
                     <TextInput name="Vimeo ID" setFunc={setVimeoId} />
@@ -41,15 +41,13 @@ export default function Submit({ genres, courses }) {
                 <Checkboxes name="Genre" array={genres} newVar={newGenre} setFunc={addGenre} />
                 <Checkboxes name="Course" array={courses} newVar={newCourse} setFunc={addCourse} />
             </div>
-            <br />
             <div className={styles.group}>
                 <AddedText name="Director" />
                 <AddedText name="Actor" />
                 <AddedText name="Contributor" />
             </div>
-            <br /><br />
             <div className={styles.groupButton}>
-                <button className={styles.largeButton} onClick={() => {}}>Submit</button>
+                <button className={styles.largeButton} onClick={() => { }}>Submit</button>
                 <button className={styles.largeButton} onClick={() => { router.back() }}> Cancel </button>
             </div>
         </div>
