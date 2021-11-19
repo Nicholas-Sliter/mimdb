@@ -5,6 +5,7 @@
 }
 
 .submitPage .group2 {
+    padding: 0;
     display:grid;
     grid-template-columns: 50% 50%;
 }
@@ -24,22 +25,20 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    background-color: #e6e4e4;
     width: 25vw;
     height: 2.5vw;
     border: 0.15vw solid #ccb36b;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    font-size: 1.2vw;
+    font-size: 15px;
 }
 
 .submitPage .smallInput input{
-    border-radius: 15px;
-    background-color: #e6e4e4;
+    border-radius: 8px;
     width: 12vw;
     height: 2vw;
     border: 0.15vw solid #ccb36b;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    font-size: 1vw;
+    font-size: 12px;
 }
 
 .submitPage .largeTextarea textarea{
@@ -49,8 +48,7 @@
     border-radius: 10px;
     box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.2);
     border: 0.15vw solid #203569;
-    background-color: #dadada;
-    font-size: 1.3vw;
+    font-size: 18px;
     resize:vertical;
 }
 
@@ -61,19 +59,18 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border: 0.25vw solid #203569;
     border-radius: 8px;
-    background-color: #dadada;
-    font-size: 1.5vw;
+    font-size: 12px;
 }
 
 .submitPage label{
     padding: 0.1vw;
-    font-size: 1.5vw;
+    font-size: 20px;
     font-weight: medium;
     color: #203569;
 }
 
 .submitPage .small label{
-    font-size: 1.2vw;
+    font-size: 18px;
     font-weight: small;
     color: #203569;
 }
@@ -83,10 +80,10 @@
     cursor: pointer;
     border-radius: 0.45vw;
     padding: 10px, 20px;
-    font-size: 1vw;
+    font-size: 14px;
     background: none;
     border: 0.135vw solid rgba(17, 105, 163, 0.79);
-    transition: 0.8s;
+    transition: 0.4s;
 }
 
 .submitPage button:hover{
@@ -94,17 +91,17 @@
 }
 
 .submitPage .largeButton {
-    font-size: 1.5vw;
+    font-size: 20px;
     font-weight: bold;
     color: rgba(17, 105, 163, 0.79);
-    width: 10vw;
-    height: 2vw;
+    width: 90px;
+    height: 30px;
     margin: 7px;
 }
 
 .submitPage .largeButton:hover{
     width: 12;
-    box-shadow: 0 0.4vw 0.4vw rgba(6, 95, 116, 0.4);
+    box-shadow: 0 0.4vw 0.4vw rgba(0,0,0, 0.4);
     transform: scale(1.1);
 }
 
