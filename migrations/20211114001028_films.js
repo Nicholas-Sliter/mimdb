@@ -8,17 +8,11 @@ exports.up = function(knex) {
     table.text("overview");
     table.string("description");
     table.string("poster_path");
+    table.string("term");
     table.string("release_date").notNullable();
     table.boolean("video");
     table.string("vimeo_id");
     table.string("duration").notNullable();
-
-    // table.specificType("genre", "string ARRAY");
-    // table.specificType("language", "string ARRAY");
-    // table.specificType("course", "string ARRAY");
-    // table.specificType("directors", "string ARRAY");
-    // table.specificType("actors", "string ARRAY");
-    // table.specificType("contributors", "string ARRAY");
   })
   .createTable("Genre", table => {
     table.integer("film_id");

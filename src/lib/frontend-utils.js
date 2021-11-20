@@ -71,9 +71,9 @@ export function validateFilmGenre(genre) {
   if (!/^[a-zA-Z-]+$/.test(genre)) {
     return "Genre contains invalid characters";
   }
-
   return null;
 }
+
 
 export function validateFilmCourse(course) {
   if (course.length < 1) {
