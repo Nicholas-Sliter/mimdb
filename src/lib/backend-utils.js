@@ -257,10 +257,8 @@ export async function getFilmsByContributor(name) {
  * 
  */
 export async function getCourseByCourseName(name) {
-  console.log("name:", name);
   const wholeCourse = await knex.select()
     .from("Course").where({"course_name": name})
-  console.log("wholecourse", wholeCourse);
   return wholeCourse;
 }
 
