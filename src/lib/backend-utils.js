@@ -251,8 +251,21 @@ export async function getFilmsByContributor(name) {
   return film_ids;
 }
 
+/** Get  course by courseName
+ * 
+ * @returns an array of course info
+ * 
+ */
+export async function getCourseByCourseName(name) {
+  console.log("name:", name);
+  const wholeCourse = await knex.select()
+    .from("Course").where({"course_name": name})
+  console.log("wholecourse", wholeCourse);
+  return wholeCourse;
+}
 
 export function validateFilterTerm(filterTerm) {
   const filters = ["genre","course","director","actor","contributor"];
   return filters.includes(filterTerm);
 }
+
