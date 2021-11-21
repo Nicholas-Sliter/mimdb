@@ -1,5 +1,6 @@
 import nc from "next-connect";
 import {
+  getFilmsByTerm,
   getFilmsByGenre,
   getFilmsByCourse,
   getFilmsByDirector,
@@ -11,6 +12,7 @@ import {
 import { validateFilterTerm } from "../../../lib/backend-utils";
 
 const func = {
+  "term" : getFilmsByTerm,
   "genre" : getFilmsByGenre,
   "course" : getFilmsByCourse,
   "director" : getFilmsByDirector,
@@ -19,6 +21,7 @@ const func = {
 };
 
 const filter2field = {
+  "term" : "term",
   "genre" : "genre",
   "course" : "course",
   "director" : "directors",
@@ -75,7 +78,7 @@ const handler = nc().get(async (req, res) => {
   
   // having its format as [{film_id: 3}, {film_id:52}, ...]
   // Getting film IDs from the database by the primary filter
-  let id_list = await func[primary_filter](value);
+  const id_list = await func[primary_filter](value);
 
   if (!id_list || !Array.isArray(id_list)) {
     res.status(500).json({
