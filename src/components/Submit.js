@@ -43,6 +43,7 @@ export default function Submit({ genres, courses }) {
           title="Directors"
           selectedOptions={selectedDirectors}
           onChangeFunction={setSelectedDirectors}
+          allowCustom={true}
         />
         <div className={styles.group}>
           <div>

@@ -84,7 +84,8 @@ export default function OptionSelectCard({
         type="text"
         placeholder={`Add ${title}`}
         onChange={(e) => handleFilterTermChange(e)}
-      />
+      /> 
+      {(allowCustom) ? <button className={style.addButton}>+</button> : <div></div>}
       <div className={style.dropdown}>
         {filteredOptions
           ? filteredOptions.map((option) => (
@@ -111,12 +112,6 @@ export default function OptionSelectCard({
     </span>
   ));
 
-  // <span
-  //   className="selected-option-remove"
-  //   onClick={() => removeOption(option)}
-  // >
-  //   &times;
-  // </span>;
 
   return (
     <div className={style.card}>
