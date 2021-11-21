@@ -19,7 +19,7 @@
 
 
 .titleContainer{
-    padding-left: 3rem;
+    //padding-left: 3rem;
     margin-left: 5%;
     margin-bottom: 2rem;
     border: black 1px;
@@ -32,10 +32,13 @@
 .title{
     font-size: 2rem;
     margin:1rem 0rem 1rem 0rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .date{
     font-size: 1rem;
+    padding-left: 1rem;
     margin-top:0.25rem;
 }
 
