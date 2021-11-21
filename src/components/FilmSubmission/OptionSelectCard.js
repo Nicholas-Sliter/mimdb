@@ -49,17 +49,15 @@ export default function OptionSelectCard({
     return false;
   };
 
-
   const handleNewOption = (e) => {
-     //on enter in search bar
-     e.preventDefault();
-      if (e.key === "Enter") {
-         const res = addNewOption(e.target.value);
-         if (res){
-            e.target.value = "";
-         }
+    //on enter in search bar
+    if (e.key === "Enter") {
+      const res = addNewOption(e.target.value);
+      if (res) {
+        e.target.value = "";
       }
-   };
+    }
+  };
 
   const addOption = (option) => {
     //add the option to the list of selected options
@@ -84,8 +82,13 @@ export default function OptionSelectCard({
         type="text"
         placeholder={`Add ${title}`}
         onChange={(e) => handleFilterTermChange(e)}
-      /> 
-      {(allowCustom) ? <button className={style.addButton}>+</button> : <div></div>}
+        onKeyPress={(e) => handleNewOption(e)}
+      />
+      {allowCustom ? (
+        <button className={style.addButton}>+</button>
+      ) : (
+        <div></div>
+      )}
       <div className={style.dropdown}>
         {filteredOptions
           ? filteredOptions.map((option) => (
@@ -111,7 +114,6 @@ export default function OptionSelectCard({
       {option}
     </span>
   ));
-
 
   return (
     <div className={style.card}>

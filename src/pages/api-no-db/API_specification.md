@@ -10,15 +10,14 @@
 - getting filtered films in `/api/films?[filter]=[value]`
     - Example usage: 
         - `/api?course=Sight%20and%20Sound` (%20 is equivalent to a space)
-        - `/api?genre=Drama&director=Wayne%20Wang`
+        - `/api?genre=Drama`
+        - `/api?term=F21`
     - Return value: a list of film objects
     - Note: 
-        - Now supports multiple filters per query
-        - Supported fiels: "genre", "course", "director", "actor", "contributor", "term".
-        - MIND SINGULAR VS PLURAL!!
-        - For performance, when the API is called, filters should be sequenced from the most specific to the most specific.
-        - If a film has a field with a list of values, any match results in a positive match. For example, if a film has `directors: ["John", "Emily"]`, a filter `director=Emily` will result in a positive match for this film.
-        
+        - Filter all movies and return the ones that has the value from the filter. 
+        - If a film has a field with a list of values, any match results in a positive match. For example, if a film has `directors: ["John", "Emily"]`, a filter `directors=Emily` will result in a positive match for this film.
+        - This differs from searching by requiring exact parameter(case-sensitive) and it retrieves directly from the json/database without going through the search engine.
+    
 
 - searching in `/api/search?keyword=[search_term]`
     - Example usage: 
@@ -33,6 +32,3 @@
         - Example return: (film objects are replaced by filmObject1, filmObject2... to save space)
             - [{"item":{filmObject1},"refIndex":0,"score":2.220446049250313e-16},{"item":{filmObject2},"refIndex":5,"score":2.220446049250313e-16}
     - Note: Performs fuzzy search using Fuse.js on the given search term on all fields of a film object. "Fuzzy" indicates case-insensitive and typo-tolerable.
-
-- Getting all genres present in the film database in `/api/genres`
-    - Return value: a list of all genres present in all movies

@@ -51,6 +51,9 @@ $midd-blue: #0D395F;
 
 
 
+
+
+
 // .searchIcon {
 //    position: relative;
 //    left: 1.75rem;
@@ -79,4 +82,22 @@ $midd-blue: #0D395F;
    height: 2rem;
    width: 2rem;
 
+}
+
+@media screen and (max-width: 450px) {
+    .container{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 840px){
+   .searchBar{
+      width: 12rem;
+   }
+}
+
+@media screen and (max-width: 500px){
+   .searchBar{
+      width: 7rem;
+   }
 }

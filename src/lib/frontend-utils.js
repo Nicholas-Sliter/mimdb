@@ -77,7 +77,7 @@ export function validateFilmCourse(course) {
    //check for invalid characters with regex, allow letters, spaces, dashes, and punctuation
    if (!/^[a-zA-Z0-9 -.;:'&/,]+$/.test(course)) {
       return "Course contains invalid characters";
-   }s
+   }
 
    return null;
 }

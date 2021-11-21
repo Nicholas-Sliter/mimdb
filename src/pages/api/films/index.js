@@ -1,38 +1,100 @@
 import nc from "next-connect";
-import { readData } from "../../../lib/backend-utils";
+import {
+  getFilmsByTerm,
+  getFilmsByGenre,
+  getFilmsByCourse,
+  getFilmsByDirector,
+  getFilmsByActor,
+  getFilmsByContributor,
+  getFilmById,
+  getAllFilms
+} from "../../../lib/backend-utils";
+import { validateFilterTerm } from "../../../lib/backend-utils";
 
-const handler = nc().get((req, res) => {
-  const films = readData();
+const func = {
+  "term" : getFilmsByTerm,
+  "genre" : getFilmsByGenre,
+  "course" : getFilmsByCourse,
+  "director" : getFilmsByDirector,
+  "actor" : getFilmsByActor,
+  "contributor" : getFilmsByContributor,
+};
 
-  // Code used to generate the mock data with random term and course.
-  // This should serve as only reference purpose and should be removed as soon as we migrate to a database.
-  /*
-  const termArray = ["F21", "S21", "F20"];
-  const courseArray = ["Film History", "Sight and Sound", "Film Theory", "Television in the US"];
+const filter2field = {
+  "term" : "term",
+  "genre" : "genre",
+  "course" : "course",
+  "director" : "directors",
+  "actor" : "actors",
+  "contributor" : "contributors",
+}
 
-  const newFilms = films.map((film) => {
-    const randomTerm = termArray[Math.floor(Math.random() * termArray.length)];
-    const randomCourse = courseArray[Math.floor(Math.random() * courseArray.length)];
-    film.term = randomTerm;
-    film.course = [randomCourse];
-    return film;
-  });
-  saveData(newFilms);
-  res.status(200);
-  */
-  const filters = req.query;
-
-  const result = films.filter((film) => {
-    let match = false;
-    Object.entries(filters).forEach(([filter, value]) => {
-      if (film[filter]) {
-        match = Array.isArray(film[filter]) ? film[filter].includes(value) : film[filter]===value;
-      }
+/**
+ * filter films in the id_list(filtered by the primary filter) by additional filters in the filter list
+ * @param {Object[]} film_list - the list of film objects filtered by the primary filter
+ * @param {Object} filters - All filters except for the primary one
+ * @returns A list of all films filtered by all filters in the giver filter list
+ */
+const multiFilters = ((film_list, filters) => {
+  const result = film_list.filter((film) => {
+    let match = true;
+    Object.keys(filters).forEach((filter) => {
+      const field = filter2field[filter];
+      match = Array.isArray(film[field]) ? film[field].includes(filters[filter]) : filters[filter]===film[field];
     });
     return match;
   });
+  return result;
+})
 
-  res.status(200).json(result);
+
+// Filtering films:
+// The first filter in the filter list is the primary filter used to retrieve movies
+// from database. Then, the filter list and the films are passed into multiFilters()
+// to be filtered by additional filters in the filter list. For performance, when the
+// API is called, filters should be sequenced from the most specific to the most specific.
+const handler = nc().get(async (req, res) => {
+
+  const filters = req.query;
+
+  if (Object.keys(filters).length===0) {
+    // No filters, returning all films.
+    res.status(200).json(await getAllFilms());
+    return;
+  }
+
+  // Validate all filters in the list
+  Object.keys(filters).forEach((filter) => {
+    if (!validateFilterTerm(filter)) {
+      res.status(400).json({
+        error: `Invalid filter term: ${filter}`
+      });
+      return;
+    }
+  });
+
+  const primary_filter = Object.keys(filters)[0];
+  const value = filters[primary_filter];
+  
+  // having its format as [{film_id: 3}, {film_id:52}, ...]
+  // Getting film IDs from the database by the primary filter
+  const id_list = await func[primary_filter](value);
+
+  if (!id_list || !Array.isArray(id_list)) {
+    res.status(500).json({
+      error: "Could not retrieve films",
+    });
+    return;
+  }
+  
+  // Get all films based on the id_list
+  let film_list = await Promise.all(id_list.map(async (film_id) => await getFilmById(film_id.film_id)));
+
+  if (Object.keys(filters).length>1) {
+    film_list = multiFilters(film_list, filters);
+  }
+
+  res.status(200).json(film_list);
 });
 export default handler;
 

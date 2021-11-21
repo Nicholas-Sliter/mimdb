@@ -1,13 +1,19 @@
-//a GET api endpoint that returns a list of genres present in the film data
+//a GET api endpoint that returns a list of all genres present in the film database
 
 import nc from "next-connect";
-import { readData } from "../../../lib/backend-utils";
+import { getAllGenres } from "../../../lib/backend-utils";
 
-const handler = nc().get((req, res) => {
-  const films = readData();
-  const genres = new Set(films.map((film) => film.genre).flat());
+const handler = nc().get(async (req, res) => {
+  const allGenres = await getAllGenres();
 
-  res.status(200).json(Array.from(genres));
+  if (!allGenres) {
+    res.status(500).json({
+      error: "Could not retrieve genres"
+    });
+    return;
+  }
+  
+  res.status(200).json(allGenres);
 });
 
 export default handler;

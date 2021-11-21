@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import router from "next/router";
-import { validateFilmSemester } from "../lib/frontend-utils";
+//import { validateFilmSemester } from "../lib/frontend-utils";
 import TextInput from "./FilmSubmission/TextInput";
 import TextArea from "./FilmSubmission/TextArea";
-import Checkboxes from "./FilmSubmission/Checkboxes";
+import Select from "./FilmSubmission/Select";
 import AddedText from "./FilmSubmission/AddedText";
 import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
 
@@ -14,93 +14,62 @@ export default function Submit({ genres, courses }) {
     const [logLine, setLogLine] = useState("");
     const [semester, setSemester] = useState("");
     const [duration, setDuration] = useState("");
+    const [courseId, setCourseId] = useState("");
+    const [vimeoId, setVimeoId] = useState("");
     const [overview, setOverview] = useState("");
     const [newGenre, addGenre] = useState(false);
     const [newCourse, addCourse] = useState(false);
-    const [courseId, setCourseId] = useState("");
-    const [vimeoId, setVimeoId] = useState(""); 
-    const [selectedDirectors, setSelectedDirectors] = useState([]);
-    const [directors, setDirectors] = useState([
-      "Nicholas Sliter",
-      "Jiaqi Li",
-      "Katelyn Mei",
-    ]); //for data from server
-    const [selectedActors, setSelectedActors] = useState([]);
-    const [selectedGenres, setSelectedGenres] = useState([]);
+    const [genreList, setGenreList] = useState([]);
+    const [courseList, setCourseList] = useState([]);
+    const [inputDirectorList, setDirectorInputList] = useState([""]);
+    const [inputActorList, setActorInputList] = useState([""]);
+    const [inputContribList, setContribInputList] = useState([""]);
 
-    //temp with fake data
-    //setDirectors(["Nicholas Sliter","Jiaqi Li","Katelyn Mei"]);
-    console.log(selectedDirectors);
+    // const defaultSubmit = {title:"", logLine:"", semester:"", duration:0,
+    //     overview:"", courseId:"", vimeoId:"", inputDirectorList:[],
+    //     inputActorList:[], inputContribList:[], genreList:[],courseList:[]};
+    // const [submitContent, setSubmitContent] = useState(defaultSubmit);
 
+    function createSubission() {
+        const submitContent = {title:title, logLine:logLine, semester:semester, 
+            duration:duration, courseId:courseId, vimeoId:vimeoId, overview:overview, 
+            inputDirectorList:inputDirectorList, inputActorList:inputActorList, 
+            inputContribList:inputContribList, genreList:genreList, courseList:courseList};
+        console.log(submitContent);
+    }
 
     return (
-      <div className={styles.submitPage}>
-        <h1 style={{ color: "#203569", marginLeft: "2vw" }}>
-          Submit Your Film
-        </h1>
-        <OptionSelectCard
-          initialOptions={directors}
-          title="Directors"
-          selectedOptions={selectedDirectors}
-          onChangeFunction={setSelectedDirectors}
-          allowCustom={true}
-        />
-        <div className={styles.group}>
-          <div>
-            <TextInput name="Title" setFunc={setTitle} />
-            <TextInput name="Log-Line" setFunc={setLogLine} />
-            <TextInput name="Course ID" setFunc={setCourseId} />
-          </div>
-          <div>
-            <TextInput
-              name={"Semester"}
-              setFunc={setSemester}
-              moreText="eg. F21, W22, S22, etc."
-            />
-            <TextInput
-              name={"Duration"}
-              setFunc={setDuration}
-              moreText="Minutes"
-            />
-            <TextInput name="Vimeo ID" setFunc={setVimeoId} />
-          </div>
+        <div className={styles.submitPage}>
+            <OptionSelectCard title="Actors" allowCustom={true} initialOptions={[]} selectedOptions={[]} onChangeFunction={setActorInputList} />
+            <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
+            <div className={styles.group}>
+                <div>
+                    <TextInput name="Title" setFunc={setTitle} />
+                    <TextInput name="Log-Line" setFunc={setLogLine} />
+                    <TextInput name="Course ID" setFunc={setCourseId} />
+                </div>
+                <div>
+                    <TextInput name={"Semester"} setFunc={setSemester} moreText="eg. F21, W22, S22, etc." />
+                    <TextInput name={"Duration"} setFunc={setDuration} moreText="Minutes" />
+                    <TextInput name="Vimeo ID" setFunc={setVimeoId} />
+                </div>
+            </div>
+            <div className={styles.group}>
+                <TextArea name="Overview" setFunc={setOverview} />
+            </div>
+            <div className={styles.group}>
+                <Select name="Genre" array={genres} newVar={newGenre} setFunc={addGenre} setCategoryList={setGenreList} />
+                <Select name="Course" array={courses} newVar={newCourse} setFunc={addCourse} setCategoryList={setCourseList}/>
+            </div>
+            <div className={styles.group}>
+                <AddedText name="Director" inputList={inputDirectorList} setInputList={setDirectorInputList} />
+                <AddedText name="Actor" inputList={inputActorList} setInputList={setActorInputList} />
+                <AddedText name="Contributor" inputList={inputContribList} setInputList={setContribInputList} />
+            </div>
+            <div className={styles.groupButton}>
+                <button className={styles.largeButton} onClick={() => createSubission()}>Submit</button>
+                <button className={styles.largeButton} onClick={() => { router.back() }}> Cancel </button>
+            </div>
         </div>
-        <div className={styles.group}>
-          <TextArea name="Overview" setFunc={setOverview} />
-        </div>
-        <div className={styles.group}>
-          <Checkboxes
-            name="Genre"
-            array={genres}
-            newVar={newGenre}
-            setFunc={addGenre}
-          />
-          <Checkboxes
-            name="Course"
-            array={courses}
-            newVar={newCourse}
-            setFunc={addCourse}
-          />
-        </div>
-        <div className={styles.group}>
-          <AddedText name="Director" />
-          <AddedText name="Actor" />
-          <AddedText name="Contributor" />
-        </div>
-        <div className={styles.groupButton}>
-          <button className={styles.largeButton} onClick={() => {}}>
-            Submit
-          </button>
-          <button
-            className={styles.largeButton}
-            onClick={() => {
-              router.back();
-            }}
-          >
-            {" "}
-            Cancel{" "}
-          </button>
-        </div>
-      </div>
-    );
+    ); 
 }
