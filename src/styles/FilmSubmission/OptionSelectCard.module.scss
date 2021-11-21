@@ -120,6 +120,7 @@
 .selectedOptionList {
   position: relative;
   top: 3rem;
+  min-height: 1rem;
 
   .selectedOption {
     display: inline-block;
