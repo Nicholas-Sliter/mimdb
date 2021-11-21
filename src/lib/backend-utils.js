@@ -190,6 +190,25 @@ export async function getFilmBySlug(slug) {
 }
 
 /**
+ * Get the list of films of the given term
+ * 
+ * @returns an array of all films of the term
+ */
+ export async function getFilmsByTerm(term) {
+  const ids = await knex.select("id")
+    .from("Film")
+    .where({ "term": term });
+  
+  // Convert to compatible format with other backend-util GET functions.
+  const film_ids = ids.map((obj) => {
+    Object.defineProperty(obj, "film_id", Object.getOwnPropertyDescriptor(obj, "id"));
+    delete obj["id"];
+    return obj;
+  });
+  return film_ids;
+}
+
+/**
  * Get the list of films of the given genre 
  * 
  * @returns an array of all films of the genre
@@ -222,7 +241,7 @@ export async function getFilmsByCourse(course) {
 export async function getFilmsByDirector(name) {
   const film_ids = await knex.select("film_id")
     .from("DirectorsFilm")
-    .join("Director", "Director.director_id", "DirectorsFilm.director_id")
+    .join("Directors", "Directors.director_id", "DirectorsFilm.director_id")
     .where({ "director_name": name });
   return film_ids;
 }
@@ -262,8 +281,20 @@ export async function getCourseByCourseName(name) {
   return wholeCourse;
 }
 
+
 export function validateFilterTerm(filterTerm) {
-  const filters = ["genre","course","director","actor","contributor"];
+  const filters = ["genre","course","director","actor","contributor", "term"];
   return filters.includes(filterTerm);
+}
+
+
+/**
+ * Add the validated [film] into the film database
+ * TODO: currently DOES NOT ADD to linked databases
+ * @returns the inserted new film object.
+ */
+export async function addFilm(film) {
+  const newIDs = await knex("Film").insert(film);
+  return await getFilmById(newIDs[0]);
 }
 
