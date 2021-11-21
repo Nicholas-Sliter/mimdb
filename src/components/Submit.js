@@ -25,16 +25,11 @@ export default function Submit({ genres, courses }) {
   const [inputActorList, setActorInputList] = useState([""]);
   const [inputContribList, setContribInputList] = useState([""]);
 
-  // const defaultSubmit = {title:"", logLine:"", semester:"", duration:0,
-  //     overview:"", courseId:"", vimeoId:"", inputDirectorList:[],
-  //     inputActorList:[], inputContribList:[], genreList:[],courseList:[]};
-  // const [submitContent, setSubmitContent] = useState(defaultSubmit);
-
-  function createSubission() {
+  async function createSubission() {
     const submitContent = {
       title: title,
       logLine: logLine,
-      semester: semester,
+      release_date: semester,
       duration: duration,
       courseId: courseId,
       vimeoId: vimeoId,
@@ -45,7 +40,17 @@ export default function Submit({ genres, courses }) {
       genreList: genreList,
       courseList: courseList,
     };
-    console.log(submitContent);
+
+    const response = await fetch("/api/submit", {
+      method: "POST",
+      body: JSON.stringify(submitContent),
+      headers: new Headers({ "Content-Type": "application/json" })
+    });
+    
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    
   }
 
   return (

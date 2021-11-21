@@ -15,38 +15,36 @@ export default function Select({ name, array, newVar, setFunc, setCategoryList }
     const customStyles = {
         container: (provided, state) => ({
             ...provided,
-            padding: 0,
             height: 'fit-content',
         }),
         control: (provided, state) => ({
             ...provided,
+            fontSize: 18,
             minHeight: 'fit-content',
-            height: 'fit-content',
-            padding: 0,
+            height: 'fit-content',       
+            color: "#203569",
+            border: "2px solid #203569",
+            boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)"
         }),
         input: (provided, state) => ({
             ...provided,
             fontSize: 16,
             height: 24,
-            padding: 0,
+            padding: 0.6,
+            color: "#203569",
         }),
-        multiValue: (styles) => {
-            return {
-              ...styles,
-              backgroundColor: "white",
-              padding: 0,
-            };
-        }
+        multiValue: (styles) => ({
+            ...styles,
+            backgroundColor: "white",
+        })
     }
 
     return (
         <div>
             <label htmlFor={`${name}s`}> {`${name}s:`} </label>
-
             <CreatableSelect
-                style={{ padding: "0vw" }}
                 instanceId={name}
-                isMulti isSearchable autoFocus
+                isMulti isSearchable
                 options={options} onChange={handleSelect}
                 styles={customStyles}>
             </CreatableSelect>

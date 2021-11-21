@@ -5,17 +5,18 @@
 }
 
 .submitPage div {
-    padding: 0.6vw;
+    
 }
 
 .submitPage .group {
-    padding: 0;
+    padding: 1vw;
     display: flex;
     justify-content: space-around;
     margin-top: 2vw;
 }
 
 .submitPage .largeInput input{
+    margin-bottom: 1vw;
     display: flex;
     border-radius: 12px;
     width: 25vw;
@@ -26,6 +27,7 @@
 }
 
 .submitPage .smallInput input{
+    padding: 0.6vw;
     border-radius: 10px;
     width: 12vw;
     height: 2vw;
@@ -35,6 +37,7 @@
 }
 
 .submitPage .largeTextarea textarea{
+    padding: 0.6vw;
     width: 70vw;
     height: 20vw;
     margin: 1vw;
@@ -56,13 +59,14 @@
 }*/
 
 .submitPage label{
-    padding: 0.1vw;
+    padding: 0.6vw;
     font-size: 20px;
     font-weight: medium;
     color: #203569;
 }
 
 .submitPage .small label{
+    padding: 0.6vw;
     font-size: 18px;
     font-weight: small;
 }

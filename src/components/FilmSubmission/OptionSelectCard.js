@@ -95,14 +95,14 @@ export default function OptionSelectCard({
       <div className={(useDropdown) ? style.dropdown : style.none}>
         {(filteredOptions && useDropdown)
           ? filteredOptions.map((option) => (
-              <div
-                className={style.item}
-                key={option}
-                onMouseDown={() => addOption(option)}
-              >
-                <span>{option}</span>
-              </div>
-            ))
+            <div
+              className={style.item}
+              key={option}
+              onMouseDown={() => addOption(option)}
+            >
+              <span>{option}</span>
+            </div>
+          ))
           : null}
       </div>
     </div>
