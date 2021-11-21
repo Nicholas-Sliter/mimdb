@@ -270,10 +270,23 @@ export async function getFilmsByContributor(name) {
   return film_ids;
 }
 
+/** Get  course by courseName
+ * 
+ * @returns an array of course info
+ * 
+ */
+export async function getCourseByCourseName(name) {
+  const wholeCourse = await knex.select()
+    .from("Course").where({"course_name": name})
+  return wholeCourse;
+}
+
+
 export function validateFilterTerm(filterTerm) {
   const filters = ["genre","course","director","actor","contributor", "term"];
   return filters.includes(filterTerm);
 }
+
 
 /**
  * Add the validated [film] into the film database
@@ -284,3 +297,4 @@ export async function addFilm(film) {
   const newIDs = await knex("Film").insert(film);
   return await getFilmById(newIDs[0]);
 }
+
