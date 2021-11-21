@@ -5,6 +5,7 @@ import TextInput from "./FilmSubmission/TextInput";
 import TextArea from "./FilmSubmission/TextArea";
 import Checkboxes from "./FilmSubmission/Checkboxes";
 import AddedText from "./FilmSubmission/AddedText";
+import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
 
 import styles from "../styles/SubmitPage.module.css";
 
@@ -22,6 +23,7 @@ export default function Submit({ genres, courses }) {
     return (
         <div className={styles.submitPage}>
             <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
+            <OptionSelectCard options={["1","2","3"]} selectedOptions={[]} onChangeFunction={()=>{}} />
             <div className={styles.group}>
                 <div>
                     <TextInput name="Title" setFunc={setTitle} />

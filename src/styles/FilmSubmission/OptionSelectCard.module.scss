@@ -1,0 +1,54 @@
+.inputContainer {
+  &:hover {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .searchInput {
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 5px;
+      padding: 5px;
+      margin-top: 5px;
+    }
+
+    &:hover {
+      .dropdown-content {
+        display: block;
+      }
+    }
+
+    .item {
+      position: relative;
+      display: inline-block;
+      padding: 0.5em;
+      margin: 0.5em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #fff;
+      color: #000;
+      font-size: 1em;
+      font-weight: 400;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+}
