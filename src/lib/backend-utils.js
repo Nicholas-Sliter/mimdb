@@ -222,7 +222,7 @@ export async function getFilmsByCourse(course) {
 export async function getFilmsByDirector(name) {
   const film_ids = await knex.select("film_id")
     .from("DirectorsFilm")
-    .join("Director", "Director.director_id", "DirectorsFilm.director_id")
+    .join("Directors", "Directors.director_id", "DirectorsFilm.director_id")
     .where({ "director_name": name });
   return film_ids;
 }
@@ -264,4 +264,11 @@ export function validateFilterTerm(filterTerm) {
 export async function addFilm(film) {
   const newIDs = await knex("Film").insert(film);
   return await getFilmById(newIDs[0]);
+}
+
+export async function getDirector(name) {
+  const director = await knex("Directors").select().where({director_name: name});
+  //need to decide what to actually send!!!!!  TODO!!!!!!!
+  return director;
+
 }
