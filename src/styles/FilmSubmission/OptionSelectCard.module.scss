@@ -3,6 +3,8 @@
   height: 20rem;
   outline: 1px solid rgb(216, 216, 216);
   border-radius: 32px;
+  display: inline-block;
+  margin: 1rem;
 }
 
 .title {
@@ -64,9 +66,13 @@
 
   }
 
+  .none {
+    display: none;
+  }
+
   .dropdown {
     position: relative;
-    top: -1rem;
+    top: -2rem;
     display: none;
     outline: 1px solid rgb(216, 216, 216);
     width: 20rem;

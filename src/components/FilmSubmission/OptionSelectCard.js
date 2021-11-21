@@ -5,12 +5,15 @@ import { useState, useEffect } from "react";
 
 import style from "../../styles/FilmSubmission/OptionSelectCard.module.scss";
 
+
+
 export default function OptionSelectCard({
   title,
   initialOptions,
   selectedOptions,
   onChangeFunction,
   allowCustom = false,
+  useDropdown = true,
 }) {
   const [filterTerm, setFilterTerm] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
@@ -89,8 +92,8 @@ export default function OptionSelectCard({
       ) : (
         <div></div>
       )}
-      <div className={style.dropdown}>
-        {filteredOptions
+      <div className={(useDropdown) ? style.dropdown : style.none}>
+        {(filteredOptions && useDropdown)
           ? filteredOptions.map((option) => (
               <div
                 className={style.item}
