@@ -20,7 +20,7 @@ export function decodeURIComponentSafe(str) {
 export function buildQuery(queryObj) {
   let query = "";
   for (var key in queryObj) {
-    if (queryObj.hasOwnProperty(key)) {
+    if (queryObj.hasOwnProperty(key) && queryObj[key] !== "") {
       query += `${key}=${encodeURIComponent(queryObj[key])}&`;
     }
   }
