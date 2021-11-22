@@ -1,5 +1,5 @@
-import styles from "../../styles/SubmitPage.module.css";
-import CreatableSelect from 'react-select/creatable';
+//import styles from "../../styles/SubmitPage.module.css";
+import CreatableSelect from "react-select/creatable";
 
 export default function Select({ name, array, newVar, setFunc, setCategoryList }) {
 
