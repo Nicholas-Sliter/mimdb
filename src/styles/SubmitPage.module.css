@@ -1,0 +1,55 @@
+.submitPage {
+    padding: 1vw;
+    margin: 5vw;
+    font-family: 'Montserrat', helvetica, arial, sans-serif;
+    align-items: center;
+    display:grid;
+    grid-template-columns: 50% 50%;
+}
+
+.submitPage input[type=text], .submitPage input[type=number]{
+    align-items: center;
+    box-sizing: border-box;
+    border: 2px solid #ccb36b;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+.submitPage .largeTextarea textarea{
+    width: 75vw;
+    height: 25vw;
+    /*padding: 12px 20px;*/
+    box-sizing: border-box;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border: 0.25vw solid #203569;
+    border-radius: 0.5vw;
+    background-color: #dadada;
+    font-size: 1.5vw;
+    resize:vertical;
+}
+
+.submitPage .smallTextarea textarea{
+    width: 90vw;
+    height: 10vw;
+    box-sizing: border-box;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border: 0.25vw solid #203569;
+    border-radius: 0.5vw;
+    background-color: #dadada;
+    font-size: 1.5vw;
+}
+
+.submitPage label {
+    padding: 0.5vw;
+    font-family: 'Montserrat', helvetica, arial, sans-serif;
+    font-size: 2vw;
+    font-weight: medium;
+    color: #203569;
+}
+
+.submitPage .small {
+    font-family: 'Montserrat', helvetica, arial, sans-serif;
+    font-size: 1.5vw;
+    font-weight: small;
+    color: #203569;
+}
