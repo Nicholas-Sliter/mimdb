@@ -42,7 +42,6 @@ exports.up = function(knex) {
   })
   .createTable("Directors", table => {
     table.string("director_name");
-    table.string("director_url");
     table.integer("director_id").unique().notNullable();
     table.string("director_bio");
     table.string("director_midd_email");

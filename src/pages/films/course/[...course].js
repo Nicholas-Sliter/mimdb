@@ -24,7 +24,6 @@ export default function FilmsByCourse({ genres, courses }) {
          throw new Error("Failed to fetch films")
       }
       const data = await res.json()
-      console.log(data);
       setGenreFilmList(data);
    }, [course])
 

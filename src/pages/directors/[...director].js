@@ -21,40 +21,43 @@ export default function Director({genres, courses}) {
   const [directorFilms, setDirectorFilms] = useState([])
 
 
-  useEffect(async() => {
 
-    const res = await fetch(`/api/directors/${director}`);
+    
 
+    useEffect(async() => {
 
-      if (!res.ok){
-        throw new Error("Failed to fetch director")
-      }
-      const data = await res.json()
-
-
-      setDirectorInfo(data);
-
-      console.log(directorInfo)
-
-
-    }, [director])
-
-
-  
-  useEffect(async() => {
-    const res = await fetch(`/api/films?director=${director}`);
-      if (!res.ok){
+      const res2 = await fetch(`/api/films?director=${director}`);
+      if (!res2.ok){
         throw new Error("Failed to fetch films")
       }
 
+      const data2 = await res2.json()
+
+      setDirectorFilms(data2);
+
+    },[director])
+
+
+
+    useEffect(async() => {
+
+      const res = await fetch(`/api/directors/${director}`);
+
+      if (res === undefined){
+        return;
+      }
+    
+  
+        if (!res.ok){
+          throw new Error("Failed to fetch director")
+        }
+  
       const data = await res.json()
-
-      
-
-      setDirectorFilms(data);
-    }, [director])
-
-
+  
+      setDirectorInfo(data);
+  
+  
+      }, [director])
 
 
 
@@ -63,9 +66,8 @@ export default function Director({genres, courses}) {
         <CustomHead />
         <Header genreList={genres} classList={courses} />
         <main>
-          <DirectorPage films={directorFilms} director={directorInfo}/>
+          <DirectorPage films={directorFilms} director={directorInfo[0]}/>
         </main>
-  
         <footer>
            © {`${new Date().getFullYear()}`} Middlebury Movie Database
         </footer>

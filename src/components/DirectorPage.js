@@ -1,28 +1,32 @@
 import styles from "../styles/DirectorsPage.module.css"
 import FilmRow from "./DisplayLayouts/FilmRow.js"
 
-export default function DirectorPage ({films, directorInfo}) {
+export default function DirectorPage ({films, director}) {
+    let directorInfo;
 
-    //console.log(directorInfo)
-
-    /*
-    directorInfo =
+    if (director === undefined){
+        directorInfo =
         {
-            director_name: "Wayne Wang",
+            director_name: "",
             director_id: 1,
-            director_bio: "I'm actually a programmer.",
-            director_midd_email: "midd@middlebury.edu",
-            director_personal_email: "personal@domain.com",
-            director_graduation_year: "2022.5"
+            director_bio: "",
+            director_midd_email: "",
+            director_personal_email: "",
+            director_graduation_year: ""
         }
-    */
+    }
+    else{
+        directorInfo = director;
+    }
+
+    
 
 
     return (
         <div>
             <div className={styles.topBox}>
                 <div className={styles.directorInfo}>
-                    <h3>{directorInfo.director_name}</h3>
+                    <h1>{directorInfo.director_name}</h1>
                     <div className={styles.classEmail}>
                         <h4 className={styles.classYear}>{directorInfo.director_graduation_year}</h4>
                         <h4 className={styles.email}>{directorInfo.director_midd_email}</h4>
@@ -30,12 +34,16 @@ export default function DirectorPage ({films, directorInfo}) {
                     </div>
                 </div>
                 <div className={styles.bio}>
+                    <h3> Biography</h3>
                     <p className={styles.bioText}>
                         {directorInfo.director_bio}
                     </p>
                 </div>
             </div>
-            <FilmRow films={films} title={`Films by ${directorInfo.director_name}`} />
+            <div className={styles.filmRowCont}>
+                <FilmRow films={films} title={`Films by ${directorInfo.director_name}`} />
+            </div>
+            
             
         </div>
     )
