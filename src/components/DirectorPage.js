@@ -1,26 +1,9 @@
 import styles from "../styles/DirectorsPage.module.css"
 import FilmRow from "./DisplayLayouts/FilmRow.js"
 
-export default function DirectorPage ({films, director}) {
-    let directorInfo;
+export default function DirectorPage({ films, director }) {
 
-    if (director === undefined){
-        directorInfo =
-        {
-            director_name: "",
-            director_id: 1,
-            director_bio: "",
-            director_midd_email: "",
-            director_personal_email: "",
-            director_graduation_year: ""
-        }
-    }
-    else{
-        directorInfo = director;
-    }
-
-    
-
+    const directorInfo = director;
 
     return (
         <div>
@@ -34,7 +17,7 @@ export default function DirectorPage ({films, director}) {
                     </div>
                 </div>
                 <div className={styles.bio}>
-                    <h3> Biography</h3>
+                    <h3>Biography</h3>
                     <p className={styles.bioText}>
                         {directorInfo.director_bio}
                     </p>
@@ -43,8 +26,6 @@ export default function DirectorPage ({films, director}) {
             <div className={styles.filmRowCont}>
                 <FilmRow films={films} title={`Films by ${directorInfo.director_name}`} />
             </div>
-            
-            
         </div>
     )
 }

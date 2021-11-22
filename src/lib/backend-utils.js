@@ -298,6 +298,11 @@ export async function addFilm(film) {
   return await getFilmById(newIDs[0]);
 }
 
+/** Get director by directorName
+ * 
+ * @returns director object
+ * 
+ */
 export async function getDirector(name) {
   const director = await knex("Directors").select().where({director_name: name});
   //need to decide what to actually send!!!!!  TODO!!!!!!!
