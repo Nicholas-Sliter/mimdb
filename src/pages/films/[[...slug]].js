@@ -6,14 +6,14 @@ import Header from "../../components/Header";
 
 import useGetFilm from "../../hooks/useGetFilm";
 
-export default function Film() {
+export default function Film({genres,courses}) {
     const router = useRouter();
     const {slug} = router.query;
 
     return (
         <div className={styles.container}>
             <CustomHead />
-                <Header/>
+                <Header genreList={genres} classList={courses} />
             <SingleFilmDisplay film={useGetFilm(slug)}/>
             <footer>2021 Middlebury Movie Database</footer>
         </div>
