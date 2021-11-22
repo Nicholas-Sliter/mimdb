@@ -4,7 +4,7 @@ import router from "next/router";
 import TextInput from "./FilmSubmission/TextInput";
 import TextArea from "./FilmSubmission/TextArea";
 import Select from "./FilmSubmission/Select";
-import AddedText from "./FilmSubmission/AddedText";
+//import AddedText from "./FilmSubmission/AddedText";
 import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
 
 import styles from "../styles/SubmitPage.module.css";
@@ -23,7 +23,7 @@ export default function Submit({ genres, courses }) {
   const [courseList, setCourseList] = useState([]);
   const [inputDirectorList, setDirectorInputList] = useState([""]);
   const [inputActorList, setActorInputList] = useState([""]);
-  const [inputContribList, setContribInputList] = useState([""]);
+  //const [inputContribList, setContribInputList] = useState([""]);
 
   async function createSubission() {
     const submitContent = {
@@ -36,7 +36,7 @@ export default function Submit({ genres, courses }) {
       overview: overview,
       inputDirectorList: inputDirectorList,
       inputActorList: inputActorList,
-      inputContribList: inputContribList,
+      //inputContribList: inputContribList,
       genreList: genreList,
       courseList: courseList,
     };
@@ -55,29 +55,7 @@ export default function Submit({ genres, courses }) {
 
   return (
     <div className={styles.submitPage}>
-      <OptionSelectCard
-        title="Actors"
-        allowCustom={true}
-        initialOptions={[]}
-        selectedOptions={inputActorList}
-        useDropdown={false}
-        onChangeFunction={setActorInputList}
-      />
-      <OptionSelectCard
-        title="Directors"
-        allowCustom={false}
-        initialOptions={[
-          "Nicholas Sliter",
-          "Jiaqi Li",
-          "Wayne Wang",
-          "Becca Hochman-Fisher",
-          "Nicholas McKalip",
-          "Katie Kosior",
-        ]}
-        selectedOptions={inputDirectorList}
-        useDropdown={true}
-        onChangeFunction={setDirectorInputList}
-      />
+      
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
       <div className={styles.group}>
         <div>
@@ -119,7 +97,31 @@ export default function Submit({ genres, courses }) {
         />
       </div>
       <div className={styles.group}>
-        <AddedText
+        <OptionSelectCard
+          title="Actors"
+          allowCustom
+          initialOptions={[]}
+          selectedOptions={inputActorList}
+          useDropdown={false}
+          onChangeFunction={setActorInputList}
+        />
+        <OptionSelectCard
+          title="Directors"
+          allowCustom={false}
+          initialOptions={[
+            "Nicholas Sliter",
+            "Jiaqi Li",
+            "Wayne Wang",
+            "Becca Hochman-Fisher",
+            "Nicholas McKalip",
+            "Katie Kosior",
+          ]}
+          selectedOptions={inputDirectorList}
+          useDropdown
+          onChangeFunction={setDirectorInputList}
+        />
+      {/*<div className={styles.group}>
+       } <AddedText
           name="Director"
           inputList={inputDirectorList}
           setInputList={setDirectorInputList}
@@ -133,7 +135,7 @@ export default function Submit({ genres, courses }) {
           name="Contributor"
           inputList={inputContribList}
           setInputList={setContribInputList}
-        />
+        />*/}
       </div>
       <div className={styles.groupButton}>
         <button

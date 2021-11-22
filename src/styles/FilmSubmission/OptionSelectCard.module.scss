@@ -10,16 +10,17 @@
 .title {
   padding-left: 1.5rem;
   font-size: 1.5rem;
-  font-weight: bold;
-  color: #000000;
+  font-weight: medium;
+  color: #203569;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
 .inputContainer {
-  padding-left: 1rem;
+  //padding-left: 1rem;
   display: inline-block;
-  position: absolute;
+  position: flex;
+  
   &:hover {
     //background-color: #f5f5f5;
     border-radius: 5px;

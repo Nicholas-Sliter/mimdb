@@ -34,6 +34,17 @@ export default function OptionSelectCard({
     setFilteredOptions(tempFilteredOptions);
   }, [filterTerm, options, selectedOptions]);
 
+  const addOption = (option) => {
+    //add the option to the list of selected options
+    onChangeFunction(selectedOptions.concat([option]));
+  };
+
+  const removeOption = (option) => {
+    onChangeFunction(
+      selectedOptions.filter((selectedOption) => selectedOption !== option)
+    );
+  };
+
   const addNewOption = (newOption) => {
     if (!allowCustom) {
       return false;
@@ -62,17 +73,6 @@ export default function OptionSelectCard({
     }
   };
 
-  const addOption = (option) => {
-    //add the option to the list of selected options
-    onChangeFunction(selectedOptions.concat([option]));
-  };
-
-  const removeOption = (option) => {
-    onChangeFunction(
-      selectedOptions.filter((selectedOption) => selectedOption !== option)
-    );
-  };
-
   const handleFilterTermChange = (event) => {
     //update the filterTerm state
     event.preventDefault();
@@ -90,7 +90,7 @@ export default function OptionSelectCard({
       {allowCustom ? (
         <button className={style.addButton}>+</button>
       ) : (
-        <div></div>
+        <div> </div>
       )}
       <div className={(useDropdown) ? style.dropdown : style.none}>
         {(filteredOptions && useDropdown)
@@ -119,7 +119,7 @@ export default function OptionSelectCard({
   ));
 
   return (
-    <div className={style.card}>
+    <div >
       <div className={style.title}>{title}</div>
       {optionsDropdown}
       <div className={style.selectedOptionList}>{renderSelectedOptions}</div>
