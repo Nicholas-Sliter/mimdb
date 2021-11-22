@@ -1,55 +1,104 @@
 .submitPage {
-    padding: 1vw;
-    margin: 5vw;
+    padding: 0;
+    margin-left: 2vw;
     font-family: 'Montserrat', helvetica, arial, sans-serif;
-    align-items: center;
-    display:grid;
-    grid-template-columns: 50% 50%;
 }
 
-.submitPage input[type=text], .submitPage input[type=number]{
-    align-items: center;
-    box-sizing: border-box;
-    border: 2px solid #ccb36b;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+.submitPage .group {
+    padding: 1vw;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2vw;
+}
 
+.submitPage .largeInput input{
+    margin-bottom: 1vw;
+    display: flex;
+    border-radius: 12px;
+    width: 25vw;
+    height: 2.5vw;
+    border: 0.15vw solid #ccb36b;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-size: 15px;
+}
+
+.submitPage .smallInput input{
+    padding: 0.6vw;
+    border-radius: 10px;
+    width: 12vw;
+    height: 2vw;
+    border: 0.15vw solid #ccb36b;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-size: 12px;
 }
 
 .submitPage .largeTextarea textarea{
-    width: 75vw;
-    height: 25vw;
-    /*padding: 12px 20px;*/
-    box-sizing: border-box;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    border: 0.25vw solid #203569;
-    border-radius: 0.5vw;
-    background-color: #dadada;
-    font-size: 1.5vw;
+    padding: 0.6vw;
+    width: 70vw;
+    height: 20vw;
+    margin: 1vw;
+    border-radius: 10px;
+    box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.2);
+    border: 0.15vw solid #203569;
+    font-size: 18px;
     resize:vertical;
 }
-
+/*
 .submitPage .smallTextarea textarea{
-    width: 90vw;
+    width: 80vw;
     height: 10vw;
     box-sizing: border-box;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border: 0.25vw solid #203569;
-    border-radius: 0.5vw;
-    background-color: #dadada;
-    font-size: 1.5vw;
-}
+    border-radius: 8px;
+    font-size: 12px;
+}*/
 
-.submitPage label {
-    padding: 0.5vw;
-    font-family: 'Montserrat', helvetica, arial, sans-serif;
-    font-size: 2vw;
+.submitPage label{
+    padding: 0.6vw;
+    font-size: 20px;
     font-weight: medium;
     color: #203569;
 }
 
-.submitPage .small {
-    font-family: 'Montserrat', helvetica, arial, sans-serif;
-    font-size: 1.5vw;
+.submitPage .small label{
+    padding: 0.6vw;
+    font-size: 18px;
     font-weight: small;
-    color: #203569;
+}
+
+.submitPage button {
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px, 20px;
+    font-size: 14px;
+    background: none;
+    border: 0.135vw solid rgba(17, 105, 163, 0.79);
+    transition: 0.4s;
+}
+
+.submitPage button:hover{
+    color:rgba(17, 105, 163, 0.79);
+}
+
+.submitPage .largeButton {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(17, 105, 163, 0.925);
+    width: 90px;
+    height: 30px;
+    margin: 7px;
+}
+
+.submitPage .largeButton:hover{
+    width: 12;
+    box-shadow: 0 0.4vw 0.4vw rgba(0,0,0, 0.4);
+    transform: scale(1.1);
+}
+
+.submitPage .groupButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vw;
 }
