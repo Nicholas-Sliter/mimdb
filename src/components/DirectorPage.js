@@ -2,6 +2,7 @@ import styles from "../styles/DirectorsPage.module.css"
 import FilmRow from "./DisplayLayouts/FilmRow.js"
 
 export default function DirectorPage ({films, director}) {
+    
     let directorInfo;
 
     if (director === undefined){
@@ -18,6 +19,7 @@ export default function DirectorPage ({films, director}) {
     else{
         directorInfo = director;
     }
+    
 
     
 

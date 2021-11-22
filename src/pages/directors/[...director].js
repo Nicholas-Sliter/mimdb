@@ -43,9 +43,6 @@ export default function Director({genres, courses}) {
 
       const res = await fetch(`/api/directors/${director}`);
 
-      if (res === undefined){
-        return;
-      }
     
   
         if (!res.ok){
