@@ -32,13 +32,17 @@ export default function SingleFilmDisplay({ film }) {
   const course = film.course;
   const backdrop_path = `/filmImages${film.backdrop_path}`;
   const poster_path = `/filmImages${film.poster_path}`;
-  const vimeo_url = film.vimeo_id;
+  const vimeo_url = "https://vimeo.com/607602408"; //`https://vimeo.com/${film.vimeo_id}`;
 
   //slug from url
   const { slug } = router.query;
 
   //use slug to get film from api
   //const film = useGetFilm(slug);
+
+
+
+
 
   return (
     <div className={styles.pageContainer}>
@@ -48,11 +52,51 @@ export default function SingleFilmDisplay({ film }) {
       </div>
       <div className={styles.content}>
         <h1 className={styles.filmTitle}>{film.title}</h1>
-        <div></div>
-        <h3 className={styles.term}>Term: {film.term}</h3>
-        <h3 className={styles.genre}>{film.genre.join(", ")}</h3>
+        <span className={styles.term}>Term: {film.term}</span>
+        <span className={styles.genre}>{film.genre.join(", ")}</span>
         <span className={styles.duration}>{film.duration}</span>
         <div></div>
+        <h4 className={styles.directors}>
+          Directed by {film.directors.join(", ")}
+        </h4>
+        <div></div>
+        <div className={styles.video}>
+          <ReactPlayer
+            width="100%"
+            height="100%"
+            url={vimeo_url}
+            controls={true}
+          />
+        </div>
+        <div className={styles.details}>
+          <p className={styles.overview}>{film.overview}</p>
+        </div>
+
+
+        <div className={styles.largeColumnC}>
+          <div className={styles.courseContainer}>
+            <h3>Course</h3>
+            <div className={styles.overview}>
+              <Link
+                href={`/films/course/${encodeURIComponent(course)}`}
+                passHref
+                key="course"
+              >
+                <h4 className={styles.courseName}>{course}</h4>
+              </Link>
+            </div>
+          </div>
+          <div className={styles.contributorsContainer}>
+            <div className={styles.actors}>
+              <h3>Actors</h3>
+              <ul>{actors}</ul>
+            </div>
+            <div className={styles.contributors}>
+              <h3>Contributors</h3>
+              <ul>{contributors}</ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

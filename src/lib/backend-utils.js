@@ -186,7 +186,6 @@ export async function getFilmById(id) {
  */
 export async function getFilmBySlug(slug) {
   const [film] = await knex("Film").select().where({ slug: slug });
-  console.log(film);
   return film ? await fillFilm(film) : null;
 }
 

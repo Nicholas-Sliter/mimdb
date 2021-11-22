@@ -7,6 +7,7 @@ $border_rad: 0.5rem;
 
 .pageContainer {
   width: 100%;
+  font-family: "Montserrat", helvetica, arial, sans-serif;
 }
 
 .background_image_container {
@@ -50,11 +51,26 @@ $border_rad: 0.5rem;
   padding-left: 2rem;
   margin-right: 1rem;
   display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.directors {
+  //padding-top: 1rem;
+  display: inline-block;
+  //margin-left: auto;
+  //margin-right: 2rem;
+  justify-content: right;
+  margin: 0rem;
+  margin-left: 2rem;
+}
+
+.director {
+  text-decoration: underline 0.1rem;
 }
 
 .term {
-    margin-left:2rem;
-    margin-top: 0rem;
+  margin-left: 2rem;
+  margin-top: 0rem;
   font-size: 1rem;
   //padding-left: 2rem;
   display: inline-block;
@@ -65,10 +81,10 @@ $border_rad: 0.5rem;
 }
 
 .duration {
-margin-left:1rem;
-margin-top: 0rem;
+  margin-left: 1rem;
+  margin-top: 0rem;
   display: inline-block;
-  font-weight: bold;
+  //font-weight: bold;
   position: relative;
   color: #555;
   padding: 5px;
@@ -79,8 +95,8 @@ margin-top: 0rem;
 .genre {
   display: inline-block;
   //color: #959595;
-    margin-left:1rem;
-    margin-top: 0rem;
+  margin-left: 1rem;
+  margin-top: 0rem;
   font-size: 1rem;
   color: #555;
   padding: 5px;
@@ -88,78 +104,78 @@ margin-top: 0rem;
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.background {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-}
-
-.background {
-  //background: linear-gradient(rgb(255,255,255,0.0), rgb(255,255,255,0.8), rgb(255,255,255,0.9),  rgb(255,255,255,1));
-  font-family: ‘Montserrat’, helvetica, arial, sans-serif;
-  margin-top: 3rem;
-  font-weight: 400;
-  padding-bottom: 2rem;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-.titleContainer {
-  padding-left: 2rem;
-  text-align: left;
-  margin-left: 2%;
-  margin-bottom: 2rem;
-  border-radius: $border_rad;
-  width: fit-content;
-  background-color: $box_background;
-  backdrop-filter: blur(2px);
-  box-shadow: $shadow;
-}
-
-.title {
-  font-size: 2rem;
-  margin: 1rem 2rem 1rem 0rem;
-  display: inline-block;
-}
-
-// .date{
-//     font-size: 1rem;
-//     margin: 0.25rem 2rem 1rem 0rem;
-// }
-
-.filmPageBody {
+.video {
+  border-radius: 32px;
+  width: 960px;
+  height: 540px;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  transition: width 1s ease-in-out;
+}
+
+.details {
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  margin-top: 1rem;
+
+  .overview {
+    text-align: center;
+  }
+}
+
+.largeColumnC {
+margin-top: 2rem;
+  float: center;
+  width: 80%;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.filmContainer {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding-top: 56.25%;
-  margin-bottom: 2rem;
-}
+.contributorsContainer {
+  .actors {
+    float: left;
+    width: 50%;
+    outline: none;
+  }
 
-.film {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
+  .contributors {
+    float: left;
+    width: 50%;
+    outline: none;
+  }
 
-.overviewContainer {
-  text-align: center;
-  border-radius: $border_rad;
-  background-color: $box_background;
-  backdrop-filter: blur(2px);
-  box-shadow: $shadow;
+  ul {
+    border: none;
+    margin: 0rem 1rem 0rem 1rem;
+    padding: 0rem;
+    list-style-type: none;
+    text-align: center;
+    border-radius: $border_rad;
+    background-color: $box_background;
+    min-height: 20rem;
+    box-shadow: $shadow;
+  }
+
+  li {
+    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
+    padding-top: 1rem;
+  }
+
+  h3 {
+    text-align: center;
+    margin-bottom: 0rem;
+  }
 }
 
 .courseContainer {
@@ -171,69 +187,11 @@ margin-top: 0rem;
   box-shadow: $shadow;
 }
 
-.overview {
-  margin: 0rem 1rem 1rem 1rem;
-  padding: 0rem 1rem 1rem 1rem;
-  //border: black 1px;
-  //border-style: solid;
-}
-
-.overviewText {
-  font-family: ‘Montserrat’, helvetica, arial, sans-serif;
-}
-
-.contributorsContainer {
-  box-shadow: $shadow;
-}
-
-.contributorsContainer ul {
-  margin: 0rem 1rem 0rem 1rem;
-  padding: 0rem;
-  list-style-type: none;
-  text-align: center;
-  border: black 1px;
-  border-style: solid;
-  border-radius: $border_rad;
-  background-color: $box_background;
-  min-height: 20rem;
-  box-shadow: $shadow;
-}
-
-.contributorsContainer h3 {
-  text-align: center;
-  margin-bottom: 0rem;
-}
-
-.contributorsContainer li {
-  font-family: ‘Montserrat’, helvetica, arial, sans-serif;
-  padding-top: 1rem;
-}
-
-.directors {
-  float: left;
-  width: 33.33%;
-}
-
-.largeColumnL {
-  float: left;
-  width: 50%;
-  text-align: center;
-}
-
-.largeColumnR {
-  float: right;
-  width: 50%;
-  text-align: center;
-}
-
-.actors {
-  float: left;
-  width: 33.33%;
-}
-
-.contributors {
-  float: left;
-  width: 33.33%;
+.background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
 }
 
 @media only screen and (max-width: 900px) {
@@ -247,6 +205,11 @@ margin-top: 0rem;
     float: auto;
     width: 100%;
     text-align: center;
+  }
+
+  .video {
+    width: 560px;
+    height: 315px;
   }
 }
 
@@ -269,5 +232,10 @@ margin-top: 0rem;
 
   .poster {
     display: none;
+  }
+
+  .video {
+    width: 320px;
+    height: 180px;
   }
 }
