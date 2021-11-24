@@ -7,11 +7,11 @@ import useFeatured from "../hooks/useFeatured";
 
 import styles from "../styles/Home.module.css";
 
-export default function Home({ films, genres, courses }) {
+export default function Home({ films }) {
   return (
     <div className={styles.container}>
       <CustomHead />
-      <Header genreList={genres} classList={courses} />
+      <Header/>
       <main>
         <FilmRow
           displayType="wide"

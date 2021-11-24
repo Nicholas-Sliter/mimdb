@@ -4,7 +4,7 @@ import Header from "../../../components/Header";
 import CustomHead from "../../../components/CustomHead";
 import useFilmsByCategory from "../../../hooks/useFilmsByCategory";
 
-export default function FilmsByGenre({genres,courses}) {
+export default function FilmsByGenre() {
   const router = useRouter();
   const { genre } = router.query;
 
@@ -14,7 +14,7 @@ export default function FilmsByGenre({genres,courses}) {
   return (
     <div>
       <CustomHead />
-      <Header genreList={genres} classList={courses} />
+      <Header/>
       <main>
         <div className="container">
           <h1>{`${genreName}`} Films</h1>
