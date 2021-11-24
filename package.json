@@ -71,5 +71,10 @@
   },
   "repository": {
     "url": "https://github.com/csci0312-f21/project-mimdb.git"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
