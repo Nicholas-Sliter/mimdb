@@ -4,16 +4,13 @@
  * 
 
 ******/
-
-//import { urlObjectKeys } from "next/dist/shared/lib/utils";
 import styles from "../styles/SingleFilmDisplay.module.scss";
-
 import Link from "next/link";
-import router from "next/router";
 
 import ReactPlayer from "react-player/vimeo";
 
 export default function SingleFilmDisplay({ film }) {
+
   //quick return if undefined film
   if (!film) {
     return <p>Choose a Film!</p>;
@@ -33,15 +30,6 @@ export default function SingleFilmDisplay({ film }) {
   const backdrop_path = `/filmImages${film.backdrop_path}`;
   const poster_path = `/filmImages${film.poster_path}`;
   const vimeo_url = "https://vimeo.com/607602408"; //`https://vimeo.com/${film.vimeo_id}`;
-
-  //slug from url
-  const { slug } = router.query;
-
-  //use slug to get film from api
-  //const film = useGetFilm(slug);
-
-
-
 
 
   return (
@@ -80,7 +68,7 @@ export default function SingleFilmDisplay({ film }) {
               <Link
                 href={`/films/course/${encodeURIComponent(course)}`}
                 passHref
-                key="course"
+                key={course}
               >
                 <h4 className={styles.courseName}>{course}</h4>
               </Link>
