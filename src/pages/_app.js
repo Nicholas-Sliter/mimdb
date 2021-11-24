@@ -5,7 +5,7 @@ import data from "../../data/tempData.json";
 
 function MyApp({ Component, pageProps }) {
   //temporary data
-  const [films, setFilms] = useState(data);
+  //const [films, setFilms] = useState(data);
   const [genres, setGenres] = useState([]);
   const [courses, setCourses] = useState([]);
 
@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
 
 
 
-  const props = { ...pageProps, films, setFilms, genres, courses };
+  const props = { ...pageProps};
   return <Component {...props} />;
 }
 

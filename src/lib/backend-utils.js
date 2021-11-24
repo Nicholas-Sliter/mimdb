@@ -168,6 +168,20 @@ export async function getAllFilms() {
 }
 
 /**
+ * Get a random order of number films from the database
+ * @param {integer} number the number of films to return
+ * @returns an array of all films
+ */
+export async function getRandFilms(number) {
+  const films = await knex("Film").select().orderByRaw('RANDOM()').limit(number);
+  await Promise.all(films.map((film) => fillFilm(film)));
+  return films;
+}
+
+
+
+
+/**
  * Get a single film from the database by its id
  * 
  * @param {integer} id 
