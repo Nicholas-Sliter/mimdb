@@ -17,9 +17,7 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "test": "jest",
-    "lint": "eslint src",
-    "postinstall": "knex migrate:latest",
-    "heroku-postbuild": "knex migrate:latest"
+    "lint": "eslint src"
   },
   "dependencies": {
     "fuse": "^0.0.8",
