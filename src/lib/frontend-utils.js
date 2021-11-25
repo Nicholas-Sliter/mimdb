@@ -19,8 +19,8 @@ export function decodeURIComponentSafe(str) {
 
 export function buildQuery(queryObj) {
   let query = "";
-  for (var key in queryObj) {
-    if (queryObj.hasOwnProperty(key) && queryObj[key] !== "") {
+  for (const key in queryObj) {
+    if (Object.prototype.hasOwnProperty.call(queryObj, key) && queryObj[key] !== "") {
       query += `${key}=${encodeURIComponent(queryObj[key])}&`;
     }
   }
@@ -86,7 +86,6 @@ export function validateFilmCourse(course) {
   if (!/^[a-zA-Z0-9 -.;:'&/,]+$/.test(course)) {
     return "Course contains invalid characters";
   }
-  s;
 
   return null;
 }
