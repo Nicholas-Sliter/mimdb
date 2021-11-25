@@ -26,7 +26,6 @@ module.exports = {
       directory: "./seeds"
     },
     ssl: {
-      require: false,
       rejectUnauthorized: false
     }
   }
