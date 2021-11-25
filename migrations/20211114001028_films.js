@@ -32,7 +32,7 @@ exports.up = function(knex) {
   .createTable("Course", table => {
     table.string("course_name");
     table.string("course_number").unique().notNullable();
-    table.string("course_description");
+    table.text("course_description");
   })
   .createTable("Directors", table => {
     table.string("director_name");
