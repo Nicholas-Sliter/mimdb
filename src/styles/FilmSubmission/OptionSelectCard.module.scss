@@ -136,9 +136,11 @@
     display: inline-block;
     margin-top: 1px;
     color: #555;
+    background-color: #ffffff;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-right: 0.2rem;
 
     &:hover {
       cursor: pointer;
