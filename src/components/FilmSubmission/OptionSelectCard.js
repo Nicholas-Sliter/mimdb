@@ -108,7 +108,7 @@ export default function OptionSelectCard({
     </div>
   );
 
-  const renderSelectedOptions = selectedOptions.map((option) => (
+  const renderSelectedOptions = selectedOptions.map((option) => (option && option !== "") ?
     <span
       className={style.selectedOption}
       key={option}
@@ -116,10 +116,10 @@ export default function OptionSelectCard({
     >
       {option}
     </span>
-  ));
+      : null);
 
   return (
-    <div >
+    <div className={style.card}>
       <div className={style.title}>{title}</div>
       {optionsDropdown}
       <div className={style.selectedOptionList}>{renderSelectedOptions}</div>
