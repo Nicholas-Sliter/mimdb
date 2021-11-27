@@ -20,6 +20,11 @@ export default function OptionSelectCard({
   const [options, setOptions] = useState(initialOptions); //this allows custom options to be added and passed up later
   const [value, setValue] = useState(""); //this is the current value of text in the input field when allowCustom is true
 
+
+  //TODO: change to using the value state and make the button work
+
+
+
   useEffect(() => {
     //filter the options based on the filterTerm
     let tempFilteredOptions = options.filter(
@@ -63,6 +68,9 @@ export default function OptionSelectCard({
 
     return false;
   };
+
+//problem is here as the selected options list is initlaized in the enclosing component as [""].  Thus we need to initialize it as an empty array [] instead of [""].
+
 
   const handleNewOption = (e) => {
     //on enter in search bar
