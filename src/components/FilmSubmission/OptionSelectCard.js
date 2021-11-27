@@ -18,6 +18,7 @@ export default function OptionSelectCard({
   const [filterTerm, setFilterTerm] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [options, setOptions] = useState(initialOptions); //this allows custom options to be added and passed up later
+  const [value, setValue] = useState(""); //this is the current value of text in the input field when allowCustom is true
 
   useEffect(() => {
     //filter the options based on the filterTerm
