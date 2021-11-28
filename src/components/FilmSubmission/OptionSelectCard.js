@@ -5,8 +5,6 @@ import { useState, useEffect } from "react";
 
 import style from "../../styles/FilmSubmission/OptionSelectCard.module.scss";
 
-
-
 export default function OptionSelectCard({
   title,
   initialOptions,
@@ -14,32 +12,30 @@ export default function OptionSelectCard({
   onChangeFunction,
   allowCustom = false,
   useDropdown = true,
+  validator = (t) => (true,"")
 }) {
-  const [filterTerm, setFilterTerm] = useState("");
+  const [value, setValue] = useState(""); //current value in text box
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [options, setOptions] = useState(initialOptions); //this allows custom options to be added and passed up later
-  const [value, setValue] = useState(""); //this is the current value of text in the input field when allowCustom is true
-
+  const [errorMessage, setErrorMessage] = useState("");
 
   //TODO: change to using the value state and make the button work
   //TODO: allow the option to pass in a validation function, implement the logic and display the error messages
 
-
-
   useEffect(() => {
-    //filter the options based on the filterTerm
+    //filter the options based on the value
     let tempFilteredOptions = options.filter(
       (option) => !selectedOptions.includes(option)
     );
 
-    if (filterTerm && filterTerm !== "") {
+    if (value && value !== "") {
       tempFilteredOptions = tempFilteredOptions.filter((option) =>
-        option.toLowerCase().includes(filterTerm.toLowerCase())
+        option.toLowerCase().includes(value.toLowerCase())
       );
     }
 
     setFilteredOptions(tempFilteredOptions);
-  }, [filterTerm, options, selectedOptions]);
+  }, [value, options, selectedOptions]);
 
   const addOption = (option) => {
     //add the option to the list of selected options
@@ -70,9 +66,9 @@ export default function OptionSelectCard({
     return false;
   };
 
-//problem is here as the selected options list is initlaized in the enclosing component as [""].  Thus we need to initialize it as an empty array [] instead of [""].
+  //problem is here as the selected options list is initlaized in the enclosing component as [""].  Thus we need to initialize it as an empty array [] instead of [""].
 
-
+  //todo, change this to use value from component instead of e from input
   const handleNewOption = (e) => {
     //on enter in search bar
     if (e.key === "Enter") {
@@ -83,10 +79,14 @@ export default function OptionSelectCard({
     }
   };
 
+  const handleButtonPress = () => {
+    addNewOption(value);
+  };
+
   const handleFilterTermChange = (event) => {
-    //update the filterTerm state
+    //update the value state
     event.preventDefault();
-    setFilterTerm(event.target.value.toString());
+    setValue(event.target.value.toString());
   };
 
   const optionsDropdown = (
@@ -98,35 +98,39 @@ export default function OptionSelectCard({
         onKeyPress={(e) => handleNewOption(e)}
       />
       {allowCustom ? (
-        <button className={style.addButton}>+</button>
+        <button className={style.addButton} onClick={() => handleButtonPress}>
+          +
+        </button>
       ) : (
         <div> </div>
       )}
-      <div className={(useDropdown) ? style.dropdown : style.none}>
-        {(filteredOptions && useDropdown)
+      <div className={useDropdown ? style.dropdown : style.none}>
+        {filteredOptions && useDropdown
           ? filteredOptions.map((option) => (
-            <div
-              className={style.item}
-              key={option}
-              onMouseDown={() => addOption(option)}
-            >
-              <span>{option}</span>
-            </div>
-          ))
+              <div
+                className={style.item}
+                key={option}
+                onMouseDown={() => addOption(option)}
+              >
+                <span>{option}</span>
+              </div>
+            ))
           : null}
       </div>
     </div>
   );
 
-  const renderSelectedOptions = selectedOptions.map((option) => (option && option !== "") ?
-    <span
-      className={style.selectedOption}
-      key={option}
-      onMouseDown={() => removeOption(option)}
-    >
-      {option}
-    </span>
-      : null);
+  const renderSelectedOptions = selectedOptions.map((option) =>
+    option && option !== "" ? (
+      <span
+        className={style.selectedOption}
+        key={option}
+        onMouseDown={() => removeOption(option)}
+      >
+        {option}
+      </span>
+    ) : null
+  );
 
   return (
     <div className={style.card}>

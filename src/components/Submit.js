@@ -7,6 +7,13 @@ import Select from "./FilmSubmission/Select";
 //import AddedText from "./FilmSubmission/AddedText";
 import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
 
+
+
+//TODO: get director info from server, validation
+
+
+
+
 import styles from "../styles/SubmitPage.module.css";
 
 export default function Submit({ genres, courses }) {

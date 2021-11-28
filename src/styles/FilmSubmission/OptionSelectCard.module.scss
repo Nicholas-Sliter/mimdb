@@ -112,6 +112,9 @@
     .item {
       display: block;
       border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: 3rem; //this makes long text cut off at two complete lines
       font-size: 1.1rem;
       padding: 0.2rem;
       padding-left: 0.4rem;
