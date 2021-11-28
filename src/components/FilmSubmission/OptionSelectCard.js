@@ -12,7 +12,7 @@ export default function OptionSelectCard({
   onChangeFunction,
   allowCustom = false,
   useDropdown = true,
-  validator = (t) => (true,"")
+  validator = (t) => "" //validator returns an error message as a string, empty string means no error
 }) {
   const [value, setValue] = useState(""); //current value in text box
   const [filteredOptions, setFilteredOptions] = useState([]);
@@ -48,12 +48,28 @@ export default function OptionSelectCard({
     );
   };
 
+  const validateInput = (input) => {
+    const error = validator(input);
+    console.log(error);
+    if (error){
+      setErrorMessage(error);
+      return false;
+    }
+
+    setErrorMessage("");
+    return true;
+  }
+
   const addNewOption = (newOption) => {
     if (!allowCustom) {
       return false;
     }
     //check if already in options
     if (options.includes(newOption)) {
+      return false;
+    }
+
+    if (!validateInput(newOption)){
       return false;
     }
 
@@ -88,6 +104,9 @@ export default function OptionSelectCard({
     event.preventDefault();
     setValue(event.target.value.toString());
   };
+
+
+  const errorMessageComponent = (errorMessage) ? <span className={style.error}>{errorMessage}</span> : null;
 
   const optionsDropdown = (
     <div className={style.inputContainer}>
@@ -136,6 +155,7 @@ export default function OptionSelectCard({
     <div className={style.card}>
       <div className={style.title}>{title}</div>
       {optionsDropdown}
+      {errorMessageComponent}
       <div className={style.selectedOptionList}>{renderSelectedOptions}</div>
     </div>
   );
