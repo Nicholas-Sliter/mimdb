@@ -22,6 +22,7 @@ export default function OptionSelectCard({
 
 
   //TODO: change to using the value state and make the button work
+  //TODO: allow the option to pass in a validation function, implement the logic and display the error messages
 
 
 
