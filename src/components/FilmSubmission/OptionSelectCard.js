@@ -19,9 +19,6 @@ export default function OptionSelectCard({
   const [options, setOptions] = useState(initialOptions); //this allows custom options to be added and passed up later
   const [errorMessage, setErrorMessage] = useState("");
 
-  //TODO: change to using the value state and make the button work
-  //TODO: allow the option to pass in a validation function, implement the logic and display the error messages
-
   useEffect(() => {
     //filter the options based on the value
     let tempFilteredOptions = options.filter(
@@ -74,7 +71,7 @@ export default function OptionSelectCard({
     }
 
     if (newOption && newOption !== "") {
-      setOptions([...options, newOption]);
+      //setOptions([...options, newOption]); //this line was causing issues
       addOption(newOption);
       return true;
     }
@@ -82,15 +79,14 @@ export default function OptionSelectCard({
     return false;
   };
 
-  //problem is here as the selected options list is initlaized in the enclosing component as [""].  Thus we need to initialize it as an empty array [] instead of [""].
-
   //todo, change this to use value from component instead of e from input
   const handleNewOption = (e) => {
     //on enter in search bar
     if (e.key === "Enter") {
-      const res = addNewOption(e.target.value);
+      const res = addNewOption(e.target.value); //e.target.value
       if (res) {
         e.target.value = "";
+        //setValue("");
       }
     }
   };
