@@ -8,14 +8,45 @@ const validateAndProcessNewFilm = async (inFilm) => {
   try {
     // let processedFilm = {...inFilm, slug: convertToSlug(processedFilm.title)};
     const processedFilm = {
-      "overview": inFilm.overview,
-      "description": inFilm.description,
-      "release_date": inFilm.release_date,
+      "overview": inFilm.logLine,
+      "description": inFilm.overview,
+      "term": inFilm.release_date,
       "title": inFilm.title,
       "vimeo_id": inFilm.vimeo_id,
       "duration": inFilm.duration,
-      "slug": convertToSlug(inFilm.title)
+      "slug": convertToSlug(inFilm.title),
+      "vimeo_id": inFilm.vimeoId
     }
+    /*
+    Sent from front-end: Submit.js
+    title: title,
+      logLine: logLine,
+      release_date: semester,
+      duration: duration,
+      courseId: courseId,
+      vimeoId: vimeoId,
+      overview: overview,
+      inputDirectorList: inputDirectorList,
+      inputActorList: inputActorList,
+      //inputContribList: inputContribList,
+      genreList: genreList,
+      courseList: courseList,
+    */
+   /*
+   Database setup.
+   table.string("backdrop_path");
+    table.string("title").unique().notNullable();
+    table.increments("id");
+    table.string("slug").unique().notNullable();
+    table.text("overview");
+    table.string("description");
+    table.string("poster_path");
+    table.string("term");
+    table.string("release_date").notNullable();
+    table.boolean("video");
+    table.string("vimeo_id");
+    table.string("duration").notNullable();
+   */
 
     // check slug, increment if duplicates slug
     // let index = 0;
@@ -28,6 +59,7 @@ const validateAndProcessNewFilm = async (inFilm) => {
     }
     
     // Add default empty picture paths
+    // TODO: replace with actual default picture
     processedFilm.backdrop_path = "/sp_backdrop.jpg";
     processedFilm.poster_path = "/sp_poster.jpg";
     
@@ -35,7 +67,16 @@ const validateAndProcessNewFilm = async (inFilm) => {
     // TODO: remove check against test data mock vimeo_id
     processedFilm.video = processedFilm.vimeo_id && processedFilm.vimeo_id!=="12345678";
 
-    // Directore stuffs later
+    // Deal with Directors
+    /*
+    processedFilm.directorList = inFilm.inputDirectorList;
+    processedFilm.actorList = inFilm.inputActorList;
+    processedFilm.genreList = inFilm.genreList;
+    processedFilm.courseList = inFilm.courseList;
+     */
+    
+
+
     return processedFilm;
   }
   catch (error) {

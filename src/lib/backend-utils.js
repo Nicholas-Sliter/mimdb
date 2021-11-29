@@ -305,7 +305,7 @@ export async function addFilm(film) {
  */
 export async function getDirector(name) {
   const director = await knex("Directors").select().where({director_name: name});
-  //need to decide what to actually send!!!!!  TODO!!!!!!!
+  // Todo: need to decide what to actually send!!!!!
   return director;
 
 }
