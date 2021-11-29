@@ -1,10 +1,11 @@
 .card {
   width: 36rem;
   height: 20rem;
-  outline: 1px solid rgb(216, 216, 216);
-  border-radius: 32px;
+  //outline: 1px solid rgb(216, 216, 216);
+  //border-radius: 32px;
   display: inline-block;
   margin: 1rem;
+  position: flex;
 }
 
 .title {
@@ -17,10 +18,10 @@
 }
 
 .inputContainer {
-  //padding-left: 1rem;
+  padding-left: 1rem;
   display: inline-block;
-  position: flex;
-  
+  position: absolute;
+
   &:hover {
     //background-color: #f5f5f5;
     border-radius: 5px;
@@ -57,16 +58,15 @@
   }
 
   .addButton {
-      border-radius: 50%;
-      background-color: #fff;
-      height: 2rem;
-      width: 2rem;
-      position: relative;
-      right: -0.5rem;
-      border: none;
-      outline: 1px solid rgb(216, 216, 216);
-      font-weight: bold;
-
+    border-radius: 50%;
+    background-color: #fff;
+    height: 2rem;
+    width: 2rem;
+    position: relative;
+    right: -0.5rem;
+    border: none;
+    outline: 1px solid rgb(216, 216, 216);
+    font-weight: bold;
   }
 
   .none {
@@ -75,7 +75,7 @@
 
   .dropdown {
     position: relative;
-    top: -2rem;
+    top: -1rem;
     display: none;
     outline: 1px solid rgb(216, 216, 216);
     width: 20rem;
@@ -96,7 +96,7 @@
       z-index: 1;
       border-radius: 5px;
       padding: 5px;
-      margin-top: 5px;
+      margin-top: 1rem;
     }
 
     &:focus {
@@ -112,34 +112,60 @@
     .item {
       display: block;
       border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: 3rem; //this makes long text cut off at two complete lines
+      font-size: 1.1rem;
+      padding: 0.2rem;
+      padding-left: 0.4rem;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #f5f5f5;
+      }
     }
 
     :last-child {
       border-bottom: none;
     }
   }
+
 }
+
+
+  .error {
+
+    position: relative;
+    display: inline-block;
+    top: 2.2rem;
+    left: 1rem;
+
+
+  }
+
+
 
 .selectedOptionList {
   position: relative;
   top: 3rem;
   min-height: 1rem;
+  padding-left: 1rem;
 
   .selectedOption {
     display: inline-block;
     margin-top: 1px;
     color: #555;
+    background-color: #ffffff;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-right: 0.2rem;
 
-      &:hover {
-         cursor: pointer;
-         background-color: #f5f5f5;
-         color: rgba(231, 50, 50, 0.8);
-      }
-
-
+    &:hover {
+      cursor: pointer;
+      background-color: #f5f5f5;
+      color: rgba(231, 50, 50, 0.8);
+    }
   }
 }
 

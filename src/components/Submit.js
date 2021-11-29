@@ -11,8 +11,6 @@ import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
 
 
-//consider useReducer instead of state???
-
 export default function Submit() {
   const { genres, courses } = useContext(GenreCourseContext);
 
