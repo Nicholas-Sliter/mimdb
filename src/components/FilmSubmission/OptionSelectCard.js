@@ -61,8 +61,8 @@ export default function OptionSelectCard({
     if (!allowCustom) {
       return false;
     }
-    //check if already in options
-    if (options.includes(newOption)) {
+
+    if (options.includes(newOption) || selectedOptions.includes(newOption)) {
       return false;
     }
 
@@ -92,6 +92,7 @@ export default function OptionSelectCard({
   };
 
   const handleButtonPress = () => {
+    console.log(value);
     addNewOption(value);
   };
 
@@ -113,7 +114,7 @@ export default function OptionSelectCard({
         onKeyPress={(e) => handleNewOption(e)}
       />
       {allowCustom ? (
-        <button className={style.addButton} onClick={() => handleButtonPress}>
+        <button className={style.addButton} onClick={handleButtonPress}>
           +
         </button>
       ) : (
