@@ -2,6 +2,7 @@
 import '../styles/globals.css';
 import { useState, useEffect } from "react";
 import data from "../../data/tempData.json";
+import { GenreCourseContext } from '../components/context/GenreCourseContext';
 
 function MyApp({ Component, pageProps }) {
   //temporary data
@@ -25,8 +26,13 @@ function MyApp({ Component, pageProps }) {
 
 
 
-  const props = { ...pageProps};
-  return <Component {...props} />;
+  const GenreCourseContextObject = {genres: genres, courses: courses};
+  const props = { ...pageProps, films, setFilms };
+  return (
+    <GenreCourseContext.Provider value={GenreCourseContextObject}>
+      <Component {...props} />
+    </GenreCourseContext.Provider>
+  );
 }
 
 export default MyApp;

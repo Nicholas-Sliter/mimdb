@@ -13,6 +13,9 @@ import process from "process";
 import knexConfig from "../../knexfile";
 import knexInitializer from "knex";
 
+export const knex = knexInitializer(
+  knexConfig[process.env.NODE_ENV || "development"]
+);
 
 export function resetData() {
   const dataDirectory = path.join(process.cwd(), "data");
@@ -44,9 +47,6 @@ export function saveData(films) {
 }
 
 
-export const knex = knexInitializer(
-  knexConfig[process.env.NODE_ENV || "development"]
-);
 
 /**
  * Get the list of genre names for a film.
@@ -310,5 +310,17 @@ export function validateFilterTerm(filterTerm) {
 export async function addFilm(film) {
   const newIDs = await knex("Film").insert(film);
   return await getFilmById(newIDs[0]);
+}
+
+/** Get director by directorName
+ * 
+ * @returns director object
+ * 
+ */
+export async function getDirector(name) {
+  const director = await knex("Directors").select().where({director_name: name});
+  //need to decide what to actually send!!!!!  TODO!!!!!!!
+  return director;
+
 }
 

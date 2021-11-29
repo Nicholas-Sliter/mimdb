@@ -1,7 +1,7 @@
 //import styles from "../../styles/SubmitPage.module.css";
 import CreatableSelect from "react-select/creatable";
 
-export default function Select({ name, array, newVar, setFunc, setCategoryList }) {
+export default function Select({ name, array, setCategoryList }) {
 
     const options = array.map((item) => {
         return { value: item, label: item };
@@ -13,20 +13,20 @@ export default function Select({ name, array, newVar, setFunc, setCategoryList }
     }
 
     const customStyles = {
-        container: (provided, state) => ({
+        container: (provided) => ({
             ...provided,
-            height: 'fit-content',
+            height: "fit-content",
         }),
-        control: (provided, state) => ({
+        control: (provided) => ({
             ...provided,
             fontSize: 18,
-            minHeight: 'fit-content',
-            height: 'fit-content',       
+            minHeight: "fit-content",
+            height: "fit-content",       
             color: "#203569",
             border: "2px solid #203569",
             boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)"
         }),
-        input: (provided, state) => ({
+        input: (provided) => ({
             ...provided,
             fontSize: 16,
             height: 24,
@@ -46,8 +46,9 @@ export default function Select({ name, array, newVar, setFunc, setCategoryList }
                 instanceId={name}
                 isMulti isSearchable
                 options={options} onChange={handleSelect}
-                styles={customStyles}>
-            </CreatableSelect>
+                styles={customStyles}
+            />
+
 
 
             {/* {array.map((i) =>

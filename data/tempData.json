@@ -87,7 +87,7 @@
 	},
 	{
 	  "backdrop_path": "/ne_backdrop.png",
-	  "genre": [],
+	  "genre": ["Animation"],
 	  "id": 4,
 	  "slug": "neon-genesis-evangelion-the-end-of-evangelion",
 	  "language": ["ja"],

@@ -1,15 +1,19 @@
-import React, { useState } from "react";
 import router from "next/router";
-//import { validateFilmSemester } from "../lib/frontend-utils";
-import TextInput from "./FilmSubmission/TextInput";
-import TextArea from "./FilmSubmission/TextArea";
-import Select from "./FilmSubmission/Select";
+import { useState } from "react";
+import styles from "../styles/SubmitPage.module.css";
 //import AddedText from "./FilmSubmission/AddedText";
 import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
+import Select from "./FilmSubmission/Select";
+import TextArea from "./FilmSubmission/TextArea";
+//import { validateFilmSemester } from "../lib/frontend-utils";
+import TextInput from "./FilmSubmission/TextInput";
+import { useContext } from "react";
+import { GenreCourseContext } from "./context/GenreCourseContext";
 
-import styles from "../styles/SubmitPage.module.css";
 
-export default function Submit({ genres, courses }) {
+export default function Submit() {
+  const { genres, courses } = useContext(GenreCourseContext);
+
   const [title, setTitle] = useState("");
   const [logLine, setLogLine] = useState("");
   const [semester, setSemester] = useState("");
@@ -19,11 +23,13 @@ export default function Submit({ genres, courses }) {
   const [overview, setOverview] = useState("");
   const [newGenre, addGenre] = useState(false);
   const [newCourse, addCourse] = useState(false);
-  const [genreList, setGenreList] = useState([]);
-  const [courseList, setCourseList] = useState([]);
+  const [genreList, setGenreList] = useState(genres);
+  const [courseList, setCourseList] = useState(courses);
   const [inputDirectorList, setDirectorInputList] = useState([""]);
   const [inputActorList, setActorInputList] = useState([""]);
   //const [inputContribList, setContribInputList] = useState([""]);
+
+
 
   async function createSubission() {
     const submitContent = {

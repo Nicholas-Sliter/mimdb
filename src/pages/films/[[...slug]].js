@@ -13,7 +13,7 @@ export default function Film() {
     return (
         <div className={styles.container}>
             <CustomHead />
-                <Header/>
+                <Header />
             <SingleFilmDisplay film={useGetFilm(slug)}/>
             <footer>2021 Middlebury Movie Database</footer>
         </div>

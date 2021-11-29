@@ -20,7 +20,7 @@ const validateAndProcessNewFilm = async (inFilm) => {
     // check slug, increment if duplicates slug
     let index = 0;
     while (await getFilmBySlug(processedFilm.slug)) {
-      processedFilm.title = processedFilm.title + " " + (++index).toString();
+      processedFilm.title = `${processedFilm.title} ${(++index).toString()}`;
       processedFilm.slug = convertToSlug(processedFilm.title);
     }
     
