@@ -22,8 +22,7 @@ export default function FilmsByCourse({ genres, courses }) {
    //get data from server api and store the data in the state for this page
    const [genreFilmList, setGenreFilmList] = useState([]);
    const [courseDesc, setCourseDesc]= useState();
-   const desc= "";
-
+   
    useEffect(async() => {
       const res = await fetch(`/api/films?course=${course}`);
       if (!res.ok){
