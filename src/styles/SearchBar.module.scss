@@ -24,7 +24,7 @@ $midd-blue: #0D395F;
    appearance: none;
    outline: none;
    border: none;
-   background-color: #5a6674;
+   //background-color: #5a6674;
 
    //light shadow around search bar
    
@@ -48,6 +48,9 @@ $midd-blue: #0D395F;
 
 
 }
+
+
+
 
 
 
@@ -79,4 +82,22 @@ $midd-blue: #0D395F;
    height: 2rem;
    width: 2rem;
 
+}
+
+@media screen and (max-width: 450px) {
+    .container{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 840px){
+   .searchBar{
+      width: 12rem;
+   }
+}
+
+@media screen and (max-width: 500px){
+   .searchBar{
+      width: 7rem;
+   }
 }

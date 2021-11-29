@@ -3,22 +3,16 @@ exports.up = function(knex) {
   return knex.schema.createTable("Film", table => {
     table.string("backdrop_path");
     table.string("title").unique().notNullable();
-    table.integer("id").unique().notNullable();
+    table.increments("id");
     table.string("slug").unique().notNullable();
     table.text("overview");
     table.string("description");
     table.string("poster_path");
+    table.string("term");
     table.string("release_date").notNullable();
     table.boolean("video");
     table.string("vimeo_id");
     table.string("duration").notNullable();
-
-    // table.specificType("genre", "string ARRAY");
-    // table.specificType("language", "string ARRAY");
-    // table.specificType("course", "string ARRAY");
-    // table.specificType("directors", "string ARRAY");
-    // table.specificType("actors", "string ARRAY");
-    // table.specificType("contributors", "string ARRAY");
   })
   .createTable("Genre", table => {
     table.integer("film_id");
@@ -38,7 +32,7 @@ exports.up = function(knex) {
   .createTable("Course", table => {
     table.string("course_name");
     table.string("course_number").unique().notNullable();
-    table.string("course_description");
+    table.text("course_description");
   })
   .createTable("Directors", table => {
     table.string("director_name");
