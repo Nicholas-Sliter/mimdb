@@ -4,6 +4,7 @@ import Submit from "../../components/Submit";
 
 import styles from "../../styles/Home.module.css";
 
+
 export default function SubmitPage() {
 
   return (
@@ -11,7 +12,8 @@ export default function SubmitPage() {
       <CustomHead />
       <Header />
       <main>
-        <Submit genres={genres} courses={courses}/>
+        
+        <Submit/>
       </main>
 
       <footer>
