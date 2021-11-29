@@ -44,8 +44,6 @@ export default function FilmsByCourse({ genres, courses }) {
   }, [course])
 
 
-
-
   return (
     <div>
       <CustomHead />
