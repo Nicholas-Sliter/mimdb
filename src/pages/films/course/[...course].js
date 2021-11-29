@@ -46,7 +46,7 @@ export default function FilmsByCourse() {
   return (
     <div>
       <CustomHead />
-      <Header classList={courses} genreList={genres} />
+      <Header />
       <main>
         <div className="container">
           <h1>Films created in {courseName}</h1>
