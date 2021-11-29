@@ -18,10 +18,13 @@ const validateAndProcessNewFilm = async (inFilm) => {
     }
 
     // check slug, increment if duplicates slug
-    let index = 0;
+    // let index = 0;
+    // Adds "-[index]""
+    let index = /-\d+$/.test(processedFilm.title) ? (+processedFilm.title.match(/\d+$/g)[0]) : 0;
     while (await getFilmBySlug(processedFilm.slug)) {
       processedFilm.title = `${processedFilm.title} ${(++index).toString()}`;
-      processedFilm.slug = convertToSlug(processedFilm.title);
+      // processedFilm.slug = convertToSlug(processedFilm.title);
+      processedFilm.slug = convertToSlug(processedFilm.title + "-" + (++index).toString());
     }
     
     // Add default empty picture paths
