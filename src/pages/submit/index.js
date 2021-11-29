@@ -4,12 +4,12 @@ import Submit from "../../components/Submit";
 
 import styles from "../../styles/Home.module.css";
 
-export default function Home({genres, courses}) {
+export default function SubmitPage() {
 
   return (
     <div className={styles.container}>
       <CustomHead />
-      <Header genreList={genres} classList={courses} />
+      <Header />
       <main>
         <Submit genres={genres} courses={courses}/>
       </main>

@@ -6,9 +6,13 @@ import Link from "next/link";
 import { useState } from "react";
 import HamburgerButton from "./HamburgerButton";
 import MenuDropDown from "./MenuDropDown";
+import { GenreCourseContext } from "./context/GenreCourseContext";
+import { useContext } from "react";
 
-export default function Header({genreList, classList}) {
+export default function Header() {
   const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const {genres, courses} = useContext(GenreCourseContext);
+
 
   const buttonFunc = () => {
     setCategoriesOpen(!categoriesOpen);
@@ -26,8 +30,8 @@ export default function Header({genreList, classList}) {
         <div className={styles.filter}>
             <div className={styles.bigScreen}>
               <div className={styles.fullWidthContainer}>
-                <Category fieldName={"Genre"} fieldList={genreList}/>
-                <Category fieldName={"Course"} fieldList={classList}/>
+                <Category fieldName={"Genre"} fieldList={genres}/>
+                <Category fieldName={"Course"} fieldList={courses}/>
                 <SearchBar />
               </div>
             </div>
@@ -42,7 +46,6 @@ export default function Header({genreList, classList}) {
                   null}
             </div>
             
-
         </div>
       </div>
     </header>
