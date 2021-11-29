@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 
 
 
-export default function SearchPage({genres, courses}) {
+export default function SearchPage() {
   const router = useRouter();
   const { keyword } = router.query;
   const [searchTerm, setSearchTerm] = useState(null);
@@ -24,12 +24,16 @@ export default function SearchPage({genres, courses}) {
     setSearchResults(data);
   }, [keyword]);
 
+
+  //combind these two with conditional rendering
+
+
   //default page for no search term or malformed search term
   if (!searchTerm) {
     return (
       <div>
         <CustomHead title="Search" />
-        <Header genreList={genres} classList={courses} />
+        <Header />
         <div className={styles.container}>
           <h1>Search</h1>
           <p>Enter a search term above to get started.</p>
@@ -44,7 +48,7 @@ export default function SearchPage({genres, courses}) {
   return (
     <div className={styles.container}>
       <CustomHead />
-      <Header genreList={genres} classList={courses} />
+      <Header />
       <main>
         <h1>
           Search results for{" "}

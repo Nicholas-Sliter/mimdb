@@ -5,30 +5,33 @@ exports.seed = async function(knex) {
   const filmContents = fs.readFileSync("./data/tempData.json");
   const films = JSON.parse(filmContents);
   const processedFilms = films.map((film) => {
-    return (({ 
-        title,
-        id,
-        slug,
-        overview,
-        description,
-        poster_path,
-        release_date,
-        term,
-        video,
-        vimeo_id,
-        duration
-      }) => ({ 
-        title,
-        id,
-        slug,
-        overview,
-        description,
-        poster_path,
-        release_date,
-        term,
-        video,
-        vimeo_id,
-        duration }))(film);
+    return (({
+      backdrop_path,
+      title,
+      id,
+      slug,
+      overview,
+      description,
+      poster_path,
+      release_date,
+      term,
+      video,
+      vimeo_id,
+      duration,
+    }) => ({
+      backdrop_path,
+      title,
+      id,
+      slug,
+      overview,
+      description,
+      poster_path,
+      release_date,
+      term,
+      video,
+      vimeo_id,
+      duration,
+    }))(film);
   });
   await knex("Film").del();
   await knex.batchInsert("Film", processedFilms, 100);

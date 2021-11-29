@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 //import decodeURIComponentSafe from "../../../lib/frontend-utils"
 
 
-export default function FilmsByCourse({ genres, courses }) {
+export default function FilmsByCourse() {
 
   const router = useRouter()
   const { course } = router.query
@@ -16,7 +16,6 @@ export default function FilmsByCourse({ genres, courses }) {
   const courseName = decodeURIComponent(course)
   // how do i access a course desc when it seems all that is being passed rn is the course name?
   //  const courseDesc= getCourseByCourseName(course)
-
 
   //TODO : should start using hooks!
   //get data from server api and store the data in the state for this page
@@ -44,12 +43,10 @@ export default function FilmsByCourse({ genres, courses }) {
   }, [course])
 
 
-
-
   return (
     <div>
       <CustomHead />
-      <Header classList={courses} genreList={genres} />
+      <Header />
       <main>
         <div className="container">
           <h1>Films created in {courseName}</h1>
