@@ -13,6 +13,9 @@ import process from "process";
 import knexConfig from "../../knexfile";
 import knexInitializer from "knex";
 
+export const knex = knexInitializer(
+  knexConfig[process.env.NODE_ENV || "development"]
+);
 
 export function resetData() {
   const dataDirectory = path.join(process.cwd(), "data");
@@ -44,9 +47,6 @@ export function saveData(films) {
 }
 
 
-export const knex = knexInitializer(
-  knexConfig[process.env.NODE_ENV || "development"]
-);
 
 /**
  * Get the list of genre names for a film.
