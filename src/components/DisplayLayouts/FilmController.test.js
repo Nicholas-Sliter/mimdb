@@ -1,6 +1,6 @@
 import { screen, render } from "@testing-library/react";
 import FilmController from "./FilmController";
-import testData from "../../../data/testData.json";
+//import testData from "../../../data/testData.json";
 
 //props for film controller
 const title = "FilmsTest";

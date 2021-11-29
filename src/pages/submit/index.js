@@ -4,7 +4,7 @@ import Submit from "../../components/Submit";
 
 import styles from "../../styles/Home.module.css";
 
-export default function Submit() {
+export default function SubmitPage() {
 
   return (
     <div className={styles.container}>
