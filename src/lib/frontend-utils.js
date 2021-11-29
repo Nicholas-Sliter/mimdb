@@ -3,7 +3,7 @@ export function convertToSlug(Text) {
   if (!Text || Text === " ") {
     return "";
   }
-  return Text.toLowerCase()
+  return Text.trim().toLowerCase()
     .replace(/ /g, "-")
     .replace(/[^\w-]+/g, "");
 }

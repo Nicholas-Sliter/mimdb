@@ -18,4 +18,7 @@ describe("convertToSlug", () => {
   it("should handle undefined", () => {
     expect(convertToSlug(undefined)).toBe("");
   });
+  it("should handle leading and trailing whitespace", () => {
+    expect(convertToSlug("  This is a test  ")).toBe("this-is-a-test");
+  });
 });
