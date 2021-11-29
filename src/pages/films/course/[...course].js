@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 //import decodeURIComponentSafe from "../../../lib/frontend-utils"
 
 
-export default function FilmsByCourse({ genres, courses }) {
+export default function FilmsByCourse() {
 
   const router = useRouter()
   const { course } = router.query
@@ -46,7 +46,7 @@ export default function FilmsByCourse({ genres, courses }) {
   return (
     <div>
       <CustomHead />
-      <Header classList={courses} genreList={genres} />
+      <Header />
       <main>
         <div className="container">
           <h1>Films created in {courseName}</h1>

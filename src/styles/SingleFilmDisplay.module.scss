@@ -1,110 +1,241 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800");
 
-.background{
-    background: white;
-    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
-    //font-size: 14px;
-    font-weight: 400;
-    padding-bottom: 2rem;
+$shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+  rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+$box_background: rgb(255, 255, 255, 0.9);
+$border_rad: 0.5rem;
+
+.pageContainer {
+  width: 100%;
+  font-family: "Montserrat", helvetica, arial, sans-serif;
 }
 
+.background_image_container {
+  position: relative;
+  z-index: 1;
+  object-fit: cover;
+  width: 100%;
+  height: 500px;
 
-.image{
-    width: 20%;
-    height: auto;
+  img:first-child {
+    width: 100%;
+    height: 100%;
+    object-position: 25% center;
+    object-fit: cover;
+    z-index: -99;
+  }
+
+  .poster {
+    position: relative;
+    top: -23rem;
+    left: 2rem;
+    z-index: 2;
+    height: 300px;
+    width: 200px;
+    border-radius: 32px;
+    box-shadow: 0px 0px 22px 12px rgba(0, 0, 0, 0.2);
+  }
 }
 
-.titleContainer{
-    padding-top: 1rem;
-    padding-left: 30px;
-    margin-left: 85px;
+.content {
+  position: relative;
+  background-color: #fafafa;
+  top: -3rem;
+  border-radius: 32px 32px 0px 0px;
+  min-height: 100px;
+  z-index: 1;
 }
 
-.title{
-    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
+.filmTitle {
+  padding-top: 1rem;
+  padding-left: 2rem;
+  margin-right: 1rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
 }
 
-.dateContainer{
-    padding-left: 30px;
-    margin: -1.5rem 0rem 3rem 5.5rem;
-
+.directors {
+  //padding-top: 1rem;
+  display: inline-block;
+  //margin-left: auto;
+  //margin-right: 2rem;
+  justify-content: right;
+  margin: 0rem;
+  margin-left: 2rem;
 }
 
-
-.date{
-    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
-
+.director {
+  text-decoration: underline 0.1rem;
 }
 
+.term {
+  margin-left: 2rem;
+  margin-top: 0rem;
+  font-size: 1rem;
+  //padding-left: 2rem;
+  display: inline-block;
+  color: #555;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
 
-.filmPageBody{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.duration {
+  margin-left: 1rem;
+  margin-top: 0rem;
+  display: inline-block;
+  //font-weight: bold;
+  position: relative;
+  color: #555;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.genre {
+  display: inline-block;
+  //color: #959595;
+  margin-left: 1rem;
+  margin-top: 0rem;
+  font-size: 1rem;
+  color: #555;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.video {
+  border-radius: 32px;
+  width: 960px;
+  height: 540px;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: width 1s ease-in-out;
+}
+
+.details {
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  margin-top: 1rem;
+
+  .overview {
     text-align: center;
+  }
 }
 
-.filmContainer{
-
+.largeColumnC {
+margin-top: 2rem;
+  float: center;
+  width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.overview{
-    margin: 1rem;
-}
+.contributorsContainer {
+  .actors {
+    float: left;
+    width: 50%;
+    outline: none;
+  }
 
-.overviewText{
-    font-family: ‘Montserrat’, helvetica, arial, sans-serif;
-}
+  .contributors {
+    float: left;
+    width: 50%;
+    outline: none;
+  }
 
-.contributorsContainer{
-
-}
-
-.contributorsContainer ul {
+  ul {
+    border: none;
+    margin: 0rem 1rem 0rem 1rem;
     padding: 0rem;
     list-style-type: none;
     text-align: center;
-}
+    border-radius: $border_rad;
+    background-color: $box_background;
+    min-height: 20rem;
+    box-shadow: $shadow;
+  }
 
-.contributorsContainer h3{
-    text-align: center;
-}
-
-.contributorsContainer li {
+  li {
     font-family: ‘Montserrat’, helvetica, arial, sans-serif;
-    padding-bottom: 1rem;
-}
-
-.directors{
-    float: left;
-    width: 33.33%;
-
-}
-
-
-.actors{
-    float: left;
-    width: 33.33%;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-
-}
-
-.contributors{
-    float: left;
-    width: 33.33%;
-
-}
-
-
-.content {
-    display: flex;
+    padding-top: 1rem;
   }
-  
-  .content img {
-    margin-right: 10px;
-    display: block;
+
+  h3 {
+    text-align: center;
+    margin-bottom: 0rem;
   }
-  
-  .content h3,
-  .content p {margin: 0;}
+}
+
+.courseContainer {
+  margin: -1rem 0rem 1rem 0rem;
+  text-align: center;
+  border-radius: $border_rad;
+  background-color: $box_background;
+  backdrop-filter: blur(2px);
+  box-shadow: $shadow;
+}
+
+.background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+}
+
+@media only screen and (max-width: 900px) {
+  .largeColumnL {
+    float: auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .largeColumnR {
+    float: auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .video {
+    width: 560px;
+    height: 315px;
+  }
+}
+
+@media only screen and (max-width: 569px) {
+  .actors {
+    width: 100%;
+  }
+
+  .contributors {
+    width: 100%;
+  }
+
+  .directors {
+    width: 100%;
+  }
+
+  .background_image_container {
+    height: 300px;
+  }
+
+  .poster {
+    display: none;
+  }
+
+  .video {
+    width: 320px;
+    height: 180px;
+  }
+}
