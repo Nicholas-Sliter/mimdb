@@ -16,9 +16,19 @@ export default function SingleFilmDisplay({ film }) {
     return <p>Choose a Film!</p>;
   }
 
-  const directors = film.directors.map((director) => (
-    <li key={director}>{director}</li>
-  ));
+    const directors = film.directors.map((director) => {
+    return(
+        <li key={director}> 
+            <Link href={`/directors/${director}`} passHref> 
+                {director}
+            </Link> 
+        </li> 
+    )
+
+
+    });
+    
+    
   const actors = film.actors.map((actor) => <li key={actor}>{actor}</li>);
   const contributors = film.contributors.map((contrib) => (
     <li key={contrib}>{contrib}</li>

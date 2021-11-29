@@ -17,7 +17,6 @@ export default function FilmsByCourse() {
   // how do i access a course desc when it seems all that is being passed rn is the course name?
   //  const courseDesc= getCourseByCourseName(course)
 
-
   //TODO : should start using hooks!
   //get data from server api and store the data in the state for this page
   const [genreFilmList, setGenreFilmList] = useState([]);
