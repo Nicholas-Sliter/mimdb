@@ -13,11 +13,11 @@
  */
 
 import nc from "next-connect";
-import { readData } from "../../../lib/backend-utils";
+import { getAllFilms } from "../../../lib/backend-utils";
 import Fuse from "fuse.js";
 
-const searchHandler = (params) => {
-  const films = readData();
+const searchHandler = async (params) => {
+  const films = await getAllFilms();
   const searchTerm = params.keyword;
 
   const options = {
@@ -28,13 +28,12 @@ const searchHandler = (params) => {
   const fuse = new Fuse(films, options);
   
   const searchResult = fuse.search(searchTerm);
-
   return searchResult;
 }
 
-const handler = nc().get((req, res) => {
-  const searchParams  = req.query;
-  res.status(200).json(searchHandler(searchParams));
+const handler = nc().get(async (req, res) => {
+  const searchParams = req.query;
+  res.status(200).json(await searchHandler(searchParams));
 });
 
 export default handler;
