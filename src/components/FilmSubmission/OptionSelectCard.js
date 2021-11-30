@@ -12,7 +12,8 @@ export default function OptionSelectCard({
   onChangeFunction,
   allowCustom = false,
   useDropdown = true,
-  validator = (t) => "" // eslint-disable-line no-unused-vars
+  validator = (t) => "", // eslint-disable-line no-unused-vars
+  limit = null,
 }) {
   const [value, setValue] = useState(""); //current value in text box
   const [filteredOptions, setFilteredOptions] = useState([]);
@@ -37,6 +38,11 @@ export default function OptionSelectCard({
 
   const addOption = (option) => {
     //add the option to the list of selected options
+    if (limit && selectedOptions.length > limit) {
+      setErrorMessage("You can only select up to " + limit + " options");
+      return;
+    }
+
     onChangeFunction(selectedOptions.concat([option]));
   };
 
