@@ -137,7 +137,7 @@ export default function OptionSelectCard({
   );
 
   const renderSelectedOptions = selectedOptions.map((option) =>
-    option && option !== "" ? (
+    (option && option !== "" ? (
       <span
         className={style.selectedOption}
         key={option}
@@ -145,7 +145,7 @@ export default function OptionSelectCard({
       >
         {option}
       </span>
-    ) : null
+    ) : null)
   );
 
   return (

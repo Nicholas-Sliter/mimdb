@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { addFilm, getFilmBySlug } from "../../../lib/backend-utils";
+import { addActorFilm, addCourseFilm, addDirectorsFilm, addFilm, addGenreFilm, addNewCourse, getCourseByCourseName, getDirector, getFilmBySlug } from "../../../lib/backend-utils";
 import { convertToSlug } from "../../../lib/frontend-utils";
 
 // Validates the inFilm object and add default empty picture paths
@@ -8,45 +8,14 @@ const validateAndProcessNewFilm = async (inFilm) => {
   try {
     // let processedFilm = {...inFilm, slug: convertToSlug(processedFilm.title)};
     const processedFilm = {
-      "overview": inFilm.logLine,
-      "description": inFilm.overview,
-      "term": inFilm.release_date,
+      "overview": inFilm.overview,
+      "description": inFilm.description,
+      "term": inFilm.term,
       "title": inFilm.title,
-      "vimeo_id": inFilm.vimeo_id,
       "duration": inFilm.duration,
       "slug": convertToSlug(inFilm.title),
       "vimeo_id": inFilm.vimeoId
     }
-    /*
-    Sent from front-end: Submit.js
-    title: title,
-      logLine: logLine,
-      release_date: semester,
-      duration: duration,
-      courseId: courseId,
-      vimeoId: vimeoId,
-      overview: overview,
-      inputDirectorList: inputDirectorList,
-      inputActorList: inputActorList,
-      //inputContribList: inputContribList,
-      genreList: genreList,
-      courseList: courseList,
-    */
-   /*
-   Database setup.
-   table.string("backdrop_path");
-    table.string("title").unique().notNullable();
-    table.increments("id");
-    table.string("slug").unique().notNullable();
-    table.text("overview");
-    table.string("description");
-    table.string("poster_path");
-    table.string("term");
-    table.string("release_date").notNullable();
-    table.boolean("video");
-    table.string("vimeo_id");
-    table.string("duration").notNullable();
-   */
 
     // check slug, increment if duplicates slug
     // let index = 0;
@@ -55,27 +24,16 @@ const validateAndProcessNewFilm = async (inFilm) => {
     while (await getFilmBySlug(processedFilm.slug)) {
       processedFilm.title = `${inFilm.title} ${(++index).toString()}`;
       // processedFilm.slug = convertToSlug(processedFilm.title);
-      processedFilm.slug = convertToSlug(inFilm.title + "-" + (index).toString());
+      processedFilm.slug = convertToSlug(`${inFilm.title  }-${  (index).toString()}`);
     }
     
     // Add default empty picture paths
-    // TODO: replace with actual default picture
-    processedFilm.backdrop_path = "/sp_backdrop.jpg";
-    processedFilm.poster_path = "/sp_poster.jpg";
+    // TODO: to be replaced by user uploaded image paths, as well as randomly generated gradient
+    processedFilm.backdrop_path = inFilm.backdrop_path==="" ? "/defaults/backdrops/chapelBackground.jpg" : `/filmImages${inFilm.backdrop_path}`;
+    processedFilm.poster_path = inFilm.poster_path==="" ? `/defaults/purple-orange.svg` : `/filmImages${inFilm.poster_path}`;
     
     // Generate vimeo boolean, simple
-    // TODO: remove check against test data mock vimeo_id
-    processedFilm.video = processedFilm.vimeo_id && processedFilm.vimeo_id!=="12345678";
-
-    // Deal with Directors
-    /*
-    processedFilm.directorList = inFilm.inputDirectorList;
-    processedFilm.actorList = inFilm.inputActorList;
-    processedFilm.genreList = inFilm.genreList;
-    processedFilm.courseList = inFilm.courseList;
-     */
-    
-
+    processedFilm.video = processedFilm.vimeo_id && true;
 
     return processedFilm;
   }
@@ -93,7 +51,43 @@ const handler = nc()
     const processedFilm = await validateAndProcessNewFilm(newFilm);
 
     if (processedFilm) {
-      res.status(200).json(await addFilm(processedFilm));
+      // The film validation passed
+      let addedFilm = await addFilm(processedFilm); // add to the Film DB
+
+      // Add director relationship to the DirectorsFilm DB
+      await Promise.all(newFilm.inputDirectorList.map(async (director_name) => {
+        const director = await getDirector(director_name);
+        if (director.length===0) {
+          res.status(500).json({
+            error: `The given director does not exist: ${director_name}`
+          });
+          return;
+        }
+        addedFilm = await addDirectorsFilm(director_name, addedFilm.id);
+      }));
+
+      // Add course relationship to the CourseFilm DB
+      await Promise.all(newFilm.courseList.map(async (course_name) => {
+        const course = await getCourseByCourseName(course_name);
+        if (course.length===0) {
+          // The given course does not exist, so create one before establishing relationship
+          await addNewCourse({course_name:course_name, course_number:newFilm.courseId});
+        }
+        addedFilm = await addCourseFilm(course_name, addedFilm.id);
+      }));
+
+      // Add actors to the Actors DB
+      await Promise.all(newFilm.inputActorList.map(async (actor_name) => {
+        addedFilm = await addActorFilm(actor_name, addedFilm.id);
+      }));
+
+      // Add genre to the Genre DB
+      await Promise.all(newFilm.genreList.map(async (genre_name) => {
+        addedFilm = await addGenreFilm(genre_name, addedFilm.id);
+      }));
+
+
+      res.status(200).json(addedFilm);
     } else {
       res.status(500).json({
         error: "New film validation did not pass"

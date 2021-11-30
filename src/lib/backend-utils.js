@@ -192,6 +192,7 @@ export async function getFilmBySlug(slug) {
 /**
  * Get the list of films of the given term
  * 
+ * @param {string} term
  * @returns an array of all films of the term
  */
  export async function getFilmsByTerm(term) {
@@ -211,6 +212,7 @@ export async function getFilmBySlug(slug) {
 /**
  * Get the list of films of the given genre 
  * 
+ * @param {string} genre
  * @returns an array of all films of the genre
  */
 export async function getFilmsByGenre(genre) {
@@ -223,6 +225,7 @@ export async function getFilmsByGenre(genre) {
 /**
  * Get the list of films of the given course
  * 
+ * @param {string} course
  * @returns an array of all films in the course
  */
 export async function getFilmsByCourse(course) {
@@ -236,6 +239,7 @@ export async function getFilmsByCourse(course) {
 /**
  * Get the list of films by the given director
  * 
+ * @param {string} name
  * @returns an array of all films by the director
  */
 export async function getFilmsByDirector(name) {
@@ -249,6 +253,7 @@ export async function getFilmsByDirector(name) {
 /**
  * Get the list of films by the given actor
  * 
+ * @param {string} name
  * @returns an array of all films by the actor
  */
 export async function getFilmsByActor(name) {
@@ -261,6 +266,7 @@ export async function getFilmsByActor(name) {
 /**
  * Get the list of films by the given contributor
  * 
+ * @param {string} name
  * @returns an array of all films by the contributor
  */
 export async function getFilmsByContributor(name) {
@@ -270,10 +276,10 @@ export async function getFilmsByContributor(name) {
   return film_ids;
 }
 
-/** Get  course by courseName
+/** Get course by courseName
  * 
+ * @param {string} name
  * @returns an array of course info
- * 
  */
 export async function getCourseByCourseName(name) {
   const wholeCourse = await knex.select()
@@ -281,27 +287,10 @@ export async function getCourseByCourseName(name) {
   return wholeCourse;
 }
 
-
-export function validateFilterTerm(filterTerm) {
-  const filters = ["genre","course","director","actor","contributor", "term"];
-  return filters.includes(filterTerm);
-}
-
-
-/**
- * Add the validated [film] into the film database
- * TODO: currently DOES NOT ADD to linked databases
- * @returns the inserted new film object.
- */
-export async function addFilm(film) {
-  const newIDs = await knex("Film").insert(film);
-  return await getFilmById(newIDs[0]);
-}
-
 /** Get director by directorName
  * 
+ * @param {string} name
  * @returns director object
- * 
  */
 export async function getDirector(name) {
   const director = await knex("Directors").select().where({director_name: name});
@@ -310,3 +299,84 @@ export async function getDirector(name) {
 
 }
 
+
+export function validateFilterTerm(filterTerm) {
+  const filters = ["genre","course","director","actor","contributor", "term"];
+  return filters.includes(filterTerm);
+}
+
+/**
+ * Add the validated [film] into the Film database
+ * @param {Object} film
+ * @returns the inserted new film object.
+ */
+export async function addFilm(film) {
+  const newIDs = await knex("Film").insert(film);
+  return await getFilmById(newIDs[0]);
+}
+
+/**
+ * Add the director film relationship into the DirectorsFilm database
+ * 
+ * @param {string} director_name - The name of the director
+ * @param {integer} id - The id of the film
+ * @returns the related film object.
+ */
+export async function addDirectorsFilm(director_name, film_id) {
+  const [director] = await getDirector(director_name);
+  await knex("DirectorsFilm").insert({film_id:film_id, director_id:director.director_id});
+  return await getFilmById(film_id);
+}
+
+/**
+ * Add the genre film pair into the Genre DB
+ * 
+ * @param {string} genre_name
+ * @param {integer} film_id
+ * @returns the updated film object
+ */
+export async function addGenreFilm(genre_name, film_id) {
+  await knex("Genre").insert({film_id:film_id, genre_name:genre_name});
+  return await getFilmById(film_id);
+}
+
+/**
+ * Add the actor film pair into the Genre DB
+ * 
+ * @param {string} actor_name
+ * @param {integer} film_id
+ * @returns the updated film object
+ */
+export async function addActorFilm(actor_name, film_id) {
+  await knex("Actors").insert({film_id:film_id, actor_name:actor_name});
+  return await getFilmById(film_id);
+}
+
+/**
+ * Add a new course to the Course DB
+ * 
+ * @param {Object} new_course
+ * @returns the new course object from the DB
+ */
+export async function addNewCourse(new_course) {
+  await knex("Course")
+  .insert({
+    course_number: new_course.course_number, 
+    course_name: new_course.course_name,
+    course_description: new_course.course_description ? new_course.course_description : ""
+  });
+  return await getCourseByCourseName(new_course.course_name);
+}
+
+/**
+ * Add the course film pair into the CourseFilm DB
+ * 
+ * @param {string} course_name
+ * @param {integer} film_id
+ * @returns the updated film object
+ */
+export async function addCourseFilm(course_name, film_id) {
+  const [course] = await getCourseByCourseName(course_name);
+  await knex("CourseFilm").insert({film_id:film_id, course_number:course.course_number});
+  return await getFilmById(film_id);
+}
