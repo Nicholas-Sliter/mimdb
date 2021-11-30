@@ -55,7 +55,10 @@ export default function SingleFilmDisplay({ film }) {
         <span className={styles.duration}>{film.duration}</span>
         <div></div>
         <h4 className={styles.directors}>
-          Directed by {film.directors.join(", ")}
+          Directed by:
+          <ul className={styles.directorsList}>
+            {directors}
+          </ul>
         </h4>
         <div></div>
         <div className={styles.video}>

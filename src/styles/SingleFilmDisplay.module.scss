@@ -64,6 +64,28 @@ $border_rad: 0.5rem;
   margin-left: 2rem;
 }
 
+.directorsList{
+  display: inline;
+  list-style: none;
+  padding: 0px;
+}
+
+.directorsList li{
+  display: inline;
+}
+
+.directorsList li::after{
+  content: ", ";
+}
+
+.directorsList li:first-child:before{
+  content: " ";
+}
+
+.directorsList li:last-child::after {
+  content: "";
+}
+
 .director {
   text-decoration: underline 0.1rem;
 }
