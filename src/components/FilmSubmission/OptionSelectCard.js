@@ -18,7 +18,7 @@ export default function OptionSelectCard({
   const [value, setValue] = useState(""); //current value in text box
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [options, setOptions] = useState(initialOptions); // eslint-disable-line no-unused-vars
-   //this allows custom options to be added and passed up later
+  //this allows custom options to be added and passed up later
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -38,11 +38,6 @@ export default function OptionSelectCard({
 
   const addOption = (option) => {
     //add the option to the list of selected options
-    if (limit && selectedOptions.length > limit) {
-      setErrorMessage("You can only select up to " + limit + " options");
-      return;
-    }
-
     onChangeFunction(selectedOptions.concat([option]));
   };
 
@@ -74,6 +69,11 @@ export default function OptionSelectCard({
     }
 
     if (!validateInput(newOption)) {
+      return false;
+    }
+
+    if (limit && selectedOptions.length > limit) {
+      setErrorMessage("You can only select up to " + limit + " options");
       return false;
     }
 
@@ -145,7 +145,7 @@ export default function OptionSelectCard({
   );
 
   const renderSelectedOptions = selectedOptions.map((option) =>
-    (option && option !== "" ? (
+    option && option !== "" ? (
       <span
         className={style.selectedOption}
         key={option}
@@ -153,7 +153,7 @@ export default function OptionSelectCard({
       >
         {option}
       </span>
-    ) : null)
+    ) : null
   );
 
   return (

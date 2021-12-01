@@ -110,6 +110,7 @@ export default function Submit() {
           selectedOptions={inputActorList}
           useDropdown={false}
           onChangeFunction={setActorInputList}
+          limit={2}
         />
         <OptionSelectCard
           title="Directors"
