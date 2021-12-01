@@ -27,6 +27,7 @@ export default function OptionSelectCard({
 
   //TODO: make new function to wrap the setErrorMessage function and create a timeout to clear the error message
   //TODO: make the limit validation work when clicking through the dropdown
+  //TODO: raise a flag in the parent component to indicate that the card is invalid and prevent submission
 
   //merge intial options and options (uniques only)
   useEffect(() => {
