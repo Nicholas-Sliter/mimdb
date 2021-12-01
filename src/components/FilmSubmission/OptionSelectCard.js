@@ -12,11 +12,12 @@ export default function OptionSelectCard({
   onChangeFunction,
   allowCustom = false,
   useDropdown = true,
-  validator = (t) => "" //validator returns an error message as a string, empty string means no error
+  validator = (t) => "" // eslint-disable-line no-unused-vars
 }) {
   const [value, setValue] = useState(""); //current value in text box
   const [filteredOptions, setFilteredOptions] = useState([]);
-  const [options, setOptions] = useState(initialOptions); //this allows custom options to be added and passed up later
+  const [options, setOptions] = useState(initialOptions); // eslint-disable-line no-unused-vars
+   //this allows custom options to be added and passed up later
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -48,14 +49,14 @@ export default function OptionSelectCard({
   const validateInput = (input) => {
     const error = validator(input);
     console.log(error);
-    if (error){
+    if (error) {
       setErrorMessage(error);
       return false;
     }
 
     setErrorMessage("");
     return true;
-  }
+  };
 
   const addNewOption = (newOption) => {
     if (!allowCustom) {
@@ -66,7 +67,7 @@ export default function OptionSelectCard({
       return false;
     }
 
-    if (!validateInput(newOption)){
+    if (!validateInput(newOption)) {
       return false;
     }
 
@@ -102,8 +103,9 @@ export default function OptionSelectCard({
     setValue(event.target.value.toString());
   };
 
-
-  const errorMessageComponent = (errorMessage) ? <span className={style.error}>{errorMessage}</span> : null;
+  const errorMessageComponent = errorMessage ? (
+    <span className={style.error}>{errorMessage}</span>
+  ) : null;
 
   const optionsDropdown = (
     <div className={style.inputContainer}>
