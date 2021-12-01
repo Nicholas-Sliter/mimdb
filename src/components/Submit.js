@@ -14,7 +14,6 @@ import { validateFilmGenre } from "../lib/frontend-utils";
 
 export default function Submit() {
   const { genres, courses } = useContext(GenreCourseContext);
-  console.log(genres);
 
   const [title, setTitle] = useState("");
   const [logLine, setLogLine] = useState("");
@@ -114,7 +113,7 @@ export default function Submit() {
           selectedOptions={inputActorList}
           useDropdown={false}
           onChangeFunction={setActorInputList}
-          limit={2}
+          limit={20}
         />
         <OptionSelectCard
           title="Directors"

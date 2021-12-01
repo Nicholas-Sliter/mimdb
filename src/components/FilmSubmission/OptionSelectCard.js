@@ -26,6 +26,7 @@ export default function OptionSelectCard({
 
 
   //TODO: make new function to wrap the setErrorMessage function and create a timeout to clear the error message
+  //TODO: make the limit validation work when clicking through the dropdown
 
   //merge intial options and options (uniques only)
   useEffect(() => {
@@ -50,6 +51,15 @@ export default function OptionSelectCard({
     setFilteredOptions(tempFilteredOptions);
   }, [value, options, selectedOptions]);
 
+
+  const errorMessageTimeout = (error) => {
+    setErrorMessage(error);
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 10000);
+  };
+  
+
   const addOption = (option) => {
     //add the option to the list of selected options
     onChangeFunction(selectedOptions.concat([option]));
@@ -65,7 +75,8 @@ export default function OptionSelectCard({
     const error = validator(input);
     console.log(error);
     if (error) {
-      setErrorMessage(error);
+      errorMessageTimeout(error);
+      //setErrorMessage(error);
       return false;
     }
 
@@ -87,7 +98,8 @@ export default function OptionSelectCard({
     }
 
     if (limit && selectedOptions.length + 1 > limit) {
-      setErrorMessage("You can only select up to " + limit + " options");
+      errorMessageTimeout("You can only select " + limit + " options");
+      //setErrorMessage("You can only select up to " + limit + " options");
       return false;
     }
 
