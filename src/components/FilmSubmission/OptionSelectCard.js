@@ -73,7 +73,7 @@ export default function OptionSelectCard({
       return false;
     }
 
-    if (limit && selectedOptions.length > limit) {
+    if (limit && selectedOptions.length + 1 > limit) {
       setErrorMessage("You can only select up to " + limit + " options");
       return false;
     }
@@ -111,7 +111,10 @@ export default function OptionSelectCard({
   };
 
   const errorMessageComponent = errorMessage ? (
-    <span className={style.error}><FiXCircle/>{errorMessage}</span>
+    <span className={style.error}>
+      <FiXCircle className={style.icon} />
+      {errorMessage}
+    </span>
   ) : null;
 
   const optionsDropdown = (
