@@ -22,9 +22,9 @@ const validateAndProcessNewFilm = async (inFilm) => {
     // Adds "-[index]""
     let index = /-\d+$/.test(processedFilm.title) ? (+processedFilm.title.match(/\d+$/g)[0]) : 0;
     while (await getFilmBySlug(processedFilm.slug)) {
-      processedFilm.title = `${inFilm.title} ${(++index).toString()}`;
+      processedFilm.title = `${inFilm.title} ${++index}`;
       // processedFilm.slug = convertToSlug(processedFilm.title);
-      processedFilm.slug = convertToSlug(`${inFilm.title  }-${  (index).toString()}`);
+      processedFilm.slug = convertToSlug(`${inFilm.title  }-${index}`);
     }
     
     // Add default empty picture paths
