@@ -4,6 +4,7 @@
 import { useState, useEffect } from "react";
 
 import style from "../../styles/FilmSubmission/OptionSelectCard.module.scss";
+import {FiXCircle} from "react-icons/fi";
 
 export default function OptionSelectCard({
   title,
@@ -110,7 +111,7 @@ export default function OptionSelectCard({
   };
 
   const errorMessageComponent = errorMessage ? (
-    <span className={style.error}>{errorMessage}</span>
+    <span className={style.error}><FiXCircle/>{errorMessage}</span>
   ) : null;
 
   const optionsDropdown = (
