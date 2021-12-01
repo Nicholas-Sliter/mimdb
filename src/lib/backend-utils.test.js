@@ -17,7 +17,7 @@ import {
     addFilm
 } from "./backend-utils";
 
-describe("Tests of the database utility functions", () => {
+describe("Tests of database Film Table utility functions", () => {
     let sampleFilm, allGenres, allCourses, dramaFilms, sightFilms;
     let properties;
 
@@ -128,21 +128,10 @@ describe("Tests of the database utility functions", () => {
             "backdrop_path": "",
             "release_date": "2021-11-17",
             "title": "Test Title",
-            "vimeoId": "607602408",
+            "vimeo_id": "607602408",
             "duration": "142 min",
             "term": "F21",
-            "courseId": "CSCI0312",
-            "inputDirectorList": ["Wayne Wang"],
-            "inputActorList": [
-                "Nicholas Sliter",
-                "Jiaqi Li",
-                "Wayne Wang",
-                "Becca Hochman-Fisher",
-                "Nicholas McKalip",
-                "Katie Kosior"
-            ],
-            "genreList": ["Drama", "Sci-fi"],
-            "courseList": ["Independent Project"]
+            "slug": "playing_around_in_cs"
         };
 
         const newFilm = await addFilm(testNewFilm);
