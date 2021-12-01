@@ -37,10 +37,10 @@ export default function SingleFilmDisplay({ film }) {
   console.log(film);
 
   const {course} = film;
-  const backdrop_path = `/filmImages${film.backdrop_path}`;
-  const poster_path = `/filmImages${film.poster_path}`;
-  const vimeo_url = "https://vimeo.com/607602408"; //`https://vimeo.com/${film.vimeo_id}`;
-
+  const {backdrop_path} = film;
+  const {poster_path} = film;
+  const vimeo_url = `https://vimeo.com/${film.vimeo_id}`;
+  //const vimeo_url = "https://vimeo.com/607602408"; 
 
   return (
     <div className={styles.pageContainer}>

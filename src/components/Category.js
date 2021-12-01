@@ -8,8 +8,9 @@ import Link from "next/link";
 import styles from "../styles/NavBar.module.css";
 import { FiChevronDown } from "react-icons/fi";
 
-export default function Category({ fieldName, fieldList }) {
+export default function Category({ fieldName, fieldList, mobile }) {
   let uniqueFields = "";
+  let viewVar = "";
   if (fieldList === undefined) {
     uniqueFields = <a />;
   } else {
@@ -21,15 +22,22 @@ export default function Category({ fieldName, fieldList }) {
       </Link>
     ));
   }
-
+  if(mobile){
+    viewVar=styles.dropdownContainerMobile;
+  }
+  else{
+    viewVar=styles.dropdownContainer;
+  }
+  
   return (
     <div className={styles.dropdown}>
       <div className={`${styles.filterCrit} noselect`}>
         <span>
           <b>{fieldName}</b> <FiChevronDown className={styles.icon} />
         </span>
-        <div className={styles.dropdownContainer}>{uniqueFields}</div>
+        <div className={viewVar}>{uniqueFields}</div>
       </div>
     </div>
-  );
+    );
+    
 }

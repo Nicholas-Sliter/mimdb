@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { addFilm, getFilmBySlug } from "../../../lib/backend-utils";
+import { addActorFilm, addCourseFilm, addDirectorsFilm, addFilm, addGenreFilm, addNewCourse, getCourseByCourseName, getDirector, getFilmBySlug } from "../../../lib/backend-utils";
 import { convertToSlug } from "../../../lib/frontend-utils";
 
 // Validates the inFilm object and add default empty picture paths
@@ -10,18 +10,21 @@ const validateAndProcessNewFilm = async (inFilm) => {
     const processedFilm = {
       "overview": inFilm.overview,
       "description": inFilm.description,
-      "release_date": inFilm.release_date,
+      "term": inFilm.term,
       "title": inFilm.title,
-      "vimeo_id": inFilm.vimeo_id,
       "duration": inFilm.duration,
-      "slug": convertToSlug(inFilm.title)
+      "slug": convertToSlug(inFilm.title),
+      "vimeo_id": inFilm.vimeoId
     }
 
     // check slug, increment if duplicates slug
-    let index = 0;
+    // let index = 0;
+    // Adds "-[index]""
+    let index = /-\d+$/.test(processedFilm.title) ? (+processedFilm.title.match(/\d+$/g)[0]) : 0;
     while (await getFilmBySlug(processedFilm.slug)) {
-      processedFilm.title = `${processedFilm.title} ${(++index).toString()}`;
-      processedFilm.slug = convertToSlug(processedFilm.title);
+      processedFilm.title = `${inFilm.title} ${++index}`;
+      // processedFilm.slug = convertToSlug(processedFilm.title);
+      processedFilm.slug = convertToSlug(`${inFilm.title  }-${index}`);
     }
     
     // Add default empty picture paths
@@ -30,10 +33,8 @@ const validateAndProcessNewFilm = async (inFilm) => {
     processedFilm.poster_path = (!inFilm.poster_path || inFilm.poster_path==="") ? `/defaults/purple-orange.svg` : `/filmImages${inFilm.poster_path}`;
     
     // Generate vimeo boolean, simple
-    // TODO: remove check against test data mock vimeo_id
-    processedFilm.video = processedFilm.vimeo_id && processedFilm.vimeo_id!=="12345678";
+    processedFilm.video = processedFilm.vimeo_id && true;
 
-    // Directore stuffs later
     return processedFilm;
   }
   catch (error) {
@@ -85,10 +86,8 @@ const handler = nc()
         addedFilm = await addGenreFilm(genre_name, addedFilm.id);
       }));
 
-      console.log("added: ", addedFilm);
       res.status(200).json(addedFilm);
     } else {
-      console.log("500 here");
       res.status(500).json({
         error: "New film validation did not pass"
       });

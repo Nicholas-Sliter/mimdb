@@ -34,12 +34,12 @@ export default function Submit() {
   async function createSubission() {
     const submitContent = {
       title: title,
-      logLine: logLine,
-      release_date: semester,
+      overview: logLine,
+      term: semester,
       duration: duration,
       courseId: courseId,
       vimeoId: vimeoId,
-      overview: overview,
+      description: overview,
       inputDirectorList: inputDirectorList,
       inputActorList: inputActorList,
       //inputContribList: inputContribList,
