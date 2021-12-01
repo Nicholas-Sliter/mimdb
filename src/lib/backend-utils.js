@@ -163,8 +163,7 @@ async function fillFilm(film) {
  */
 export async function getAllFilms() {
   const films = await knex("Film").select();
-  await Promise.all(films.map((film) => fillFilm(film)));
-  return films;
+  return await Promise.all(films.map((film) => fillFilm(film)));
 }
 
 /**

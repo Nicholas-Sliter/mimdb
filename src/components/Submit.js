@@ -25,8 +25,8 @@ export default function Submit() {
   const [newCourse, addCourse] = useState(false);
   const [genreList, setGenreList] = useState(genres);
   const [courseList, setCourseList] = useState(courses);
-  const [inputDirectorList, setDirectorInputList] = useState([""]);
-  const [inputActorList, setActorInputList] = useState([""]);
+  const [inputDirectorList, setDirectorInputList] = useState([]);
+  const [inputActorList, setActorInputList] = useState([]);
   //const [inputContribList, setContribInputList] = useState([""]);
 
 
@@ -46,13 +46,13 @@ export default function Submit() {
       genreList: genreList,
       courseList: courseList,
     };
-
+    console.log(submitContent);
     const response = await fetch("/api/submit", {
       method: "POST",
       body: JSON.stringify(submitContent),
       headers: new Headers({ "Content-Type": "application/json" })
     });
-    
+    console.log(response);
     if (!response.ok) {
       throw new Error(response.statusText);
     }
@@ -147,7 +147,7 @@ export default function Submit() {
       <div className={styles.groupButton}>
         <button
           className={styles.largeButton}
-          onClick={() => createSubission()}
+          onClick={async () => await createSubission()}
         >
           Submit
         </button>
