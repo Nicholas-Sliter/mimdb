@@ -8,7 +8,7 @@ import {FiXCircle} from "react-icons/fi";
 
 export default function OptionSelectCard({
   title,
-  initialOptions,
+  initialOptions = [],
   selectedOptions,
   onChangeFunction,
   allowCustom = false,
@@ -16,18 +16,31 @@ export default function OptionSelectCard({
   validator = (t) => "", // eslint-disable-line no-unused-vars
   limit = null,
 }) {
-  const [value, setValue] = useState(""); //current value in text box
+  const [value, setValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
-  const [options, setOptions] = useState(initialOptions); // eslint-disable-line no-unused-vars
-  //this allows custom options to be added and passed up later
+  const [options, setOptions] = useState([]); // eslint-disable-line no-unused-vars
   const [errorMessage, setErrorMessage] = useState("");
 
+  console.log(options);
+
+
+
+  //TODO: make new function to wrap the setErrorMessage function and create a timeout to clear the error message
+
+  //merge intial options and options (uniques only)
   useEffect(() => {
-    //filter the options based on the value
+    const newOptions = [... new Set([...initialOptions, ...options])];
+    setOptions(newOptions);
+  }, [initialOptions]);
+
+
+  useEffect(() => {
+    //filter the dropdown options based on the selected options
     let tempFilteredOptions = options.filter(
       (option) => !selectedOptions.includes(option)
     );
 
+    //filter for search
     if (value && value !== "") {
       tempFilteredOptions = tempFilteredOptions.filter((option) =>
         option.toLowerCase().includes(value.toLowerCase())

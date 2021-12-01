@@ -9,10 +9,12 @@ import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
+import { validateFilmGenre } from "../lib/frontend-utils";
 
 
 export default function Submit() {
   const { genres, courses } = useContext(GenreCourseContext);
+  console.log(genres);
 
   const [title, setTitle] = useState("");
   const [logLine, setLogLine] = useState("");
@@ -21,8 +23,8 @@ export default function Submit() {
   const [courseId, setCourseId] = useState("");
   const [vimeoId, setVimeoId] = useState("");
   const [overview, setOverview] = useState("");
-  const [newGenre, addGenre] = useState(false);
-  const [newCourse, addCourse] = useState(false);
+  const [newGenre, addGenre] = useState([]);
+  const [newCourse, addCourse] = useState([]);
   const [genreList, setGenreList] = useState(genres);
   const [courseList, setCourseList] = useState(courses);
   const [inputDirectorList, setDirectorInputList] = useState([]);
@@ -61,7 +63,6 @@ export default function Submit() {
 
   return (
     <div className={styles.submitPage}>
-      
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
       <div className={styles.group}>
         <div>
@@ -87,26 +88,29 @@ export default function Submit() {
         <TextArea name="Overview" setFunc={setOverview} />
       </div>
       <div className={styles.group}>
-        <Select
-          name="Genre"
-          array={genres}
-          newVar={newGenre}
-          setFunc={addGenre}
-          setCategoryList={setGenreList}
+        <OptionSelectCard
+          title="Course"
+          useDropdown
+          initialOptions={courses}
+          selectedOptions={newCourse}
+          onChangeFunction={addCourse}
+          limit={2}
         />
-        <Select
-          name="Course"
-          array={courses}
-          newVar={newCourse}
-          setFunc={addCourse}
-          setCategoryList={setCourseList}
+        <OptionSelectCard
+          title="Genres"
+          allowCustom
+          useDropdown
+          initialOptions={genres}
+          selectedOptions={newGenre}
+          onChangeFunction={addGenre}
+          limit={3}
+          validator={validateFilmGenre}
         />
       </div>
       <div className={styles.group}>
         <OptionSelectCard
           title="Actors"
           allowCustom
-          initialOptions={[]}
           selectedOptions={inputActorList}
           useDropdown={false}
           onChangeFunction={setActorInputList}
@@ -127,7 +131,7 @@ export default function Submit() {
           useDropdown
           onChangeFunction={setDirectorInputList}
         />
-      {/*<div className={styles.group}>
+        {/*<div className={styles.group}>
        } <AddedText
           name="Director"
           inputList={inputDirectorList}
@@ -164,3 +168,21 @@ export default function Submit() {
     </div>
   );
 }
+
+
+
+
+        // <Select
+        //   name="Genre"
+        //   array={genres}
+        //   newVar={newGenre}
+        //   setFunc={addGenre}
+        //   setCategoryList={setGenreList}
+        // />
+        // <Select
+        //   name="Course"
+        //   array={courses}
+        //   newVar={newCourse}
+        //   setFunc={addCourse}
+        //   setCategoryList={setCourseList}
+        // />

@@ -62,16 +62,16 @@ export function validateFilmSemester(semester) {
 
 export function validateFilmGenre(genre) {
   if (genre.length < 1) {
-    return "Genre is required";
+    return "Genre length too short";
   }
-  if (genre.length > 100) {
+  if (genre.length > 30) {
     return "Genre is too long";
   }
   //check for invalid characters with regex, allow letters and dashes
-  if (!/^[a-zA-Z-]+$/.test(genre)) {
+  if (!/^[a-zA-Z- ]+$/.test(genre)) {
     return "Genre contains invalid characters";
   }
-  return null;
+  return "";
 }
 
 
