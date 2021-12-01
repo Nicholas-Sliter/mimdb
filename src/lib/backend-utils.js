@@ -6,8 +6,8 @@
  * The assumption is that the working data store is found in data/films.json and we have a "golden copy" in data/mockData.json.
  */
 
-import fs from "fs";
-import path from "path";
+//import fs from "fs";
+//import path from "path";
 import process from "process";
 
 import knexConfig from "../../knexfile";
@@ -25,26 +25,26 @@ export const knex = knexInitializer(
 // }
 
 
-// export function readData() {
-//   const dataDirectory = path.join(process.cwd(), "data");
-//   const fullPath = path.join(dataDirectory, "tempData.json");
-//   if (!fs.existsSync(fullPath)) {
-//     resetData();
-//   }
-//   const fileContents = fs.readFileSync(fullPath, "utf8");
-//   const films = JSON.parse(fileContents);
+export function readData() {
+  const dataDirectory = path.join(process.cwd(), "data");
+  const fullPath = path.join(dataDirectory, "tempData.json");
+  if (!fs.existsSync(fullPath)) {
+    resetData();
+  }
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const films = JSON.parse(fileContents);
 
-//   return films;
-// }
+  return films;
+}
 
-// export function saveData(films) {
-//   const dataDirectory = path.join(process.cwd(), "data");
-//   const fullPath = path.join(dataDirectory, "tempData.json");
-//   if (!fs.existsSync(fullPath)) {
-//     resetData();
-//   }
-//   fs.writeFileSync(fullPath, JSON.stringify(films, null, "\t"), "utf8"); // Pretty write the mock data
-// }
+export function saveData(films) {
+  const dataDirectory = path.join(process.cwd(), "data");
+  const fullPath = path.join(dataDirectory, "tempData.json");
+  if (!fs.existsSync(fullPath)) {
+    resetData();
+  }
+  fs.writeFileSync(fullPath, JSON.stringify(films, null, "\t"), "utf8"); // Pretty write the mock data
+}
 
 
 
