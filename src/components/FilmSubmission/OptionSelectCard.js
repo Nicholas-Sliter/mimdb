@@ -8,7 +8,7 @@ import {FiXCircle} from "react-icons/fi";
 
 export default function OptionSelectCard({
   title,
-  initialOptions,
+  initialOptions = [],
   selectedOptions,
   onChangeFunction,
   allowCustom = false,
@@ -16,18 +16,32 @@ export default function OptionSelectCard({
   validator = (t) => "", // eslint-disable-line no-unused-vars
   limit = null,
 }) {
-  const [value, setValue] = useState(""); //current value in text box
+  const [value, setValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
-  const [options, setOptions] = useState(initialOptions); // eslint-disable-line no-unused-vars
-  //this allows custom options to be added and passed up later
+  const [options, setOptions] = useState([]); // eslint-disable-line no-unused-vars
   const [errorMessage, setErrorMessage] = useState("");
 
+  console.log(options);
+
+
+
+  //TODO: make new function to wrap the setErrorMessage function and create a timeout to clear the error message
+  //TODO: make the limit validation work when clicking through the dropdown
+
+  //merge intial options and options (uniques only)
   useEffect(() => {
-    //filter the options based on the value
+    const newOptions = [... new Set([...initialOptions, ...options])];
+    setOptions(newOptions);
+  }, [initialOptions]);
+
+
+  useEffect(() => {
+    //filter the dropdown options based on the selected options
     let tempFilteredOptions = options.filter(
       (option) => !selectedOptions.includes(option)
     );
 
+    //filter for search
     if (value && value !== "") {
       tempFilteredOptions = tempFilteredOptions.filter((option) =>
         option.toLowerCase().includes(value.toLowerCase())
@@ -36,6 +50,15 @@ export default function OptionSelectCard({
 
     setFilteredOptions(tempFilteredOptions);
   }, [value, options, selectedOptions]);
+
+
+  const errorMessageTimeout = (error) => {
+    setErrorMessage(error);
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 10000);
+  };
+  
 
   const addOption = (option) => {
     //add the option to the list of selected options
@@ -52,7 +75,8 @@ export default function OptionSelectCard({
     const error = validator(input);
     console.log(error);
     if (error) {
-      setErrorMessage(error);
+      errorMessageTimeout(error);
+      //setErrorMessage(error);
       return false;
     }
 
@@ -74,7 +98,8 @@ export default function OptionSelectCard({
     }
 
     if (limit && selectedOptions.length + 1 > limit) {
-      setErrorMessage("You can only select up to " + limit + " options");
+      errorMessageTimeout("You can only select " + limit + " options");
+      //setErrorMessage("You can only select up to " + limit + " options");
       return false;
     }
 
