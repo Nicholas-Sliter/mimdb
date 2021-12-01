@@ -14,7 +14,7 @@
     - Return value: a list of film objects
     - Note: 
         - Now supports multiple filters per query
-        - Supported fiels: "genre", "course", "director", "actor", "contributor", "term".
+        - Supported fields: "genre", "course", "director", "actor", "contributor", "term".
         - MIND SINGULAR VS PLURAL!!
         - For performance, when the API is called, filters should be sequenced from the most specific to the most specific.
         - If a film has a field with a list of values, any match results in a positive match. For example, if a film has `directors: ["John", "Emily"]`, a filter `director=Emily` will result in a positive match for this film.

@@ -17,34 +17,34 @@ export const knex = knexInitializer(
   knexConfig[process.env.NODE_ENV || "development"]
 );
 
-export function resetData() {
-  const dataDirectory = path.join(process.cwd(), "data");
-  const orig = path.join(dataDirectory, "data.json");
-  const dest = path.join(dataDirectory, "tempData.json");
-  fs.copyFileSync(orig, dest);
-}
+// export function resetData() {
+//   const dataDirectory = path.join(process.cwd(), "data");
+//   const orig = path.join(dataDirectory, "data.json");
+//   const dest = path.join(dataDirectory, "tempData.json");
+//   fs.copyFileSync(orig, dest);
+// }
 
 
-export function readData() {
-  const dataDirectory = path.join(process.cwd(), "data");
-  const fullPath = path.join(dataDirectory, "tempData.json");
-  if (!fs.existsSync(fullPath)) {
-    resetData();
-  }
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const films = JSON.parse(fileContents);
+// export function readData() {
+//   const dataDirectory = path.join(process.cwd(), "data");
+//   const fullPath = path.join(dataDirectory, "tempData.json");
+//   if (!fs.existsSync(fullPath)) {
+//     resetData();
+//   }
+//   const fileContents = fs.readFileSync(fullPath, "utf8");
+//   const films = JSON.parse(fileContents);
 
-  return films;
-}
+//   return films;
+// }
 
-export function saveData(films) {
-  const dataDirectory = path.join(process.cwd(), "data");
-  const fullPath = path.join(dataDirectory, "tempData.json");
-  if (!fs.existsSync(fullPath)) {
-    resetData();
-  }
-  fs.writeFileSync(fullPath, JSON.stringify(films, null, "\t"), "utf8"); // Pretty write the mock data
-}
+// export function saveData(films) {
+//   const dataDirectory = path.join(process.cwd(), "data");
+//   const fullPath = path.join(dataDirectory, "tempData.json");
+//   if (!fs.existsSync(fullPath)) {
+//     resetData();
+//   }
+//   fs.writeFileSync(fullPath, JSON.stringify(films, null, "\t"), "utf8"); // Pretty write the mock data
+// }
 
 
 
