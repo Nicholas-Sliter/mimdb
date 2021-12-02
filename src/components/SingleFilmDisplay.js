@@ -16,17 +16,17 @@ export default function SingleFilmDisplay({ film }) {
     return <p>Choose a Film!</p>;
   }
 
-    const directors = film.directors.map((director) => {
-    return(
-        <li key={director}> 
-            <Link href={`/directors/${director}`} passHref> 
-                {director}
-            </Link> 
-        </li> 
-    )
+    // const directors = film.directors.map((director) => {
+    // return(
+    //     <li key={director}> 
+    //         <Link href={`/directors/${director}`} passHref> 
+    //             {director}
+    //         </Link> 
+    //     </li> 
+    // )
 
 
-    });
+    // });
     
     
   const actors = film.actors.map((actor) => <li key={actor}>{actor}</li>);
@@ -36,16 +36,16 @@ export default function SingleFilmDisplay({ film }) {
 
   console.log(film);
 
-  const course = film.course;
-  const backdrop_path = `/filmImages${film.backdrop_path}`;
-  const poster_path = `/filmImages${film.poster_path}`;
-  const vimeo_url = "https://vimeo.com/607602408"; //`https://vimeo.com/${film.vimeo_id}`;
-
+  const {course} = film;
+  const {backdrop_path} = film;
+  const {poster_path} = film;
+  const vimeo_url = `https://vimeo.com/${film.vimeo_id}`;
+  //const vimeo_url = "https://vimeo.com/607602408"; 
 
   return (
     <div className={styles.pageContainer}>
       <div className={styles.background_image_container}>
-        <img src={backdrop_path}></img>
+        <img src={backdrop_path} />
         <img src={poster_path} className={styles.poster} />
       </div>
       <div className={styles.content}>
@@ -53,20 +53,20 @@ export default function SingleFilmDisplay({ film }) {
         <span className={styles.term}>Term: {film.term}</span>
         <span className={styles.genre}>{film.genre.join(", ")}</span>
         <span className={styles.duration}>{film.duration}</span>
-        <div></div>
+        <div />
         <h4 className={styles.directors}>
           Directed by:
           <ul className={styles.directorsList}>
             {directors}
           </ul>
         </h4>
-        <div></div>
+        <div />
         <div className={styles.video}>
           <ReactPlayer
             width="100%"
             height="100%"
             url={vimeo_url}
-            controls={true}
+            controls
           />
         </div>
         <div className={styles.details}>

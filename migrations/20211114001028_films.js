@@ -9,7 +9,7 @@ exports.up = function(knex) {
     table.string("description");
     table.string("poster_path");
     table.string("term");
-    table.string("release_date").notNullable();
+    table.string("release_date");
     table.boolean("video");
     table.string("vimeo_id");
     table.string("duration").notNullable();
@@ -30,7 +30,7 @@ exports.up = function(knex) {
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
   })
   .createTable("Course", table => {
-    table.string("course_name");
+    table.string("course_name").unique().notNullable();
     table.string("course_number").unique().notNullable();
     table.text("course_description");
   })
