@@ -32,7 +32,7 @@ describe("buildQuery", () => {
       "test2": "test2",
       "test3": "test3",
       "test4": "test4"
-    })).toBe("?test=test&test2=test2&test3=test3&test4=test4&");
+    })).toBe("test=test&test2=test2&test3=test3&test4=test4&");
   });
   it("should handle empty objects", () => {
     expect(buildQuery({})).toBe("");
@@ -51,7 +51,7 @@ describe("buildQuery", () => {
       "test2": "",
       "test3": "test3",
       "test4": ""
-    })).toBe("?test=test&test3=test3&");
+    })).toBe("test=test&test3=test3&");
   });
   it("should handle null", () => {
     expect(buildQuery(null)).toBe("");
@@ -76,6 +76,6 @@ describe("decodeURIComponentSafe", () => {
     expect(decodeURIComponentSafe(undefined)).toBe("");
   });
   it("should handle malformed strings safely", () => {
-    expect(decodeURIComponentSafe("%")).toBe(null);
+    expect(decodeURIComponentSafe("%")).toBe("");
   });
 });

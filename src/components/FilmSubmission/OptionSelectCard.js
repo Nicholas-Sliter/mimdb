@@ -21,11 +21,6 @@ export default function OptionSelectCard({
   const [options, setOptions] = useState([]); // eslint-disable-line no-unused-vars
   const [errorMessage, setErrorMessage] = useState("");
 
-  console.log(options);
-
-
-
-  //TODO: make new function to wrap the setErrorMessage function and create a timeout to clear the error message
   //TODO: make the limit validation work when clicking through the dropdown
   //TODO: raise a flag in the parent component to indicate that the card is invalid and prevent submission
 
