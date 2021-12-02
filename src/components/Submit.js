@@ -38,6 +38,9 @@ export default function Submit() {
     setPoster(URL.createObjectURL(e.target.files[0]))
   }
 
+  const handleCropImageButton = () => {
+    //setPoster(crop);
+  }
 
   async function createSubission() {
     const submitContent = {
@@ -134,24 +137,14 @@ export default function Submit() {
           useDropdown
           onChangeFunction={setDirectorInputList}
         />
+      </div>
+      <div>
+        <h3> Upload poster </h3>
         <input id="poster-upload" type="file" onChange={handleUploadChange} />
         <ReactCrop src={poster} crop={crop} onChange={newCrop => setCrop(newCrop)} />
-        {/*<div className={styles.group}>
-       } <AddedText
-          name="Director"
-          inputList={inputDirectorList}
-          setInputList={setDirectorInputList}
-        />
-        <AddedText
-          name="Actor"
-          inputList={inputActorList}
-          setInputList={setActorInputList}
-        />
-        <AddedText
-          name="Contributor"
-          inputList={inputContribList}
-          setInputList={setContribInputList}
-        />*/}
+        <button onClick={handleCropImageButton} >
+          Crop Image
+        </button>
       </div>
       <div className={styles.groupButton}>
         <button
