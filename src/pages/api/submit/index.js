@@ -86,11 +86,8 @@ const handler = nc()
         addedFilm = await addGenreFilm(genre_name, addedFilm.id);
       }));
 
-      console.log("server 200");
-      console.log("addedFilm: ", addedFilm);
       res.status(200).json(addedFilm);
     } else {
-      console.log("server 500");
       res.status(500).json({
         error: "New film validation did not pass"
       });
