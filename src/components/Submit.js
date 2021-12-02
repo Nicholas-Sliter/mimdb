@@ -25,8 +25,8 @@ export default function Submit({complete}) {
   const [newCourse, addCourse] = useState(false);
   const [genreList, setGenreList] = useState(genres);
   const [courseList, setCourseList] = useState(courses);
-  const [inputDirectorList, setDirectorInputList] = useState([""]);
-  const [inputActorList, setActorInputList] = useState([""]);
+  const [inputDirectorList, setDirectorInputList] = useState([]);
+  const [inputActorList, setActorInputList] = useState([]);
   //const [inputContribList, setContribInputList] = useState([""]);
 
   async function createSubmission() {
@@ -44,9 +44,7 @@ export default function Submit({complete}) {
       genreList: genreList,
       courseList: courseList,
     };
-    console.log("calllllllled");
-    await complete(submitContent);
-    
+    complete(submitContent);
   }
 
   return (
@@ -116,27 +114,11 @@ export default function Submit({complete}) {
           useDropdown
           onChangeFunction={setDirectorInputList}
         />
-      {/*<div className={styles.group}>
-       } <AddedText
-          name="Director"
-          inputList={inputDirectorList}
-          setInputList={setDirectorInputList}
-        />
-        <AddedText
-          name="Actor"
-          inputList={inputActorList}
-          setInputList={setActorInputList}
-        />
-        <AddedText
-          name="Contributor"
-          inputList={inputContribList}
-          setInputList={setContribInputList}
-        />*/}
       </div>
       <div className={styles.groupButton}>
         <button
           className={styles.largeButton}
-          onClick={() => { console.log("clicked"); createSubmission()}}
+          onClick={() => createSubmission()}
         >
           Submit
         </button>

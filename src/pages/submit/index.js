@@ -7,17 +7,19 @@ import styles from "../../styles/Home.module.css";
 
 export default function SubmitPage() {
 
-  const complete = async (content) => {
-
-    const response = await fetch("/api/submit", {
-      method: "POST",
-      body: JSON.stringify(content),
-      headers: new Headers({ "Content-Type": "application/json" })
-    });
-    
-    if (!response.ok) {
-      throw new Error(response.statusText);
+  const submitComplete = (content) => {
+    const postSubmit = async () => {
+      const response = await fetch("/api/submit", {
+        method: "POST",
+        body: JSON.stringify(content),
+        headers: new Headers({ "Content-Type": "application/json" })
+      });
+      console.log("at least we are here");
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
     }
+    postSubmit();
   }
 
   return (
@@ -26,7 +28,7 @@ export default function SubmitPage() {
       <Header />
       <main>
         
-        <Submit complete={complete}/>
+        <Submit complete={submitComplete}/>
       </main>
 
       <footer>
