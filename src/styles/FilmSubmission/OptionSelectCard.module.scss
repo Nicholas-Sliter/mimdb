@@ -136,9 +136,26 @@
   .error {
 
     position: relative;
+    width: 20rem;
     display: inline-block;
+    text-align: center;
     top: 2.2rem;
-    left: 1rem;
+    //left: 1rem;
+    padding: 0.2rem;
+    margin-left: 1rem;
+    color: #D8000C;
+    background-color: #FFD2D2;
+    border-radius: 4px;
+
+
+    .icon {
+
+      vertical-align: middle;
+      float: left;
+      height: 1.2rem;
+
+
+    }
 
 
   }
@@ -158,8 +175,10 @@
     background-color: #ffffff;
     padding: 5px;
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    margin-right: 0.2rem;
+    //border: 1px solid rgba(0, 0, 0, 1);
+    outline: 1px solid rgb(216, 216, 216);
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
 
     &:hover {
       cursor: pointer;

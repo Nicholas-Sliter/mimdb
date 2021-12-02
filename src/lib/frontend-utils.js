@@ -10,10 +10,14 @@ export function convertToSlug(Text) {
 
 //uri component that returns null if a URI cannot be converted to a valid string
 export function decodeURIComponentSafe(str) {
+  if(!str) {
+    return "";
+  }
+
   try {
     return decodeURIComponent(str);
   } catch (e) {
-    return null;
+    return "";
   }
 }
 
@@ -39,7 +43,7 @@ export function validateFilmTitle(title) {
     return "Title contains invalid characters";
   }
 
-  return null;
+  return "";
 }
 
 export function validateFilmSemester(semester) {
@@ -57,21 +61,21 @@ export function validateFilmSemester(semester) {
     return "Semester year must be in the past";
   }
 
-  return null;
+  return "";
 }
 
 export function validateFilmGenre(genre) {
   if (genre.length < 1) {
-    return "Genre is required";
+    return "Genre length too short";
   }
-  if (genre.length > 100) {
+  if (genre.length > 30) {
     return "Genre is too long";
   }
   //check for invalid characters with regex, allow letters and dashes
-  if (!/^[a-zA-Z-]+$/.test(genre)) {
+  if (!/^[a-zA-Z- ]+$/.test(genre)) {
     return "Genre contains invalid characters";
   }
-  return null;
+  return "";
 }
 
 
@@ -87,7 +91,7 @@ export function validateFilmCourse(course) {
     return "Course contains invalid characters";
   }
 
-  return null;
+  return "";
 }
 
 export function validateFilmLogLine(logLine) {
@@ -102,7 +106,7 @@ export function validateFilmLogLine(logLine) {
     return "Log-Line contains invalid characters";
   }
 
-  return null;
+  return "";
 }
 
 export function validateFilmOverview(overview) {
@@ -117,14 +121,14 @@ export function validateFilmOverview(overview) {
     return "Overview contains invalid characters";
   }
 
-  return null;
+  return "";
 }
 
 export function validateFilmActors(actors) {
   if (actors.length < 1) {
     return "Actors are required";
   }
-  if (actors.length > 1000) {
+  if (actors.length > 100) {
     return "Actors is too long";
   }
   //check for invalid characters with regex, allow letters, numbers, spaces, dashes, and punctuation
@@ -136,5 +140,5 @@ export function validateFilmActors(actors) {
     return "Actors must be separated by commas";
   }
 
-  return null;
+  return "";
 }
