@@ -293,9 +293,21 @@ export async function getCourseByCourseName(name) {
  */
 export async function getDirector(name) {
   const director = await knex("Directors").select().where({director_name: name});
-  // Todo: need to decide what to actually send!!!!!
+  // TODO: need to decide what to actually send!!!!!
   return director;
 
+}
+
+
+/** Get all director names
+ * 
+ * @returns an array of all director names
+ * 
+ */
+export async function getAllDirectors() {
+  const allDirectors = await knex.select("director_name")
+    .from("Directors");
+  return allDirectors.map((entry) => entry.director_name);
 }
 
 
