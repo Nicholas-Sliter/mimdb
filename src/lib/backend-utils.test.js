@@ -23,6 +23,8 @@ describe("Tests of database Film Table utility functions", () => {
 
     beforeAll(async () => {
         sampleFilm = films[0];
+        sampleFilm = (({ director_ids, course_CRNs, ...rest }) => ({ rest }))(sampleFilm);
+        sampleFilm = sampleFilm.rest;
 
         let set = new Set(films.map((film) => film.genre).flat());
         allGenres = [...set];
@@ -113,9 +115,8 @@ describe("Tests of database Film Table utility functions", () => {
 
         expect(fetchedFilms).toHaveLength(films.length);
         const testFilm = fetchedFilms.find((film) => film.id === sampleFilm.id);
-        testFilm.video = testFilm.video === 0 ? false : true;
-        const trimSample = (({ director_ids, course_CRNs, ...rest }) => ({ rest }))(sampleFilm);
-        expect(testFilm).toEqual(trimSample.rest);
+        testFilm.video = testFilm.video === 0 ? false : true; // at some point false and true from tempData got converted to 0 and 1
+        expect(testFilm).toEqual(sampleFilm);
         properties.forEach((prop) => { expect(fetchedFilms[0]).toHaveProperty(prop) });
     });
 
