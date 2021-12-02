@@ -4,28 +4,40 @@
 import { useState, useEffect } from "react";
 
 import style from "../../styles/FilmSubmission/OptionSelectCard.module.scss";
+import { FiXCircle } from "react-icons/fi";
 
 export default function OptionSelectCard({
   title,
-  initialOptions,
+  initialOptions = [],
   selectedOptions,
   onChangeFunction,
   allowCustom = false,
   useDropdown = true,
-  validator = (t) => "" // eslint-disable-line no-unused-vars
+  validator = (t) => "", // eslint-disable-line no-unused-vars
+  limit = null,
 }) {
-  const [value, setValue] = useState(""); //current value in text box
+  const [value, setValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
-  const [options, setOptions] = useState(initialOptions); // eslint-disable-line no-unused-vars
-   //this allows custom options to be added and passed up later
+  const [options, setOptions] = useState([]); // eslint-disable-line no-unused-vars
   const [errorMessage, setErrorMessage] = useState("");
 
+  //TODO: raise a flag in the parent component to indicate that the card is invalid and prevent submission
+
+  //merge intial options and options (uniques only)
   useEffect(() => {
-    //filter the options based on the value
+    const newOptions = [...new Set([...initialOptions, ...options])];
+    if (newOptions.length !== options.length) {
+      setOptions(newOptions);
+    }
+  }, [initialOptions]);
+
+  useEffect(() => {
+    //filter the dropdown options based on the selected options
     let tempFilteredOptions = options.filter(
       (option) => !selectedOptions.includes(option)
     );
 
+    //filter for search
     if (value && value !== "") {
       tempFilteredOptions = tempFilteredOptions.filter((option) =>
         option.toLowerCase().includes(value.toLowerCase())
@@ -35,7 +47,18 @@ export default function OptionSelectCard({
     setFilteredOptions(tempFilteredOptions);
   }, [value, options, selectedOptions]);
 
+  const errorMessageTimeout = (error) => {
+    setErrorMessage(error);
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 10000);
+  };
+
   const addOption = (option) => {
+    if (limit && selectedOptions.length + 1 > limit) {
+      errorMessageTimeout("You can only select " + limit + " options");
+      return false;
+    }
     //add the option to the list of selected options
     onChangeFunction(selectedOptions.concat([option]));
   };
@@ -50,7 +73,7 @@ export default function OptionSelectCard({
     const error = validator(input);
     console.log(error);
     if (error) {
-      setErrorMessage(error);
+      errorMessageTimeout(error);
       return false;
     }
 
@@ -84,7 +107,7 @@ export default function OptionSelectCard({
   const handleNewOption = (e) => {
     //on enter in search bar
     if (e.key === "Enter") {
-      const res = addNewOption(e.target.value); //e.target.value
+      const res = addNewOption(e.target.value);
       if (res) {
         e.target.value = "";
         //setValue("");
@@ -104,7 +127,10 @@ export default function OptionSelectCard({
   };
 
   const errorMessageComponent = errorMessage ? (
-    <span className={style.error}>{errorMessage}</span>
+    <span className={style.error}>
+      <FiXCircle className={style.icon} />
+      {errorMessage}
+    </span>
   ) : null;
 
   const optionsDropdown = (
@@ -139,7 +165,7 @@ export default function OptionSelectCard({
   );
 
   const renderSelectedOptions = selectedOptions.map((option) =>
-    (option && option !== "" ? (
+    option && option !== "" ? (
       <span
         className={style.selectedOption}
         key={option}
@@ -147,7 +173,7 @@ export default function OptionSelectCard({
       >
         {option}
       </span>
-    ) : null)
+    ) : null
   );
 
   return (

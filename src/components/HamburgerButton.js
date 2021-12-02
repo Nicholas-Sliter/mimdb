@@ -3,7 +3,7 @@
 export default function HamburgerButton ({style, select}){
 
     return(
-        <button className={style} onClick={() => select()}>
+        <button data-testid="Menu-Button" className={style} onClick={() => select()}>
             <div/>
             <div/>
             <div/> 
