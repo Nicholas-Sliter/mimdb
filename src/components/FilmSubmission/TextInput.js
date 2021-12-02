@@ -6,7 +6,7 @@ export default function TextInput({ name, setFunc, moreText }) {
             <label htmlFor={name}> {`${name}:`} </label>
             <input
                 type="text"
-                id={name}
+                id={name.replace(/\s/g, '')}
                 placeholder={moreText ? moreText : `${name} must be set`}
                 onChange={(event) => setFunc(event.target.value)}
             />

@@ -9,11 +9,12 @@ import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
+import { validateFilmGenre } from "../lib/frontend-utils";
 
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-export default function Submit() {
+export default function Submit({complete}) {
   const { genres, courses } = useContext(GenreCourseContext);
 
   const [title, setTitle] = useState("");
@@ -23,8 +24,8 @@ export default function Submit() {
   const [courseId, setCourseId] = useState("");
   const [vimeoId, setVimeoId] = useState("");
   const [overview, setOverview] = useState("");
-  const [newGenre, addGenre] = useState(false);
-  const [newCourse, addCourse] = useState(false);
+  const [newGenre, addGenre] = useState([]);
+  const [newCourse, addCourse] = useState([]);
   const [genreList, setGenreList] = useState(genres);
   const [courseList, setCourseList] = useState(courses);
   const [inputDirectorList, setDirectorInputList] = useState([]);
@@ -42,7 +43,7 @@ export default function Submit() {
     //setPoster(crop);
   }
 
-  async function createSubission() {
+  async function createSubmission() {
     const submitContent = {
       title: title,
       overview: logLine,
@@ -57,22 +58,11 @@ export default function Submit() {
       genreList: genreList,
       courseList: courseList,
     };
-
-    const response = await fetch("/api/submit", {
-      method: "POST",
-      body: JSON.stringify(submitContent),
-      headers: new Headers({ "Content-Type": "application/json" })
-    });
-
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-
+    complete(submitContent);
   }
 
   return (
     <div className={styles.submitPage}>
-
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
       <div className={styles.group}>
         <div>
@@ -98,29 +88,33 @@ export default function Submit() {
         <TextArea name="Overview" setFunc={setOverview} />
       </div>
       <div className={styles.group}>
-        <Select
-          name="Genre"
-          array={genres}
-          newVar={newGenre}
-          setFunc={addGenre}
-          setCategoryList={setGenreList}
+        <OptionSelectCard
+          title="Course"
+          useDropdown
+          initialOptions={courses}
+          selectedOptions={newCourse}
+          onChangeFunction={addCourse}
+          limit={2}
         />
-        <Select
-          name="Course"
-          array={courses}
-          newVar={newCourse}
-          setFunc={addCourse}
-          setCategoryList={setCourseList}
+        <OptionSelectCard
+          title="Genres"
+          allowCustom
+          useDropdown
+          initialOptions={genres}
+          selectedOptions={newGenre}
+          onChangeFunction={addGenre}
+          limit={3}
+          validator={validateFilmGenre}
         />
       </div>
       <div className={styles.group}>
         <OptionSelectCard
           title="Actors"
           allowCustom
-          initialOptions={[]}
           selectedOptions={inputActorList}
           useDropdown={false}
           onChangeFunction={setActorInputList}
+          limit={20}
         />
         <OptionSelectCard
           title="Directors"
@@ -149,7 +143,7 @@ export default function Submit() {
       <div className={styles.groupButton}>
         <button
           className={styles.largeButton}
-          onClick={() => createSubission()}
+          onClick={() => createSubmission()}
         >
           Submit
         </button>
@@ -166,3 +160,21 @@ export default function Submit() {
     </div>
   );
 }
+
+
+
+
+        // <Select
+        //   name="Genre"
+        //   array={genres}
+        //   newVar={newGenre}
+        //   setFunc={addGenre}
+        //   setCategoryList={setGenreList}
+        // />
+        // <Select
+        //   name="Course"
+        //   array={courses}
+        //   newVar={newCourse}
+        //   setFunc={addCourse}
+        //   setCategoryList={setCourseList}
+        // />

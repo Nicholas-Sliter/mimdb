@@ -293,9 +293,21 @@ export async function getCourseByCourseName(name) {
  */
 export async function getDirector(name) {
   const director = await knex("Directors").select().where({director_name: name});
-  // Todo: need to decide what to actually send!!!!!
+  // TODO: need to decide what to actually send!!!!!
   return director;
 
+}
+
+
+/** Get all director names
+ * 
+ * @returns an array of all director names
+ * 
+ */
+export async function getAllDirectors() {
+  const allDirectors = await knex.select("director_name")
+    .from("Directors");
+  return allDirectors.map((entry) => entry.director_name);
 }
 
 
@@ -378,4 +390,151 @@ export async function addCourseFilm(course_name, film_id) {
   const [course] = await getCourseByCourseName(course_name);
   await knex("CourseFilm").insert({film_id:film_id, course_number:course.course_number});
   return await getFilmById(film_id);
+}
+
+
+/**
+ * Validates the film title
+ * @param {string} title 
+ * @returns empty if valid, error message if invalid
+ */
+export function validateFilmTitle(title) {
+  if (title.length < 1) {
+    return "Title is required";
+  }
+  if (title.length > 100) {
+    return "Title is too long";
+  }
+  //check for invalid characters with regex, allow letters, numbers, spaces, dashes, and punctuation
+  if (!/^[a-zA-Z0-9 -]+$/.test(title)) {
+    return "Title contains invalid characters";
+  }
+
+  return "";
+}
+
+/**
+ * Validates the semester field, e.g. "F21"
+ * @param {string} semester 
+ * @returns empty if valid, error message if invalid
+ */
+export function validateFilmSemester(semester) {
+  if (semester.length === 3) {
+    return "A semester must have a length of 3";
+  }
+  //check that a semester is F, W, or S, followed by 2 numbers
+  if (!/^[FWS][0-9][0-9]$/.test(semester)) {
+    return "Semester must be in the format FYY or WYY or SYY";
+  }
+  //check that the semester year is valid (that is is not in the future)
+  const year = parseInt(semester.substring(1, 3)) + 2000;
+  if (year > new Date().getFullYear() + 1) {
+    //not sure if we need this +1 but it might help on the edge cases
+    return "Semester year must be in the past";
+  }
+
+  return "";
+}
+
+/**
+ * Validates the genre name, e.g. "Drama", "Sci-fi"
+ * @param {string} genre 
+ * @returns empty if valid, error message if invalid
+ */
+export function validateFilmGenre(genre) {
+  if (genre.length < 1) {
+    return "Genre is required";
+  }
+  if (genre.length > 100) {
+    return "Genre is too long";
+  }
+  //check for invalid characters with regex, allow letters and dashes
+  if (!/^[a-zA-Z-]+$/.test(genre)) {
+    return "Genre contains invalid characters";
+  }
+  return "";
+}
+
+/**
+ * Validates a course name, e.g. "Sight and Sound"
+ * @param {string} course 
+ * @returns empty if valid, error message if invalid
+ */
+export function validateFilmCourse(course) {
+  if (course.length < 1) {
+    return "Course is required";
+  }
+  if (course.length > 100) {
+    return "Course is too long";
+  }
+  //check for invalid characters with regex, allow letters, spaces, dashes, and punctuation
+  if (!/^[a-zA-Z0-9 -.;:'&/,]+$/.test(course)) {
+    return "Course contains invalid characters";
+  }
+
+  return "";
+}
+
+/**
+ * Validates the film overview(called logLine in front-end)
+ * @param {string} overview - called logLine in front-end
+ * @returns empty if valid, error message if invalid
+ */
+export function validateFilmOverview(overview) {
+  if (overview.length < 1) {
+    return "Overview is required";
+  }
+  if (overview.length > 160) {
+    return "Overview is too long";
+  }
+  //check for invalid characters with regex, allow letters, numbers, spaces, dashes, and punctuation
+  if (!/^[a-zA-Z0-9 -.;:'&/,]+$/.test(overview)) {
+    return "Overview contains invalid characters";
+  }
+
+  return "";
+}
+
+/**
+ * Validates the film descipriton(called overview in front-end)
+ * @param {string} description 
+ * @returns empty if valid, error message if invalid
+ */
+export function validateFilmDescription(description) {
+  if (description.length < 1) {
+    return "description is required";
+  }
+  if (description.length > 1000) {
+    return "description is too long";
+  }
+  //check for invalid characters with regex, allow letters, numbers, spaces, dashes, and punctuation
+  if (!/^[a-zA-Z0-9 -.;:'&/,]+$/.test(description)) {
+    return "description contains invalid characters";
+  }
+
+  return "";
+}
+
+/**
+ * Validates a string of actor names, e.g. "John Doe, Jane Doe, Someone Else"
+ * @param {string} actors 
+ * @returns empty if valid, error message if invalid
+ */
+export function validateFilmActors(actors) {
+  if (actors.length < 1) {
+    return "Actors are required";
+  }
+  if (actors.length > 1000) {
+    return "Actors is too long";
+  }
+  //check for invalid characters with regex, allow letters, numbers, spaces, dashes, and punctuation
+  if (!/^[a-zA-Z0-9 -,]+$/.test(actors)) {
+    return "Actors contains invalid characters";
+  }
+  //require all names to be separated by a comma
+  if (!/^[a-zA-Z0-9 -,]+(,[a-zA-Z0-9 -,]+)*$/.test(actors)) {
+    return "Actors must be separated by commas";
+  }
+
+  return "";
 }

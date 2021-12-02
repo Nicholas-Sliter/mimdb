@@ -29,8 +29,8 @@ const validateAndProcessNewFilm = async (inFilm) => {
     
     // Add default empty picture paths
     // TODO: to be replaced by user uploaded image paths, as well as randomly generated gradient
-    processedFilm.backdrop_path = inFilm.backdrop_path==="" ? "/defaults/salmon-blue.svg" : `/filmImages${inFilm.backdrop_path}`;
-    processedFilm.poster_path = inFilm.poster_path==="" ? `/defaults/chapelBackground-3-2.jpg` : `/filmImages${inFilm.poster_path}`;
+    processedFilm.backdrop_path = (!inFilm.backdrop_path || inFilm.backdrop_path==="") ? "/defaults/salmon-blue.svg" : `/filmImages${inFilm.backdrop_path}`;
+    processedFilm.poster_path = (!inFilm.poster_path || inFilm.poster_path==="") ? `/defaults/chapelBackground-3-2.jpg` : `/filmImages${inFilm.poster_path}`;
     
     // Generate vimeo boolean, simple
     processedFilm.video = processedFilm.vimeo_id && true;
@@ -47,7 +47,7 @@ const validateAndProcessNewFilm = async (inFilm) => {
 const handler = nc()
   .post(async (req, res) => {
     const newFilm = req.body;
-
+    console.log(newFilm);
     const processedFilm = await validateAndProcessNewFilm(newFilm);
 
     if (processedFilm) {
@@ -85,7 +85,6 @@ const handler = nc()
       await Promise.all(newFilm.genreList.map(async (genre_name) => {
         addedFilm = await addGenreFilm(genre_name, addedFilm.id);
       }));
-
 
       res.status(200).json(addedFilm);
     } else {
