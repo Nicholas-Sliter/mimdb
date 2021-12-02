@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
 
 
-export default function Submit() {
+export default function Submit({complete}) {
   const { genres, courses } = useContext(GenreCourseContext);
 
   const [title, setTitle] = useState("");
@@ -29,9 +29,7 @@ export default function Submit() {
   const [inputActorList, setActorInputList] = useState([""]);
   //const [inputContribList, setContribInputList] = useState([""]);
 
-
-
-  async function createSubission() {
+  async function createSubmission() {
     const submitContent = {
       title: title,
       logLine: logLine,
@@ -46,16 +44,8 @@ export default function Submit() {
       genreList: genreList,
       courseList: courseList,
     };
-
-    const response = await fetch("/api/submit", {
-      method: "POST",
-      body: JSON.stringify(submitContent),
-      headers: new Headers({ "Content-Type": "application/json" })
-    });
-    
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
+    console.log("calllllllled");
+    await complete(submitContent);
     
   }
 
@@ -146,7 +136,7 @@ export default function Submit() {
       <div className={styles.groupButton}>
         <button
           className={styles.largeButton}
-          onClick={() => createSubission()}
+          onClick={() => { console.log("clicked"); createSubmission()}}
         >
           Submit
         </button>
