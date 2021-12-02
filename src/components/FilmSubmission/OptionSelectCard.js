@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 
 import style from "../../styles/FilmSubmission/OptionSelectCard.module.scss";
-import {FiXCircle} from "react-icons/fi";
+import { FiXCircle } from "react-icons/fi";
 
 export default function OptionSelectCard({
   title,
@@ -26,10 +26,9 @@ export default function OptionSelectCard({
 
   //merge intial options and options (uniques only)
   useEffect(() => {
-    const newOptions = [... new Set([...initialOptions, ...options])];
+    const newOptions = [...new Set([...initialOptions, ...options])];
     setOptions(newOptions);
   }, [initialOptions]);
-
 
   useEffect(() => {
     //filter the dropdown options based on the selected options
@@ -47,16 +46,18 @@ export default function OptionSelectCard({
     setFilteredOptions(tempFilteredOptions);
   }, [value, options, selectedOptions]);
 
-
   const errorMessageTimeout = (error) => {
     setErrorMessage(error);
     setTimeout(() => {
       setErrorMessage("");
     }, 10000);
   };
-  
 
   const addOption = (option) => {
+    if (limit && selectedOptions.length + 1 > limit) {
+      errorMessageTimeout("You can only select " + limit + " options");
+      return false;
+    }
     //add the option to the list of selected options
     onChangeFunction(selectedOptions.concat([option]));
   };
@@ -72,7 +73,6 @@ export default function OptionSelectCard({
     console.log(error);
     if (error) {
       errorMessageTimeout(error);
-      //setErrorMessage(error);
       return false;
     }
 
@@ -93,12 +93,6 @@ export default function OptionSelectCard({
       return false;
     }
 
-    if (limit && selectedOptions.length + 1 > limit) {
-      errorMessageTimeout("You can only select " + limit + " options");
-      //setErrorMessage("You can only select up to " + limit + " options");
-      return false;
-    }
-
     if (newOption && newOption !== "") {
       //setOptions([...options, newOption]); //this line was causing issues
       addOption(newOption);
@@ -112,7 +106,7 @@ export default function OptionSelectCard({
   const handleNewOption = (e) => {
     //on enter in search bar
     if (e.key === "Enter") {
-      const res = addNewOption(e.target.value); //e.target.value
+      const res = addNewOption(e.target.value);
       if (res) {
         e.target.value = "";
         //setValue("");
