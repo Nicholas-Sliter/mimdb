@@ -1,4 +1,4 @@
-import styles from "../styles/DirectorsPage.module.css"
+import styles from "../styles/DirectorsPage.module.scss"
 import FilmRow from "./DisplayLayouts/FilmRow.js"
 
 export default function DirectorPage({ films, director }) {
@@ -11,7 +11,7 @@ export default function DirectorPage({ films, director }) {
                 <div className={styles.directorInfo}>
                     <h1>{directorInfo.director_name}</h1>
                     <div className={styles.classEmail}>
-                        <h4 className={styles.classYear}>{directorInfo.director_graduation_year}</h4>
+                        <h4 className={styles.classYear}>Class Year: {directorInfo.director_graduation_year}</h4>
                         <h4 className={styles.email}>{directorInfo.director_midd_email}</h4>
                         <h4 className={styles.email}>{directorInfo.director_personal_email}</h4>
                     </div>

@@ -1,0 +1,69 @@
+$shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+  rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+$box_background: rgb(255, 255, 255, 0.9);
+$border_rad: 0.5rem;
+
+
+.topBox{
+    padding: 0px 5px 0px 5px;
+    margin-bottom: 1rem;
+    height: 21rem;
+    
+}
+
+.directorInfo{
+    float: left;
+    width: 49%;
+    min-height: 20rem;
+    display: inline;
+    padding-left: 3rem;
+    border-radius: 32px;
+    border: solid 1px black ;
+    border-radius: $border_rad;
+    background-color: $box_background;
+    box-shadow: $shadow;
+}
+
+.bio{
+    width: 49%;
+    min-height: 20rem;
+    float: right;
+    display: inline;
+    padding-left: 2rem;
+    border-radius: 32px;
+    border: solid 1px black;
+    border-radius: $border_rad;
+    background-color: $box_background;
+    box-shadow: $shadow;
+}
+
+.bio h3{
+    text-align: center;
+}
+
+.filmRomCont{
+    display: inline;
+    margin-top: 1rem;
+}
+
+@media screen and (max-width: 840px){
+    .directorInfo{
+        float: left;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
+    }
+    
+    .bio{
+        float: left;
+        margin-right: 3px;
+        margin-top: 1rem;
+        box-sizing: border-box;
+        width: 100%;
+        position: relative;
+        padding: 1rem;
+
+    }
+    
+}

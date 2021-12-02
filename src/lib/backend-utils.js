@@ -6,8 +6,8 @@
  * The assumption is that the working data store is found in data/films.json and we have a "golden copy" in data/mockData.json.
  */
 
-import fs from "fs";
-import path from "path";
+//import fs from "fs";
+//import path from "path";
 import process from "process";
 
 import knexConfig from "../../knexfile";
@@ -17,12 +17,12 @@ export const knex = knexInitializer(
   knexConfig[process.env.NODE_ENV || "development"]
 );
 
-export function resetData() {
-  const dataDirectory = path.join(process.cwd(), "data");
-  const orig = path.join(dataDirectory, "data.json");
-  const dest = path.join(dataDirectory, "tempData.json");
-  fs.copyFileSync(orig, dest);
-}
+// export function resetData() {
+//   const dataDirectory = path.join(process.cwd(), "data");
+//   const orig = path.join(dataDirectory, "data.json");
+//   const dest = path.join(dataDirectory, "tempData.json");
+//   fs.copyFileSync(orig, dest);
+// }
 
 
 export function readData() {
@@ -162,8 +162,8 @@ async function fillFilm(film) {
  * @returns an array of all films
  */
 export async function getAllFilms() {
-  const films = await knex("Film").select();
-  return await Promise.all(films.map((film) => fillFilm(film)));
+  let films = await knex("Film").select();
+  return await Promise.all(films.map(async (film) => await fillFilm(film)));
 }
 
 /**
