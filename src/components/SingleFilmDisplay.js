@@ -16,17 +16,17 @@ export default function SingleFilmDisplay({ film }) {
     return <p>Choose a Film!</p>;
   }
 
-    // const directors = film.directors.map((director) => {
-    // return(
-    //     <li key={director}> 
-    //         <Link href={`/directors/${director}`} passHref> 
-    //             {director}
-    //         </Link> 
-    //     </li> 
-    // )
+    const directors = film.directors.map((director) => {
+    return(
+         <li key={director}> 
+             <Link href={`/directors/${director}`} passHref> 
+                 <a>{director}</a>
+             </Link> 
+         </li> 
+     )
 
 
-    // });
+     });
     
     
   const actors = film.actors.map((actor) => <li key={actor}>{actor}</li>);
@@ -55,7 +55,10 @@ export default function SingleFilmDisplay({ film }) {
         <span className={styles.duration}>{film.duration}</span>
         <div />
         <h4 className={styles.directors}>
-          Directed by {film.directors.join(", ")}
+          Directed by:
+          <ul className={styles.directorsList}>
+            {directors}
+          </ul>
         </h4>
         <div />
         <div className={styles.video}>
