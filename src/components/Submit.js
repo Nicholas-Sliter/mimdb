@@ -10,6 +10,8 @@ import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
 
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 
 export default function Submit() {
   const { genres, courses } = useContext(GenreCourseContext);
@@ -25,10 +27,16 @@ export default function Submit() {
   const [newCourse, addCourse] = useState(false);
   const [genreList, setGenreList] = useState(genres);
   const [courseList, setCourseList] = useState(courses);
-  const [inputDirectorList, setDirectorInputList] = useState([""]);
-  const [inputActorList, setActorInputList] = useState([""]);
-  //const [inputContribList, setContribInputList] = useState([""]);
+  const [inputDirectorList, setDirectorInputList] = useState([]);
+  const [inputActorList, setActorInputList] = useState([]);
+  const [poster, setPoster] = useState("");
+  const [crop, setCrop] = useState({ aspect: 2/3 });
 
+
+  const handleUploadChange = (e) => {
+    console.log(poster);
+    setPoster(URL.createObjectURL(e.target.files[0]))
+  }
 
 
   async function createSubission() {
@@ -52,16 +60,16 @@ export default function Submit() {
       body: JSON.stringify(submitContent),
       headers: new Headers({ "Content-Type": "application/json" })
     });
-    
+
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-    
+
   }
 
   return (
     <div className={styles.submitPage}>
-      
+
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
       <div className={styles.group}>
         <div>
@@ -126,7 +134,9 @@ export default function Submit() {
           useDropdown
           onChangeFunction={setDirectorInputList}
         />
-      {/*<div className={styles.group}>
+        <input id="poster-upload" type="file" onChange={handleUploadChange} />
+        <ReactCrop src={poster} crop={crop} onChange={newCrop => setCrop(newCrop)} />
+        {/*<div className={styles.group}>
        } <AddedText
           name="Director"
           inputList={inputDirectorList}
