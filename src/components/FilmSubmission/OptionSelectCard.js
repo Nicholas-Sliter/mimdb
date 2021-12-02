@@ -21,13 +21,14 @@ export default function OptionSelectCard({
   const [options, setOptions] = useState([]); // eslint-disable-line no-unused-vars
   const [errorMessage, setErrorMessage] = useState("");
 
-  //TODO: make the limit validation work when clicking through the dropdown
   //TODO: raise a flag in the parent component to indicate that the card is invalid and prevent submission
 
   //merge intial options and options (uniques only)
   useEffect(() => {
     const newOptions = [...new Set([...initialOptions, ...options])];
-    setOptions(newOptions);
+    if (newOptions.length !== options.length) {
+      setOptions(newOptions);
+    }
   }, [initialOptions]);
 
   useEffect(() => {
