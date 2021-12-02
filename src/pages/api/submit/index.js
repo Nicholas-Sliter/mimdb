@@ -47,7 +47,7 @@ const validateAndProcessNewFilm = async (inFilm) => {
 const handler = nc()
   .post(async (req, res) => {
     const newFilm = req.body;
-
+    console.log(newFilm);
     const processedFilm = await validateAndProcessNewFilm(newFilm);
 
     if (processedFilm) {
