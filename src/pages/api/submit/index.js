@@ -31,7 +31,7 @@ const validateAndProcessNewFilm = async (inFilm) => {
     // TODO: to be replaced by user uploaded image paths, as well as randomly generated gradient
     processedFilm.backdrop_path = (!inFilm.backdrop_path || inFilm.backdrop_path==="") ? "/defaults/salmon-blue.svg" : `/filmImages${inFilm.backdrop_path}`;
     processedFilm.poster_path = (!inFilm.poster_path || inFilm.poster_path==="") ? `/defaults/chapelBackground-3-2.jpg` : `/filmImages${inFilm.poster_path}`;
-
+    
     // Generate vimeo boolean, simple
     processedFilm.video = processedFilm.vimeo_id && true;
 

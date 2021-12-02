@@ -12,7 +12,7 @@ import { GenreCourseContext } from "./context/GenreCourseContext";
 import { validateFilmGenre } from "../lib/frontend-utils";
 
 
-export default function Submit() {
+export default function Submit({complete}) {
   const { genres, courses } = useContext(GenreCourseContext);
 
   const [title, setTitle] = useState("");
@@ -30,9 +30,7 @@ export default function Submit() {
   const [inputActorList, setActorInputList] = useState([]);
   //const [inputContribList, setContribInputList] = useState([""]);
 
-
-
-  async function createSubission() {
+  async function createSubmission() {
     const submitContent = {
       title: title,
       overview: logLine,
@@ -47,17 +45,7 @@ export default function Submit() {
       genreList: genreList,
       courseList: courseList,
     };
-    console.log(submitContent);
-    const response = await fetch("/api/submit", {
-      method: "POST",
-      body: JSON.stringify(submitContent),
-      headers: new Headers({ "Content-Type": "application/json" })
-    });
-    console.log(response);
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    
+    complete(submitContent);
   }
 
   return (
@@ -130,27 +118,11 @@ export default function Submit() {
           useDropdown
           onChangeFunction={setDirectorInputList}
         />
-        {/*<div className={styles.group}>
-       } <AddedText
-          name="Director"
-          inputList={inputDirectorList}
-          setInputList={setDirectorInputList}
-        />
-        <AddedText
-          name="Actor"
-          inputList={inputActorList}
-          setInputList={setActorInputList}
-        />
-        <AddedText
-          name="Contributor"
-          inputList={inputContribList}
-          setInputList={setContribInputList}
-        />*/}
       </div>
       <div className={styles.groupButton}>
         <button
           className={styles.largeButton}
-          onClick={async () => await createSubission()}
+          onClick={() => createSubmission()}
         >
           Submit
         </button>
