@@ -74,6 +74,14 @@ $border_rad: 0.5rem;
   display: inline;
 }
 
+.directorsList li a{
+  text-decoration: underline;
+}
+
+.directorsList li a:hover{
+  color: blue;
+}
+
 .directorsList li::after{
   content: ", ";
 }

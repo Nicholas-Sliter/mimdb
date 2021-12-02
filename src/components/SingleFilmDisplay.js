@@ -16,17 +16,17 @@ export default function SingleFilmDisplay({ film }) {
     return <p>Choose a Film!</p>;
   }
 
-    // const directors = film.directors.map((director) => {
-    // return(
-    //     <li key={director}> 
-    //         <Link href={`/directors/${director}`} passHref> 
-    //             {director}
-    //         </Link> 
-    //     </li> 
-    // )
+    const directors = film.directors.map((director) => {
+    return(
+         <li key={director}> 
+             <Link href={`/directors/${director}`} passHref> 
+                 <a>{director}</a>
+             </Link> 
+         </li> 
+     )
 
 
-    // });
+     });
     
     
   const actors = film.actors.map((actor) => <li key={actor}>{actor}</li>);
