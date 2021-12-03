@@ -56,6 +56,16 @@ exports.up = function(knex) {
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
     table.foreign("director_id").references("Directors.director_id").onDelete("CASCADE");
   })
+  .createTable("Poster", table => {
+    table.integer("film_id").unique().notNullable();
+    table.binary("poster_data").notNullable();
+    table.foreign("film_id").references("Film.id").onDelete("CASCADE");
+  })
+  .createTable("Backdrop", table => {
+    table.integer("film_id").unique().notNullable();
+    table.binary("Backdrop_data").notNullable();
+    table.foreign("film_id").references("Film.id").onDelete("CASCADE");
+  })
 };
 
 exports.down = function (knex) {
@@ -66,5 +76,7 @@ exports.down = function (knex) {
                     .dropTableIfExists("Course")
                     .dropTableIfExists("Directors")
                     .dropTableIfExists("CourseFilm")
-                    .dropTableIfExists("DirectorsFilm");
+                    .dropTableIfExists("DirectorsFilm")
+                    .dropTableIfExists("Poster")
+                    .dropTableIfExists("Backdrop");
 };
