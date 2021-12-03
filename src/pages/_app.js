@@ -1,7 +1,7 @@
 /* eslint-disable */
 import '../styles/globals.css';
 import { useState, useEffect } from "react";
-//import data from "../../data/tempData.json";
+import { Provider } from 'next-auth/client';
 import { GenreCourseContext } from '../components/context/GenreCourseContext';
 
 function MyApp({ Component, pageProps }) {
