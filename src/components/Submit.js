@@ -30,6 +30,7 @@ export default function Submit({complete}) {
   const [courseList, setCourseList] = useState(courses);
   const [inputDirectorList, setDirectorInputList] = useState([]);
   const [inputActorList, setActorInputList] = useState([]);
+  
   const [poster, setPoster] = useState("");
   const [crop, setCrop] = useState({ aspect: 2/3 });
 
