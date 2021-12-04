@@ -5,6 +5,9 @@
         "director_bio": "I'm actually a programmer.",
         "director_midd_email": "midd@middlebury.edu",
         "director_personal_email": "personal@domain.com",
-        "director_graduation_year": "2022.5"
+        "director_graduation_year": "2022.5",
+        "director_slug": "wayne-wang",
+        "director_personal_email_is_private": true,
+        "director_midd_email_is_private": false
     }
 ]

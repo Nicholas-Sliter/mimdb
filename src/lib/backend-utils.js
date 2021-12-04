@@ -76,7 +76,7 @@ export async function getCourse(id) {
 }
 
 /**
- * Get the list of director names for a film.
+ * Get the list of director names for a film by film id.
  * 
  * @param {integer} id 
  * @returns an array of director names for film with id id
@@ -286,6 +286,8 @@ export async function getCourseByCourseName(name) {
   return wholeCourse;
 }
 
+//TODO: change this to get by director slug
+
 /** Get director by directorName
  * 
  * @param {string} name
@@ -297,6 +299,77 @@ export async function getDirector(name) {
   return director;
 
 }
+
+/** Get full director (backend function, never call directly from API)
+ * 
+ * @param {string} slug a unique identifier for directors
+ * @returns the entire director object from the database with all fields
+ */
+
+async function _getFullDirectorBySlug(slug){
+  
+  const director = await knex("Directors")
+    .select()
+    .where({ director_slug: slug });
+
+  if (director && director.length){
+    return director[0];
+  }
+
+  return null;
+
+}
+
+
+function _filterDirector(director){
+  // check privacy boolean (check if we should remove email)
+  // and remove any private fields
+
+  if (director.director_midd_email_is_private){
+    delete director.director_midd_email;
+  }
+
+  if (director.director_personal_email_is_private){
+    delete director.director_personal_email;
+  }
+
+  delete director.director_midd_email_is_private;
+  delete director.director_personal_email_is_private;
+
+  return director;
+
+}
+
+
+
+export async function getDirectorBySlug(slug) {
+
+  const fullDirector = await _getFullDirectorBySlug(slug);
+
+  if (!fullDirector) {
+    return null;
+  }
+
+  const filteredDirector = _filterDirector(fullDirector);
+
+  return filteredDirector;
+
+}
+
+
+
+export async function checkDirectorSlug(slug) {
+
+  const director = await knex("Directors").select("director_slug").where({director_slug: slug})
+
+  if (director.length){
+    return true;
+  }
+
+  return false;
+
+}
+
 
 
 /** Get all director names

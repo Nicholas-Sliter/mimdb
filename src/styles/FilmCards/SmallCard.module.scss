@@ -80,3 +80,30 @@ $grey-background: #e5e6e6;
   padding-right: 8px;
   text-overflow: ellipsis;
 }
+
+
+
+
+@media screen and (max-width: 768px) {
+  .card {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    transform: scale(1.2);
+
+    &:hover {
+      transform: scale(1.25);
+      transition: all 0.5s ease-in-out;
+    }
+
+    .card_poster {
+      .card_info{
+        position: absolute;
+        left: -200px;
+        display: inline-block;
+
+      }
+    }
+  }
+}

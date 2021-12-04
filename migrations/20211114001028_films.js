@@ -37,10 +37,13 @@ exports.up = function(knex) {
   .createTable("Directors", table => {
     table.string("director_name");
     table.integer("director_id").unique().notNullable();
+    table.string("director_slug").unique();
     table.string("director_bio");
     table.string("director_midd_email");
     table.string("director_personal_email");
     table.string("director_graduation_year");
+    table.boolean("director_midd_email_is_private");
+    table.boolean("director_personal_email_is_private");
   })
   .createTable("CourseFilm", table => {
     // Affiliation table for Course and Film, two foreign keys
