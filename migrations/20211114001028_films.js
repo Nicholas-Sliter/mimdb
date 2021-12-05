@@ -13,7 +13,7 @@ exports.up = function(knex) {
     table.boolean("video");
     table.string("vimeo_id");
     table.string("duration").notNullable();
-    table.boolean("approveBoolean").notNullable.defaultTo(true);
+    table.boolean("approveBoolean").notNullable().defaultTo(true);
   })
   .createTable("Genre", table => {
     table.integer("film_id");

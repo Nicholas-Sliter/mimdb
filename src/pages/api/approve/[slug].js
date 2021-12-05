@@ -11,11 +11,11 @@ const handler = nc().put( async (req, res) => {
 
     if (success) {
       res.status(200).json({
-        message:"Successfully Registered"
+        message: "Successfully updated film approval"
       })
     } else {
       res.status(500).json({
-        error: "Could not retrieve genres"
+        error: "Could not update film approval"
       });
     }
   });
