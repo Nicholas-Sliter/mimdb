@@ -3,7 +3,7 @@
 import nc from "next-connect";
 import { updateFilmApproval } from "../../../lib/backend-utils";
 
-const approval = true;
+const approval = true; // should be a boolean imported from somewhere
 
 const handler = nc().put( async (req, res) => {
     const { slug } = req.query;
