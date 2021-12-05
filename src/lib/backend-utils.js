@@ -116,6 +116,32 @@ export async function getContributors(id) {
 }
 
 /**
+ * Get the poster of a film.
+ * 
+ * @param {integer} id 
+ * @returns the poster, in binary
+ */
+ export async function getPosterById(id) {
+  const poster = await knex.select("poster_data")
+    .from("Poster")
+    .where({ "film_id": id });
+  return poster;
+}
+
+/**
+ * Get the backdrop of a film.
+ * 
+ * @param {integer} id 
+ * @returns the backdrop, in binary
+ */
+ export async function getBackdropById(id) {
+  const backdrop = await knex.select("backdrop_data")
+    .from("Backdrop")
+    .where({ "film_id": id });
+  return backdrop;
+}
+
+/**
  * Get the list of the names of all genres present in the database
  * 
  * @returns an array of all genre names for all films in the database
