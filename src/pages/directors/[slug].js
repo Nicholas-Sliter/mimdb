@@ -1,6 +1,5 @@
 import DirectorPage from "../../components/DirectorPage";
-import CustomHead from "../../components/CustomHead";
-import Header from "../../components/Header";
+import Layout from "../../components/Layouts/Layout";
 import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
@@ -44,17 +43,10 @@ export default function Director({ genres, courses }) {
   }, [slug]);
 
   return (
-    <div>
-      <CustomHead />
-      <Header genreList={genres} classList={courses} />
-      <main>
-        {(directorInfo) ? (
+    <Layout>
+      {(directorInfo) ? (
           <DirectorPage films={directorFilms} director={directorInfo} />
         ) : null}
-      </main>
-      <footer>
-        © {`${new Date().getFullYear()}`} Middlebury Movie Database
-      </footer>
-    </div>
+    </Layout>
   );
 }
