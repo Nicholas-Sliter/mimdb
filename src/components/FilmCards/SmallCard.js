@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function SmallCard({ film }) {
   //for development builds this poster server will be set to the local public folder in next.js
   //const poster_path = (filmObj.poster_path) ? `${POSTER_SERVER}${filmObj.poster_path}` : "#";
-  const poster_path = `/filmImages${film.poster_path}`//"/sp.jpg";
+  const {poster_path} = film;
   return (
 
     <Link href={`/films/${film.slug}`} passHref>

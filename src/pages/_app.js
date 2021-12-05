@@ -1,12 +1,10 @@
 /* eslint-disable */
 import '../styles/globals.css';
 import { useState, useEffect } from "react";
-import data from "../../data/tempData.json";
 import { GenreCourseContext } from '../components/context/GenreCourseContext';
 
 function MyApp({ Component, pageProps }) {
-  //temporary data
-  //const [films, setFilms] = useState(data);
+
   const [genres, setGenres] = useState([]);
   const [courses, setCourses] = useState([]);
 
@@ -20,6 +18,7 @@ function MyApp({ Component, pageProps }) {
 
     const genres = await genreRes.json();
     const courses = await courseRes.json();
+
     setGenres(genres);
     setCourses(courses);
   }, []);
@@ -27,7 +26,7 @@ function MyApp({ Component, pageProps }) {
 
 
   const GenreCourseContextObject = {genres: genres, courses: courses};
-  const props = { ...pageProps, films, setFilms };
+  const props = { ...pageProps};
   return (
     <GenreCourseContext.Provider value={GenreCourseContextObject}>
       <Component {...props} />

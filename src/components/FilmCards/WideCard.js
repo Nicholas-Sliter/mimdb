@@ -9,8 +9,8 @@ export default function WideCard({ film }) {
   //for development builds this poster server will be set to the local public folder in next.js
   //const poster_path = (film.poster_path) ? `${POSTER_SERVER}${film.poster_path}` : "#";
   //these are temporary paths until we find a storage solution for images
-  const poster_path = `/filmImages${film.poster_path}`;
-  const backdrop_path = `/filmImages${film.backdrop_path}`;
+  const {poster_path} = film;
+  const {backdrop_path} = film;
 
   return (
     
