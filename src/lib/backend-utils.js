@@ -538,3 +538,15 @@ export function validateFilmActors(actors) {
 
   return "";
 }
+
+/**
+ * Update film approval
+ * 
+ * @param {string} slug 
+ * @param {boolean} rating 
+ * @returns Boolean indicating approve or reject
+ */
+ export async function updateFilmApproval(slug, approve) {
+  const count = await knex("Film").select().where({slug:slug}).update({approveBoolean:approve});
+  return (count === 1);
+}
