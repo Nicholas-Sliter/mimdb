@@ -1,10 +1,10 @@
 import { useRouter } from "next/router"
-import SingleFilmDisplay from "../../components/SingleFilmDisplay";
-import styles from "../../styles/Home.module.css";
-import CustomHead from "../../components/CustomHead";
-import Header from "../../components/Header";
+import SingleFilmDisplay from "../../../components/SingleFilmDisplay";
+import styles from "../../../styles/Home.module.css";
+import CustomHead from "../../../components/CustomHead";
+import Header from "../../../components/Header";
 
-import useGetFilm from "../../hooks/useGetFilm";
+import useGetFilm from "../../../hooks/useGetFilm";
 
 export default function Film() {
     const router = useRouter();

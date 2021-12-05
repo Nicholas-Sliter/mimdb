@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { getFilmBySlug } from "../../../lib/backend-utils";
+import { getFilmBySlug } from "../../../../lib/backend-utils";
 
 const handler = nc().get(async (req, res) => {
   const { slug } = req.query;

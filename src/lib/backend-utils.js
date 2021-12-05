@@ -299,11 +299,35 @@ export async function getCourseByCourseName(name) {
  * @returns director object
  */
 export async function getDirector(name) {
-  const director = await knex("Directors").select().where({director_name: name});
+  const director_id = await knex("Directors").select().where({director_name: name});
   // TODO: need to decide what to actually send!!!!!
   return director;
 
 }
+
+/** Get directorslug by a film slug
+ * 
+ * @param {string} slug
+ * @returns an array of director slugs
+ */
+
+export async function getDirectorSlugByFilmSlug(film_slug) {
+  const film = await getFilmBySlug(film_slug);
+  const film_id = film.id;
+
+  const slugs = await knex
+    .select("director_slug")
+    .from("DirectorsFilm")
+    .where({ film_id: film_id })
+    .join("Directors", "Directors.director_id", "DirectorsFilm.director_id");
+
+
+  return slugs;
+
+}
+
+
+
 
 /** Get full director (backend function, never call directly from API)
  * 
