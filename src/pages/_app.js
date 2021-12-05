@@ -1,15 +1,19 @@
 /* eslint-disable */
-import '../styles/globals.css';
+import "../styles/globals.css";
 import { useState, useEffect } from "react";
-import { GenreCourseContext } from '../components/context/GenreCourseContext';
+import { GenreCourseContext } from "../components/context/GenreCourseContext";
+import { DiscoverContext } from "../components/context/DiscoverContext";
+import useFeatured from "../hooks/useFeatured";
 
 function MyApp({ Component, pageProps }) {
-
   const [genres, setGenres] = useState([]);
   const [courses, setCourses] = useState([]);
+  const [discover, setDiscover] = useState([]);
+
+  const featured = useFeatured(2);
 
   //get genres and courses from /api/genres and /api/courses
-  useEffect( async() => {
+  useEffect(async () => {
     const genreRes = await fetch("/api/genres");
     const courseRes = await fetch("/api/courses");
     if (!genreRes.ok || !courseRes.ok) {
@@ -21,15 +25,20 @@ function MyApp({ Component, pageProps }) {
 
     setGenres(genres);
     setCourses(courses);
+
+    if (!discover.length) {
+      setDiscover(featured);
+    }
   }, []);
 
-
-
-  const GenreCourseContextObject = {genres: genres, courses: courses};
-  const props = { ...pageProps};
+  const GenreCourseContextObject = { genres: genres, courses: courses };
+  const DiscoverContextObject = { films: discover };
+  const props = { ...pageProps };
   return (
     <GenreCourseContext.Provider value={GenreCourseContextObject}>
-      <Component {...props} />
+      <DiscoverContext.Provider value={DiscoverContextObject}>
+        <Component {...props} />
+      </DiscoverContext.Provider>
     </GenreCourseContext.Provider>
   );
 }
