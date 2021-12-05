@@ -1,54 +1,56 @@
 import DirectorPage from "../../components/DirectorPage";
 import CustomHead from "../../components/CustomHead";
 import Header from "../../components/Header";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-import { useRouter } from "next/router"
-
-
+import { useRouter } from "next/router";
 
 export default function Director({ genres, courses }) {
-
-
   const router = useRouter();
-  const { director } = router.query;
+  const { slug } = router.query;
 
   //const directorName = decodeURIComponent(director)
 
-  const [directorInfo, setDirectorInfo] = useState([]);
+  const [directorInfo, setDirectorInfo] = useState(null);
   const [directorFilms, setDirectorFilms] = useState([]);
 
   const getDirectorFilms = async () => {
-    const response = await fetch(`/api/films?director=${director}`);
+    const response = await fetch(`/api/directors/${slug}/films`);
+
     if (!response.ok) {
-      throw new Error(`Failed to fetch films by ${director}`)
+      throw new Error(`Failed to fetch films by ${slug}`);
     }
-    const data2 = await response.json();
-    setDirectorFilms(data2);
-  }
+    
+    const data = await response.json();
+    console.log(data);
+    setDirectorFilms(data);
+  };
 
   const getDirectorInfo = async () => {
-    const res = await fetch(`/api/directors/${director}`);
+    if (!slug) {
+      return;
+    }
+    const res = await fetch(`/api/directors/${slug}`);
     if (!res.ok) {
-      throw new Error(`Failed to fetch director ${director}`)
+      console.error(`Failed to fetch director ${slug}`);
     }
     const data = await res.json();
     setDirectorInfo(data);
-  }
+  };
 
-  useEffect( () => {
+  useEffect(() => {
     getDirectorFilms();
     getDirectorInfo();
-  }, [director]);
+  }, [slug]);
 
   return (
     <div>
       <CustomHead />
       <Header genreList={genres} classList={courses} />
       <main>
-        {directorInfo[0] &&
-          <DirectorPage films={directorFilms} director={directorInfo[0]} />
-        }
+        {(directorInfo) ? (
+          <DirectorPage films={directorFilms} director={directorInfo} />
+        ) : null}
       </main>
       <footer>
         © {`${new Date().getFullYear()}`} Middlebury Movie Database

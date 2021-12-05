@@ -241,12 +241,17 @@ export async function getFilmsByCourse(course) {
  * @param {string} name
  * @returns an array of all films by the director
  */
-export async function getFilmsByDirector(name) {
+export async function getFilmsByDirector(slug) {
   const film_ids = await knex.select("film_id")
     .from("DirectorsFilm")
     .join("Directors", "Directors.director_id", "DirectorsFilm.director_id")
-    .where({ "director_name": name });
-  return film_ids;
+    .where({ "director_slug": slug });
+
+
+  let films = await Promise.all(
+    film_ids.map(async (film_id) => await getFilmById(film_id.film_id))
+  );
+  return films;
 }
 
 /**
