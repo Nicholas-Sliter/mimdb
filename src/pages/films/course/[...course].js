@@ -1,7 +1,9 @@
+
 import { useRouter } from "next/router";
 import FilmRow from "../../../components/DisplayLayouts/FilmRow";
 import Layout from "../../../components/Layouts/Layout";
 import { useEffect, useState } from "react";
+
 
 import { decodeURIComponentSafe } from "../../../lib/frontend-utils";
 
