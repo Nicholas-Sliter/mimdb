@@ -23,7 +23,7 @@ export default function SmallCard({ film }) {
         <div className={styles.card_info}>
           <h3>{film.title}</h3>
           <span className={styles.duration}>{film.duration}</span>
-          <span className={styles.genre}>{film.genre.join(", ")}</span>
+          <span className={styles.genre}>{(film.genre) ? film.genre.join(", ") : null}</span>
           <p className={styles.description}>{film.description}</p>
         </div>
       </div>

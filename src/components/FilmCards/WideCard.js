@@ -45,7 +45,7 @@ export default function WideCard({ film }) {
                 <span className={`${styles.duration} noselect`}>
                   {film.duration}
                 </span>
-                <p className={styles.genre}>{film.genre.join(", ")}</p>
+                <p className={styles.genre}>{(film.genre) ? film.genre.join(", ") : null}</p>
                 <div className={styles.movieDescription}>
                   <p className={styles.text}>{film.description}</p>
                 </div>
