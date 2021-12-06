@@ -31,7 +31,7 @@ export default function AdminPage() {
             border="1px solid black">
                 <thead>
                     <tr>
-                    <th>Authorized</th>
+                    <th>Approved</th>
                     <th>Title</th>
                     <th>Overview</th>
                     <th>Term</th>
@@ -47,7 +47,7 @@ export default function AdminPage() {
                 {filmData.map((film) => 
                     <tr key={film.id}>
                     <td><input type="checkbox"
-                            checked={film.authorized}
+                            checked={film.approved}
                             id={film.id}
                             name={film.id}
                             value={film.id}/>
