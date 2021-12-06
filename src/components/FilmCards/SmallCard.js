@@ -10,7 +10,7 @@ export default function SmallCard({ film }) {
   const posterRes = useGetPoster(film.id);
 
   useEffect(() => {
-    setPoster(posterRes ? posterRes : "");
+    setPoster(posterRes ?? "");
   }, [posterRes])
 
   return (

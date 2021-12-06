@@ -22,8 +22,8 @@ export default function SingleFilmDisplay({ film }) {
   const backdropRes = useGetBackdrop(film ? film.id : 0); // 0 is for default pic
 
   useEffect(() => {
-    setPoster(posterRes ? posterRes : "");
-    setBackdrop(backdropRes ? backdropRes : "");
+    setPoster(posterRes ?? "");
+    setBackdrop(backdropRes ?? "");
   }, [posterRes, backdropRes])
 
   //quick return if undefined film

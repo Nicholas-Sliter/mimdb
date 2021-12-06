@@ -24,8 +24,8 @@ export default function WideCard({ film }) {
 
 
   useEffect(() => {
-    setPoster(posterRes ? posterRes : "");
-    setBackdrop(backdropRes ? backdropRes : "");
+    setPoster(posterRes ?? "");
+    setBackdrop(backdropRes ?? "");
   }, [posterRes, backdropRes])
 
   return (
