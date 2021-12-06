@@ -73,8 +73,8 @@ exports.seed = async function(knex) {
       directorsMap.push({film_id: film.id, director_id: id});
     });
     
-    posterMap.push({film_id: film.id, poster_data: fs.readFileSync("./public"+film.poster_path)});
-    backdropMap.push({film_id: film.id, backdrop_data: fs.readFileSync("./public"+film.backdrop_path)});
+    posterMap.push({film_id: film.id, poster_data: fs.readFileSync("./public"+film.poster_path, {encoding: 'base64'})});
+    backdropMap.push({film_id: film.id, backdrop_data: fs.readFileSync("./public"+film.backdrop_path, {encoding: 'base64'})});
   });
 
   await knex("Genre").del();

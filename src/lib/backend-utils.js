@@ -119,26 +119,26 @@ export async function getContributors(id) {
  * Get the poster of a film.
  * 
  * @param {integer} id 
- * @returns the poster, in binary
+ * @returns the poster object, in the form of {poster_data:"the base64 string"}
  */
  export async function getPosterById(id) {
   const poster = await knex.select("poster_data")
     .from("Poster")
     .where({ "film_id": id });
-  return poster;
+  return poster[0];
 }
 
 /**
  * Get the backdrop of a film.
  * 
  * @param {integer} id 
- * @returns the backdrop, in binary
+ * @returns the backdrop object, in the form of {backdrop_data:"the base64 string"}
  */
  export async function getBackdropById(id) {
   const backdrop = await knex.select("backdrop_data")
     .from("Backdrop")
     .where({ "film_id": id });
-  return backdrop;
+  return backdrop[0];
 }
 
 /**

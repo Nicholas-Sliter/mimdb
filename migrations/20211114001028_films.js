@@ -58,12 +58,12 @@ exports.up = function(knex) {
   })
   .createTable("Poster", table => {
     table.integer("film_id").unique().notNullable();
-    table.binary("poster_data").notNullable();
+    table.string("poster_data").notNullable();
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
   })
   .createTable("Backdrop", table => {
     table.integer("film_id").unique().notNullable();
-    table.binary("Backdrop_data").notNullable();
+    table.string("Backdrop_data").notNullable();
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
   })
 };

@@ -11,7 +11,17 @@ export default function WideCard({ film }) {
   //these are temporary paths until we find a storage solution for images
   const {poster_path} = film;
   const {backdrop_path} = film;
+  
+  //TODO: add teh following
+  /*
+   const [img, setImg] = useState("");
+  const poster = useGetPoster(film.id);
 
+  useEffect(() => {
+    setImg(poster ? poster : "");
+  }, [poster])
+
+  */
   return (
     
     <Link href={`/films/${film.slug}`} passHref>
