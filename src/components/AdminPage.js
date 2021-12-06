@@ -46,7 +46,12 @@ export default function AdminPage() {
                 <tbody>
                 {filmData.map((film) => 
                     <tr key={film.id}>
-                    <td>{film["authorized"]}</td>
+                    <td><input type="checkbox"
+                            checked={film.authorized}
+                            id={film.id}
+                            name={film.id}
+                            value={film.id}/>
+                    </td>
                     <td>{film["title"]}</td>
                     <td>{film["overview"]}</td>
                     <td>{film["term"]}</td>
