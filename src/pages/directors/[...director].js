@@ -1,13 +1,12 @@
 import DirectorPage from "../../components/DirectorPage";
-import CustomHead from "../../components/CustomHead";
-import Header from "../../components/Header";
+import Layout from "../../components/Layouts/Layout";
 import { useEffect, useState } from "react"
 
 import { useRouter } from "next/router"
 
 
 
-export default function Director({ genres, courses }) {
+export default function Director() {
 
 
   const router = useRouter();
@@ -42,17 +41,10 @@ export default function Director({ genres, courses }) {
   }, [director]);
 
   return (
-    <div>
-      <CustomHead />
-      <Header genreList={genres} classList={courses} />
-      <main>
-        {directorInfo[0] &&
-          <DirectorPage films={directorFilms} director={directorInfo[0]} />
-        }
-      </main>
-      <footer>
-        © {`${new Date().getFullYear()}`} Middlebury Movie Database
-      </footer>
-    </div>
+    <Layout>
+      {directorInfo[0] && (
+        <DirectorPage films={directorFilms} director={directorInfo[0]} />
+      )}
+    </Layout>
   );
 }
