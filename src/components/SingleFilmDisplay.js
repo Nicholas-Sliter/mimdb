@@ -6,47 +6,52 @@
 ******/
 import styles from "../styles/SingleFilmDisplay.module.scss";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import useGetPoster from "../hooks/useGetPoster";
+import useGetBackdrop from "../hooks/useGetBackdrop";
 
 import ReactPlayer from "react-player/vimeo";
 
+
 export default function SingleFilmDisplay({ film }) {
+  
+
+  const [poster, setPoster] = useState("");
+  const [backdrop, setBackdrop] = useState("");
+  const posterRes = useGetPoster(film ? film.id : 0); // 0 is for default pic
+  const backdropRes = useGetBackdrop(film ? film.id : 0); // 0 is for default pic
+
+  useEffect(() => {
+    setPoster(posterRes ? posterRes : "");
+    setBackdrop(backdropRes ? backdropRes : "");
+  }, [posterRes, backdropRes])
 
   //quick return if undefined film
   if (!film) {
     return <p>Choose a Film!</p>;
   }
 
-    const directors = film.directors.map((director) => {
-    return(
-         <li key={director}> 
-             <Link href={`/directors/${director}`} passHref> 
-                 <a>{director}</a>
-             </Link> 
-         </li> 
-     )
-
-
-     });
-    
-    
+  const directors = film.directors.map((director) => {
+    return (
+      <li key={director}>
+        <Link href={`/directors/${director}`} passHref>
+          <a>{director}</a>
+        </Link>
+      </li>
+    )
+  });
   const actors = film.actors.map((actor) => <li key={actor}>{actor}</li>);
   const contributors = film.contributors.map((contrib) => (
     <li key={contrib}>{contrib}</li>
   ));
-
-  console.log(film);
-
-  const {course} = film;
-  const {backdrop_path} = film;
-  const {poster_path} = film;
+  const { course } = film;
   const vimeo_url = `https://vimeo.com/${film.vimeo_id}`;
-  //const vimeo_url = "https://vimeo.com/607602408"; 
 
   return (
     <div className={styles.pageContainer}>
       <div className={styles.background_image_container}>
-        <img src={backdrop_path} />
-        <img src={poster_path} className={styles.poster} />
+        <img src={`data:image/jpg;base64,${backdrop}`} />
+        <img src={`data:image/jpg;base64,${poster}`} className={styles.poster} />
       </div>
       <div className={styles.content}>
         <h1 className={styles.filmTitle}>{film.title}</h1>

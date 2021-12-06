@@ -1,6 +1,5 @@
 import nc from "next-connect";
-import { getFilmById, getPosterById } from "../../../lib/backend-utils";
-const fs = require("fs");
+import { getPosterById } from "../../../lib/backend-utils";
 
 const handler = nc().get(async (req, res) => {
   const { id } = req.query;

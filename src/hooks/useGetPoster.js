@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 
-// get the poster of a film (by id) from api endpoint at /api/poster/[id]
-
+/**
+ * get the poster of a film (by id) from api endpoint at /api/poster/[id]
+ * @param {integer} id 
+ * @returns the poster data, in the form of base64 string
+ */
 export default function useGetPoster(id) {
-  const [poster, setPoster] = useState();
+  const [posterData, setPosterData] = useState("");
   
   useEffect(async () => {
     const getPoster = async () => {
@@ -13,12 +16,11 @@ export default function useGetPoster(id) {
         throw new Error(`Unable to fetch poster for film with id of: ${id}`);
       }
       const posterObject = await response.json();
-      setPoster(posterObject.poster_data);
+      setPosterData(posterObject.poster_data);
     }
-    //console.log("b");
     await getPoster();
+    
   }, [id])
 
-  //console.log(poster);
-  return poster;
+  return posterData;
 }

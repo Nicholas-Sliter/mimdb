@@ -6,7 +6,7 @@
  * The assumption is that the working data store is found in data/films.json and we have a "golden copy" in data/mockData.json.
  */
 
-//import fs from "fs";
+ const fs = require("fs");
 //import path from "path";
 import process from "process";
 
@@ -24,7 +24,7 @@ export const knex = knexInitializer(
 //   fs.copyFileSync(orig, dest);
 // }
 
-
+/*
 export function readData() {
   const dataDirectory = path.join(process.cwd(), "data");
   const fullPath = path.join(dataDirectory, "tempData.json");
@@ -45,6 +45,7 @@ export function saveData(films) {
   }
   fs.writeFileSync(fullPath, JSON.stringify(films, null, "\t"), "utf8"); // Pretty write the mock data
 }
+*/
 
 
 
@@ -121,7 +122,11 @@ export async function getContributors(id) {
  * @param {integer} id 
  * @returns the poster object, in the form of {poster_data:"the base64 string"}
  */
- export async function getPosterById(id) {
+export async function getPosterById(id) {
+  if (id===0) {
+    // default poster
+    return {Poster_data: fs.readFileSync("./public/defaults/chapelBackground-3-2.jpg", {encoding: "base64"})}
+  }
   const poster = await knex.select("poster_data")
     .from("Poster")
     .where({ "film_id": id });
@@ -134,7 +139,11 @@ export async function getContributors(id) {
  * @param {integer} id 
  * @returns the backdrop object, in the form of {backdrop_data:"the base64 string"}
  */
- export async function getBackdropById(id) {
+export async function getBackdropById(id) {
+  if (id===0) {
+    // default backdrop
+    return {Backdrop_data: fs.readFileSync("./public/defaults/backdrops/chapelBackground-16-9.jpg", {encoding: "base64"})}
+  }
   const backdrop = await knex.select("backdrop_data")
     .from("Backdrop")
     .where({ "film_id": id });
@@ -188,7 +197,7 @@ async function fillFilm(film) {
  * @returns an array of all films
  */
 export async function getAllFilms() {
-  let films = await knex("Film").select();
+  const films = await knex("Film").select();
   return await Promise.all(films.map(async (film) => await fillFilm(film)));
 }
 
