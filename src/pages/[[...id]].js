@@ -14,7 +14,6 @@ import styles from "../styles/Home.module.css";
 export default function Home({}) {
 
   const discover = useContext(DiscoverContext);
-  console.log(discover);
 
   const term = getLastTerm();
   const termString = convertTermToString(term);

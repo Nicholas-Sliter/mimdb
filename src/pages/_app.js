@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
 
   const featured = useFeatured(2,loading);
-  
+
   //get genres and courses from /api/genres and /api/courses
   useEffect(async () => {
     const genreRes = await fetch("/api/genres");
