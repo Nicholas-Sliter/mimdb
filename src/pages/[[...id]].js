@@ -11,7 +11,7 @@ import useFeatured from "../hooks/useFeatured";
 import styles from "../styles/Home.module.css";
 
 //need to remove films here and modify useFeatured
-export default function Home({}) {
+export default function Home() {
 
   const discover = useContext(DiscoverContext);
 
