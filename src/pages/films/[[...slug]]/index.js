@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
-import SingleFilmDisplay from "../../components/SingleFilmDisplay";
-import styles from "../../styles/Home.module.css";
-import Layout from "../../components/Layouts/Layout";
+import SingleFilmDisplay from "../../../components/SingleFilmDisplay";
+import styles from "../../../styles/Home.module.css";
+import Layout from "../../../components/Layouts/Layout";
 
 import useGetFilm from "../../../hooks/useGetFilm";
 
