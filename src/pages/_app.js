@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   const [courses, setCourses] = useState([]);
 
   //get genres and courses from /api/genres and /api/courses
-  useEffect( async() => {
+  useEffect(async () => {
     const filmRes = await fetch("api/films");
     const genreRes = await fetch("/api/genres");
     const courseRes = await fetch("/api/courses");
@@ -28,12 +28,15 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
 
-  const GenreCourseContextObject = {genres: genres, courses: courses};
+  const GenreCourseContextObject = { genres: genres, courses: courses };
   const props = { ...pageProps, films, setFilms };
   return (
-    <GenreCourseContext.Provider value={GenreCourseContextObject}>
-      <Component {...props} />
-    </GenreCourseContext.Provider>
+    <Provider>
+      <GenreCourseContext.Provider value={GenreCourseContextObject}>
+        <Component {...props} />
+      </GenreCourseContext.Provider>
+    </Provider>
+
   );
 }
 

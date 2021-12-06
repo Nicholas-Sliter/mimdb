@@ -1,6 +1,8 @@
 import FilmRow from "../components/DisplayLayouts/FilmRow";
 import FilmController from "../components/DisplayLayouts/FilmController";
-import Layout from "../components/Layouts/Layout"
+import Layout from "../components/Layouts/Layout";
+import LoginWidget from "../components/LoginWidget";
+import SecureItem from "../components/SecureItem";
 
 import useFeatured from "../hooks/useFeatured";
 
@@ -9,6 +11,8 @@ import useFeatured from "../hooks/useFeatured";
 export default function Home({films}) {
   return (
     <Layout>
+      <LoginWidget />
+      <SecureItem />
       <FilmRow
         displayType="wide"
         films={useFeatured(films)}

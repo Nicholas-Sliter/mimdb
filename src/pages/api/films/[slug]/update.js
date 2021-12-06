@@ -1,13 +1,17 @@
 // Approve API - update film approval
 
 import nc from "next-connect";
-import { updateFilmApproval } from "../../../lib/backend-utils";
+import { updateFilmApproval } from "../../../../lib/backend-utils";
 
-const approval = true; // should be a boolean imported from somewhere
 
 const handler = nc().put( async (req, res) => {
     const { slug } = req.query;
-    const success = await updateFilmApproval(slug, approval);
+    const update = JSON.parse(req.body).approval;
+    if (!update && update !== 0 && update !== "0"){
+      res.status(400);
+      return;
+    }
+    const success = await updateFilmApproval(slug, update);
 
     if (success) {
       res.status(200).json({
