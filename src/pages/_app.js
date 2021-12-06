@@ -9,9 +9,10 @@ function MyApp({ Component, pageProps }) {
   const [genres, setGenres] = useState([]);
   const [courses, setCourses] = useState([]);
   const [discover, setDiscover] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const featured = useFeatured(2);
-
+  const featured = useFeatured(2,loading);
+  
   //get genres and courses from /api/genres and /api/courses
   useEffect(async () => {
     const genreRes = await fetch("/api/genres");
@@ -25,11 +26,16 @@ function MyApp({ Component, pageProps }) {
 
     setGenres(genres);
     setCourses(courses);
-
-    if (!discover.length) {
-      setDiscover(featured);
-    }
   }, []);
+
+
+  useEffect(() => {
+    //set discover courses
+    if (featured && featured.length && loading) {
+      setDiscover(featured);
+      setLoading(false);
+    }
+  }, [featured]);
 
   const GenreCourseContextObject = { genres: genres, courses: courses };
   const DiscoverContextObject = { films: discover };
