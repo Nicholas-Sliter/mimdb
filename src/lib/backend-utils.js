@@ -123,9 +123,9 @@ export async function getContributors(id) {
  * @returns the poster object, in the form of {poster_data:"the base64 string"}
  */
 export async function getPosterById(id) {
-  if (id===0) {
+  if (+id===0) {
     // default poster
-    return {Poster_data: fs.readFileSync("./public/defaults/chapelBackground-3-2.jpg", {encoding: "base64"})}
+    return {poster_data: fs.readFileSync("./public/defaults/chapelBackground-3-2.jpg", {encoding: "base64"})}
   }
   const poster = await knex.select("poster_data")
     .from("Poster")
@@ -140,9 +140,9 @@ export async function getPosterById(id) {
  * @returns the backdrop object, in the form of {backdrop_data:"the base64 string"}
  */
 export async function getBackdropById(id) {
-  if (id===0) {
+  if (+id===0) {
     // default backdrop
-    return {Backdrop_data: fs.readFileSync("./public/defaults/backdrops/chapelBackground-16-9.jpg", {encoding: "base64"})}
+    return {backdrop_data: fs.readFileSync("./public/defaults/backdrops/chapelBackground-16-9.jpg", {encoding: "base64"})}
   }
   const backdrop = await knex.select("backdrop_data")
     .from("Backdrop")

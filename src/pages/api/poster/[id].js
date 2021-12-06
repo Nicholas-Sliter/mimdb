@@ -4,6 +4,7 @@ import { getPosterById } from "../../../lib/backend-utils";
 const handler = nc().get(async (req, res) => {
   const { id } = req.query;
   const poster = await getPosterById(id);
+  //console.log(poster);
   if (poster) {
     res.status(200).json(poster);
   } else {

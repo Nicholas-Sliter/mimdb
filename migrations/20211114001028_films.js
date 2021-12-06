@@ -63,7 +63,7 @@ exports.up = function(knex) {
   })
   .createTable("Backdrop", table => {
     table.integer("film_id").unique().notNullable();
-    table.string("Backdrop_data").notNullable();  //base64 string
+    table.string("backdrop_data").notNullable();  //base64 string
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
   })
 };

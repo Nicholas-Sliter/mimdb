@@ -17,7 +17,7 @@ export default function useGetBackdrop(id) {
       }
       const backdropObject = await response.json();
       console.log(response);
-      setBackdropData(backdropObject.Backdrop_data);
+      setBackdropData(backdropObject.backdrop_data);
     }
     await getBackdrop();
 
