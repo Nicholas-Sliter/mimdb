@@ -15,7 +15,8 @@ const handler = nc().put( async (req, res) => {
 
     if (success) {
       res.status(200).json({
-        message: "Successfully updated film approval"
+        message: "Successfully updated film approval",
+        update: update
       })
     } else {
       res.status(500).json({
