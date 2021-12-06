@@ -33,7 +33,7 @@ exports.seed = async function(knex) {
       duration,
     }))(film);
   });
-  processedFilms.approveBoolean = true;
+  processedFilms.forEach((film) => film.approveBoolean=true);
   await knex("Film").del();
   await knex.batchInsert("Film", processedFilms, 100);
 
