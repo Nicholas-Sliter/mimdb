@@ -18,8 +18,8 @@ export default function SingleFilmDisplay({ film }) {
 
   const [poster, setPoster] = useState("");
   const [backdrop, setBackdrop] = useState("");
-  const posterRes = useGetPoster(film ? film.id : 0); // 0 is for default pic
-  const backdropRes = useGetBackdrop(film ? film.id : 0); // 0 is for default pic
+  const posterRes = useGetPoster(film ? film.slug : "temp"); // temp is for placeholder when loading
+  const backdropRes = useGetBackdrop(film ? film.slug : "temp");
 
   useEffect(() => {
     setPoster(posterRes ?? "");

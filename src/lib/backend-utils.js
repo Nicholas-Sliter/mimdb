@@ -119,34 +119,34 @@ export async function getContributors(id) {
 /**
  * Get the poster of a film.
  * 
- * @param {integer} id 
+ * @param {string} slug 
  * @returns the poster object, in the form of {poster_data:"the base64 string"}
  */
-export async function getPosterById(id) {
-  if (+id===0) {
+export async function getPosterBySlug(slug) {
+  if (slug==='temp') {
     // default poster
     return {poster_data: fs.readFileSync("./public/defaults/salmon-blue.jpg", {encoding: "base64"})}
   }
   const poster = await knex.select("poster_data")
     .from("Poster")
-    .where({ "film_id": id });
+    .where({ "film_slug": slug });
   return poster[0];
 }
 
 /**
  * Get the backdrop of a film.
  * 
- * @param {integer} id 
+ * @param {string} slug 
  * @returns the backdrop object, in the form of {backdrop_data:"the base64 string"}
  */
-export async function getBackdropById(id) {
-  if (+id===0) {
+export async function getBackdropBySlug(slug) {
+  if (slug==='temp') {
     // default backdrop
     return {backdrop_data: fs.readFileSync("./public/defaults/blue-white.jpg", {encoding: "base64"})}
   }
   const backdrop = await knex.select("backdrop_data")
     .from("Backdrop")
-    .where({ "film_id": id });
+    .where({ "film_slug": slug });
   return backdrop[0];
 }
 

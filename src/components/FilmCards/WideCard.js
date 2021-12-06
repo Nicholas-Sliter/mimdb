@@ -19,14 +19,14 @@ export default function WideCard({ film }) {
 
   const [poster, setPoster] = useState("");
   const [backdrop, setBackdrop] = useState("");
-  const posterRes = useGetPoster(film.id);
-  const backdropRes = useGetBackdrop(film.id);
+  const posterRes = useGetPoster(film.slug);
+  const backdropRes = useGetBackdrop(film.slug);
 
 
   useEffect(() => {
     setPoster(posterRes ?? "");
     setBackdrop(backdropRes ?? "");
-  }, [posterRes, backdropRes])
+  }, [posterRes, backdropRes]);
 
   return (
     

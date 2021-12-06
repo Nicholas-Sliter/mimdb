@@ -23,15 +23,6 @@ function MyApp({ Component, pageProps }) {
     const genres = await genreRes.json();
     const courses = await courseRes.json();
 
-    /*
-    Promise.all(films.map(async (film) => {
-      const posterRes = await fetch(`/api/poster/${film.id}`);
-      //console.log(posterRes);
-      film.poster = await posterRes.json();
-      console.log(film.poster);
-      return film;
-    }));*/
-
     setFilms(films);
     setGenres(genres);
     setCourses(courses);

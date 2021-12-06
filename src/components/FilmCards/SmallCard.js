@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 //a normlal-sized film card component that displays the film's title, poster, duration, and genres
 export default function SmallCard({ film }) {
   const [poster, setPoster] = useState("");
-  const posterRes = useGetPoster(film.id);
+  const posterRes = useGetPoster(film.slug);
 
   useEffect(() => {
     setPoster(posterRes ?? "");

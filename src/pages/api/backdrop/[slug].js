@@ -1,9 +1,9 @@
 import nc from "next-connect";
-import { getBackdropById } from "../../../lib/backend-utils";
+import { getBackdropBySlug } from "../../../lib/backend-utils";
 
 const handler = nc().get(async (req, res) => {
-  const { id } = req.query;
-  const backdrop = await getBackdropById(id);
+  const { slug } = req.query;
+  const backdrop = await getBackdropBySlug(slug);
   if (backdrop) {
     res.status(200).json(backdrop);
   } else {
