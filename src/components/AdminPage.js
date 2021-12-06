@@ -24,9 +24,9 @@ export default function AdminPage() {
     console.log(filmData)
     
     return (
-        <div>
+        <div style={{padding:"40px"}}>
             <h1>Films in the MIMDB Database</h1>
-            <table margin="2vw auto"
+            <table margin="2 auto"
             fontSize="large"
             border="1px solid black">
                 <thead>
