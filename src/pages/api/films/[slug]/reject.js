@@ -1,4 +1,4 @@
-// Approve API - update film approval
+// Approve API - reject film
 
 import nc from "next-connect";
 import { updateFilmApproval } from "../../../../lib/backend-utils";
