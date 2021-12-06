@@ -11,9 +11,7 @@ export default function Film() {
 
     return (
         <Layout>
-        <div className={styles.container}>
             <SingleFilmDisplay film={useGetFilm(slug)}/>
-        </div>
         </Layout>
     )
 }
