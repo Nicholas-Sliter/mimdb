@@ -1,15 +1,10 @@
 import router from "next/router";
 import { useState } from "react";
 import styles from "../styles/SubmitPage.module.css";
-//import AddedText from "./FilmSubmission/AddedText";
-import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
-import Select from "./FilmSubmission/Select";
 import TextArea from "./FilmSubmission/TextArea";
-//import { validateFilmSemester } from "../lib/frontend-utils";
 import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
-import { validateFilmGenre } from "../lib/frontend-utils";
 
 
 export default function DirectorSubmit({complete}) {
@@ -39,77 +34,39 @@ export default function DirectorSubmit({complete}) {
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Add Student Director to Mimdb</h1>
       <div className={styles.group}>
         <div>
-          <TextInput name="Name" setFunc={setName} />
-          <TextInput name="Grad" setFunc={setGrad} />
+          <TextInput name="Name" setFunc={setName} moreText="Ex: John Middlebury"/>
+          <TextInput name="Grad Year" setFunc={setGrad} moreText="Ex: 2022" />
         </div>
+      </div>
+      <div className={styles.group}>
         <div>
-          <TextInput
+          <TextArea
             name={"Bio"}
             setFunc={setBio}
             moreText="Tell us a little bit about yourself!"
           />
         </div>
+      </div>
+      <div className={styles.group}>
         <div>
           <TextInput
             name={"Middlebury Email"}
             setFunc={setMiddEmail}
-            moreText="Ex: joeMiddlebury@middlebury.edu"
+            moreText="Ex: johnMidd@middlebury.edu"
           />
+          <input type="checkbox" id="pubDisplayMidd" name="makePub" value="insertValue"/>
+          <label for="pubDisplayMidd"> Make Public </label><br></br>
+        <br></br>
+        <br></br>
         <TextInput
             name={"Personal Email"}
             setFunc={setPersonalEmail}
-            moreText="Ex: joeMiddlebury@gmail.com"
+            moreText="Ex: johnMidd@gmail.com"
           />
+            <input type="checkbox" id="pubDisplayE" name="makePublic" value="insertValue"/>
+            <label for="pubDisplayE"> Make Public </label><br></br>
         </div>
       </div>
-      {/* <div className={styles.group}>
-        <TextArea name="Overview" setFunc={setOverview} />
-      </div>
-      <div className={styles.group}>
-        <OptionSelectCard
-          title="Course"
-          useDropdown
-          initialOptions={courses}
-          selectedOptions={newCourse}
-          onChangeFunction={addCourse}
-          limit={2}
-        />
-        <OptionSelectCard
-          title="Genres"
-          allowCustom
-          useDropdown
-          initialOptions={genres}
-          selectedOptions={newGenre}
-          onChangeFunction={addGenre}
-          limit={3}
-          validator={validateFilmGenre}
-        />
-      </div>
-      <div className={styles.group}>
-        <OptionSelectCard
-          title="Actors"
-          allowCustom
-          selectedOptions={inputActorList}
-          useDropdown={false}
-          onChangeFunction={setActorInputList}
-          limit={20}
-        />
-        <OptionSelectCard
-          title="Directors"
-          allowCustom={false}
-          initialOptions={[
-            "Nicholas Sliter",
-            "Jiaqi Li",
-            "Wayne Wang",
-            "Becca Hochman-Fisher",
-            "Nicholas McKalip",
-            "Katie Kosior",
-          ]}
-          selectedOptions={inputDirectorList}
-          useDropdown
-          onChangeFunction={setDirectorInputList}
-        />
-      </div> */}
       <div className={styles.groupButton}>
         <button
           className={styles.largeButton}
