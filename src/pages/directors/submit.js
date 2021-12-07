@@ -1,5 +1,4 @@
-import CustomHead from "../../components/CustomHead";
-import Header from "../../components/Header";
+
 import DirectorSubmit from "../../components/DirectorSubmit";
 
 import styles from "../../styles/Home.module.css";
@@ -23,9 +22,10 @@ export default function SubmitDirPage() {
   }
 
   return (
+
     <div className={styles.container}>
-      <CustomHead />
-      <Header />
+
+
       <main>
         
         <DirectorSubmit complete={submitDirComplete}/>
@@ -34,6 +34,7 @@ export default function SubmitDirPage() {
       <footer>
          © {`${new Date().getFullYear()}`} Middlebury Movie Database
       </footer>
+
     </div>
   );
 }
