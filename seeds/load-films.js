@@ -18,6 +18,7 @@ exports.seed = async function(knex) {
       video,
       vimeo_id,
       duration,
+      approveBoolean
     }) => ({
       backdrop_path,
       title,
@@ -31,9 +32,10 @@ exports.seed = async function(knex) {
       video,
       vimeo_id,
       duration,
+      approveBoolean
     }))(film);
   });
-  processedFilms.forEach((film) => film.approveBoolean=true);
+
   await knex("Film").del();
   await knex.batchInsert("Film", processedFilms, 100);
 
