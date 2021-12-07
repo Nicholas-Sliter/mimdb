@@ -162,7 +162,7 @@ async function fillFilm(film) {
  * @returns an array of all films
  */
 export async function getAllFilms() {
-  let films = await knex("Film").select();
+  let films = await knex("Film").select().where({ approveBoolean: true });
   return await Promise.all(films.map(async (film) => await fillFilm(film)));
 }
 
@@ -172,7 +172,7 @@ export async function getAllFilms() {
  * @returns an array of all films
  */
 export async function getRandFilms(number) {
-  const films = await knex("Film").select().orderByRaw('RANDOM()').limit(number);
+  const films = await knex("Film").select().orderByRaw('RANDOM()').limit(number).where({ approveBoolean: true});
   await Promise.all(films.map((film) => fillFilm(film)));
   return films;
 }
@@ -187,7 +187,7 @@ export async function getRandFilms(number) {
  * @returns the film associated with id id
  */
 export async function getFilmById(id) {
-  const [film] = await knex("Film").select().where({ id: id });
+  const [film] = await knex("Film").select().where({ id: id , approveBoolean: true});
   return film ? await fillFilm(film) : null;
 }
 
@@ -198,7 +198,7 @@ export async function getFilmById(id) {
  * @returns the film associated with slug
  */
 export async function getFilmBySlug(slug) {
-  const [film] = await knex("Film").select().where({ slug: slug });
+  const [film] = await knex("Film").select().where({ slug: slug , approveBoolean: true });
   return film ? await fillFilm(film) : null;
 }
 
@@ -211,7 +211,7 @@ export async function getFilmBySlug(slug) {
  export async function getFilmsByTerm(term) {
   const ids = await knex.select("id")
     .from("Film")
-    .where({ "term": term });
+    .where({ term: term, approveBoolean: true });
   
   // Convert to compatible format with other backend-util GET functions.
   const film_ids = ids.map((obj) => {
@@ -259,7 +259,7 @@ export async function getFilmsByDirector(name) {
   const film_ids = await knex.select("film_id")
     .from("DirectorsFilm")
     .join("Directors", "Directors.director_id", "DirectorsFilm.director_id")
-    .where({ "director_name": name });
+    .where({ "director_name": name, film_approveBoolean: true });
   return film_ids;
 }
 
@@ -551,4 +551,16 @@ export function validateFilmActors(actors) {
   }
 
   return "";
+}
+
+/**
+ * Update film approval
+ * 
+ * @param {string} slug 
+ * @param {boolean} rating 
+ * @returns Boolean indicating approve or reject
+ */
+ export async function updateFilmApproval(slug, approve) {
+  const count = await knex("Film").select().where({slug:slug}).update({approveBoolean:approve});
+  return (count === 1);
 }
