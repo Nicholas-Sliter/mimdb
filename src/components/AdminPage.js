@@ -1,42 +1,12 @@
 
 import { useState, useEffect } from "react";
 
-export default function AdminPage() {
-    const [filmData, setData] = useState([]);
+export default function AdminPage({ films, adminFunc }) {
+    const [update, refresh] = useState(true);
 
-    const adminFunc = async(apiCall, film) => {
-        if(film) {
-            const response = await fetch(`/api/films/${film.slug}/${apiCall}`, {
-            method: "PUT",
-            body: JSON.stringify(film),
-            headers: new Headers({ "Content-Type": "application/json" })
-            })
-            console.log("here")
-
-            if (!response.ok) {
-                throw new Error(response.statusText)
-            }
-        }
+    const test = async(apiCall, film) => {
+        adminFunc(apiCall, film);
     }
-
-
-    useEffect(() => {
-        try {
-            const resolveQuery = async () => {
-            const res = await fetch("/api/films");
-
-            if (!res.ok) {
-                throw new Error("Could not complete request");
-            }
-
-            const data = await res.json();
-            setData(data);
-            };
-            resolveQuery();
-        } catch (err) {
-        setData([]);
-        }
-    }, []);
     
     return (
         <div style={{padding:"40px"}}>
@@ -59,17 +29,17 @@ export default function AdminPage() {
                     </tr>
                 </thead>
                 <tbody>
-                {filmData.map((film) => 
+                {films.map((film) => 
                     <tr key={film.id}>
                     {//onchange will be updated when merged with the new api calls
                         film.approveBoolean ? 
                         <td>
                         <p style={{color: "green"}}>Approved</p>
-                        <button onChange={() => adminFunc("approve", film)}>Reject</button>
+                        <button onClick={() => {test("reject", film); refresh(!update)}}>Reject</button>
                         </td> :
                         <td>
                         <p style={{color: "red"}}>Not approved</p>
-                        <button onChange={() => adminFunc("reject", film)}>Approve</button>
+                        <button onClick={() => {test("approve", film); refresh(!update)}}>Approve</button>
                         </td>
                     }
                     <td>{film["title"]}</td>
