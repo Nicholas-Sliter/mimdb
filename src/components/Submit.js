@@ -10,11 +10,14 @@ import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
 import { validateFilmGenre } from "../lib/frontend-utils";
+import ImageCrop from "./common/ImageCrop";
+import Group from "./common/Group";
+import FlexGroup from "./common/FlexGroup";
 
-import ReactCrop from 'react-image-crop';
-import 'react-image-crop/dist/ReactCrop.css';
+// import ReactCrop from "react-image-crop";
+// import "react-image-crop/dist/ReactCrop.css";
 
-export default function Submit({complete}) {
+export default function Submit({ complete }) {
   const { genres, courses } = useContext(GenreCourseContext);
 
   const [title, setTitle] = useState("");
@@ -30,19 +33,27 @@ export default function Submit({complete}) {
   const [courseList, setCourseList] = useState(courses);
   const [inputDirectorList, setDirectorInputList] = useState([]);
   const [inputActorList, setActorInputList] = useState([]);
-  
+
+  //state for uploaded poster and backdrop before cropping
   const [poster, setPoster] = useState("");
-  const [crop, setCrop] = useState({ aspect: 2/3 });
+  const [backdrop, setBackdrop] = useState("");
+
+  const [croppedPoster, setCroppedPoster] = useState(null);
+  const [croppedBackdrop, setCroppedBackdrop] = useState(null);
 
 
-  const handleUploadChange = (e) => {
-    console.log(poster);
-    setPoster(URL.createObjectURL(e.target.files[0]))
-  }
+  const handlePosterUploadChange = (e) => {
+    setPoster(URL.createObjectURL(e.target.files[0]));
+  };
+
+    const handleBackdropUploadChange = (e) => {
+      setBackdrop(URL.createObjectURL(e.target.files[0]));
+    };
 
   const handleCropImageButton = () => {
+    //console.log(crop);
     //setPoster(crop);
-  }
+  };
 
   async function createSubmission() {
     const submitContent = {
@@ -65,7 +76,7 @@ export default function Submit({complete}) {
   return (
     <div className={styles.submitPage}>
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
-      <div className={styles.group}>
+      <FlexGroup>
         <div>
           <TextInput name="Title" setFunc={setTitle} />
           <TextInput name="Log-Line" setFunc={setLogLine} />
@@ -84,11 +95,11 @@ export default function Submit({complete}) {
           />
           <TextInput name="Vimeo ID" setFunc={setVimeoId} />
         </div>
-      </div>
-      <div className={styles.group}>
+      </FlexGroup>
+      <Group>
         <TextArea name="Overview" setFunc={setOverview} />
-      </div>
-      <div className={styles.group}>
+      </Group>
+      <FlexGroup>
         <OptionSelectCard
           title="Course"
           useDropdown
@@ -107,8 +118,8 @@ export default function Submit({complete}) {
           limit={3}
           validator={validateFilmGenre}
         />
-      </div>
-      <div className={styles.group}>
+      </FlexGroup>
+      <FlexGroup>
         <OptionSelectCard
           title="Actors"
           allowCustom
@@ -132,15 +143,35 @@ export default function Submit({complete}) {
           useDropdown
           onChangeFunction={setDirectorInputList}
         />
-      </div>
-      <div>
+      </FlexGroup>
+      <Group>
         <h3> Upload poster </h3>
-        <input id="poster-upload" type="file" onChange={handleUploadChange} />
-        <ReactCrop src={poster} crop={crop} onChange={newCrop => setCrop(newCrop)} />
-        <button onClick={handleCropImageButton} >
-          Crop Image
-        </button>
-      </div>
+        <input
+          id="poster-upload"
+          type="file"
+          onChange={handlePosterUploadChange}
+        />
+        <ImageCrop
+          image={poster}
+          aspect={2 / 3}
+          croppedImage={croppedPoster}
+          setCroppedImage={setCroppedPoster}
+        ></ImageCrop>
+      </Group>
+      <Group>
+        <h3> Upload backdrop </h3>
+        <input
+          id="backdrop-upload"
+          type="file"
+          onChange={handleBackdropUploadChange}
+        />
+        <ImageCrop
+          image={backdrop}
+          aspect={16 / 9}
+          croppedImage={croppedBackdrop}
+          setCroppedImage={setCroppedBackdrop}
+        ></ImageCrop>
+      </Group>
       <div className={styles.groupButton}>
         <button
           className={styles.largeButton}
@@ -161,21 +192,3 @@ export default function Submit({complete}) {
     </div>
   );
 }
-
-
-
-
-        // <Select
-        //   name="Genre"
-        //   array={genres}
-        //   newVar={newGenre}
-        //   setFunc={addGenre}
-        //   setCategoryList={setGenreList}
-        // />
-        // <Select
-        //   name="Course"
-        //   array={courses}
-        //   newVar={newCourse}
-        //   setFunc={addCourse}
-        //   setCategoryList={setCourseList}
-        // />
