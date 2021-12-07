@@ -55,7 +55,7 @@ export default function DirectorSubmit({complete}) {
             moreText="Ex: johnMidd@middlebury.edu"
           />
           <input type="checkbox" id="pubDisplayMidd" name="makePub" value="insertValue"/>
-          <label for="pubDisplayMidd"> Make Public </label><br></br>
+          <label htmlfor="pubDisplayMidd"> Make Public </label><br></br>
         <br></br>
         <br></br>
         <TextInput
@@ -64,7 +64,7 @@ export default function DirectorSubmit({complete}) {
             moreText="Ex: johnMidd@gmail.com"
           />
             <input type="checkbox" id="pubDisplayE" name="makePublic" value="insertValue"/>
-            <label for="pubDisplayE"> Make Public </label><br></br>
+            <label htmlfor="pubDisplayE"> Make Public </label><br></br>
         </div>
       </div>
       <div className={styles.groupButton}>
