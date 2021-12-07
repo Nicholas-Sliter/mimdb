@@ -182,9 +182,10 @@ $border_rad: 0.5rem;
   justify-content: center;
   align-items: center;
   display: block;
+  padding: 0rem 1rem 0rem 1rem;
   margin-left: auto;
   margin-right: auto;
-  width: 960px;
+  max-width: 960px;
   margin-top: 1rem;
 
   .overview {
