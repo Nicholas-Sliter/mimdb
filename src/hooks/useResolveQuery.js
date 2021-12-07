@@ -7,7 +7,7 @@ export default function useResolveQuery(query) {
 
   useEffect(() => {
     try {
-      if (query) {
+      if (query || query === "") {
         const resolveQuery = async () => {
           const res = await fetch(queryPath);
 

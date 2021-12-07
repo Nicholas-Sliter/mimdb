@@ -11,10 +11,14 @@ export default function FilmRow({
    wrap=true
 }) {
 
+   //early return
+   if (!films || films === []){
+      return(null);
+   }
+
    //get rowStyle from combindation of displayType and wrap
    const rowString = ((displayType === "small") ? "row" : "wideRow") + (wrap ? "" : "_nowrap");
    const rowStyle = styles[rowString];
-
    const cards = []
    if (displayType === "small") {
       films.forEach(film => {

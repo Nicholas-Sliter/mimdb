@@ -4,11 +4,9 @@ import styles from "../styles/SubmitPage.module.css";
 import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
-import { GenreCourseContext } from "./context/GenreCourseContext";
 
 
 export default function DirectorSubmit({complete}) {
-  const { genres, courses } = useContext(GenreCourseContext);
 
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
@@ -55,7 +53,7 @@ export default function DirectorSubmit({complete}) {
             moreText="Ex: johnMidd@middlebury.edu"
           />
           <input type="checkbox" id="pubDisplayMidd" name="makePub" value="insertValue"/>
-          <label htmlfor="pubDisplayMidd"> Make Public </label><br></br>
+          <label htmlFor="pubDisplayMidd"> Make Public </label><br></br>
         <br></br>
         <br></br>
         <TextInput
@@ -64,7 +62,7 @@ export default function DirectorSubmit({complete}) {
             moreText="Ex: johnMidd@gmail.com"
           />
             <input type="checkbox" id="pubDisplayE" name="makePublic" value="insertValue"/>
-            <label htmlfor="pubDisplayE"> Make Public </label><br></br>
+            <label htmlFor="pubDisplayE"> Make Public </label><br></br>
         </div>
       </div>
       <div className={styles.groupButton}>
