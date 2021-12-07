@@ -1,7 +1,9 @@
 /* eslint-disable */
 import "../styles/globals.css";
 import { useState, useEffect } from "react";
-import { GenreCourseContext } from "../components/context/GenreCourseContext";
+
+import { Provider } from 'next-auth/client';
+import { GenreCourseContext } from '../components/context/GenreCourseContext';
 import { DiscoverContext } from "../components/context/DiscoverContext";
 import useFeatured from "../hooks/useFeatured";
 
@@ -15,6 +17,7 @@ function MyApp({ Component, pageProps }) {
 
   //get genres and courses from /api/genres and /api/courses
   useEffect(async () => {
+
     const genreRes = await fetch("/api/genres");
     const courseRes = await fetch("/api/courses");
     if (!genreRes.ok || !courseRes.ok) {
@@ -29,6 +32,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
 
+
   useEffect(() => {
     //set discover courses
     if (featured && featured.length && loading) {
@@ -41,11 +45,13 @@ function MyApp({ Component, pageProps }) {
   const DiscoverContextObject = { films: discover };
   const props = { ...pageProps };
   return (
-    <GenreCourseContext.Provider value={GenreCourseContextObject}>
-      <DiscoverContext.Provider value={DiscoverContextObject}>
-        <Component {...props} />
-      </DiscoverContext.Provider>
-    </GenreCourseContext.Provider>
+    <Provider>
+      <GenreCourseContext.Provider value={GenreCourseContextObject}>
+        <DiscoverContext.Provider value={DiscoverContextObject}>
+          <Component {...props} />
+        </DiscoverContext.Provider>
+      </GenreCourseContext.Provider>
+    </Provider>
   );
 }
 

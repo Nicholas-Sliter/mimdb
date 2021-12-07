@@ -27,14 +27,12 @@ export default function SearchPage() {
   //default page for no search term or malformed search term
   if (!searchTerm) {
     return (
-      <div>
-        <CustomHead title="Search" />
-        <Header />
+      <Layout>
         <div className={styles.container}>
           <h1>Search</h1>
           <p>Enter a search term above to get started.</p>
         </div>
-      </div>
+      </Layout>
     );
   }
 
