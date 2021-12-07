@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import useGetBackdrop from "../../hooks/useGetBackdrop";
 import useGetPoster from "../../hooks/useGetPoster";
 
+import { default_grey_svg } from "../../lib/frontend-utils";
+
 //import poster server from enviroment variables
 //const POSTER_SERVER = process.env.REACT_APP_POSTER_SERVER;
 
@@ -17,15 +19,15 @@ export default function WideCard({ film }) {
   // const {poster_path} = film;
   // const {backdrop_path} = film;
 
-  const [poster, setPoster] = useState("");
-  const [backdrop, setBackdrop] = useState("");
+  const [poster, setPoster] = useState(default_grey_svg);
+  const [backdrop, setBackdrop] = useState(default_grey_svg);
   const posterRes = useGetPoster(film.slug);
   const backdropRes = useGetBackdrop(film.slug);
 
 
   useEffect(() => {
-    setPoster(posterRes ?? "");
-    setBackdrop(backdropRes ?? "");
+    setPoster(posterRes ?? default_grey_svg);
+    setBackdrop(backdropRes ?? default_grey_svg);
   }, [posterRes, backdropRes]);
 
   return (

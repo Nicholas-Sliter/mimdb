@@ -4,13 +4,15 @@ import Link from "next/link";
 import useGetPoster from "../../hooks/useGetPoster";
 import { useEffect, useState } from "react";
 
+import { default_grey_svg } from "../../lib/frontend-utils";
+
 //a normlal-sized film card component that displays the film's title, poster, duration, and genres
 export default function SmallCard({ film }) {
-  const [poster, setPoster] = useState("");
+  const [poster, setPoster] = useState(default_grey_svg);
   const posterRes = useGetPoster(film.slug);
 
   useEffect(() => {
-    setPoster(posterRes ?? "");
+    setPoster(posterRes ?? default_grey_svg);
   }, [posterRes])
 
   return (

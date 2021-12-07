@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { getBackdropBySlug } from "../../../lib/backend-utils";
+import { getBackdropBySlug } from "../../../../lib/backend-utils";
 
 const handler = nc().get(async (req, res) => {
   const { slug } = req.query;
