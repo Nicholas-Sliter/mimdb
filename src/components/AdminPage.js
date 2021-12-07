@@ -4,6 +4,22 @@ import { useState, useEffect } from "react";
 export default function AdminPage() {
     const [filmData, setData] = useState([]);
 
+    const adminFunc = async(apiCall, film) => {
+        if(film) {
+            const response = await fetch(`/api/films/${film.slug}/${apiCall}`, {
+            method: "PUT",
+            body: JSON.stringify(film),
+            headers: new Headers({ "Content-Type": "application/json" })
+            })
+            console.log("here")
+
+            if (!response.ok) {
+                throw new Error(response.statusText)
+            }
+        }
+    }
+
+
     useEffect(() => {
         try {
             const resolveQuery = async () => {
@@ -21,7 +37,6 @@ export default function AdminPage() {
         setData([]);
         }
     }, []);
-    console.log(filmData)
     
     return (
         <div style={{padding:"40px"}}>
@@ -47,14 +62,14 @@ export default function AdminPage() {
                 {filmData.map((film) => 
                     <tr key={film.id}>
                     {//onchange will be updated when merged with the new api calls
-                        film.approved ? 
+                        film.approveBoolean ? 
                         <td>
                         <p style={{color: "green"}}>Approved</p>
-                        <button>Reject</button>
+                        <button onChange={() => adminFunc("approve", film)}>Reject</button>
                         </td> :
                         <td>
                         <p style={{color: "red"}}>Not approved</p>
-                        <button>Approve</button>
+                        <button onChange={() => adminFunc("reject", film)}>Approve</button>
                         </td>
                     }
                     <td>{film["title"]}</td>
