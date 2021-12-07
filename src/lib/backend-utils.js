@@ -313,7 +313,6 @@ export async function getCourseByCourseName(name) {
  */
 export async function getDirector(name) {
   const director = await knex("Directors").select().where({ director_name: name });
-  // TODO: need to decide what to actually send!!!!!
   return director;
 
 }
