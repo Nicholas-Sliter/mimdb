@@ -167,7 +167,7 @@ export default function Submit({ complete }) {
         />
         <ImageCrop
           image={backdrop}
-          aspect={16 / 9}
+          aspect={21 / 9}
           croppedImage={croppedBackdrop}
           setCroppedImage={setCroppedBackdrop}
         ></ImageCrop>
@@ -175,18 +175,17 @@ export default function Submit({ complete }) {
       <div className={styles.groupButton}>
         <button
           className={styles.largeButton}
-          onClick={() => createSubmission()}
-        >
-          Submit
-        </button>
-        <button
-          className={styles.largeButton}
           onClick={() => {
             router.back();
           }}
         >
-          {" "}
-          Cancel{" "}
+          Cancel
+        </button>
+        <button
+          className={styles.largeButton}
+          onClick={() => createSubmission()}
+        >
+          Submit
         </button>
       </div>
     </div>

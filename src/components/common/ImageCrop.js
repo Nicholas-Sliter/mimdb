@@ -39,7 +39,7 @@ export default function ImageCrop({
   return (
     <>
       <div className={styles.container}>
-          <Cropper
+          {(image) ? <Cropper
             image={image}
             crop={crop}
             zoom={zoom}
@@ -47,7 +47,7 @@ export default function ImageCrop({
             onCropChange={onCropChange}
             onCropComplete={onCropComplete}
             onZoomChange={onZoomChange}
-          />
+          /> : <div className={styles.emptyCropper} />}
         {croppedImage ? (
           <img
             className={styles.cropped_preview}
