@@ -90,6 +90,8 @@ const handler = nc().get(async (req, res) => {
   // Get all films based on the id_list
   let film_list = await Promise.all(id_list.map(async (film_id) => await getFilmById(film_id.film_id)));
 
+  film_list = film_list.filter((film) => film!=null);
+
   if (Object.keys(filters).length>1) {
     film_list = multiFilters(film_list, filters);
   }

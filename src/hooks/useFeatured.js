@@ -1,24 +1,18 @@
-export default function useFeatured(films) {
+import { useState, useEffect } from "react";
+import useGetRandomFilms from "./useGetRandomFilms";
 
-    /* Randomize array in-place using Durstenfeld shuffle algorithm */
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
+export default function useFeatured(number=2, loaded=true) {
+  const [featured, setFeatured] = useState([]);
+  const [loading, setLoading] = useState(loaded);
+  const films = useGetRandomFilms(number);
+
+
+  useEffect(() => {
+    if (films && films.length && loading) {
+      setFeatured(films);
+      setLoading(false);
     }
+  }, [films]);
 
-    // numWanted is an integer parameter for how many random films need to be generated
-    function getFeatured(numWanted) {
-
-        const collectionCopy = films.map((movie) => movie);
-
-        shuffleArray(collectionCopy);
-
-        const featured = collectionCopy.slice(0, Math.min(numWanted + 1, films.length));
-
-        return featured;
-    }
-    return getFeatured(1);
+  return featured;
 }
