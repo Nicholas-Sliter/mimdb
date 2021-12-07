@@ -1,7 +1,9 @@
 /**
  * Backend utility functions
  *
- * Skeleton is from Practical7.
+ * Borrowed from Practicle7. This practice of using a golden copy of .json will be replaced later by database.
+ *
+ * The assumption is that the working data store is found in data/films.json and we have a "golden copy" in data/mockData.json.
  */
 
 const fs = require("fs");
@@ -21,9 +23,10 @@ export const knex = knexInitializer(
  * @returns an array of genre names for film with id id
  */
 export async function getGenres(id) {
-  const genres = await knex.select("genre_name")
+  const genres = await knex
+    .select("genre_name")
     .from("Genre")
-    .where({ "film_id": id });
+    .where({ film_id: id });
   return genres.map((entry) => entry.genre_name);
 }
 
@@ -34,10 +37,11 @@ export async function getGenres(id) {
  * @returns an array of course names for film with id id
  */
 export async function getCourse(id) {
-  const courses = await knex.select("course_name")
+  const courses = await knex
+    .select("course_name")
     .from("CourseFilm")
     .join("Course", "Course.course_number", "CourseFilm.course_number")
-    .where({ "film_id": id });
+    .where({ film_id: id });
   return courses.map((entry) => entry.course_name);
 }
 
@@ -48,10 +52,11 @@ export async function getCourse(id) {
  * @returns an array of director names for film with id id
  */
 export async function getDirectors(id) {
-  const directors = await knex.select("director_name")
+  const directors = await knex
+    .select("director_name")
     .from("DirectorsFilm")
     .join("Directors", "Directors.director_id", "DirectorsFilm.director_id")
-    .where({ "film_id": id });
+    .where({ film_id: id });
   return directors.map((entry) => entry.director_name);
 }
 
@@ -62,9 +67,10 @@ export async function getDirectors(id) {
  * @returns an array of actor names for film with id id
  */
 export async function getActors(id) {
-  const actors = await knex.select("actor_name")
+  const actors = await knex
+    .select("actor_name")
     .from("Actors")
-    .where({ "film_id": id });
+    .where({ film_id: id });
   return actors.map((entry) => entry.actor_name);
 }
 
@@ -75,9 +81,10 @@ export async function getActors(id) {
  * @returns an array of contributor names for film with id id
  */
 export async function getContributors(id) {
-  const contributors = await knex.select("contributor_name")
+  const contributors = await knex
+    .select("contributor_name")
     .from("Contributors")
-    .where({ "film_id": id });
+    .where({ film_id: id });
   return contributors.map((entry) => entry.contributor_name);
 }
 
@@ -183,9 +190,6 @@ export async function getRandFilms(number) {
   return films;
 }
 
-
-
-
 /**
  * Get a single film from the database by its id
  *
@@ -221,7 +225,11 @@ export async function getFilmsByTerm(term) {
 
   // Convert to compatible format with other backend-util GET functions.
   const film_ids = ids.map((obj) => {
-    Object.defineProperty(obj, "film_id", Object.getOwnPropertyDescriptor(obj, "id"));
+    Object.defineProperty(
+      obj,
+      "film_id",
+      Object.getOwnPropertyDescriptor(obj, "id")
+    );
     delete obj["id"];
     return obj;
   });
@@ -235,7 +243,8 @@ export async function getFilmsByTerm(term) {
  * @returns an array of all films of the genre
  */
 export async function getFilmsByGenre(genre) {
-  const film_ids = await knex.select("film_id")
+  const film_ids = await knex
+    .select("film_id")
     .from("Genre")
     .where({ "genre_name": genre, "approved": true });
   return film_ids;
@@ -248,10 +257,11 @@ export async function getFilmsByGenre(genre) {
  * @returns an array of all films in the course
  */
 export async function getFilmsByCourse(course) {
-  const film_ids = await knex.select("film_id")
+  const film_ids = await knex
+    .select("film_id")
     .from("CourseFilm")
     .join("Course", "Course.course_number", "CourseFilm.course_number")
-    .where({ "course_name": course });
+    .where({ course_name: course });
   return film_ids;
 }
 
@@ -261,13 +271,35 @@ export async function getFilmsByCourse(course) {
  * @param {string} name
  * @returns an array of all films by the director
  */
-export async function getFilmsByDirector(name) {
-  const film_ids = await knex.select("film_id")
+export async function getFilmObjectsByDirector(slug) {
+  const film_ids = await knex
+    .select("film_id")
     .from("DirectorsFilm")
     .join("Directors", "Directors.director_id", "DirectorsFilm.director_id")
-    .where({ "director_name": name });
+    .where({ director_slug: slug });
+
+  let films = await Promise.all(
+    film_ids.map(async (film_id) => await getFilmById(film_id.film_id))
+  );
+
+  films = films.filter((film) => film.approved)
+  return films;
+}
+
+/**
+ * Get the list of films by the given director
+ *
+ * @param {string} name
+ * @returns an array of all films by the director
+ */
+export async function getFilmsByDirector(name) {
+  const film_ids = await knex.select('film_id')
+    .from('DirectorsFilm')
+    .join('Directors', 'Directors.director_id', 'DirectorsFilm.director_id')
+    .where({ 'director_name': name });
   return film_ids;
 }
+
 
 /**
  * Get the list of films by the given actor
@@ -276,9 +308,10 @@ export async function getFilmsByDirector(name) {
  * @returns an array of all films by the actor
  */
 export async function getFilmsByActor(name) {
-  const film_ids = await knex.select("film_id")
+  const film_ids = await knex
+    .select("film_id")
     .from("Actors")
-    .where({ "actor_name": name });
+    .where({ actor_name: name });
   return film_ids;
 }
 
@@ -289,9 +322,10 @@ export async function getFilmsByActor(name) {
  * @returns an array of all films by the contributor
  */
 export async function getFilmsByContributor(name) {
-  const film_ids = await knex.select("film_id")
+  const film_ids = await knex
+    .select("film_id")
     .from("Contributors")
-    .where({ "contributor_name": name });
+    .where({ contributor_name: name });
   return film_ids;
 }
 
@@ -301,10 +335,14 @@ export async function getFilmsByContributor(name) {
  * @returns an array of course info
  */
 export async function getCourseByCourseName(name) {
-  const wholeCourse = await knex.select()
-    .from("Course").where({ "course_name": name })
+  const wholeCourse = await knex
+    .select()
+    .from("Course")
+    .where({ course_name: name });
   return wholeCourse;
 }
+
+//TODO: change this to get by director slug
 
 /** Get director by directorName
  *
@@ -312,11 +350,91 @@ export async function getCourseByCourseName(name) {
  * @returns director object
  */
 export async function getDirector(name) {
-  const director = await knex("Directors").select().where({ director_name: name });
+  const director = await knex("Directors")
+    .select()
+    .where({ director_name: name });
+  // TODO: need to decide what to actually send!!!!!
   return director;
-
 }
 
+/** Get directorslug by a film slug
+ *
+ * @param {string} slug
+ * @returns an array of director slugs
+ */
+
+export async function getDirectorSlugByFilmSlug(film_slug) {
+  const film = await getFilmBySlug(film_slug);
+  const film_id = film.id;
+
+  const slugs = await knex
+    .select("director_slug")
+    .from("DirectorsFilm")
+    .where({ film_id: film_id })
+    .join("Directors", "Directors.director_id", "DirectorsFilm.director_id");
+
+  return slugs;
+}
+
+/** Get full director (backend function, never call directly from API)
+ *
+ * @param {string} slug a unique identifier for directors
+ * @returns the entire director object from the database with all fields
+ */
+
+async function _getFullDirectorBySlug(slug) {
+  const director = await knex("Directors")
+    .select()
+    .where({ director_slug: slug });
+
+  if (director && director.length) {
+    return director[0];
+  }
+
+  return null;
+}
+
+function _filterDirector(director) {
+  // check privacy boolean (check if we should remove email)
+  // and remove any private fields
+
+  if (director.director_midd_email_is_private) {
+    delete director.director_midd_email;
+  }
+
+  if (director.director_personal_email_is_private) {
+    delete director.director_personal_email;
+  }
+
+  delete director.director_midd_email_is_private;
+  delete director.director_personal_email_is_private;
+
+  return director;
+}
+
+export async function getDirectorBySlug(slug) {
+  const fullDirector = await _getFullDirectorBySlug(slug);
+
+  if (!fullDirector) {
+    return null;
+  }
+
+  const filteredDirector = _filterDirector(fullDirector);
+
+  return filteredDirector;
+}
+
+export async function checkDirectorSlug(slug) {
+  const director = await knex("Directors")
+    .select("director_slug")
+    .where({ director_slug: slug });
+
+  if (director.length) {
+    return true;
+  }
+
+  return false;
+}
 
 /** Get all director names
  *
@@ -324,14 +442,19 @@ export async function getDirector(name) {
  *
  */
 export async function getAllDirectors() {
-  const allDirectors = await knex.select("director_name")
-    .from("Directors");
+  const allDirectors = await knex.select("director_name").from("Directors");
   return allDirectors.map((entry) => entry.director_name);
 }
 
-
 export function validateFilterTerm(filterTerm) {
-  const filters = ["genre", "course", "director", "actor", "contributor", "term"];
+  const filters = [
+    "genre",
+    "course",
+    "director",
+    "actor",
+    "contributor",
+    "term",
+  ];
   return filters.includes(filterTerm);
 }
 
@@ -354,7 +477,10 @@ export async function addFilm(film) {
  */
 export async function addDirectorsFilm(director_name, film_id) {
   const [director] = await getDirector(director_name);
-  await knex("DirectorsFilm").insert({ film_id: film_id, director_id: director.director_id });
+  await knex("DirectorsFilm").insert({
+    film_id: film_id,
+    director_id: director.director_id,
+  });
   return await getFilmById(film_id);
 }
 
@@ -592,10 +718,6 @@ export async function updateFilmApproval(slug, approve) {
   const origFilm = await getFilmBySlug(slug);
 
   if (!origFilm) return;
-  //console.log("origFilm: ", origFilm);
-
-  //console.log("origFilm.approved:", !!origFilm.approved);
-
 
   if (!!origFilm.approved===approve) {
     // No update needed
@@ -606,7 +728,6 @@ export async function updateFilmApproval(slug, approve) {
       .where({ slug: slug })
       .update({ approved: approve });
     
-      //console.log(origFilm.course);
     // Increment count for course DB
     await Promise.all(origFilm.course.map(async (course_name) => {
       if (approve) {
@@ -618,8 +739,6 @@ export async function updateFilmApproval(slug, approve) {
         .where({ course_name: course_name })
         .decrement("approved_film_count", 1);
       }
-      //console.log(await knex("Course").select().where({ course_name: course_name }));
-      
     }));
 
     // Update Genre DB boolean
@@ -628,6 +747,99 @@ export async function updateFilmApproval(slug, approve) {
       .update({ approved: approve });
   }
 
-  
   return true;
 }
+
+function validateEmail(email) {
+  var re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
+
+export async function processDirector(director) {
+  let error = null;
+
+  const processedDirector = {
+    director_name: director.director_name.trim(),
+    director_slug: director.director_slug.trim(),
+    director_bio: director.director_bio.trim(),
+    director_graduation_year: abs(director.director_graduation_year),
+    director_midd_email: director.director_midd_email.trim(),
+    director_personal_email: director.director_personal_email.trim(),
+    director_midd_email_is_private:
+      director.director_midd_email_is_private ?? true,
+    director_personal_email_is_private:
+      director.director_personal_email_is_private ?? true,
+  };
+
+  //check that all of the above fields are not null or undefined
+  Object.keys(processedDirector).forEach((key) => {
+    if (
+      processedDirector[key] === null ||
+      processedDirector[key] === undefined
+    ) {
+      error = new Error(`${key} is null or undefined`);
+    }
+  });
+
+  //check types for each key
+  //type mapping
+  const typeMapping = {
+    director_name: "string",
+    director_slug: "string",
+    director_bio: "string",
+    director_graduation_year: "number",
+    director_midd_email: "string",
+    director_personal_email: "string",
+    director_midd_email_is_private: "boolean",
+    director_personal_email_is_private: "boolean",
+  };
+
+  //check types
+  Object.keys(processedDirector).forEach((key) => {
+    if (typeof processedDirector[key] !== typeMapping[key]) {
+      error = new Error(`${key} is not of type ${typeMapping[key]}`);
+    }
+  });
+
+  const current_year = new Date().getFullYear();
+  const max_graduation_year = current_year + 6.5;
+
+  if (
+    processedDirector.director_graduation_year < 1900 ||
+    processedDirector.director_graduation_year > max_graduation_year
+  ) {
+    error =  new Error(
+      `director graduation year is not in range 1900-${max_graduation_year}`
+    );
+  }
+
+
+  //check that director slug is a valid slug
+  if (director.director_slug.length < 1) {
+    throw new Error("director slug is required");
+  }
+  if (director.director_slug.length > 40) {
+    throw new Error("director slug is too long");
+  }
+
+  //check that director slug is unique (need to implement incrimental slug)
+  if (processedDirector) {
+    const exists = await checkDirectorSlug(processedDirector.director_slug);
+    if (exists) {
+      error =  new Error("director slug is not unique");
+    }
+  }
+
+
+  //check if midd email is valid
+  if (!processedDirector.director_midd_email.endsWith("@middlebury.edu")) {
+    error = new Error("director midd email is not a middlebury email");
+  }
+
+  //check if email is valid useing regex
+  if (!validateEmail(processedDirector.director_personal_email) || !validateEmail(processedDirector.director_midd_email)) {
+    error = new Error("director personal email is not a valid email");
+  }
+
+  return { director: processedDirector, error: error };
+  }
