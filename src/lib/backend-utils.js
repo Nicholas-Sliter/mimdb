@@ -6,8 +6,7 @@
  * The assumption is that the working data store is found in data/films.json and we have a "golden copy" in data/mockData.json.
  */
 
-//import fs from "fs";
-//import path from "path";
+ const fs = require("fs");
 import process from "process";
 
 import knexConfig from "../../knexfile";
@@ -16,34 +15,6 @@ import knexInitializer from "knex";
 export const knex = knexInitializer(
   knexConfig[process.env.NODE_ENV || "development"]
 );
-
-// export function resetData() {
-//   const dataDirectory = path.join(process.cwd(), "data");
-//   const orig = path.join(dataDirectory, "data.json");
-//   const dest = path.join(dataDirectory, "tempData.json");
-//   fs.copyFileSync(orig, dest);
-// }
-
-export function readData() {
-  const dataDirectory = path.join(process.cwd(), "data");
-  const fullPath = path.join(dataDirectory, "tempData.json");
-  if (!fs.existsSync(fullPath)) {
-    resetData();
-  }
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const films = JSON.parse(fileContents);
-
-  return films;
-}
-
-export function saveData(films) {
-  const dataDirectory = path.join(process.cwd(), "data");
-  const fullPath = path.join(dataDirectory, "tempData.json");
-  if (!fs.existsSync(fullPath)) {
-    resetData();
-  }
-  fs.writeFileSync(fullPath, JSON.stringify(films, null, "\t"), "utf8"); // Pretty write the mock data
-}
 
 /**
  * Get the list of genre names for a film.
@@ -75,7 +46,7 @@ export async function getCourse(id) {
 }
 
 /**
- * Get the list of director names for a film by film id.
+ * Get the list of director names for a film.
  *
  * @param {integer} id
  * @returns an array of director names for film with id id
@@ -115,6 +86,44 @@ export async function getContributors(id) {
     .from("Contributors")
     .where({ film_id: id });
   return contributors.map((entry) => entry.contributor_name);
+}
+
+/**
+ * Get the poster of a film.
+ *
+ * @param {string} slug
+ * @returns the poster object, in the form of {poster_data:"the base64 string"}
+ */
+export async function getPosterBySlug(slug) {
+  /*
+  if (slug==='temp') {
+    // default poster
+    return {poster_data: fs.readFileSync("./public/defaults/salmon-blue.jpg", {encoding: "base64"})}
+  }
+  */
+  const poster = await knex.select("poster_data")
+    .from("Poster")
+    .where({ "film_slug": slug });
+  return poster[0];
+}
+
+/**
+ * Get the backdrop of a film.
+ *
+ * @param {string} slug
+ * @returns the backdrop object, in the form of {backdrop_data:"the base64 string"}
+ */
+export async function getBackdropBySlug(slug) {
+  /*
+  if (slug==='temp') {
+    // default backdrop
+    return {backdrop_data: fs.readFileSync("./public/defaults/blue-white.jpg", {encoding: "base64"})}
+  }
+  */
+  const backdrop = await knex.select("backdrop_data")
+    .from("Backdrop")
+    .where({ "film_slug": slug });
+  return backdrop[0];
 }
 
 /**
@@ -164,7 +173,7 @@ async function fillFilm(film) {
  * @returns an array of all films
  */
 export async function getAllFilms() {
-  let films = await knex("Film").select();
+  let films = await knex("Film").select().where({ approveBoolean: true });
   return await Promise.all(films.map(async (film) => await fillFilm(film)));
 }
 
@@ -174,10 +183,7 @@ export async function getAllFilms() {
  * @returns an array of all films
  */
 export async function getRandFilms(number) {
-  const films = await knex("Film")
-    .select()
-    .orderByRaw("RANDOM()")
-    .limit(number);
+  const films = await knex("Film").select().orderByRaw('RANDOM()').limit(number).where({ approveBoolean: true});
   await Promise.all(films.map((film) => fillFilm(film)));
   return films;
 }
@@ -189,7 +195,7 @@ export async function getRandFilms(number) {
  * @returns the film associated with id id
  */
 export async function getFilmById(id) {
-  const [film] = await knex("Film").select().where({ id: id });
+  const [film] = await knex("Film").select().where({ id: id , approveBoolean: true});
   return film ? await fillFilm(film) : null;
 }
 
@@ -200,7 +206,7 @@ export async function getFilmById(id) {
  * @returns the film associated with slug
  */
 export async function getFilmBySlug(slug) {
-  const [film] = await knex("Film").select().where({ slug: slug });
+  const [film] = await knex("Film").select().where({ slug: slug , approveBoolean: true });
   return film ? await fillFilm(film) : null;
 }
 
@@ -210,8 +216,10 @@ export async function getFilmBySlug(slug) {
  * @param {string} term
  * @returns an array of all films of the term
  */
-export async function getFilmsByTerm(term) {
-  const ids = await knex.select("id").from("Film").where({ term: term });
+ export async function getFilmsByTerm(term) {
+  const ids = await knex.select("id")
+    .from("Film")
+    .where({ term: term, approveBoolean: true });
 
   // Convert to compatible format with other backend-util GET functions.
   const film_ids = ids.map((obj) => {
@@ -261,7 +269,7 @@ export async function getFilmsByCourse(course) {
  * @param {string} name
  * @returns an array of all films by the director
  */
-export async function getFilmsByDirector(slug) {
+export async function getFilmObjectsByDirector(slug) {
   const film_ids = await knex
     .select("film_id")
     .from("DirectorsFilm")
@@ -269,10 +277,25 @@ export async function getFilmsByDirector(slug) {
     .where({ director_slug: slug });
 
   let films = await Promise.all(
-    film_ids.map(async (film_id) => await getFilmById(film_id.film_id))
+    film_ids.map(async (film_id) => await getFilmById(film_id.film_id)).filter((film) => film.approved)
   );
   return films;
 }
+
+/**
+ * Get the list of films by the given director
+ *
+ * @param {string} name
+ * @returns an array of all films by the director
+ */
+export async function getFilmsByDirector(name) {
+  const film_ids = await knex.select(“film_id”)
+    .from(“DirectorsFilm”)
+    .join(“Directors”, “Directors.director_id”, “DirectorsFilm.director_id”)
+    .where({ “director_name”: name });
+  return film_ids;
+}
+
 
 /**
  * Get the list of films by the given actor
@@ -488,7 +511,8 @@ export async function addActorFilm(actor_name, film_id) {
  * @returns the new course object from the DB
  */
 export async function addNewCourse(new_course) {
-  await knex("Course").insert({
+  await knex("Course")
+  .insert({
     course_number: new_course.course_number,
     course_name: new_course.course_name,
     course_description: new_course.course_description
@@ -752,4 +776,17 @@ export async function processDirector(director) {
   }
 
   return { director: processedDirector, error: error };
-}
+  }
+
+  /**
+   * Update film approval
+   *
+   * @param {string} slug
+   * @param {boolean} rating
+   * @returns Boolean indicating approve or reject
+   */
+   export async function updateFilmApproval(slug, approve) {
+    const count = await knex("Film").select().where({slug:slug}).update({approveBoolean:approve});
+    return (count === 1);
+
+  }
