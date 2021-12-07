@@ -14,7 +14,8 @@ import {
     getFilmBySlug,
     getFilmsByCourse,
     getFilmsByGenre,
-    addFilm
+    addFilm,
+    updateFilmApproval
 } from "./backend-utils";
 
 describe("Tests of database Film Table utility functions", () => {
@@ -25,6 +26,9 @@ describe("Tests of database Film Table utility functions", () => {
         sampleFilm = films[0];
         sampleFilm = (({ director_ids, course_CRNs, ...rest }) => ({ rest }))(sampleFilm);
         sampleFilm = sampleFilm.rest;
+        // boolean false and true gets turned into 0 and 1 by postgresSQL functions
+        sampleFilm.video = sampleFilm.video === false ? 0 : 1;
+        sampleFilm.approveBoolean = sampleFilm.approveBoolean === false? 0 : 1;
 
         let set = new Set(films.map((film) => film.genre).flat());
         allGenres = [...set];
@@ -115,7 +119,6 @@ describe("Tests of database Film Table utility functions", () => {
 
         expect(fetchedFilms).toHaveLength(films.length);
         const testFilm = fetchedFilms.find((film) => film.id === sampleFilm.id);
-        testFilm.video = testFilm.video === 0 ? false : true; // at some point false and true from tempData got converted to 0 and 1
         expect(testFilm).toEqual(sampleFilm);
         properties.forEach((prop) => { expect(fetchedFilms[0]).toHaveProperty(prop) });
     });
@@ -142,6 +145,26 @@ describe("Tests of database Film Table utility functions", () => {
 
         expect(filmFromDatabase).toEqual(newFilm);
 
+    });
+
+    test("updateFilmApproval: updates the film", async ()=>{
+        const newFilm = { ...sampleFilm, approveBoolean: 0 };
+
+        const updated = await updateFilmApproval(newFilm.slug, newFilm.approveBoolean);
+
+        expect(updated).toBeTruthy();
+        const updatedFilm = await getFilmById(newFilm.id);
+
+        expect(updatedFilm).toEqual(newFilm);
+
+    });
+
+    test("updateFilmApproval: returns false on bad id", async ()=>{
+        const newFilm = { ...sampleFilm, approveBoolean: 0 };
+
+        const updated = await updateFilmApproval("", newFilm.approveBoolean);
+
+        expect(updated).toBeFalsy();
     });
 
 });

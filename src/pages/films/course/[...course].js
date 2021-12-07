@@ -1,7 +1,6 @@
 import { useRouter } from "next/router"
 import FilmRow from "../../../components/DisplayLayouts/FilmRow"
-import Header from "../../../components/Header"
-import CustomHead from "../../../components/CustomHead"
+import Layout from "../../../components/Layouts/Layout"
 import { useEffect, useState } from "react"
 //import decodeURIComponentSafe from "../../../lib/frontend-utils"
 
@@ -44,17 +43,13 @@ export default function FilmsByCourse() {
 
 
   return (
-    <div>
-      <CustomHead />
-      <Header />
-      <main>
-        <div className="container">
-          <h1>Films created in {courseName}</h1>
-          <h3>{courseDesc}</h3>
-          <FilmRow films={genreFilmList} />
-        </div>
-      </main>
-    </div>
+    <Layout>
+      <div className="container">
+        <h1>Films created in {courseName}</h1>
+        <h3>{courseDesc}</h3>
+        <FilmRow films={genreFilmList} />
+      </div>
+    </Layout>
   );
 
 }

@@ -25,7 +25,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": false
 	},
 	{
 	  "backdrop_path": "/filmImages/jd_backdrop.jpeg",
@@ -53,7 +54,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/eb_backdrop.jpg",
@@ -81,7 +83,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/ne_backdrop.png",
@@ -109,7 +112,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/in_backdrop.jpeg",
@@ -138,7 +142,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/is_backdrop.jpg",
@@ -167,7 +172,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/dd_backdrop.jpg",
@@ -195,7 +201,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/bf_backdrop.jpg",
@@ -223,7 +230,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/st_backdrop.jpg",
@@ -251,7 +259,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/av_backdrop.jpg",
@@ -280,7 +289,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/si_backdrop.jpg",
@@ -309,7 +319,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/mt_backdrop.jpg",
@@ -338,7 +349,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/mx_backdrop.jpg",
@@ -367,7 +379,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	},
 	{
 	  "backdrop_path": "/filmImages/dc_backdrop.jpg",
@@ -396,7 +409,8 @@
 		"Katie Kosior"
 	  ],
 	  "contributors": [],
-	  "duration": "142 min"
+	  "duration": "142 min",
+	  "approveBoolean": true
 	}
   
   ]
