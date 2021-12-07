@@ -12,6 +12,7 @@ const handler = nc().put( async (req, res) => {
       res.status(403).json({
         message: "Only logged in administrator can approve film"
       })
+      return;
     }
 
     const success = await updateFilmApproval(slug, true);
