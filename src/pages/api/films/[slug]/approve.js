@@ -1,16 +1,19 @@
 // Approve API - approve film
 
 import nc from "next-connect";
+import {useSession} from "next-auth/client";
 import { updateFilmApproval } from "../../../../lib/backend-utils";
 
 
 const handler = nc().put( async (req, res) => {
     const { slug } = req.query;
-    // const update = JSON.parse(req.body).approval;
-    // if (!update && update !== 0 && update !== "0"){
-    //   res.status(400);
-    //   return;
-    // }
+    const [session] = useSession();
+    if (!session) {
+      res.status(403).json({
+        message: "Only logged in administrator can approve film"
+      })
+    }
+
     const success = await updateFilmApproval(slug, true);
 
     if (success) {

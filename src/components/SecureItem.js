@@ -1,22 +1,22 @@
-import {useSession} from "next-auth/client";
+import { useSession } from "next-auth/client";
 import { useEffect, useState } from "react";
 
-export default function SecureItem(){
-  const [session] = useSession();
-  const [secret, setSecret] = useState();
+export default function SecureItem() {
+    const [session] = useSession();
+    const [secret, setSecret] = useState();
 
-  useEffect(()=>{
-    const getSecret = async ()=>{
-        const response = await fetch("api/secret");
-        if (response.ok){
-            const data = await response.json();
-            setSecret(data.message);
-        } else {
-            setSecret(response.statusText);
+    useEffect(() => {
+        const getSecret = async () => {
+            const response = await fetch("api/secret");
+            if (response.ok) {
+                const data = await response.json();
+                setSecret(data.message);
+            } else {
+                setSecret(response.statusText);
+            }
         }
-    }
-    getSecret();
-  }, [session]);
+        getSecret();
+    }, [session]);
 
     return (
         <div>
