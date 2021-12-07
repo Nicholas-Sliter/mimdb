@@ -1,6 +1,8 @@
 import nc from "next-connect";
-import { addActorFilm, addCourseFilm, addDirectorsFilm, addFilm, addGenreFilm, addNewCourse, getCourseByCourseName, getDirector, getFilmBySlug } from "../../../lib/backend-utils";
+import { addActorFilm, addBackdropBySlug, addCourseFilm, addDirectorsFilm, addFilm, addGenreFilm, addNewCourse, addPosterBySlug, getCourseByCourseName, getDirector, getFilmBySlug } from "../../../lib/backend-utils";
 import { convertToSlug } from "../../../lib/frontend-utils";
+
+import { default_grey_svg } from "../../../lib/frontend-utils";
 
 // Validates the inFilm object and add default empty picture paths
 // TODO: potentially in the future if we have time, we can develop the validation process into a smart match process.
@@ -14,7 +16,8 @@ const validateAndProcessNewFilm = async (inFilm) => {
       "title": inFilm.title,
       "duration": inFilm.duration,
       "slug": convertToSlug(inFilm.title),
-      "vimeo_id": inFilm.vimeoId
+      "vimeo_id": inFilm.vimeoId,
+      "approved": false
     }
 
     // check slug, increment if duplicates slug
@@ -47,7 +50,7 @@ const validateAndProcessNewFilm = async (inFilm) => {
 const handler = nc()
   .post(async (req, res) => {
     const newFilm = req.body;
-    console.log(newFilm);
+    //console.log(newFilm);
     const processedFilm = await validateAndProcessNewFilm(newFilm);
 
     if (processedFilm) {
@@ -85,6 +88,14 @@ const handler = nc()
       await Promise.all(newFilm.genreList.map(async (genre_name) => {
         addedFilm = await addGenreFilm(genre_name, addedFilm.id);
       }));
+
+      // Add poster to Poster DB
+      // TODO: addedFilm = await addPosterBySlug(newFilm.poster, processedFilm.slug)
+      addedFilm = await addPosterBySlug(default_grey_svg, processedFilm.slug)  
+      
+      // Add backdrop to Backdrop DB
+      // TODO: addedFilm = await addBackdropBySlug(newFilm.backdrop, processedFilm.slug) 
+      addedFilm = await addBackdropBySlug(default_grey_svg, processedFilm.slug) 
 
       res.status(200).json(addedFilm);
     } else {
