@@ -46,12 +46,17 @@ export default function AdminPage() {
                 <tbody>
                 {filmData.map((film) => 
                     <tr key={film.id}>
-                    <td><input type="checkbox"
-                            checked={film.approved}
-                            id={film.id}
-                            name={film.id}
-                            value={film.id}/>
-                    </td>
+                    {//onchange will be updated when merged with the new api calls
+                        film.approved ? 
+                        <td>
+                        <p style={{color: "green"}}>Approved</p>
+                        <button>Disapprove</button>
+                        </td> :
+                        <td>
+                        <p style={{color: "red"}}>Not approved</p>
+                        <button>Approve</button>
+                        </td>
+                    }
                     <td>{film["title"]}</td>
                     <td>{film["overview"]}</td>
                     <td>{film["term"]}</td>
