@@ -1,4 +1,7 @@
 //https://stackoverflow.com/a/1054862
+
+export const default_grey_svg = "iVBORw0KGgoAAAANSUhEUgAAAgAAAAIABAAAAAAU42YnAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QADzoyPqMAAAAHdElNRQflCgoJJQPRe2KGAAACVklEQVR42u3QAQ0AAAwCIOMb2z3HIQLpcxEgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAWfiHg/xUpUmNwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0xMC0xMFQwOTozNzowMyswMDowMDQ2nzoAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMTAtMTBUMDk6Mzc6MDMrMDA6MDBFayeGAAAAAElFTkSuQmCC";
+
 export function convertToSlug(Text) {
   if (!Text || Text === " ") {
     return "";
@@ -7,6 +10,38 @@ export function convertToSlug(Text) {
     .replace(/ /g, "-")
     .replace(/[^\w-]+/g, "");
 }
+
+//use time of year to calculate the most recent completed term
+export function getLastTerm(){
+  const now = new Date();
+  const month = now.getMonth();
+  const year = now.getFullYear() - 2000;
+  if (month < 6) {
+    return `F${year-1}`;
+  } else {
+    return `S${year}`;
+  }
+
+
+}
+
+
+export function convertTermToString(term){
+  const year = "20" + term.slice(1);
+  let season = "";
+  if (term.includes("F")){
+    season = "Fall";
+  } 
+  else if (term.includes("S")){
+    season = "Spring";
+  }
+  else {
+    season = "Winter";
+  }
+
+  return `${season} ${year}`;
+}
+
 
 //uri component that returns null if a URI cannot be converted to a valid string
 export function decodeURIComponentSafe(str) {

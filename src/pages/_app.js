@@ -1,43 +1,58 @@
 /* eslint-disable */
-import '../styles/globals.css';
+import "../styles/globals.css";
 import { useState, useEffect } from "react";
-//import data from "../../data/tempData.json";
+
+import { Provider } from 'next-auth/client';
 import { GenreCourseContext } from '../components/context/GenreCourseContext';
+import { DiscoverContext } from "../components/context/DiscoverContext";
+import useFeatured from "../hooks/useFeatured";
 
 function MyApp({ Component, pageProps }) {
-  //temporary data
-  const [films, setFilms] = useState([]);
   const [genres, setGenres] = useState([]);
   const [courses, setCourses] = useState([]);
+  const [discover, setDiscover] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const featured = useFeatured(2,loading);
 
   //get genres and courses from /api/genres and /api/courses
-  useEffect( async() => {
-    const filmRes = await fetch("api/films");
+  useEffect(async () => {
+
     const genreRes = await fetch("/api/genres");
     const courseRes = await fetch("/api/courses");
     if (!genreRes.ok || !courseRes.ok) {
       throw new Error("Failed to fetch genre and course information from api");
     }
 
-    const films = await filmRes.json();
     const genres = await genreRes.json();
     const courses = await courseRes.json();
-    setFilms(films);
+
     setGenres(genres);
     setCourses(courses);
   }, []);
 
 
-  const GenreCourseContextObject = {genres: genres, courses: courses};
-  const props = { ...pageProps, films, setFilms };
+
+  useEffect(() => {
+    //set discover courses
+    if (featured && featured.length && loading) {
+      setDiscover(featured);
+      setLoading(false);
+    }
+  }, [featured]);
+
+  const GenreCourseContextObject = { genres: genres, courses: courses };
+  const DiscoverContextObject = { films: discover };
+  const props = { ...pageProps };
   return (
-    <GenreCourseContext.Provider value={GenreCourseContextObject}>
-      <Component {...props} />
-    </GenreCourseContext.Provider>
+    <Provider>
+      <GenreCourseContext.Provider value={GenreCourseContextObject}>
+        <DiscoverContext.Provider value={DiscoverContextObject}>
+          <Component {...props} />
+        </DiscoverContext.Provider>
+      </GenreCourseContext.Provider>
+    </Provider>
   );
 }
 
 export default MyApp;
-
-
-// genres, courses
