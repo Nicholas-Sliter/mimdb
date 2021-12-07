@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { checkDirectorSlug } from "../../../../lib/backend-utils";
+import { checkDirectorSlug, processDirector } from "../../../../lib/backend-utils";
 
 const handler = nc().post(async (req, res) => {
   const director = req.body;
@@ -24,12 +24,22 @@ const handler = nc().post(async (req, res) => {
   }
 
   //process the director
+  const { processedDirector, error } = await processDirector(director);
 
+  if (error) {
+    res.status(400).json({
+      error: error,
+    });
 
+    return;
+  }
+
+  //now insert the director into the database
+  const insertedDirector = await insertDirector(processedDirector);
 
 
   //return the director as success
-  res.status(200).json(director);
+  res.status(200).json(insertedDirector);
 });
 
 export default handler;
