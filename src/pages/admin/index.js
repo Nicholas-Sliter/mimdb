@@ -12,7 +12,7 @@ export default function Admin() {
   const adminFunc = async(apiCall, film) => {
     if(film) {
         const response = await fetch(`/api/films/${film.slug}/${apiCall}`, {
-        //method: "PUT"
+        method: "PUT"
 
         })
         
