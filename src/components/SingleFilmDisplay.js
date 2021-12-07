@@ -55,6 +55,15 @@ export default function SingleFilmDisplay({ film }) {
       </div>
       <div className={styles.content}>
         <h1 className={styles.filmTitle}>{film.title}</h1>
+        <span className={styles.course}>Course: 
+          <Link
+            href={`/films/course/${encodeURIComponent(course)}`}
+            passHref
+            key={course}
+            >
+              <p> {course}</p>
+          </Link> 
+        </span>
         <span className={styles.term}>Term: {film.term}</span>
         <span className={styles.genre}>{film.genre.join(", ")}</span>
         <span className={styles.duration}>{film.duration}</span>
@@ -80,18 +89,6 @@ export default function SingleFilmDisplay({ film }) {
 
 
         <div className={styles.largeColumnC}>
-          <div className={styles.courseContainer}>
-            <h3>Course</h3>
-            <div className={styles.overview}>
-              <Link
-                href={`/films/course/${encodeURIComponent(course)}`}
-                passHref
-                key={course}
-              >
-                <h4 className={styles.courseName}>{course}</h4>
-              </Link>
-            </div>
-          </div>
           <div className={styles.contributorsContainer}>
             <div className={styles.actors}>
               <h3>Actors</h3>
