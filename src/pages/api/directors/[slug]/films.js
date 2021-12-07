@@ -1,7 +1,7 @@
 //return the films for director with slug
 
 import nc from "next-connect";
-import { getFilmsByDirector } from "../../../../lib/backend-utils";
+import { getFilmObjectsByDirector } from "../../../../lib/backend-utils";
 
 const handler = nc().get(async (req, res) => {
   const { slug } = req.query;

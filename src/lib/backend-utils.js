@@ -289,10 +289,10 @@ export async function getFilmObjectsByDirector(slug) {
  * @returns an array of all films by the director
  */
 export async function getFilmsByDirector(name) {
-  const film_ids = await knex.select(“film_id”)
-    .from(“DirectorsFilm”)
-    .join(“Directors”, “Directors.director_id”, “DirectorsFilm.director_id”)
-    .where({ “director_name”: name });
+  const film_ids = await knex.select('film_id')
+    .from('DirectorsFilm')
+    .join('Directors', 'Directors.director_id', 'DirectorsFilm.director_id')
+    .where({ 'director_name': name });
   return film_ids;
 }
 
