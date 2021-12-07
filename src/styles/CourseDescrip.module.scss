@@ -1,0 +1,17 @@
+$shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+  rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+$box_background: rgb(255, 255, 255, 0.9);
+$border_rad: 0.5rem;
+
+.container{
+    text-align: center;
+}
+
+.courseDesc{
+    font-weight: 400;
+    margin: 1rem;
+    padding: 0.8rem;
+    border-radius: $border_rad;
+    background-color: $box_background;
+    box-shadow: $shadow;
+}

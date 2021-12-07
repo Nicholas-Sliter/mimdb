@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import FilmRow from "../../../components/DisplayLayouts/FilmRow"
 import Layout from "../../../components/Layouts/Layout"
 import { useEffect, useState } from "react"
+import styles from "../../../styles/CourseDescrip.module.scss"
 //import decodeURIComponentSafe from "../../../lib/frontend-utils"
 
 
@@ -44,9 +45,9 @@ export default function FilmsByCourse() {
 
   return (
     <Layout>
-      <div className="container">
-        <h1>Films created in {courseName}</h1>
-        <h3>{courseDesc}</h3>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Films created in {courseName}</h1>
+        <h3 className={styles.courseDesc}>{courseDesc}</h3>
         <FilmRow films={genreFilmList} />
       </div>
     </Layout>
