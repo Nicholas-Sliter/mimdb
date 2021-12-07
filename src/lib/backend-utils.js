@@ -591,6 +591,8 @@ export function validateFilmActors(actors) {
 export async function updateFilmApproval(slug, approve) {
   // getting the original film before changing anything
   const origFilm = await getFilmBySlug(slug);
+
+  if (!origFilm) return;
   //console.log("origFilm: ", origFilm);
 
   //console.log("origFilm.approved:", !!origFilm.approved);
