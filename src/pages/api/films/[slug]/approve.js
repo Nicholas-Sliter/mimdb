@@ -5,7 +5,7 @@ import {useSession} from "next-auth/client";
 import { updateFilmApproval } from "../../../../lib/backend-utils";
 
 
-const handler = nc().get( async (req, res) => {
+const handler = nc().put( async (req, res) => {
     const { slug } = req.query;
     console.log(req);
     const [session] = useSession();
