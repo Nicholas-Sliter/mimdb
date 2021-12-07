@@ -56,6 +56,8 @@ exports.seed = async function(knex) {
   const contributorsMap = [];
   const courseMap = [];
   const directorsMap = [];
+  const posterMap = [];
+  const backdropMap = [];
 
   films.forEach((film) => {
     film.genre.forEach((genre) => {
@@ -73,6 +75,9 @@ exports.seed = async function(knex) {
     film.director_ids.forEach((id) => {
       directorsMap.push({film_id: film.id, director_id: id});
     });
+    
+    posterMap.push({film_slug: film.slug, poster_data: fs.readFileSync("./public"+film.poster_path, {encoding: 'base64'})});
+    backdropMap.push({film_slug: film.slug, backdrop_data: fs.readFileSync("./public"+film.backdrop_path, {encoding: 'base64'})});
   });
 
   await knex("Genre").del();
@@ -89,4 +94,10 @@ exports.seed = async function(knex) {
 
   await knex("DirectorsFilm").del();
   await knex.batchInsert("DirectorsFilm", directorsMap, 100);
+
+  await knex("Poster").del();
+  await knex.batchInsert("Poster", posterMap, 100);
+
+  await knex("Backdrop").del();
+  await knex.batchInsert("Backdrop", backdropMap, 100);
 };
