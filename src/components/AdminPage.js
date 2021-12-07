@@ -50,7 +50,7 @@ export default function AdminPage() {
                         film.approved ? 
                         <td>
                         <p style={{color: "green"}}>Approved</p>
-                        <button>Disapprove</button>
+                        <button>Reject</button>
                         </td> :
                         <td>
                         <p style={{color: "red"}}>Not approved</p>
