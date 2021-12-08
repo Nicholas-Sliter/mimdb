@@ -9,7 +9,7 @@ export default function SubmitDirPage() {
   const submitDirComplete = (content) => {
     console.log(JSON.stringify(content));
     const postSubmit = async () => {
-      const response = await fetch("/api/submit", {
+      const response = await fetch("/api/directors/submit", {
         method: "POST",
         body: JSON.stringify(content), headers: new Headers({ "Content-Type": "application/json" })
       });

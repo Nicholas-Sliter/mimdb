@@ -766,13 +766,15 @@ function validateEmail(email) {
 }
 
 export async function processDirector(director) {
+  director.director_slug.trim()
+  console.log("hereeee");
   let error = null;
 
   const processedDirector = {
     director_name: director.director_name.trim(),
     director_slug: director.director_slug.trim(),
     director_bio: director.director_bio.trim(),
-    director_graduation_year: abs(director.director_graduation_year),
+    director_graduation_year: Math.abs(+director.director_graduation_year),
     director_midd_email: director.director_midd_email.trim(),
     director_personal_email: director.director_personal_email.trim(),
     director_midd_email_is_private:
@@ -780,7 +782,7 @@ export async function processDirector(director) {
     director_personal_email_is_private:
       director.director_personal_email_is_private ?? true,
   };
-
+  console.log("p0");
   //check that all of the above fields are not null or undefined
   Object.keys(processedDirector).forEach((key) => {
     if (
@@ -790,7 +792,7 @@ export async function processDirector(director) {
       error = new Error(`${key} is null or undefined`);
     }
   });
-
+  console.log("p1");
   //check types for each key
   //type mapping
   const typeMapping = {
@@ -803,7 +805,7 @@ export async function processDirector(director) {
     director_midd_email_is_private: "boolean",
     director_personal_email_is_private: "boolean",
   };
-
+  console.log("p2");
   //check types
   Object.keys(processedDirector).forEach((key) => {
     if (typeof processedDirector[key] !== typeMapping[key]) {
@@ -813,7 +815,7 @@ export async function processDirector(director) {
 
   const current_year = new Date().getFullYear();
   const max_graduation_year = current_year + 6.5;
-
+  console.log("p3");
   if (
     processedDirector.director_graduation_year < 1900 ||
     processedDirector.director_graduation_year > max_graduation_year
@@ -823,7 +825,7 @@ export async function processDirector(director) {
     );
   }
 
-
+  console.log("p4");
   //check that director slug is a valid slug
   if (director.director_slug.length < 1) {
     throw new Error("director slug is required");
@@ -831,7 +833,7 @@ export async function processDirector(director) {
   if (director.director_slug.length > 40) {
     throw new Error("director slug is too long");
   }
-
+  console.log("p5");
   //check that director slug is unique (need to implement incrimental slug)
   if (processedDirector) {
     const exists = await checkDirectorSlug(processedDirector.director_slug);
@@ -840,16 +842,16 @@ export async function processDirector(director) {
     }
   }
 
-
+  console.log("p6");
   //check if midd email is valid
   if (!processedDirector.director_midd_email.endsWith("@middlebury.edu")) {
     error = new Error("director midd email is not a middlebury email");
   }
-
+  console.log("p7");
   //check if email is valid useing regex
   if (!validateEmail(processedDirector.director_personal_email) || !validateEmail(processedDirector.director_midd_email)) {
     error = new Error("director personal email is not a valid email");
   }
-
+  console.log("hoorey!");
   return { director: processedDirector, error: error };
   }

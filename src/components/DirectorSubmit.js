@@ -13,6 +13,8 @@ export default function DirectorSubmit({complete}) {
   const [middEmail, setMiddEmail] = useState("");
   const [personalEmail, setPersonalEmail] = useState("");
   const [grad, setGrad]= useState("");
+  const [isPersonalEmailPrivate, setIsPersonalEmailPrivate] = useState(true);
+  const [isMiddEmailPrivate, setIsMiddEmailPrivate] = useState(true);
 
   //const [inputContribList, setContribInputList] = useState([""]);
 
@@ -23,6 +25,8 @@ export default function DirectorSubmit({complete}) {
       director_midd_email: middEmail,
       director_personal_email: personalEmail,
       director_graduation_year: grad,
+      director_personal_email_is_private: isPersonalEmailPrivate,
+      director_midd_email_is_private: isMiddEmailPrivate
     };
     complete(submitDirector);
   }
@@ -52,7 +56,7 @@ export default function DirectorSubmit({complete}) {
             setFunc={setMiddEmail}
             moreText="Ex: johnMidd@middlebury.edu"
           />
-          <input type="checkbox" id="pubDisplayMidd" name="makePub" value="insertValue"/>
+          <input type="checkbox" id="pubDisplayMidd" name="makePub" value="insertValue" onChange={(e)=>setIsMiddEmailPrivate(!e.target.value)}/>
           <label htmlFor="pubDisplayMidd"> Make Public </label><br></br>
         <br></br>
         <br></br>
@@ -61,7 +65,7 @@ export default function DirectorSubmit({complete}) {
             setFunc={setPersonalEmail}
             moreText="Ex: johnMidd@gmail.com"
           />
-            <input type="checkbox" id="pubDisplayE" name="makePublic" value="insertValue"/>
+            <input type="checkbox" id="pubDisplayE" name="makePublic" value="insertValue" onChange={(e)=>setIsPersonalEmailPrivate(!e.target.value)}/>
             <label htmlFor="pubDisplayE"> Make Public </label><br></br>
         </div>
       </div>
