@@ -180,6 +180,16 @@ export async function getAllFilms() {
 }
 
 /**
+ * Get all of the films from the database REGARDLESS of approval status
+ *
+ * @returns an array of all films
+ */
+ export async function getReallyAllFilms() {
+  let films = await knex("Film").select();
+  return await Promise.all(films.map(async (film) => await fillFilm(film)));
+}
+
+/**
  * Get a random order of number films from the database
  * @param {integer} number the number of films to return
  * @returns an array of all films
