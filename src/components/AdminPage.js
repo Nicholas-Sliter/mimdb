@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export default function AdminPage({ films, adminFunc }) {
   const [update, refresh] = useState(true);
-  console.log(films);
 
   return (
     <div style={{ padding: "40px" }}>

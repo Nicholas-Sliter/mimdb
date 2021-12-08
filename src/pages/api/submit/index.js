@@ -50,7 +50,6 @@ const validateAndProcessNewFilm = async (inFilm) => {
 const handler = nc()
   .post(async (req, res) => {
     const newFilm = req.body;
-    //console.log(newFilm);
     const processedFilm = await validateAndProcessNewFilm(newFilm);
 
     if (processedFilm) {
@@ -92,14 +91,13 @@ const handler = nc()
       // Add poster to Poster DB
 
       // Testing place holder
-      // TODO: addedFilm = await addPosterBySlug(newFilm.poster, processedFilm.slug)
-      addedFilm = await addPosterBySlug(default_grey_svg, processedFilm.slug)  
+      addedFilm = await addPosterBySlug(newFilm.poster, processedFilm.slug);
+      //addedFilm = await addPosterBySlug(default_grey_svg, processedFilm.slug)  
       
       // Testing place holder
       // Add backdrop to Backdrop DB
-      // TODO: addedFilm = await addBackdropBySlug(newFilm.backdrop, processedFilm.slug) 
-      addedFilm = await addBackdropBySlug(default_grey_svg, processedFilm.slug) 
-
+      addedFilm = await addBackdropBySlug(newFilm.backdrop, processedFilm.slug);
+      //addedFilm = await addBackdropBySlug(default_grey_svg, processedFilm.slug) 
       res.status(200).json(addedFilm);
     } else {
       res.status(500).json({
