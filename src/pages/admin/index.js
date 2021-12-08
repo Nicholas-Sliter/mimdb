@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function Admin() {
   const [films, setFilms] = useState([]);
+  const [outdated, setOutdated] = useState(true);
 
   // fetch ALL films
   useEffect(() => {
@@ -20,8 +21,11 @@ export default function Admin() {
       const filmData = await response.json();
       setFilms(filmData);
     }
-    getAllFilms();
-  }, []);
+    if (outdated) {
+      getAllFilms();
+    }
+    setOutdated(false);
+  }, [outdated]);
 
   const adminFunc = (apiCall, film) => {
     const helper = async () => {
@@ -33,6 +37,7 @@ export default function Admin() {
         if (!response.ok) {
           throw new Error(response.statusText)
         }
+        setOutdated(true);
       }
     }
     helper();

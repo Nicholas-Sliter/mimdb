@@ -1,7 +1,7 @@
 /***** 
  * Props
- * Title, Overview, Poster Path, Directors, Actors, Video, Release Date, Contributors 
- * 
+ * Title, Overview, Poster Path, Directors, Actors, Video, Release Date, Contributors
+ *
 
 ******/
 import styles from "../styles/SingleFilmDisplay.module.scss";
@@ -10,11 +10,13 @@ import { useEffect, useState } from "react";
 import useGetPoster from "../hooks/useGetPoster";
 import useGetBackdrop from "../hooks/useGetBackdrop";
 
+import useGetDirectorSlugs from "../hooks/useGetDirectorSlugs";
+
 import ReactPlayer from "react-player/vimeo";
 
 
 export default function SingleFilmDisplay({ film }) {
-  
+
 
   const [poster, setPoster] = useState("");
   const [backdrop, setBackdrop] = useState("");
@@ -26,20 +28,24 @@ export default function SingleFilmDisplay({ film }) {
     setBackdrop(backdropRes ?? "");
   }, [posterRes, backdropRes])
 
+  const directorSlugs = useGetDirectorSlugs(film ? film.slug : "");
+
   //quick return if undefined film
   if (!film) {
     return <p>Choose a Film!</p>;
   }
 
-  const directors = film.directors.map((director) => {
+  //change this to get the director from the server
+  const directors = film.directors.map((director, index) => {
     return (
       <li key={director}>
-        <Link href={`/directors/${director}`} passHref>
+        <Link href={`/directors/${directorSlugs[index]}`} passHref>
           <a>{director}</a>
         </Link>
       </li>
-    )
+    );
   });
+
   const actors = film.actors.map((actor) => <li key={actor}>{actor}</li>);
   const contributors = film.contributors.map((contrib) => (
     <li key={contrib}>{contrib}</li>
@@ -61,23 +67,15 @@ export default function SingleFilmDisplay({ film }) {
         <div />
         <h4 className={styles.directors}>
           Directed by:
-          <ul className={styles.directorsList}>
-            {directors}
-          </ul>
+          <ul className={styles.directorsList}>{directors}</ul>
         </h4>
         <div />
         <div className={styles.video}>
-          <ReactPlayer
-            width="100%"
-            height="100%"
-            url={vimeo_url}
-            controls
-          />
+          <ReactPlayer width="100%" height="100%" url={vimeo_url} controls />
         </div>
         <div className={styles.details}>
           <p className={styles.overview}>{film.overview}</p>
         </div>
-
 
         <div className={styles.largeColumnC}>
           <div className={styles.courseContainer}>

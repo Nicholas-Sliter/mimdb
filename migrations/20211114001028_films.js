@@ -13,11 +13,12 @@ exports.up = function(knex) {
     table.boolean("video");
     table.string("vimeo_id");
     table.string("duration").notNullable();
-    table.boolean("approveBoolean").notNullable().defaultTo(false);
+    table.boolean("approved").notNullable().defaultTo(false);
   })
   .createTable("Genre", table => {
     table.integer("film_id");
     table.string("genre_name");
+    table.boolean("approved").notNullable().defaultTo(false);
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
   })
   .createTable("Actors", table => {
@@ -33,15 +34,19 @@ exports.up = function(knex) {
   .createTable("Course", table => {
     table.string("course_name").unique().notNullable();
     table.string("course_number").unique().notNullable();
+    table.integer("approved_film_count").defaultTo(0);
     table.text("course_description");
   })
   .createTable("Directors", table => {
     table.string("director_name");
     table.integer("director_id").unique().notNullable();
+    table.string("director_slug").unique();
     table.string("director_bio");
     table.string("director_midd_email");
     table.string("director_personal_email");
     table.string("director_graduation_year");
+    table.boolean("director_midd_email_is_private");
+    table.boolean("director_personal_email_is_private");
   })
   .createTable("CourseFilm", table => {
     // Affiliation table for Course and Film, two foreign keys
