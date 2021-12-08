@@ -7,16 +7,35 @@ import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
-import { validateFilmGenre } from "../lib/frontend-utils";
+import {validateFilmTitle, 
+        validateFilmGenre, 
+        validateFilmActors, 
+        validateFilmLogLine, 
+        validateFilmOverview,
+        validateFilmSemester,
+        validateFilmCourse} from "../lib/frontend-utils";
 import ImageCrop from "./common/ImageCrop";
 import Group from "./common/Group";
 import FlexGroup from "./common/FlexGroup";
-import imageCompression from 'browser-image-compression';
+import imageCompression from "browser-image-compression";
+
 
 // import ReactCrop from "react-image-crop";
 // import "react-image-crop/dist/ReactCrop.css";
 
 export default function Submit({ complete }) {
+  const [errorObject, setErrorObject] = useState(
+    {title: false, 
+    logLine: false,
+    semester: false,
+    duration: false,
+    courseId: false,
+    vimeoId: false,
+    overview: false,
+    genreList: false,
+    courseList: false,
+    inputActorList: false})
+
   const { genres, courses } = useContext(GenreCourseContext);
 
   const [title, setTitle] = useState("");
@@ -83,31 +102,40 @@ export default function Submit({ complete }) {
     complete(submitContent);
   }
 
+  const checkErrors = (id) => {
+    
+  }
+
   return (
     <div className={styles.submitPage}>
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
       <FlexGroup>
         <div>
-          <TextInput name="Title" setFunc={setTitle} />
-          <TextInput name="Log-Line" setFunc={setLogLine} />
-          <TextInput name="Course ID" setFunc={setCourseId} />
+          <TextInput name="Title" setFunc={setTitle} id={"title"} validator={validateFilmTitle} errorObject={errorObject} setErrorObject={setErrorObject}/>
+          <TextInput name="Log-Line" setFunc={setLogLine} id={"logLine"} validator={validateFilmLogLine} errorObject={errorObject} setErrorObject={setErrorObject}/>
+          <TextInput name="Course ID" setFunc={setCourseId} id={"courseId"} validator={validateFilmCourse} errorObject={errorObject} setErrorObject={setErrorObject}/>
         </div>
         <div>
           <TextInput
             name={"Semester"}
             setFunc={setSemester}
             moreText="eg. F21, W22, S22, etc."
+            id={"semester"} 
+            validator={validateFilmSemester} 
+            errorObject={errorObject}
+            setErrorObject={setErrorObject}
           />
           <TextInput
             name={"Duration"}
             setFunc={setDuration}
             moreText="Minutes"
+            id={"duration"} 
           />
-          <TextInput name="Vimeo ID" setFunc={setVimeoId} />
+          <TextInput name="Vimeo ID" setFunc={setVimeoId}/>
         </div>
       </FlexGroup>
       <Group>
-        <TextArea name="Overview" setFunc={setOverview} />
+        <TextArea name="Overview" setFunc={setOverview} id={"overview"} validator={validateFilmOverview} errorObject={errorObject} setErrorObject={setErrorObject}/>
       </Group>
       <FlexGroup>
         <OptionSelectCard
@@ -117,6 +145,10 @@ export default function Submit({ complete }) {
           selectedOptions={courseList}
           onChangeFunction={setCourseList}
           limit={2}
+          id={"courseList"}
+          validator={validateFilmCourse}
+          errorObject={errorObject}
+          setErrorObject={setErrorObject}
         />
         <OptionSelectCard
           title="Genres"
@@ -126,7 +158,10 @@ export default function Submit({ complete }) {
           selectedOptions={genreList}
           onChangeFunction={setGenreList}
           limit={3}
+          id={"genreList"}
           validator={validateFilmGenre}
+          errorObject={errorObject}
+          setErrorObject={setErrorObject}
         />
       </FlexGroup>
       <FlexGroup>
@@ -137,6 +172,10 @@ export default function Submit({ complete }) {
           useDropdown={false}
           onChangeFunction={setActorInputList}
           limit={20}
+          id={"inputActorList"}
+          validator={validateFilmActors}
+          errorObject={errorObject}
+          setErrorObject={setErrorObject}
         />
         <OptionSelectCard
           title="Directors"
