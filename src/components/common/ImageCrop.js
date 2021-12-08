@@ -9,10 +9,24 @@ export default function ImageCrop({
   croppedImage,
   setCroppedImage,
   aspect = 1,
+  large=false
 }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+
+  const containerStyle = large
+    ? `${styles.container} ${styles.large}`
+    : styles.container;
+  const emptyStyle = large
+    ? `${styles.emptyCropper} ${styles.large}`
+    : styles.emptyCropper;
+
+  //to interface with the style of the cropper component we need to use css in jsx
+  //https://github.com/ricardo-ch/react-easy-crop
+  const cropperStyle = large
+    ? { containerStyle: { float: "right", width: "80%" } }
+    : { containerStyle: { float: "right", width: "70%" } };
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -37,8 +51,9 @@ export default function ImageCrop({
 
   return (
     <>
-      <div className={styles.container}>
-          {(image) ? <Cropper
+      <div className={containerStyle}>
+        {image ? (
+          <Cropper
             image={image}
             crop={crop}
             zoom={zoom}
@@ -46,20 +61,19 @@ export default function ImageCrop({
             onCropChange={onCropChange}
             onCropComplete={onCropComplete}
             onZoomChange={onZoomChange}
-          /> : <div className={styles.emptyCropper} />}
-        {croppedImage ? (
-          <img
+            style={cropperStyle}
+          />
+        ) : (
+          <div className={emptyStyle} />
+        )}
+          {(croppedImage) ? <img
             className={styles.cropped_preview}
             src={croppedImage}
             alt="cropped"
-          />
-        ) : null}
+          /> : <div className={styles.image_background} />}
+
       </div>
       <button onClick={showCroppedImage}>Crop Image</button>
     </>
   );
 }
-
-//className={styles.cropContainer}
-
-//show the cropped image
