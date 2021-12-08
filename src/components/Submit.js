@@ -46,8 +46,6 @@ export default function Submit({ complete }) {
     }
     const orig = e.target.files[0];
     const compressed = await imageCompression(orig, options);
-    const reader = new FileReader();
-    reader.readAsDataURL(blob); 
     setPoster(URL.createObjectURL(compressed));
   };
 
