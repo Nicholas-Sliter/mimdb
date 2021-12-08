@@ -21,8 +21,8 @@ export default function ImageCrop({
     : styles.emptyCropper;
 
 
-  console.log(containerStyle);
-  console.log(emptyStyle);
+ const cropperStyle = { containerStyle: {float:'right',width:'60%'} };
+
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -57,6 +57,7 @@ export default function ImageCrop({
             onCropChange={onCropChange}
             onCropComplete={onCropComplete}
             onZoomChange={onZoomChange}
+            style={cropperStyle}
           />
         ) : (
           <div className={emptyStyle} />
