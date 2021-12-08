@@ -9,19 +9,22 @@ import useResolveQuery from "../../hooks/useResolveQuery";
 
 export default function Admin() {
 
-  const adminFunc = async(apiCall, film) => {
-    if(film) {
-        const response = await fetch(`/api/films/${film.slug}/${apiCall}`, {
-        method: "PUT"
+  const adminFunc = (apiCall, film) => {
+    const helper = async () => {
+      if(film) {
+          const response = await fetch(`/api/films/${film.slug}/${apiCall}`, {
+          method: "PUT"
 
-        })
-        
-        console.log(response)
+          })
+          
+          console.log(response)
 
-        if (!response.ok) {
-            //throw new Error(response.statusText)
-        }
+          if (!response.ok) {
+              //throw new Error(response.statusText)
+          }
+      }
     }
+    helper();
   } 
 
   return (

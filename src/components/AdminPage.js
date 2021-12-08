@@ -4,10 +4,6 @@ import { useState, useEffect } from "react";
 export default function AdminPage({ films, adminFunc }) {
     const [update, refresh] = useState(true);
 
-    const test = async(apiCall, film) => {
-        adminFunc(apiCall, film);
-    }
-    
     return (
         <div style={{padding:"40px"}}>
             <h1>Films in the MIMDB Database</h1>
@@ -35,11 +31,11 @@ export default function AdminPage({ films, adminFunc }) {
                         film.approveBoolean ? 
                         <td>
                         <p style={{color: "green"}}>Approved</p>
-                        <button onClick={() => {test("reject", film); refresh(!update)}}>Reject</button>
+                        <button onClick={() => {adminFunc("reject", film); refresh(!update)}}>Reject</button>
                         </td> :
                         <td>
                         <p style={{color: "red"}}>Not approved</p>
-                        <button onClick={() => {test("approve", film); refresh(!update)}}>Approve</button>
+                        <button onClick={() => {adminFunc("approve", film); refresh(!update)}}>Approve</button>
                         </td>
                     }
                     <td>{film["title"]}</td>
