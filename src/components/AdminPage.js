@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function AdminPage({ films, adminFunc }) {
     const [update, refresh] = useState(true);
