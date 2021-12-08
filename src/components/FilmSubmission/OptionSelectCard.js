@@ -116,7 +116,6 @@ export default function OptionSelectCard({
   };
 
   const handleButtonPress = () => {
-    console.log(value);
     addNewOption(value);
   };
 

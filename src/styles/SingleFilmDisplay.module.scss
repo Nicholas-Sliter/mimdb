@@ -62,7 +62,12 @@ $border_rad: 0.5rem;
   justify-content: right;
   margin: 0rem;
   margin-left: 2rem;
+<<<<<<< HEAD
   margin-bottom: 1rem;
+=======
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+>>>>>>> main
 }
 
 .directorsList{
@@ -187,6 +192,7 @@ $border_rad: 0.5rem;
   margin-right: auto;
   max-width: 960px;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 
   .overview {
     text-align: center;
@@ -271,6 +277,10 @@ margin-top: 2rem;
     width: 560px;
     height: 315px;
   }
+
+  .details {
+    width: 80%;
+  }
 }
 
 @media only screen and (max-width: 569px) {
@@ -297,5 +307,9 @@ margin-top: 2rem;
   .video {
     width: 320px;
     height: 180px;
+  }
+
+  .details {
+    width: 80%;
   }
 }

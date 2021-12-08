@@ -141,7 +141,8 @@
   
   .blurBackground{
     width: 100%;
-    background-position: 50% 50% !important;  
+    object-fit: cover;
+    background-position: 50% 50% !important;
   }
   
   .movieHeader{

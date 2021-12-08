@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-exports.seed = async function(knex) {
+exports.seed = async function (knex) {
   // Loading database "Film"
   const filmContents = fs.readFileSync("./data/tempData.json");
   const films = JSON.parse(filmContents);
@@ -18,7 +18,7 @@ exports.seed = async function(knex) {
       video,
       vimeo_id,
       duration,
-      approveBoolean
+      approved
     }) => ({
       backdrop_path,
       title,
@@ -32,7 +32,7 @@ exports.seed = async function(knex) {
       video,
       vimeo_id,
       duration,
-      approveBoolean
+      approved
     }))(film);
   });
 
@@ -61,23 +61,22 @@ exports.seed = async function(knex) {
 
   films.forEach((film) => {
     film.genre.forEach((genre) => {
-      genreMap.push({film_id: film.id, genre_name: genre});
+      genreMap.push({ film_id: film.id, genre_name: genre, approved: film.approved });
     });
     film.actors.forEach((name) => {
-      actorsMap.push({film_id: film.id, actor_name: name});
+      actorsMap.push({ film_id: film.id, actor_name: name });
     });
     film.contributors.forEach((name) => {
-      contributorsMap.push({film_id: film.id, contributor_name: name});
+      contributorsMap.push({ film_id: film.id, contributor_name: name });
     });
     film.course_CRNs.forEach((CRN) => {
-      courseMap.push({film_id: film.id, course_number: CRN});
+      courseMap.push({ film_id: film.id, course_number: CRN });
     });
     film.director_ids.forEach((id) => {
-      directorsMap.push({film_id: film.id, director_id: id});
+      directorsMap.push({ film_id: film.id, director_id: id });
     });
-    
-    posterMap.push({film_slug: film.slug, poster_data: fs.readFileSync("./public"+film.poster_path, {encoding: 'base64'})});
-    backdropMap.push({film_slug: film.slug, backdrop_data: fs.readFileSync("./public"+film.backdrop_path, {encoding: 'base64'})});
+    posterMap.push({ film_slug: film.slug, poster_data: `data:image/jpg;base64,${fs.readFileSync("./public" + film.poster_path, { encoding: 'base64' })}` });
+    backdropMap.push({ film_slug: film.slug, backdrop_data: `data:image/jpg;base64,${fs.readFileSync("./public" + film.backdrop_path, { encoding: 'base64' })}` });
   });
 
   await knex("Genre").del();

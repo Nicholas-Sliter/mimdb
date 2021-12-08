@@ -14,13 +14,12 @@ export default function SmallCard({ film }) {
   useEffect(() => {
     setPoster(posterRes ?? default_grey_svg);
   }, [posterRes])
-
   return (
 
     <Link href={`/films/${film.slug}`} passHref>
       <div className={styles.card}>
         <div className={styles.card_poster} data-testid="smallPosterTest">
-          <img src={`data:image/jpg;base64,${poster}`} alt={film.title} />
+          <img src={poster} alt={film.title} />
         </div>
         <div className={styles.card_info}>
           <h3>{film.title}</h3>
