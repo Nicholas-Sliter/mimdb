@@ -1,9 +1,7 @@
 import router from "next/router";
 import { useState } from "react";
 import styles from "../styles/SubmitPage.module.css";
-//import AddedText from "./FilmSubmission/AddedText";
 import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
-import Select from "./FilmSubmission/Select";
 import TextArea from "./FilmSubmission/TextArea";
 //import { validateFilmSemester } from "../lib/frontend-utils";
 import TextInput from "./FilmSubmission/TextInput";
@@ -13,6 +11,7 @@ import { validateFilmGenre } from "../lib/frontend-utils";
 import ImageCrop from "./common/ImageCrop";
 import Group from "./common/Group";
 import FlexGroup from "./common/FlexGroup";
+import imageCompression from 'browser-image-compression';
 
 // import ReactCrop from "react-image-crop";
 // import "react-image-crop/dist/ReactCrop.css";
@@ -40,12 +39,25 @@ export default function Submit({ complete }) {
   const [croppedBackdrop, setCroppedBackdrop] = useState(null);
 
 
-  const handlePosterUploadChange = (e) => {
-    setPoster(URL.createObjectURL(e.target.files[0]));
+
+  const handlePosterUploadChange = async (e) => {
+    const options = { 
+      maxSizeMB: 1.5
+    }
+    const orig = e.target.files[0];
+    const compressed = await imageCompression(orig, options);
+    const reader = new FileReader();
+    reader.readAsDataURL(blob); 
+    setPoster(URL.createObjectURL(compressed));
   };
 
-    const handleBackdropUploadChange = (e) => {
-      setBackdrop(URL.createObjectURL(e.target.files[0]));
+    const handleBackdropUploadChange = async (e) => {
+      const options = { 
+        maxSizeMB: 3
+      }
+      const orig = e.target.files[0];
+      const compressed = await imageCompression(orig, options);
+      setBackdrop(URL.createObjectURL(compressed));
     };
 
   const handleCropImageButton = () => {
@@ -67,6 +79,8 @@ export default function Submit({ complete }) {
       //inputContribList: inputContribList,
       genreList: genreList,
       courseList: courseList,
+      poster: croppedPoster,
+      backdrop: croppedBackdrop
     };
     complete(submitContent);
   }

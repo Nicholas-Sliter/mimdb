@@ -41,7 +41,7 @@ export default function WideCard({ film }) {
                 <img
                   className={styles.poster}
                   draggable={false}
-                  src={`data:image/jpg;base64,${poster}`}
+                  src={poster}
                 />
                 <h1 className={styles.title}>{film.title}</h1>
                 <span className={`${styles.duration} noselect`}>
@@ -55,7 +55,7 @@ export default function WideCard({ film }) {
             </div>
           </div>
 
-          <img className={styles.blurBackground} src={`data:image/jpg;base64,${backdrop}`} />
+          <img className={styles.blurBackground} src={backdrop} />
         </div>
       </a>
     </Link>

@@ -14,6 +14,7 @@ export default function SubmitPage() {
         body: JSON.stringify(content),
         headers: new Headers({ "Content-Type": "application/json" })
       });
+      console.log(content);
       if (!response.ok) {
         throw new Error(response.statusText);
       }

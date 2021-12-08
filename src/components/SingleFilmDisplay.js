@@ -56,8 +56,8 @@ export default function SingleFilmDisplay({ film }) {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.background_image_container}>
-        <img src={`data:image/jpg;base64,${backdrop}`} />
-        <img src={`data:image/jpg;base64,${poster}`} className={styles.poster} />
+        <img src={backdrop} />
+        <img src={poster} className={styles.poster} />
       </div>
       <div className={styles.content}>
         <h1 className={styles.filmTitle}>{film.title}</h1>
