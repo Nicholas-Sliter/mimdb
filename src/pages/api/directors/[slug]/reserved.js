@@ -15,7 +15,7 @@ const handler = nc().get(async (req, res) => {
 
   const result = await checkDirectorSlug(slug);
 
-  if (typeof result !== 'boolean') {
+  if (typeof result !== "boolean") {
     res.status(500).json({
       error: "Error failed to check if slug is in use",
     });

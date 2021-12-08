@@ -4,8 +4,6 @@ import { convertToSlug } from "../../../../lib/frontend-utils";
 
 const handler = nc().post(async (req, res) => {
   const director = req.body;
-  console.log("api director submit:", director);
-  //const director = await getDirector(directorUrl);
 
   if (!director) {
     res.status(400).json({
@@ -19,7 +17,6 @@ const handler = nc().post(async (req, res) => {
   director.director_slug = convertToSlug(director.director_name);
   let index = /-\d+$/.test(director.director_name) ? (+director.director_name.match(/\d+$/g)[0]) : 0;
   while (await checkDirectorSlug(director.director_slug)) {
-    console.log("trapped!");
     director.director_slug = convertToSlug(`${director.director_name}-${index}`);
   }
 
@@ -28,13 +25,10 @@ const handler = nc().post(async (req, res) => {
       error: `Director with slug ${director.director_slug} already exists`,
     });
     return;
-
   }
-  console.log("passed director slug test");
 
   //process the director
   const { processedDirector, error } = await processDirector(director);
-  console.log("passed processDirector", processedDirector);
   if (error) {
     console.log("error: ", error);
     res.status(400).json({
@@ -43,10 +37,8 @@ const handler = nc().post(async (req, res) => {
 
     return;
   }
-  console.log("no error");
   //now insert the director into the database
   const insertedDirector = await addDirector(processedDirector);
-  console.log("after insert:", insertedDirector);
 
   //return the director as success
   res.status(200).json(insertedDirector);

@@ -2,9 +2,6 @@
 import DirectorSubmit from "../../components/DirectorSubmit";
 import Layout from "../../components/Layouts/Layout";
 
-import styles from "../../styles/Home.module.css";
-
-
 export default function SubmitDirPage() {
 
   const submitDirComplete = (content) => {
