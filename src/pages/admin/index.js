@@ -26,7 +26,6 @@ export default function Admin() {
   const adminFunc = (apiCall, film) => {
     const helper = async () => {
       if (film) {
-        console.log(`/api/films/${film.slug}/${apiCall}`);
         const response = await fetch(`/api/films/${film.slug}/${apiCall}`, {
           method: "PUT"
         })
