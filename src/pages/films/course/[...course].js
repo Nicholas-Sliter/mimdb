@@ -47,7 +47,7 @@ export default function FilmsByCourse() {
     <Layout>
       <div className={styles.container}>
         <h1 className={styles.title}>Films created in {courseName}</h1>
-        <h3 className={styles.courseDesc}>{courseDesc}</h3>
+        <h4 className={styles.courseDesc}>{courseDesc}</h4>
         <FilmRow films={genreFilmList} />
       </div>
     </Layout>

@@ -4,11 +4,14 @@ $box_background: rgb(255, 255, 255, 0.9);
 $border_rad: 0.5rem;
 
 
+.largeContainer{
+    width: 100%;
+}
+
 .topBox{
     padding: 0px 5px 0px 5px;
     margin-bottom: 1rem;
-    height: 21rem;
-    
+    height: 21rem;    
 }
 
 .directorInfo{
