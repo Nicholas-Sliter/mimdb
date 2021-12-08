@@ -9,10 +9,20 @@ export default function ImageCrop({
   croppedImage,
   setCroppedImage,
   aspect = 1,
+  large=false
 }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+
+  const containerStyle = (large) ? `${styles.container} ${styles.large}` : styles.container;
+  const emptyStyle = large
+    ? `${styles.emptyCropper} ${styles.large}`
+    : styles.emptyCropper;
+
+
+  console.log(containerStyle);
+  console.log(emptyStyle);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -37,8 +47,9 @@ export default function ImageCrop({
 
   return (
     <>
-      <div className={styles.container}>
-          {(image) ? <Cropper
+      <div className={containerStyle}>
+        {image ? (
+          <Cropper
             image={image}
             crop={crop}
             zoom={zoom}
@@ -46,7 +57,10 @@ export default function ImageCrop({
             onCropChange={onCropChange}
             onCropComplete={onCropComplete}
             onZoomChange={onZoomChange}
-          /> : <div className={styles.emptyCropper} />}
+          />
+        ) : (
+          <div className={emptyStyle} />
+        )}
         {croppedImage ? (
           <img
             className={styles.cropped_preview}

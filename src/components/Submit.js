@@ -166,6 +166,7 @@ export default function Submit({ complete }) {
           aspect={2 / 3}
           croppedImage={croppedPoster}
           setCroppedImage={setCroppedPoster}
+          large
         ></ImageCrop>
       </Group>
       <Group>
