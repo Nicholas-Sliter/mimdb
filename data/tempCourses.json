@@ -2,11 +2,13 @@
     {
         "course_name": "Sight and Sound",
         "course_number": "FMMC 0105",
-        "course_description": "*Sight and Sound I* In this course students will gain a theoretical understanding of the ways moving images and sounds communicate, as well as practical experience creating time-based work. We will study examples of moving images as we use cameras, sound recorders, and non-linear editing software to produce our own series of short works. Emphasis will be placed on understanding the possibilities of the medium through experimentation, analysis, and detailed feedback while exploring different facets of cinematic communication. Open to FMMC majors only. (FMMC 0101, or FMMC 0102, or approval of instructor) 3 hrs. lect./3 hrs. lab"
+        "course_description": "*Sight and Sound I* In this course students will gain a theoretical understanding of the ways moving images and sounds communicate, as well as practical experience creating time-based work. We will study examples of moving images as we use cameras, sound recorders, and non-linear editing software to produce our own series of short works. Emphasis will be placed on understanding the possibilities of the medium through experimentation, analysis, and detailed feedback while exploring different facets of cinematic communication. Open to FMMC majors only. (FMMC 0101, or FMMC 0102, or approval of instructor) 3 hrs. lect./3 hrs. lab",
+        "approved_film_count": 12
     },
     {
         "course_name": "Independent Project",
         "course_number": "FMMC 0507",
-        "course_description": "*Advanced Independent work in Film and Media Culture* Consult with a Film and Media Culture faculty member for guidelines."
+        "course_description": "*Advanced Independent work in Film and Media Culture* Consult with a Film and Media Culture faculty member for guidelines.",
+        "approved_film_count": 1
     }
 ]

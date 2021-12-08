@@ -1,18 +1,22 @@
 import router from "next/router";
 import { useState } from "react";
 import styles from "../styles/SubmitPage.module.css";
-//import AddedText from "./FilmSubmission/AddedText";
 import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
-import Select from "./FilmSubmission/Select";
 import TextArea from "./FilmSubmission/TextArea";
 //import { validateFilmSemester } from "../lib/frontend-utils";
 import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
 import { validateFilmGenre } from "../lib/frontend-utils";
+import ImageCrop from "./common/ImageCrop";
+import Group from "./common/Group";
+import FlexGroup from "./common/FlexGroup";
+import imageCompression from 'browser-image-compression';
 
+// import ReactCrop from "react-image-crop";
+// import "react-image-crop/dist/ReactCrop.css";
 
-export default function Submit({complete}) {
+export default function Submit({ complete }) {
   const { genres, courses } = useContext(GenreCourseContext);
 
   const [title, setTitle] = useState("");
@@ -22,13 +26,44 @@ export default function Submit({complete}) {
   const [courseId, setCourseId] = useState("");
   const [vimeoId, setVimeoId] = useState("");
   const [overview, setOverview] = useState("");
-  const [newGenre, addGenre] = useState([]);
-  const [newCourse, addCourse] = useState([]);
-  const [genreList, setGenreList] = useState(genres);
-  const [courseList, setCourseList] = useState(courses);
+  const [genreList, setGenreList] = useState([]);
+  const [courseList, setCourseList] = useState([]);
   const [inputDirectorList, setDirectorInputList] = useState([]);
   const [inputActorList, setActorInputList] = useState([]);
-  //const [inputContribList, setContribInputList] = useState([""]);
+
+  //state for uploaded poster and backdrop before cropping
+  const [poster, setPoster] = useState("");
+  const [backdrop, setBackdrop] = useState("");
+
+  const [croppedPoster, setCroppedPoster] = useState(null);
+  const [croppedBackdrop, setCroppedBackdrop] = useState(null);
+
+
+
+  const handlePosterUploadChange = async (e) => {
+    const options = { 
+      maxSizeMB: 1.5
+    }
+    const orig = e.target.files[0];
+    const compressed = await imageCompression(orig, options);
+    const reader = new FileReader();
+    reader.readAsDataURL(blob); 
+    setPoster(URL.createObjectURL(compressed));
+  };
+
+    const handleBackdropUploadChange = async (e) => {
+      const options = { 
+        maxSizeMB: 3
+      }
+      const orig = e.target.files[0];
+      const compressed = await imageCompression(orig, options);
+      setBackdrop(URL.createObjectURL(compressed));
+    };
+
+  const handleCropImageButton = () => {
+    //console.log(crop);
+    //setPoster(crop);
+  };
 
   async function createSubmission() {
     const submitContent = {
@@ -44,6 +79,8 @@ export default function Submit({complete}) {
       //inputContribList: inputContribList,
       genreList: genreList,
       courseList: courseList,
+      poster: croppedPoster,
+      backdrop: croppedBackdrop
     };
     complete(submitContent);
   }
@@ -51,7 +88,7 @@ export default function Submit({complete}) {
   return (
     <div className={styles.submitPage}>
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
-      <div className={styles.group}>
+      <FlexGroup>
         <div>
           <TextInput name="Title" setFunc={setTitle} />
           <TextInput name="Log-Line" setFunc={setLogLine} />
@@ -70,17 +107,17 @@ export default function Submit({complete}) {
           />
           <TextInput name="Vimeo ID" setFunc={setVimeoId} />
         </div>
-      </div>
-      <div className={styles.group}>
+      </FlexGroup>
+      <Group>
         <TextArea name="Overview" setFunc={setOverview} />
-      </div>
-      <div className={styles.group}>
+      </Group>
+      <FlexGroup>
         <OptionSelectCard
           title="Course"
           useDropdown
           initialOptions={courses}
-          selectedOptions={newCourse}
-          onChangeFunction={addCourse}
+          selectedOptions={courseList}
+          onChangeFunction={setCourseList}
           limit={2}
         />
         <OptionSelectCard
@@ -88,13 +125,13 @@ export default function Submit({complete}) {
           allowCustom
           useDropdown
           initialOptions={genres}
-          selectedOptions={newGenre}
-          onChangeFunction={addGenre}
+          selectedOptions={genreList}
+          onChangeFunction={setGenreList}
           limit={3}
           validator={validateFilmGenre}
         />
-      </div>
-      <div className={styles.group}>
+      </FlexGroup>
+      <FlexGroup>
         <OptionSelectCard
           title="Actors"
           allowCustom
@@ -118,42 +155,51 @@ export default function Submit({complete}) {
           useDropdown
           onChangeFunction={setDirectorInputList}
         />
-      </div>
+      </FlexGroup>
+      <Group>
+        <h3> Upload poster </h3>
+        <input
+          id="poster-upload"
+          type="file"
+          onChange={handlePosterUploadChange}
+        />
+        <ImageCrop
+          image={poster}
+          aspect={2 / 3}
+          croppedImage={croppedPoster}
+          setCroppedImage={setCroppedPoster}
+        ></ImageCrop>
+      </Group>
+      <Group>
+        <h3> Upload backdrop </h3>
+        <input
+          id="backdrop-upload"
+          type="file"
+          onChange={handleBackdropUploadChange}
+        />
+        <ImageCrop
+          image={backdrop}
+          aspect={21 / 9}
+          croppedImage={croppedBackdrop}
+          setCroppedImage={setCroppedBackdrop}
+        ></ImageCrop>
+      </Group>
       <div className={styles.groupButton}>
-        <button
-          className={styles.largeButton}
-          onClick={() => createSubmission()}
-        >
-          Submit
-        </button>
         <button
           className={styles.largeButton}
           onClick={() => {
             router.back();
           }}
         >
-          {" "}
-          Cancel{" "}
+          Cancel
+        </button>
+        <button
+          className={styles.largeButton}
+          onClick={() => createSubmission()}
+        >
+          Submit
         </button>
       </div>
     </div>
   );
 }
-
-
-
-
-        // <Select
-        //   name="Genre"
-        //   array={genres}
-        //   newVar={newGenre}
-        //   setFunc={addGenre}
-        //   setCategoryList={setGenreList}
-        // />
-        // <Select
-        //   name="Course"
-        //   array={courses}
-        //   newVar={newCourse}
-        //   setFunc={addCourse}
-        //   setCategoryList={setCourseList}
-        // />
