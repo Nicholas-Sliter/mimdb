@@ -50,7 +50,6 @@ const validateAndProcessNewFilm = async (inFilm) => {
 const handler = nc()
   .post(async (req, res) => {
     const newFilm = req.body;
-    //console.log(newFilm);
     const processedFilm = await validateAndProcessNewFilm(newFilm);
 
     if (processedFilm) {
@@ -99,7 +98,6 @@ const handler = nc()
       // Add backdrop to Backdrop DB
       addedFilm = await addBackdropBySlug(newFilm.backdrop, processedFilm.slug);
       //addedFilm = await addBackdropBySlug(default_grey_svg, processedFilm.slug) 
-      console.log("hi", addedFilm);
       res.status(200).json(addedFilm);
     } else {
       res.status(500).json({

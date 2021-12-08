@@ -19,7 +19,6 @@ export default function ImageCrop({
   }, []);
 
   const showCroppedImage = useCallback(async () => {
-    console.log("showCroppedImage");
     try {
       const croppedImage = await getCroppedImg(image, croppedAreaPixels);
       setCroppedImage(croppedImage);
