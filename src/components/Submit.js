@@ -46,8 +46,6 @@ export default function Submit({ complete }) {
     }
     const orig = e.target.files[0];
     const compressed = await imageCompression(orig, options);
-    const reader = new FileReader();
-    reader.readAsDataURL(blob); 
     setPoster(URL.createObjectURL(compressed));
   };
 
@@ -168,6 +166,7 @@ export default function Submit({ complete }) {
           aspect={2 / 3}
           croppedImage={croppedPoster}
           setCroppedImage={setCroppedPoster}
+          large
         ></ImageCrop>
       </Group>
       <Group>

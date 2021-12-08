@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.courseContainer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  h1 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+    margin: 0;
+    display: inline-block;
+  }
+  p {
+    margin: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    width: 100%;
+   display: inline-block;
+  }
+}
