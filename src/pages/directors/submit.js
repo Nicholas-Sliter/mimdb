@@ -8,17 +8,16 @@ export default function SubmitDirPage() {
 
   const submitDirComplete = (content) => {
     console.log(JSON.stringify(content));
-    // const postSubmit = async () => {
-    //   const response = await fetch("/api/submit", {
-    //     method: "POST",
-    //     body: JSON.stringify(content),
-    //     headers: new Headers({ "Content-Type": "application/json" })
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error(response.statusText);
-    //   }
-    // }
-    // postSubmit();
+    const postSubmit = async () => {
+      const response = await fetch("/api/submit", {
+        method: "POST",
+        body: JSON.stringify(content), headers: new Headers({ "Content-Type": "application/json" })
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+    }
+    postSubmit();
   }
 
   return (
@@ -27,12 +26,12 @@ export default function SubmitDirPage() {
 
 
       <main>
-        
-        <DirectorSubmit complete={submitDirComplete}/>
+
+        <DirectorSubmit complete={submitDirComplete} />
       </main>
 
       <footer>
-         © {`${new Date().getFullYear()}`} Middlebury Movie Database
+        © {`${new Date().getFullYear()}`} Middlebury Movie Database
       </footer>
 
     </div>
