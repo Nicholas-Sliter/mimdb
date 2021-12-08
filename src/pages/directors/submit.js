@@ -1,5 +1,6 @@
 
 import DirectorSubmit from "../../components/DirectorSubmit";
+import Layout from "../../components/Layouts/Layout";
 
 import styles from "../../styles/Home.module.css";
 
@@ -21,19 +22,7 @@ export default function SubmitDirPage() {
   }
 
   return (
+    <Layout><DirectorSubmit complete={submitDirComplete} /></Layout>
 
-    <div className={styles.container}>
-
-
-      <main>
-
-        <DirectorSubmit complete={submitDirComplete} />
-      </main>
-
-      <footer>
-        © {`${new Date().getFullYear()}`} Middlebury Movie Database
-      </footer>
-
-    </div>
   );
 }

@@ -184,7 +184,7 @@ export async function getAllFilms() {
  *
  * @returns an array of all films
  */
- export async function getReallyAllFilms() {
+export async function getReallyAllFilms() {
   let films = await knex("Film").select();
   return await Promise.all(films.map(async (film) => await fillFilm(film)));
 }
@@ -402,6 +402,17 @@ async function _getFullDirectorBySlug(slug) {
   }
 
   return null;
+}
+
+/** Get full director (backend function, never call directly from API)
+ *
+ * @param {integer} id the director id
+ * @returns the entire director object from the database with all fields
+ */
+
+ async function _getFullDirectorById(id) {
+  const director = await knex("Directors").select().where({ director_id: id });
+  return (director && director.length) ? director[0] : null;
 }
 
 function _filterDirector(director) {
@@ -729,7 +740,7 @@ export async function updateFilmApproval(slug, approve) {
 
   if (!origFilm) return;
 
-  if (!!origFilm.approved===approve) {
+  if (!!origFilm.approved === approve) {
     // No update needed
     return false;
   } else {
@@ -737,17 +748,17 @@ export async function updateFilmApproval(slug, approve) {
     await knex("Film").select()
       .where({ slug: slug })
       .update({ approved: approve });
-    
+
     // Increment count for course DB
     await Promise.all(origFilm.course.map(async (course_name) => {
       if (approve) {
         await knex("Course").select()
-        .where({ course_name: course_name })
-        .increment("approved_film_count", 1);
+          .where({ course_name: course_name })
+          .increment("approved_film_count", 1);
       } else {
         await knex("Course").select()
-        .where({ course_name: course_name })
-        .decrement("approved_film_count", 1);
+          .where({ course_name: course_name })
+          .decrement("approved_film_count", 1);
       }
     }));
 
@@ -820,7 +831,7 @@ export async function processDirector(director) {
     processedDirector.director_graduation_year < 1900 ||
     processedDirector.director_graduation_year > max_graduation_year
   ) {
-    error =  new Error(
+    error = new Error(
       `director graduation year is not in range 1900-${max_graduation_year}`
     );
   }
@@ -838,7 +849,7 @@ export async function processDirector(director) {
   if (processedDirector) {
     const exists = await checkDirectorSlug(processedDirector.director_slug);
     if (exists) {
-      error =  new Error("director slug is not unique");
+      error = new Error("director slug is not unique");
     }
   }
 
@@ -853,5 +864,17 @@ export async function processDirector(director) {
     error = new Error("director personal email is not a valid email");
   }
   console.log("hoorey!");
-  return { director: processedDirector, error: error };
-  }
+  return { processedDirector: processedDirector, error: error };
+}
+
+/**
+ * Add the validated director into the Director database
+ * @param {Object} director
+ * @returns the inserted new film object.
+ */
+ export async function addDirector(director) {
+  console.log("director into DB: ", director);
+  const newIDs = await knex("Directors").insert(director);
+  console.log("newIDs:", newIDs);
+  return newIDs.length ? await _getFullDirectorById(newIDs[0]) : null;
+}
