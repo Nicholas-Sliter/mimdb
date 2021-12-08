@@ -22,10 +22,8 @@ export default function Submit({complete}) {
   const [courseId, setCourseId] = useState("");
   const [vimeoId, setVimeoId] = useState("");
   const [overview, setOverview] = useState("");
-  const [newGenre, addGenre] = useState([]);
-  const [newCourse, addCourse] = useState([]);
-  const [genreList, setGenreList] = useState(genres);
-  const [courseList, setCourseList] = useState(courses);
+  const [genreList, setGenreList] = useState([]);
+  const [courseList, setCourseList] = useState([]);
   const [inputDirectorList, setDirectorInputList] = useState([]);
   const [inputActorList, setActorInputList] = useState([]);
   //const [inputContribList, setContribInputList] = useState([""]);
@@ -79,8 +77,8 @@ export default function Submit({complete}) {
           title="Course"
           useDropdown
           initialOptions={courses}
-          selectedOptions={newCourse}
-          onChangeFunction={addCourse}
+          selectedOptions={courseList}
+          onChangeFunction={setCourseList}
           limit={2}
         />
         <OptionSelectCard
@@ -88,8 +86,8 @@ export default function Submit({complete}) {
           allowCustom
           useDropdown
           initialOptions={genres}
-          selectedOptions={newGenre}
-          onChangeFunction={addGenre}
+          selectedOptions={genreList}
+          onChangeFunction={setGenreList}
           limit={3}
           validator={validateFilmGenre}
         />
@@ -139,21 +137,3 @@ export default function Submit({complete}) {
     </div>
   );
 }
-
-
-
-
-        // <Select
-        //   name="Genre"
-        //   array={genres}
-        //   newVar={newGenre}
-        //   setFunc={addGenre}
-        //   setCategoryList={setGenreList}
-        // />
-        // <Select
-        //   name="Course"
-        //   array={courses}
-        //   newVar={newCourse}
-        //   setFunc={addCourse}
-        //   setCategoryList={setCourseList}
-        // />

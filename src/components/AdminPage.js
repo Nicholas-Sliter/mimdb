@@ -1,9 +1,9 @@
 
 import { useState } from "react";
-import { FiCheck, FiX } from "react-icons/fi";
 
 export default function AdminPage({ films, adminFunc }) {
   const [update, refresh] = useState(true);
+  console.log(films);
 
   return (
     <div style={{ padding: "40px" }}>
@@ -43,7 +43,7 @@ export default function AdminPage({ films, adminFunc }) {
               <td>{film["overview"]}</td>
               <td>{film["term"]}</td>
               <td>{film["duration"]}</td>
-              <td>{film["genres"]}</td>
+              <td>{film["genre"]}</td>
               <td>{film["course"]}</td>
               <td>{film["directors"]}</td>
               <td>{film["actors"]}</td>

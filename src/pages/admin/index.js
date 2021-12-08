@@ -1,8 +1,6 @@
-import CustomHead from "../../components/CustomHead";
-import Header from "../../components/Header";
+import Layout from '../../components/Layouts/Layout'
 import AdminPage from "../../components/AdminPage";
 
-import styles from "../../styles/Home.module.css";
 import { useEffect, useState } from "react";
 
 
@@ -44,17 +42,8 @@ export default function Admin() {
   }
 
   return (
-    <div className={styles.container}>
-      <CustomHead />
-      <Header />
-      <main>
-
-        <AdminPage films={films} adminFunc={adminFunc} />
-      </main>
-
-      <footer>
-        © {`${new Date().getFullYear()}`} Middlebury Movie Database
-      </footer>
-    </div>
+    <Layout pageTitle="MIMDB | Admin Dashboard">
+      <AdminPage films={films} adminFunc={adminFunc} />
+    </Layout>
   );
 }
