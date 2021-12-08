@@ -100,9 +100,35 @@ $border_rad: 0.5rem;
   text-decoration: underline 0.1rem;
 }
 
+.course{
+  margin: 0rem 0rem 1rem 2rem;
+  //margin-left: 2rem;
+  //margin-top: 0rem;
+  font-size: 1rem;
+  //padding-left: 2rem;
+  display: inline-block;
+  //white-space: nowrap;
+  color: #555;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.course p{
+  padding-left: 5px;
+  margin: 0;
+  text-decoration: underline;
+  display: inline-block;
+}
+
+.course p:hover{
+  color: blue;
+}
+
 .term {
-  margin-left: 2rem;
-  margin-top: 0rem;
+  margin: 0rem 0rem 1rem 1rem;
+  //margin-left: 1rem;
+  //margin-top: 0rem;
   font-size: 1rem;
   //padding-left: 2rem;
   display: inline-block;
@@ -113,8 +139,9 @@ $border_rad: 0.5rem;
 }
 
 .duration {
-  margin-left: 1rem;
-  margin-top: 0rem;
+  margin: 0rem 0rem 1rem 1rem;
+  //margin-left: 1rem;
+  //margin-top: 0rem;
   display: inline-block;
   //font-weight: bold;
   position: relative;
@@ -125,10 +152,11 @@ $border_rad: 0.5rem;
 }
 
 .genre {
+  margin: 0rem 0rem 1rem 1rem;
   display: inline-block;
   //color: #959595;
-  margin-left: 1rem;
-  margin-top: 0rem;
+  //margin-left: 1rem;
+  //margin-top: 0rem;
   font-size: 1rem;
   color: #555;
   padding: 5px;
@@ -155,9 +183,10 @@ $border_rad: 0.5rem;
   justify-content: center;
   align-items: center;
   display: block;
+  padding: 0rem 1rem 0rem 1rem;
   margin-left: auto;
   margin-right: auto;
-  width: 960px;
+  max-width: 960px;
   margin-top: 1rem;
   margin-bottom: 1rem;
 
