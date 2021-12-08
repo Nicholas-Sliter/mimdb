@@ -18,7 +18,7 @@ exports.seed = async function(knex) {
       video,
       vimeo_id,
       duration,
-      approveBoolean
+      approved
     }) => ({
       backdrop_path,
       title,
@@ -32,7 +32,7 @@ exports.seed = async function(knex) {
       video,
       vimeo_id,
       duration,
-      approveBoolean
+      approved
     }))(film);
   });
 
@@ -61,7 +61,7 @@ exports.seed = async function(knex) {
 
   films.forEach((film) => {
     film.genre.forEach((genre) => {
-      genreMap.push({film_id: film.id, genre_name: genre});
+      genreMap.push({film_id: film.id, genre_name: genre, approved: film.approved});
     });
     film.actors.forEach((name) => {
       actorsMap.push({film_id: film.id, actor_name: name});

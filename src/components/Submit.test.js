@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
 import Submit from "./Submit";
 //import fetchMock from "fetch-mock-jest";
 
@@ -34,8 +33,8 @@ describe("Submit: Submitter tests", () => {
     const logLineEditor = container.querySelector(`input[id=Log-Line]`);
     const dateEditor = container.querySelector("input[id=Semester]");
     const durationEditor = container.querySelector("input[id=Duration]");
-    const courseIdEditor = container.querySelector(`input[id=${"Course ID".replace(/\s/g, '')}]`);
-    const vimeoIdEditor = container.querySelector(`input[id=${"Vimeo ID".replace(/\s/g, '')}]`);
+    const courseIdEditor = container.querySelector(`input[id=${"Course ID".replace(/\s/g, "")}]`);
+    const vimeoIdEditor = container.querySelector(`input[id=${"Vimeo ID".replace(/\s/g, "")}]`);
     const overviewEditor = container.querySelector("textarea");
 
     fireEvent.change(titleEditor, {

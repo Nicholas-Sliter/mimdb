@@ -30,7 +30,7 @@ $wide-row-padding: 20px;
     width: 99vw;
     margin: 0px;
     padding: 0px;
-    padding-right: $row-padding;
+    padding-right: $row-padding + 60px;
     padding-left: $row-padding;
     display: flex;
     flex-wrap: nowrap;
@@ -88,7 +88,7 @@ $wide-row-padding: 20px;
       padding-left: 0px;
     }
     .row_nowrap{
-      padding-right: 0px;
+      padding-right: 100px;
       padding-left: 0px;
     }
 
