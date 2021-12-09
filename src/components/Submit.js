@@ -11,7 +11,8 @@ import { validateFilmGenre } from "../lib/frontend-utils";
 import ImageCrop from "./common/ImageCrop";
 import Group from "./common/Group";
 import FlexGroup from "./common/FlexGroup";
-import imageCompression from 'browser-image-compression';
+import imageCompression from "browser-image-compression";
+import ImageSelector from "./FilmSubmission/ImageSelector";
 
 // import ReactCrop from "react-image-crop";
 // import "react-image-crop/dist/ReactCrop.css";
@@ -38,25 +39,62 @@ export default function Submit({ complete }) {
   const [croppedPoster, setCroppedPoster] = useState(null);
   const [croppedBackdrop, setCroppedBackdrop] = useState(null);
 
+  const images = ["/defaults/pink-pink.svg", "/defaults/purple-pink.svg", "/defaults/green-blue.svg", "/defaults/blue-lightblue.svg", "/defaults/posters/deep-blue.svg"];
 
+  const [selectedPoster, setSelectedPoster] = useState(images[0]);
+  const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
+
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  const convertImageToBase64 = async (image) => {
+    const response = await fetch(image);
+    const blob = await response.blob();
+    const file = new File([blob], "selected.svg", { type: blob.type });
+    //base64 encode the file
+    const base64 = await fileToBase64(file);
+    return base64;
+  };
+
+  const handleSelectGradientBackdrop = async (image) => {
+    setSelectedBackdrop(image);
+    //base64 encode the svg
+    const base64svg = await convertImageToBase64(image);
+    setSelectedBackdrop(image);
+    setBackdrop(base64svg);
+  };
+
+  const handleSelectGradientPoster = async (image) => {
+    //base64 encode the svg
+    setSelectedPoster(image);
+    const base64svg = await convertImageToBase64(image);
+    setSelectedPoster(image);
+    setPoster(base64svg);
+  };
 
   const handlePosterUploadChange = async (e) => {
-    const options = { 
-      maxSizeMB: 1.5
-    }
+    const options = {
+      maxSizeMB: 1.5,
+    };
     const orig = e.target.files[0];
     const compressed = await imageCompression(orig, options);
     setPoster(URL.createObjectURL(compressed));
   };
 
-    const handleBackdropUploadChange = async (e) => {
-      const options = { 
-        maxSizeMB: 3
-      }
-      const orig = e.target.files[0];
-      const compressed = await imageCompression(orig, options);
-      setBackdrop(URL.createObjectURL(compressed));
+  const handleBackdropUploadChange = async (e) => {
+    const options = {
+      maxSizeMB: 3,
     };
+    const orig = e.target.files[0];
+    const compressed = await imageCompression(orig, options);
+    setBackdrop(URL.createObjectURL(compressed));
+  };
 
   const handleCropImageButton = () => {
     //console.log(crop);
@@ -78,7 +116,7 @@ export default function Submit({ complete }) {
       genreList: genreList,
       courseList: courseList,
       poster: croppedPoster,
-      backdrop: croppedBackdrop
+      backdrop: croppedBackdrop,
     };
     complete(submitContent);
   }
@@ -155,12 +193,15 @@ export default function Submit({ complete }) {
         />
       </FlexGroup>
       <Group>
-        <h3> Upload poster </h3>
+        <h3> Upload poster or select a default gradient </h3>
         <input
           id="poster-upload"
           type="file"
           onChange={handlePosterUploadChange}
         />
+      </Group>
+      <Group>
+        <h3> Crop your poster </h3>
         <ImageCrop
           image={poster}
           aspect={2 / 3}
@@ -182,6 +223,15 @@ export default function Submit({ complete }) {
           croppedImage={croppedBackdrop}
           setCroppedImage={setCroppedBackdrop}
         ></ImageCrop>
+      </Group>
+
+      <Group>
+        <ImageSelector
+          images={images}
+          selectedImage={selectedPoster}
+          onImageSelect={handleSelectGradientPoster}
+        ></ImageSelector>
+        {poster ? <img src={poster} /> : null}
       </Group>
       <div className={styles.groupButton}>
         <button
