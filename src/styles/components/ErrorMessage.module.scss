@@ -1,25 +1,18 @@
 .error {
+  position: relative;
+  width: 20rem;
+  display: inline-block;
+  text-align: center;
+  top: 2.2rem;
+  padding: 0.2rem;
+  margin-left: 1rem;
+  color: #d8000c;
+  background-color: #ffd2d2;
+  border-radius: 4px;
 
-    position: relative;
-    width: 20rem;
-    display: inline-block;
-    text-align: center;
-    top: 2.2rem;
-    padding: 0.2rem;
-    margin-left: 1rem;
-    color: #D8000C;
-    background-color: #FFD2D2;
-    border-radius: 4px;
-
-
-    .icon {
-
-      vertical-align: middle;
-      float: left;
-      height: 1.2rem;
-
-
-    }
-
-
+  .icon {
+    vertical-align: middle;
+    float: left;
+    height: 1.2rem;
   }
+}

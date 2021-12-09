@@ -98,10 +98,6 @@ export default function Submit({ complete }) {
     complete(submitContent);
   }
 
-  const checkErrors = (id) => {
-
-  }
-
   return (
     <div className={styles.submitPage}>
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>

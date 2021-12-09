@@ -28,7 +28,7 @@ export default function TextInput({ name, setFunc, moreText, id, validator, erro
         placeholder={moreText ? moreText : `${name} must be set`}
         onChange={(event) => { setFunc(event.target.value); updateErrorMessage(event.target.value) }}
       />
-      <ErrorMessage message={errorMessage} />
+      <ErrorMessage clasName={styles.error} message={errorMessage} />
     </div>
   )
 }
