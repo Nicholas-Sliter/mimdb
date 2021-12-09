@@ -12,7 +12,7 @@ export default function ImageSelectorTabs({name, children}){
      <Tabs selectedTabClassName={styles.selected}>
        <TabList className={styles.tabList}>
          <Tab
-           default={true}
+           default
            selectedTabClassName={styles.selected}
            className={styles.tab}
          >

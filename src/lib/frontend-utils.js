@@ -161,9 +161,6 @@ export function validateFilmOverview(overview) {
 }
 
 export function validateFilmActors(actors) {
-  if (actors.length < 1) {
-    return "Actors are required";
-  }
   if (actors.length > 100) {
     return "Actors is too long";
   }

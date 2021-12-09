@@ -6,7 +6,6 @@
  * The assumption is that the working data store is found in data/films.json and we have a "golden copy" in data/mockData.json.
  */
 
-const fs = require("fs");
 import process from "process";
 
 import knexConfig from "../../knexfile";

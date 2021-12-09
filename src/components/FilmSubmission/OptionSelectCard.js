@@ -15,6 +15,7 @@ export default function OptionSelectCard({
   useDropdown = true,
   validator = (t) => "", // eslint-disable-line no-unused-vars
   limit = null,
+  allowEmpty = false
 }) {
   const [value, setValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
@@ -67,7 +68,7 @@ export default function OptionSelectCard({
   };
 
   const removeOption = (option) => {
-    if (selectedOptions.length-1 === 0) {
+    if (selectedOptions.length-1 === 0 && !allowEmpty) {
       setErrorMessage("This field cannot be empty");
     }
     onChangeFunction(

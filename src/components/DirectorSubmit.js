@@ -3,7 +3,6 @@ import { useState } from "react";
 import styles from "../styles/SubmitPage.module.scss";
 import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";
-import { useContext } from "react";
 
 
 export default function DirectorSubmit({complete}) {
@@ -15,8 +14,6 @@ export default function DirectorSubmit({complete}) {
   const [grad, setGrad]= useState("");
   const [isPersonalEmailPrivate, setIsPersonalEmailPrivate] = useState(true);
   const [isMiddEmailPrivate, setIsMiddEmailPrivate] = useState(true);
-
-  //const [inputContribList, setContribInputList] = useState([""]);
 
   async function createSubmission() {
     const submitDirector = {

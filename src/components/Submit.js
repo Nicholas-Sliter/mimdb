@@ -52,7 +52,6 @@ export default function Submit({ complete }) {
   const [inputDirectorList, setDirectorInputList] = useState([]);
   const [inputActorList, setActorInputList] = useState([]);
 
-  const [isEmpty, setIsEmpty] = useState(true);
   const [isValid, setIsValid] = useState(false);
 
   //state for uploaded poster and backdrop before cropping
@@ -76,14 +75,25 @@ export default function Submit({ complete }) {
   const [selectedPoster, setSelectedPoster] = useState(images[0]);
   const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
 
-  useEffect(() => {
-    updateValid(updateEmpty());
-  }, [title, logLine, semester, duration, vimeoId, overview, genreList, courseList, inputDirectorList, inputActorList, croppedBackdrop, croppedPoster]);
+  const reduceErrorObject = (errorObj) => {
+    let bool = false;
+    for (const value of Object.values(errorObj)) {
+      if (value) {
+        bool = true;
+        break;
+      }
+    }
+    return bool;
+  };
+  
+  const updateValid = (emptyBool) => {
+    setIsValid(!reduceErrorObject(errorObject) && !emptyBool);
+  };
 
   const getEmpty = () => {
     //check if any of the state fields are empty
 
-    return(
+    return (
       title === "" ||
       logLine === "" ||
       semester === "" ||
@@ -92,39 +102,19 @@ export default function Submit({ complete }) {
       overview === "" ||
       genreList.length === 0 ||
       courseList.length === 0 ||
-      inputActorList.length === 0 ||
       inputDirectorList.length === 0 ||
       croppedPoster === null ||
       croppedBackdrop === null
     );
   };
 
+  useEffect(() => {
+    updateValid(getEmpty());
+  }, [title, logLine, semester, duration, vimeoId, overview, genreList, courseList, inputDirectorList, inputActorList, croppedBackdrop, croppedPoster]);
 
-  const updateEmpty = () => {
-    const bool = getEmpty();
-    setIsEmpty(bool);
-    return bool;
-  };
-
-  const updateValid = (emptyBool) => {
-    setIsValid(!reduceErrorObject(errorObject) && !emptyBool);
-  };
-
-
-  const reduceErrorObject = (errorObject) => {
-    let bool = false;
-    for (const [key, value] of Object.entries(errorObject)) {
-      if (value) {
-        bool = true;
-        break;
-      }
-    }
-    return bool;
-  };
-
-  const setErrorObjectWrapper = (errorObject) => {
-    setErrorObject(errorObject);
-    updateValid(updateEmpty());
+  const setErrorObjectWrapper = (errorObj) => {
+    setErrorObject(errorObj);
+    updateValid(getEmpty());
   };
 
   const fileToBase64 = (file) => {
@@ -303,6 +293,7 @@ export default function Submit({ complete }) {
           validator={validateFilmActors}
           errorObject={errorObject}
           setErrorObject={setErrorObjectWrapper}
+          allowEmpty
         />
         <OptionSelectCard
           title="Directors"
@@ -325,7 +316,7 @@ export default function Submit({ complete }) {
             images={images}
             selectedImage={selectedPoster}
             onImageSelect={handleSelectGradientPoster}
-           />
+          />
         </ImageSelectorTabs>
       </Group>
       <Group>
@@ -336,7 +327,7 @@ export default function Submit({ complete }) {
           croppedImage={croppedPoster}
           setCroppedImage={setCroppedPoster}
           large
-         />
+        />
       </Group>
       <Group>
         <h3> Upload backdrop or select a default gradient </h3>
@@ -350,7 +341,7 @@ export default function Submit({ complete }) {
             images={images}
             selectedImage={selectedBackdrop}
             onImageSelect={handleSelectGradientBackdrop}
-           />
+          />
         </ImageSelectorTabs>
       </Group>
 
@@ -361,7 +352,7 @@ export default function Submit({ complete }) {
           aspect={21 / 9}
           croppedImage={croppedBackdrop}
           setCroppedImage={setCroppedBackdrop}
-         />
+        />
       </Group>
 
       <div className={styles.groupButton}>

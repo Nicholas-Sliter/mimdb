@@ -13,10 +13,10 @@ export default function MobileMenuDropDown({ styleCont, styleList }) {
     <div className={styleCont}>
       <ul className={styleList}>
         <li>
-        <Category fieldName={"Genre"} fieldList={genres} mobile={true}/>
+        <Category fieldName={"Genre"} fieldList={genres} mobile/>
         </li>
         <li>
-        <Category fieldName={"Course"} fieldList={courses} mobile={true}/>
+        <Category fieldName={"Course"} fieldList={courses} mobile/>
         </li>
       </ul>
     </div>
