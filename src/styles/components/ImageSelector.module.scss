@@ -1,0 +1,40 @@
+.imageSelector {
+
+   align-items: center;
+   justify-content: center;
+   width: 400px;
+   height: 100%;
+   background-color: #fafafa;
+   border-radius: 12px;
+   outline: 1px solid #e6e6e6;
+
+
+   .image {
+      justify-content: center;
+      vertical-align: middle;
+      margin: 0.3rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      width: 2rem;
+      height: 2rem;
+      object-fit: cover;
+      display: inline-block;
+      border-radius: 50%;
+
+      &.selected {
+         outline: 3px solid #4998ff;
+
+      }
+
+      &:hover {
+         cursor: pointer;
+         transform: scale(1.2);
+         transition: ease-in-out 0.2s;
+         filter: brightness(1.2);
+      }
+
+   }
+
+
+
+}

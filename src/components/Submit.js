@@ -17,14 +17,14 @@ import {
   validateFilmDuration,
   validateFilmVimeoId
 } from "../lib/frontend-utils";
-import ImageCrop from "./common/ImageCrop";
+import ImageCrop from "./FilmSubmission/ImageCrop";
 import Group from "./common/Group";
 import FlexGroup from "./common/FlexGroup";
 import imageCompression from "browser-image-compression";
+import ImageSelector from "./FilmSubmission/ImageSelector";
+import ImageSelectorTabs from "./FilmSubmission/ImageSelectorTabs";
 
 
-// import ReactCrop from "react-image-crop";
-// import "react-image-crop/dist/ReactCrop.css";
 
 export default function Submit({ complete }) {
   const [errorObject, setErrorObject] = useState(
@@ -60,12 +60,58 @@ export default function Submit({ complete }) {
   const [croppedPoster, setCroppedPoster] = useState(null);
   const [croppedBackdrop, setCroppedBackdrop] = useState(null);
 
+  const images = [
+    "/defaults/pink-pink.svg",
+    "/defaults/purple-pink.svg",
+    "/defaults/green-blue.svg",
+    "/defaults/blue-lightblue.svg",
+    "/defaults/posters/deep-blue.svg",
+    "/defaults/posters/sunny-morning.svg",
+    "/defaults/posters/saint-petersburg.svg",
+  ];
 
+  //used to select the defualt poster and backdrop and store their url
+  const [selectedPoster, setSelectedPoster] = useState(images[0]);
+  const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
+
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  const convertImageToBase64 = async (image) => {
+    const response = await fetch(image);
+    const blob = await response.blob();
+    const file = new File([blob], "selected.svg", { type: blob.type });
+    //base64 encode the file
+    const base64 = await fileToBase64(file);
+    return base64;
+  };
+
+  const handleSelectGradientBackdrop = async (image) => {
+    setSelectedBackdrop(image);
+    //base64 encode the svg
+    const base64svg = await convertImageToBase64(image);
+    setSelectedBackdrop(image);
+    setBackdrop(base64svg);
+  };
+
+  const handleSelectGradientPoster = async (image) => {
+    //base64 encode the svg
+    setSelectedPoster(image);
+    const base64svg = await convertImageToBase64(image);
+    setSelectedPoster(image);
+    setPoster(base64svg);
+  };
 
   const handlePosterUploadChange = async (e) => {
     const options = {
-      maxSizeMB: 1.5
-    }
+      maxSizeMB: 1.5,
+    };
     const orig = e.target.files[0];
     const compressed = await imageCompression(orig, options);
     setPoster(URL.createObjectURL(compressed));
@@ -73,12 +119,13 @@ export default function Submit({ complete }) {
 
   const handleBackdropUploadChange = async (e) => {
     const options = {
-      maxSizeMB: 3
-    }
+      maxSizeMB: 3,
+    };
     const orig = e.target.files[0];
     const compressed = await imageCompression(orig, options);
     setBackdrop(URL.createObjectURL(compressed));
   };
+
 
   async function createSubmission() {
     const submitContent = {
@@ -93,7 +140,7 @@ export default function Submit({ complete }) {
       genreList: genreList,
       courseList: courseList,
       poster: croppedPoster,
-      backdrop: croppedBackdrop
+      backdrop: croppedBackdrop,
     };
     complete(submitContent);
   }
@@ -103,29 +150,29 @@ export default function Submit({ complete }) {
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
       <FlexGroup>
         <div className={styles.inputGroup}>
-          <TextInput 
-            name="Title" 
-            setFunc={setTitle} 
-            id={"title"} 
-            validator={validateFilmTitle} 
-            errorObject={errorObject} 
-            setErrorObject={setErrorObject} 
+          <TextInput
+            name="Title"
+            setFunc={setTitle}
+            id={"title"}
+            validator={validateFilmTitle}
+            errorObject={errorObject}
+            setErrorObject={setErrorObject}
           />
-          <TextInput 
-            name="Log-Line" 
-            setFunc={setLogLine} 
-            id={"logLine"} 
+          <TextInput
+            name="Log-Line"
+            setFunc={setLogLine}
+            id={"logLine"}
             moreText={"A short sentence describing the film"}
-            validator={validateFilmLogLine} 
-            errorObject={errorObject} 
-            setErrorObject={setErrorObject} 
+            validator={validateFilmLogLine}
+            errorObject={errorObject}
+            setErrorObject={setErrorObject}
           />
-          <TextInput 
+          <TextInput
             name="Vimeo ID"
             setFunc={setVimeoId}
-            validator={validateFilmVimeoId} 
-            errorObject={errorObject} 
-            setErrorObject={setErrorObject} 
+            validator={validateFilmVimeoId}
+            errorObject={errorObject}
+            setErrorObject={setErrorObject}
           />
         </div>
         <div className={styles.inputGroup}>
@@ -209,12 +256,22 @@ export default function Submit({ complete }) {
         />
       </FlexGroup>
       <Group>
-        <h3> Upload poster </h3>
-        <input
-          id="poster-upload"
-          type="file"
-          onChange={handlePosterUploadChange}
-        />
+        <h3> Upload poster or select a default gradient </h3>
+        <ImageSelectorTabs name="Poster">
+          <input
+            id="poster-upload"
+            type="file"
+            onChange={handlePosterUploadChange}
+          />
+          <ImageSelector
+            images={images}
+            selectedImage={selectedPoster}
+            onImageSelect={handleSelectGradientPoster}
+          ></ImageSelector>
+        </ImageSelectorTabs>
+      </Group>
+      <Group>
+        <h3> Crop your poster </h3>
         <ImageCrop
           image={poster}
           aspect={2 / 3}
@@ -224,19 +281,31 @@ export default function Submit({ complete }) {
         ></ImageCrop>
       </Group>
       <Group>
-        <h3> Upload backdrop </h3>
-        <input
-          id="backdrop-upload"
-          type="file"
-          onChange={handleBackdropUploadChange}
-        />
-        <ImageCrop
+        <h3> Upload backdrop or select a default gradient </h3>
+        <ImageSelectorTabs name="Backdrop">
+          <input
+            id="backdrop-upload"
+            type="file"
+            onChange={handleBackdropUploadChange}
+          />
+          <ImageSelector
+            images={images}
+            selectedImage={selectedBackdrop}
+            onImageSelect={handleSelectGradientBackdrop}
+          ></ImageSelector>
+        </ImageSelectorTabs>
+      </Group>
+
+      <Group>
+        <h3> Crop your backdrop </h3>
+                <ImageCrop
           image={backdrop}
           aspect={21 / 9}
           croppedImage={croppedBackdrop}
           setCroppedImage={setCroppedBackdrop}
         ></ImageCrop>
-      </Group>
+        </Group>
+
       <div className={styles.groupButton}>
         <button
           className={styles.largeButton}
