@@ -1,6 +1,6 @@
 import router from "next/router";
-import { useState } from "react";
-import styles from "../styles/SubmitPage.module.css";
+import { useEffect, useState } from "react";
+import styles from "../styles/SubmitPage.module.scss";
 import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
 import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";
@@ -37,8 +37,9 @@ export default function Submit({ complete }) {
       overview: false,
       genreList: false,
       courseList: false,
-      inputActorList: false
-    })
+      inputActorList: false,
+      empty: true,
+    });
 
   const { genres, courses } = useContext(GenreCourseContext);
 
@@ -73,6 +74,57 @@ export default function Submit({ complete }) {
   //used to select the defualt poster and backdrop and store their url
   const [selectedPoster, setSelectedPoster] = useState(images[0]);
   const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
+
+
+
+  useEffect(() => {
+    const emptyTimer = setTimeout(() => updateEmpty(), 2000);
+    return () => clearTimeout(emptyTimer);
+  }, []);
+
+
+
+
+  const getEmpty = () => {
+    //check if any of the state fields are empty
+    if (
+      title === "" ||
+      logLine === "" ||
+      semester === "" ||
+      duration === "" ||
+      vimeoId === "" ||
+      overview === "" ||
+      genreList.length === 0 ||
+      courseList.length === 0 ||
+      inputActorList.length === 0 ||
+      inputDirectorList.length === 0
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+
+  const updateEmpty = () => {
+    const bool = getEmpty();
+    setErrorObject({ ...errorObject, empty: bool });
+  };
+
+
+
+  const reduceErrorObject = (errorObject) => {
+    let bool = false;
+    [errorObject].forEach((value) => {(value) ? bool = true : null});
+    return bool;
+  }
+
+
+  const setErrorObjectWrapper = (errorObject) => {
+    setErrorObject(errorObject);
+  }
+
+
 
   const fileToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -128,6 +180,12 @@ export default function Submit({ complete }) {
 
 
   async function createSubmission() {
+    //validate all fields
+    if (reduceErrorObject(errorObject)) {
+      return;
+    }
+
+
     const submitContent = {
       title: title,
       overview: logLine,
@@ -156,7 +214,7 @@ export default function Submit({ complete }) {
             id={"title"}
             validator={validateFilmTitle}
             errorObject={errorObject}
-            setErrorObject={setErrorObject}
+            setErrorObject={setErrorObjectWrapper}
           />
           <TextInput
             name="Log-Line"
@@ -165,14 +223,14 @@ export default function Submit({ complete }) {
             moreText={"A short sentence describing the film"}
             validator={validateFilmLogLine}
             errorObject={errorObject}
-            setErrorObject={setErrorObject}
+            setErrorObject={setErrorObjectWrapper}
           />
           <TextInput
             name="Vimeo ID"
             setFunc={setVimeoId}
             validator={validateFilmVimeoId}
             errorObject={errorObject}
-            setErrorObject={setErrorObject}
+            setErrorObject={setErrorObjectWrapper}
           />
         </div>
         <div className={styles.inputGroup}>
@@ -183,7 +241,7 @@ export default function Submit({ complete }) {
             id={"semester"}
             validator={validateFilmSemester}
             errorObject={errorObject}
-            setErrorObject={setErrorObject}
+            setErrorObject={setErrorObjectWrapper}
           />
           <TextInput
             name={"Duration"}
@@ -192,12 +250,19 @@ export default function Submit({ complete }) {
             id={"duration"}
             validator={validateFilmDuration}
             errorObject={errorObject}
-            setErrorObject={setErrorObject}
+            setErrorObject={setErrorObjectWrapper}
           />
         </div>
       </FlexGroup>
       <Group>
-        <TextArea name="Overview" setFunc={setOverview} id={"overview"} validator={validateFilmOverview} errorObject={errorObject} setErrorObject={setErrorObject} />
+        <TextArea
+          name="Overview"
+          setFunc={setOverview}
+          id={"overview"}
+          validator={validateFilmOverview}
+          errorObject={errorObject}
+          setErrorObject={setErrorObjectWrapper}
+        />
       </Group>
       <FlexGroup>
         <OptionSelectCard
@@ -210,7 +275,7 @@ export default function Submit({ complete }) {
           id={"courseList"}
           validator={validateFilmCourse}
           errorObject={errorObject}
-          setErrorObject={setErrorObject}
+          setErrorObject={setErrorObjectWrapper}
         />
         <OptionSelectCard
           title="Genres"
@@ -223,7 +288,7 @@ export default function Submit({ complete }) {
           id={"genreList"}
           validator={validateFilmGenre}
           errorObject={errorObject}
-          setErrorObject={setErrorObject}
+          setErrorObject={setErrorObjectWrapper}
         />
       </FlexGroup>
       <FlexGroup>
@@ -237,7 +302,7 @@ export default function Submit({ complete }) {
           id={"inputActorList"}
           validator={validateFilmActors}
           errorObject={errorObject}
-          setErrorObject={setErrorObject}
+          setErrorObject={setErrorObjectWrapper}
         />
         <OptionSelectCard
           title="Directors"
@@ -298,13 +363,13 @@ export default function Submit({ complete }) {
 
       <Group>
         <h3> Crop your backdrop </h3>
-                <ImageCrop
+        <ImageCrop
           image={backdrop}
           aspect={21 / 9}
           croppedImage={croppedBackdrop}
           setCroppedImage={setCroppedBackdrop}
         ></ImageCrop>
-        </Group>
+      </Group>
 
       <div className={styles.groupButton}>
         <button
@@ -318,6 +383,7 @@ export default function Submit({ complete }) {
         <button
           className={styles.largeButton}
           onClick={() => createSubmission()}
+          disabled={reduceErrorObject(errorObject)}
         >
           Submit
         </button>

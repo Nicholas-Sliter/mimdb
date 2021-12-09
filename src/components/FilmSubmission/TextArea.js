@@ -1,4 +1,4 @@
-import styles from "../../styles/SubmitPage.module.css";
+import styles from "../../styles/SubmitPage.module.scss";
 import ErrorMessage from "../common/ErrorMessage";
 import { useState } from "react";
 
