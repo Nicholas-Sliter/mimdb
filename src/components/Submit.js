@@ -48,6 +48,7 @@ export default function Submit({ complete }) {
     "/defaults/posters/saint-petersburg.svg",
   ];
 
+  //used to select the defualt poster and backdrop and store their url
   const [selectedPoster, setSelectedPoster] = useState(images[0]);
   const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
 
