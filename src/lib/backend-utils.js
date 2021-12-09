@@ -6,7 +6,6 @@
  * The assumption is that the working data store is found in data/films.json and we have a "golden copy" in data/mockData.json.
  */
 
-const fs = require("fs");
 import process from "process";
 
 import knexConfig from "../../knexfile";
@@ -174,7 +173,7 @@ async function fillFilm(film) {
  * @returns an array of all films
  */
 export async function getAllFilms() {
-  let films = await knex("Film").select().where({ approved: true });
+  const films = await knex("Film").select().where({ approved: true });
   return await Promise.all(films.map(async (film) => await fillFilm(film)));
 }
 
@@ -184,7 +183,7 @@ export async function getAllFilms() {
  * @returns an array of all films
  */
 export async function getReallyAllFilms() {
-  let films = await knex("Film").select();
+  const films = await knex("Film").select();
   return await Promise.all(films.map(async (film) => await fillFilm(film)));
 }
 
@@ -194,7 +193,7 @@ export async function getReallyAllFilms() {
  * @returns an array of all films
  */
 export async function getRandFilms(number) {
-  const films = await knex("Film").select().orderByRaw('RANDOM()').limit(number).where({ approved: true });
+  const films = await knex("Film").select().orderByRaw("RANDOM()").limit(number).where({ approved: true });
   await Promise.all(films.map((film) => fillFilm(film)));
   return films;
 }
@@ -301,10 +300,10 @@ export async function getFilmObjectsByDirector(slug) {
  * @returns an array of all films by the director
  */
 export async function getFilmsByDirector(name) {
-  const film_ids = await knex.select('film_id')
-    .from('DirectorsFilm')
-    .join('Directors', 'Directors.director_id', 'DirectorsFilm.director_id')
-    .where({ 'director_name': name });
+  const film_ids = await knex.select("film_id")
+    .from("DirectorsFilm")
+    .join("Directors", "Directors.director_id", "DirectorsFilm.director_id")
+    .where({ "director_name": name });
   return film_ids;
 }
 
@@ -769,7 +768,7 @@ export async function updateFilmApproval(slug, approve) {
 }
 
 function validateEmail(email) {
-  var re = /\S+@\S+\.\S+/;
+  const re = /\S+@\S+\.\S+/;
   return re.test(email);
 }
 

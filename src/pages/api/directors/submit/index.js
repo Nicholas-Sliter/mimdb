@@ -15,7 +15,7 @@ const handler = nc().post(async (req, res) => {
   // check slug, increment if duplicates slug
   // Adds "-[index]""
   director.director_slug = convertToSlug(director.director_name);
-  let index = /-\d+$/.test(director.director_name) ? (+director.director_name.match(/\d+$/g)[0]) : 0;
+  const index = /-\d+$/.test(director.director_name) ? (+director.director_name.match(/\d+$/g)[0]) : 0;
   while (await checkDirectorSlug(director.director_slug)) {
     director.director_slug = convertToSlug(`${director.director_name}-${index}`);
   }

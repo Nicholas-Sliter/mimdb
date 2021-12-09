@@ -1,9 +1,8 @@
 import router from "next/router";
 import { useState } from "react";
-import styles from "../styles/SubmitPage.module.css";
+import styles from "../styles/SubmitPage.module.scss";
 import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";
-import { useContext } from "react";
 
 
 export default function DirectorSubmit({complete}) {
@@ -15,8 +14,6 @@ export default function DirectorSubmit({complete}) {
   const [grad, setGrad]= useState("");
   const [isPersonalEmailPrivate, setIsPersonalEmailPrivate] = useState(true);
   const [isMiddEmailPrivate, setIsMiddEmailPrivate] = useState(true);
-
-  //const [inputContribList, setContribInputList] = useState([""]);
 
   async function createSubmission() {
     const submitDirector = {
@@ -57,16 +54,16 @@ export default function DirectorSubmit({complete}) {
             moreText="Ex: johnMidd@middlebury.edu"
           />
           <input type="checkbox" id="pubDisplayMidd" name="makePub" value="insertValue" onChange={(e)=>setIsMiddEmailPrivate(!e.target.value)}/>
-          <label htmlFor="pubDisplayMidd"> Make Public </label><br></br>
-        <br></br>
-        <br></br>
+          <label htmlFor="pubDisplayMidd"> Make Public </label><br />
+        <br />
+        <br />
         <TextInput
             name={"Personal Email"}
             setFunc={setPersonalEmail}
             moreText="Ex: johnMidd@gmail.com"
           />
             <input type="checkbox" id="pubDisplayE" name="makePublic" value="insertValue" onChange={(e)=>setIsPersonalEmailPrivate(!e.target.value)}/>
-            <label htmlFor="pubDisplayE"> Make Public </label><br></br>
+            <label htmlFor="pubDisplayE"> Make Public </label><br />
         </div>
       </div>
       <div className={styles.groupButton}>

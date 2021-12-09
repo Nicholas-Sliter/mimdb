@@ -15,6 +15,7 @@ export default function OptionSelectCard({
   useDropdown = true,
   validator = (t) => "", // eslint-disable-line no-unused-vars
   limit = null,
+  allowEmpty = false
 }) {
   const [value, setValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
@@ -59,7 +60,7 @@ export default function OptionSelectCard({
       setErrorMessage("");
     }
     if (limit && selectedOptions.length + 1 > limit) {
-      errorMessageTimeout("You can only select " + limit + " options");
+      errorMessageTimeout(`You can only select ${  limit  } options`);
       return false;
     }
     //add the option to the list of selected options
@@ -67,7 +68,7 @@ export default function OptionSelectCard({
   };
 
   const removeOption = (option) => {
-    if (selectedOptions.length-1 === 0) {
+    if (selectedOptions.length-1 === 0 && !allowEmpty) {
       setErrorMessage("This field cannot be empty");
     }
     onChangeFunction(

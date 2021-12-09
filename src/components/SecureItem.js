@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function SecureItem() {
     const [session] = useSession();
-    const [secret, setSecret] = useState();
+    const [secret, setSecret] = useState(); //eslint-disable-line no-unused-vars
 
     useEffect(() => {
         const getSecret = async () => {

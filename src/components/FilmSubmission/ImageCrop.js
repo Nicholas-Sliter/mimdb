@@ -28,25 +28,25 @@ export default function ImageCrop({
     ? { containerStyle: { float: "right", width: "80%" } }
     : { containerStyle: { float: "right", width: "70%" } };
 
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    setCroppedAreaPixels(croppedAreaPixels);
+  const onCropComplete = useCallback((croppedArea, croppedPixels) => {
+    setCroppedAreaPixels(croppedPixels);
   }, []);
 
   const showCroppedImage = useCallback(async () => {
     try {
-      const croppedImage = await getCroppedImg(image, croppedAreaPixels);
-      setCroppedImage(croppedImage);
+      const mCroppedImage = await getCroppedImg(image, croppedAreaPixels);
+      setCroppedImage(mCroppedImage);
     } catch (e) {
       console.log(e);
     }
   }, [image, croppedAreaPixels]);
 
-  const onCropChange = useCallback((crop) => {
-    setCrop(crop);
+  const onCropChange = useCallback((mCrop) => {
+    setCrop(mCrop);
   });
 
-  const onZoomChange = useCallback((zoom) => {
-    setZoom(zoom);
+  const onZoomChange = useCallback((mZoom) => {
+    setZoom(mZoom);
   });
 
   return (

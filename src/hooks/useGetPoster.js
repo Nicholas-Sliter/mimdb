@@ -10,7 +10,7 @@ export default function useGetPoster(slug) {
   const [posterData, setPosterData] = useState(default_grey_svg);
   
   useEffect(async () => {
-    if (slug==='temp') {
+    if (slug==="temp") {
       setPosterData(default_grey_svg);
       return;
     }

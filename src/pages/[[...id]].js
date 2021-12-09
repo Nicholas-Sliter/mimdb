@@ -7,11 +7,6 @@ import { useContext } from "react";
 import { DiscoverContext } from "../components/context/DiscoverContext";
 import { getLastTerm, convertTermToString } from "../lib/frontend-utils";
 
-
-import useFeatured from "../hooks/useFeatured";
-
-import styles from "../styles/Home.module.css";
-
 //need to remove films here and modify useFeatured
 export default function Home() {
 
