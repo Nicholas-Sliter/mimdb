@@ -2,9 +2,6 @@ import FilmRow from "../components/DisplayLayouts/FilmRow";
 import FilmController from "../components/DisplayLayouts/FilmController";
 import Layout from "../components/Layouts/Layout";
 
-import LoginWidget from "../components/LoginWidget";
-import SecureItem from "../components/SecureItem";
-
 import { useContext } from "react";
 
 import { DiscoverContext } from "../components/context/DiscoverContext";
@@ -25,8 +22,6 @@ export default function Home() {
 
   return (
     <Layout>
-      <LoginWidget />
-      <SecureItem />
       <FilmRow
         displayType="wide"
         films={discover.films}

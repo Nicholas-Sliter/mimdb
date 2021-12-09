@@ -2,6 +2,8 @@ import Layout from "../../components/Layouts/Layout";
 import AdminPage from "../../components/AdminPage";
 
 import { useEffect, useState } from "react";
+import LoginWidget from "../../components/LoginWidget";
+import SecureItem from "../../components/SecureItem";
 
 
 
@@ -43,6 +45,8 @@ export default function Admin() {
 
   return (
     <Layout pageTitle="MIMDB | Admin Dashboard">
+      <LoginWidget />
+      <SecureItem />
       <AdminPage films={films} adminFunc={adminFunc} />
     </Layout>
   );

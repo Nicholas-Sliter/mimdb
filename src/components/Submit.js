@@ -6,6 +6,7 @@ import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
+import { DirectorNameContext } from "./context/DirectorNameContext";
 import {
   validateFilmTitle,
   validateFilmGenre,
@@ -38,6 +39,7 @@ export default function Submit({ complete }) {
   });
 
   const { genres, courses } = useContext(GenreCourseContext);
+  const { director_names } = useContext(DirectorNameContext);
 
   const [title, setTitle] = useState("");
   const [logLine, setLogLine] = useState("");
@@ -305,14 +307,7 @@ export default function Submit({ complete }) {
         <OptionSelectCard
           title="Directors"
           allowCustom={false}
-          initialOptions={[
-            "Nicholas Sliter",
-            "Jiaqi Li",
-            "Wayne Wang",
-            "Becca Hochman-Fisher",
-            "Nicholas McKalip",
-            "Katie Kosior",
-          ]}
+          initialOptions={director_names}
           selectedOptions={inputDirectorList}
           useDropdown
           onChangeFunction={setDirectorInputList}
