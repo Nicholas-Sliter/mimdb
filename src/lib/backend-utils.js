@@ -499,7 +499,7 @@ export async function addFilm(film) {
   const newIDs = await knex("Film").insert(film);
   console.log("right here", newIDs);
   console.log("right here1", newIDs[0] ?? "cannot get it");
-  return await getFilmById(newIDs[0]);
+  return await getFilmBySlug(film.slug);
 }
 
 /**
