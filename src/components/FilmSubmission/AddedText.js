@@ -1,6 +1,6 @@
 // import { useEffect, useState } from "react";
 import TextInput from "./TextInput";
-import styles from "../../styles/SubmitPage.module.css";
+import styles from "../../styles/SubmitPage.module.scss";
 
 export default function AddedText({ name, inputList, setInputList }) {
 

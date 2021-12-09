@@ -1,6 +1,6 @@
 import router from "next/router";
-import { useState } from "react";
-import styles from "../styles/SubmitPage.module.css";
+import { useEffect, useState } from "react";
+import styles from "../styles/SubmitPage.module.scss";
 import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
 import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";
@@ -15,7 +15,7 @@ import {
   validateFilmSemester,
   validateFilmCourse,
   validateFilmDuration,
-  validateFilmVimeoId
+  validateFilmVimeoId,
 } from "../lib/frontend-utils";
 import ImageCrop from "./FilmSubmission/ImageCrop";
 import Group from "./common/Group";
@@ -24,21 +24,18 @@ import imageCompression from "browser-image-compression";
 import ImageSelector from "./FilmSubmission/ImageSelector";
 import ImageSelectorTabs from "./FilmSubmission/ImageSelectorTabs";
 
-
-
 export default function Submit({ complete }) {
-  const [errorObject, setErrorObject] = useState(
-    {
-      title: false,
-      logLine: false,
-      semester: false,
-      duration: false,
-      vimeoId: false,
-      overview: false,
-      genreList: false,
-      courseList: false,
-      inputActorList: false
-    })
+  const [errorObject, setErrorObject] = useState({
+    title: false,
+    logLine: false,
+    semester: false,
+    duration: false,
+    vimeoId: false,
+    overview: false,
+    genreList: false,
+    courseList: false,
+    inputActorList: false,
+  });
 
   const { genres, courses } = useContext(GenreCourseContext);
 
@@ -52,6 +49,9 @@ export default function Submit({ complete }) {
   const [courseList, setCourseList] = useState([]);
   const [inputDirectorList, setDirectorInputList] = useState([]);
   const [inputActorList, setActorInputList] = useState([]);
+
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [isValid, setIsValid] = useState(false);
 
   //state for uploaded poster and backdrop before cropping
   const [poster, setPoster] = useState("");
@@ -73,6 +73,57 @@ export default function Submit({ complete }) {
   //used to select the defualt poster and backdrop and store their url
   const [selectedPoster, setSelectedPoster] = useState(images[0]);
   const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
+
+  useEffect(() => {
+    updateValid(updateEmpty());
+  }, [title, logLine, semester, duration, vimeoId, overview, genreList, courseList, inputDirectorList, inputActorList, croppedBackdrop, croppedPoster]);
+
+  const getEmpty = () => {
+    //check if any of the state fields are empty
+
+    return(
+      title === "" ||
+      logLine === "" ||
+      semester === "" ||
+      duration === "" ||
+      vimeoId === "" ||
+      overview === "" ||
+      genreList.length === 0 ||
+      courseList.length === 0 ||
+      inputActorList.length === 0 ||
+      inputDirectorList.length === 0 ||
+      croppedPoster === null ||
+      croppedBackdrop === null
+    );
+  };
+
+
+  const updateEmpty = () => {
+    const bool = getEmpty();
+    setIsEmpty(bool);
+    return bool;
+  };
+
+  const updateValid = (emptyBool) => {
+    setIsValid(!reduceErrorObject(errorObject) && !emptyBool);
+  };
+
+
+  const reduceErrorObject = (errorObject) => {
+    let bool = false;
+    for (const [key, value] of Object.entries(errorObject)) {
+      if (value) {
+        bool = true;
+        break;
+      }
+    }
+    return bool;
+  };
+
+  const setErrorObjectWrapper = (errorObject) => {
+    setErrorObject(errorObject);
+    updateValid(updateEmpty());
+  };
 
   const fileToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -126,8 +177,12 @@ export default function Submit({ complete }) {
     setBackdrop(URL.createObjectURL(compressed));
   };
 
-
   async function createSubmission() {
+    //validate all fields
+    if (!isValid) {
+      return;
+    }
+
     const submitContent = {
       title: title,
       overview: logLine,
@@ -156,7 +211,7 @@ export default function Submit({ complete }) {
             id={"title"}
             validator={validateFilmTitle}
             errorObject={errorObject}
-            setErrorObject={setErrorObject}
+            setErrorObject={setErrorObjectWrapper}
           />
           <TextInput
             name="Log-Line"
@@ -165,14 +220,15 @@ export default function Submit({ complete }) {
             moreText={"A short sentence describing the film"}
             validator={validateFilmLogLine}
             errorObject={errorObject}
-            setErrorObject={setErrorObject}
+            setErrorObject={setErrorObjectWrapper}
           />
           <TextInput
             name="Vimeo ID"
             setFunc={setVimeoId}
+            id={"vimeoId"}
             validator={validateFilmVimeoId}
             errorObject={errorObject}
-            setErrorObject={setErrorObject}
+            setErrorObject={setErrorObjectWrapper}
           />
         </div>
         <div className={styles.inputGroup}>
@@ -183,7 +239,7 @@ export default function Submit({ complete }) {
             id={"semester"}
             validator={validateFilmSemester}
             errorObject={errorObject}
-            setErrorObject={setErrorObject}
+            setErrorObject={setErrorObjectWrapper}
           />
           <TextInput
             name={"Duration"}
@@ -192,12 +248,19 @@ export default function Submit({ complete }) {
             id={"duration"}
             validator={validateFilmDuration}
             errorObject={errorObject}
-            setErrorObject={setErrorObject}
+            setErrorObject={setErrorObjectWrapper}
           />
         </div>
       </FlexGroup>
       <Group>
-        <TextArea name="Overview" setFunc={setOverview} id={"overview"} validator={validateFilmOverview} errorObject={errorObject} setErrorObject={setErrorObject} />
+        <TextArea
+          name="Overview"
+          setFunc={setOverview}
+          id={"overview"}
+          validator={validateFilmOverview}
+          errorObject={errorObject}
+          setErrorObject={setErrorObjectWrapper}
+        />
       </Group>
       <FlexGroup>
         <OptionSelectCard
@@ -210,7 +273,7 @@ export default function Submit({ complete }) {
           id={"courseList"}
           validator={validateFilmCourse}
           errorObject={errorObject}
-          setErrorObject={setErrorObject}
+          setErrorObject={setErrorObjectWrapper}
         />
         <OptionSelectCard
           title="Genres"
@@ -223,7 +286,7 @@ export default function Submit({ complete }) {
           id={"genreList"}
           validator={validateFilmGenre}
           errorObject={errorObject}
-          setErrorObject={setErrorObject}
+          setErrorObject={setErrorObjectWrapper}
         />
       </FlexGroup>
       <FlexGroup>
@@ -237,7 +300,7 @@ export default function Submit({ complete }) {
           id={"inputActorList"}
           validator={validateFilmActors}
           errorObject={errorObject}
-          setErrorObject={setErrorObject}
+          setErrorObject={setErrorObjectWrapper}
         />
         <OptionSelectCard
           title="Directors"
@@ -298,13 +361,13 @@ export default function Submit({ complete }) {
 
       <Group>
         <h3> Crop your backdrop </h3>
-                <ImageCrop
+        <ImageCrop
           image={backdrop}
           aspect={21 / 9}
           croppedImage={croppedBackdrop}
           setCroppedImage={setCroppedBackdrop}
         ></ImageCrop>
-        </Group>
+      </Group>
 
       <div className={styles.groupButton}>
         <button
@@ -318,6 +381,7 @@ export default function Submit({ complete }) {
         <button
           className={styles.largeButton}
           onClick={() => createSubmission()}
+          disabled={!isValid}
         >
           Submit
         </button>

@@ -77,6 +77,22 @@
     font-size: 1.2rem;
     border: 1px solid rgb(216, 216, 216);
     transition: 0.4s;
+
+    &:disabled {
+        background: #dddddd;
+        color: #000;
+        text-decoration: line-through;
+        cursor: not-allowed;
+
+        &:hover {
+            background: #dddddd;
+            color: #000;
+            text-decoration: line-through;
+            transition: none;
+            transform: none;
+            box-shadow: none;
+        }
+    }
 } 
 
 .submitPage button:hover{
@@ -91,6 +107,7 @@
     width: 90px;
     height: 30px;
     margin: 7px;
+
 }
 
 .submitPage .largeButton:hover{

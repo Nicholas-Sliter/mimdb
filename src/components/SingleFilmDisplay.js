@@ -67,7 +67,7 @@ export default function SingleFilmDisplay({ film }) {
             passHref
             key={course}
             >
-              <p data-testid="filmCourse">{course}</p>
+              <p className={styles.courseLink} data-testid="filmCourse">{course}</p>
           </Link> 
         </span>
         <span className={styles.term} data-testid="filmTerm">Term: {film.term}</span>
