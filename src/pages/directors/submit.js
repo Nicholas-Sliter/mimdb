@@ -4,7 +4,7 @@ import Layout from "../../components/Layouts/Layout";
 
 export default function SubmitDirPage() {
 
-  const submitDirComplete = (content) => {
+  const submitDirComplete = async (content) => {
     const postSubmit = async () => {
       const response = await fetch("/api/directors/submit", {
         method: "POST",
