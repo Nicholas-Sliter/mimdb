@@ -38,7 +38,7 @@ export default function Submit({ allCourses=[], complete }) {
     inputActorList: false,
   });
 
-  const { genres, courses } = useContext(GenreCourseContext);
+  const { genres } = useContext(GenreCourseContext);
   const { director_names } = useContext(DirectorNameContext);
 
   const [title, setTitle] = useState("");
