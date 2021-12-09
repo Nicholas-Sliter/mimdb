@@ -2,7 +2,15 @@ import styles from "../../styles/SubmitPage.module.scss";
 import ErrorMessage from "../common/ErrorMessage";
 import { useState } from "react";
 
-export default function TextArea({ name, setFunc, moreText, id, validator, errorObject, setErrorObject }) {
+export default function TextArea({ 
+  name, 
+  setFunc, 
+  moreText, 
+  id, 
+  validator = (t) => "", // eslint-disable-line no-unused-vars
+  errorObject = {}, 
+  setErrorObject = () => {}
+}) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const validateInput = (input) => {
