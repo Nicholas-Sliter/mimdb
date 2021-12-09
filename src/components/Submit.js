@@ -98,6 +98,7 @@ export default function Submit({ complete }) {
     );
   };
 
+
   const updateEmpty = () => {
     const bool = getEmpty();
     setIsEmpty(bool);
@@ -183,7 +184,7 @@ export default function Submit({ complete }) {
 
   async function createSubmission() {
     //validate all fields
-    if (reduceErrorObject(errorObject)) {
+    if (!isValid) {
       return;
     }
 
