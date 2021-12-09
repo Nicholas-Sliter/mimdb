@@ -18,6 +18,8 @@ const validateAndProcessNewFilm = async (inFilm) => {
       "approved": false
     }
 
+    if (processedFilm.title.includes("/")) throw new error("Suspicious. Why do you have a '/' in your title?");
+
     // check slug, increment if duplicates slug
     // let index = 0;
     // Adds "-[index]""
