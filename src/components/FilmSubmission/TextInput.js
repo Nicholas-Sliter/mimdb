@@ -8,13 +8,12 @@ export default function TextInput({ name, setFunc, moreText, id, validator, erro
 
   const validateInput = (input) => {
     const error = validator(input);
-    console.log(error);
+    //console.log(error);
     setErrorMessage(error);
     return (error==="");
   };
 
   const updateErrorMessage = (input) => {
-    console.log({ ...errorObject, [id]: !validateInput(input) });
     setErrorObject({ ...errorObject, [id]: !validateInput(input) })
   }
 

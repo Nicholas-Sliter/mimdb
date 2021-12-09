@@ -35,7 +35,6 @@ export default function Submit({ complete }) {
     genreList: false,
     courseList: false,
     inputActorList: false,
-    empty: true,
   });
 
   const { genres, courses } = useContext(GenreCourseContext);
@@ -50,6 +49,9 @@ export default function Submit({ complete }) {
   const [courseList, setCourseList] = useState([]);
   const [inputDirectorList, setDirectorInputList] = useState([]);
   const [inputActorList, setActorInputList] = useState([]);
+
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [isValid, setIsValid] = useState(false);
 
   //state for uploaded poster and backdrop before cropping
   const [poster, setPoster] = useState("");
@@ -73,9 +75,9 @@ export default function Submit({ complete }) {
   const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
 
   useEffect(() => {
-    const emptyTimer = setTimeout(() => updateEmpty(), 2000);
-    return () => clearTimeout(emptyTimer);
-  }, []);
+    updateValid();
+
+  }, [title, logLine, semester, duration, vimeoId, overview, genreList, courseList, inputDirectorList, inputActorList, croppedBackdrop, croppedPoster]);
 
   const getEmpty = () => {
     //check if any of the state fields are empty
@@ -89,7 +91,9 @@ export default function Submit({ complete }) {
       genreList.length === 0 ||
       courseList.length === 0 ||
       inputActorList.length === 0 ||
-      inputDirectorList.length === 0
+      inputDirectorList.length === 0 ||
+      croppedPoster === null ||
+      croppedBackdrop === null
     ) {
       return true;
     } else {
@@ -99,12 +103,23 @@ export default function Submit({ complete }) {
 
   const updateEmpty = () => {
     const bool = getEmpty();
-    setErrorObject({ ...errorObject, empty: bool });
+    setIsEmpty(bool);
   };
 
+  const updateValid = () => {
+    if (reduceErrorObject(errorObject) || isEmpty) {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+    }
+  };
+
+
   const reduceErrorObject = (errorObject) => {
+    console.log(errorObject);
     let bool = false;
     for (const [key, value] of Object.entries(errorObject)) {
+      console.log(value);
       if (value) {
         bool = true;
         break;
@@ -115,6 +130,7 @@ export default function Submit({ complete }) {
 
   const setErrorObjectWrapper = (errorObject) => {
     setErrorObject(errorObject);
+    updateValid();
   };
 
   const fileToBase64 = (file) => {
@@ -217,6 +233,7 @@ export default function Submit({ complete }) {
           <TextInput
             name="Vimeo ID"
             setFunc={setVimeoId}
+            id={"vimeoId"}
             validator={validateFilmVimeoId}
             errorObject={errorObject}
             setErrorObject={setErrorObjectWrapper}
@@ -372,7 +389,7 @@ export default function Submit({ complete }) {
         <button
           className={styles.largeButton}
           onClick={() => createSubmission()}
-          disabled={reduceErrorObject(errorObject)}
+          disabled={!isValid}
         >
           Submit
         </button>

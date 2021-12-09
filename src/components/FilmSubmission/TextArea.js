@@ -7,13 +7,13 @@ export default function TextArea({ name, setFunc, moreText, id, validator, error
 
   const validateInput = (input) => {
     const error = validator(input);
-    console.log(error);
+    //console.log(error);
     setErrorMessage(error);
     return (error==="");
   };
 
   const updateErrorMessage = (input) => {
-    setErrorObject({ ...errorObject, [id]: validateInput(input) })
+    setErrorObject({ ...errorObject, [id]: !validateInput(input) })
   }
 
   return (
