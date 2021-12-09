@@ -486,7 +486,10 @@ export function validateFilterTerm(filterTerm) {
  * @returns the inserted new film object.
  */
 export async function addFilm(film) {
+  console.log("before await", film);
   const newIDs = await knex("Film").insert(film);
+  console.log("after await", newIDs);
+  console.log("return", await getFilmById(newIDs[0]));
   return await getFilmById(newIDs[0]);
 }
 
