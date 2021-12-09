@@ -83,7 +83,6 @@ export function validateFilmTitle(title) {
 }
 
 export function validateFilmSemester(semester) {
-  console.log(semester.length);
   if (semester.length !== 3) {
     return "A semester must have a length of 3";
   }

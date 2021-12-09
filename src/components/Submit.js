@@ -102,7 +102,7 @@ export default function Submit({ complete }) {
     <div className={styles.submitPage}>
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
       <FlexGroup>
-        <div>
+        <div className={styles.inputGroup}>
           <TextInput 
             name="Title" 
             setFunc={setTitle} 
@@ -115,6 +115,7 @@ export default function Submit({ complete }) {
             name="Log-Line" 
             setFunc={setLogLine} 
             id={"logLine"} 
+            moreText={"A short sentence describing the film"}
             validator={validateFilmLogLine} 
             errorObject={errorObject} 
             setErrorObject={setErrorObject} 
@@ -127,7 +128,7 @@ export default function Submit({ complete }) {
             setErrorObject={setErrorObject} 
           />
         </div>
-        <div>
+        <div className={styles.inputGroup}>
           <TextInput
             name={"Semester"}
             setFunc={setSemester}
