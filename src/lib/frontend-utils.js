@@ -195,8 +195,11 @@ export function validateFilmVimeoId(vimeoId) {
   if (vimeoId.length < 1) {
     return "Vimeo ID is required";
   }
-  if (!/^[0-9]{8}$/.test(vimeoId)) {
-    return "Vimeo ID must be 8 digit";
+  if (!/^[0-9]$/.test(vimeoId)) {
+    return "Vimeo ID must be only digits";
+  }
+  if (vimeoId.lengh<2 || vimeoId.lengh>15) {
+    return "Vimeo ID must have valid length";
   }
   return "";
 }
