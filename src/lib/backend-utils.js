@@ -205,7 +205,10 @@ export async function getRandFilms(number) {
  * @returns the film associated with id id
  */
 export async function getFilmById(id) {
+  console.log("getFilmById1", id);
   const [film] = await knex("Film").select().where({ id: id });
+  console.log("getFilmById2", film);
+  console.log("fillfilm: ", film ? await fillFilm(film) : null)
   return film ? await fillFilm(film) : null;
 }
 
