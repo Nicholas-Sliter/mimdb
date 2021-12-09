@@ -75,13 +75,14 @@ export default function Submit({ complete }) {
   const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
 
   useEffect(() => {
-    updateValid();
-
+    const empty = updateEmpty();
+    updateValid(empty);
   }, [title, logLine, semester, duration, vimeoId, overview, genreList, courseList, inputDirectorList, inputActorList, croppedBackdrop, croppedPoster]);
 
   const getEmpty = () => {
     //check if any of the state fields are empty
-    if (
+
+    return(
       title === "" ||
       logLine === "" ||
       semester === "" ||
@@ -94,20 +95,17 @@ export default function Submit({ complete }) {
       inputDirectorList.length === 0 ||
       croppedPoster === null ||
       croppedBackdrop === null
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    );
   };
 
   const updateEmpty = () => {
     const bool = getEmpty();
     setIsEmpty(bool);
+    return bool;
   };
 
-  const updateValid = () => {
-    if (reduceErrorObject(errorObject) || isEmpty) {
+  const updateValid = (emptyBool) => {
+    if (reduceErrorObject(errorObject) || emptyBool) {
       setIsValid(false);
     } else {
       setIsValid(true);
@@ -116,10 +114,8 @@ export default function Submit({ complete }) {
 
 
   const reduceErrorObject = (errorObject) => {
-    console.log(errorObject);
     let bool = false;
     for (const [key, value] of Object.entries(errorObject)) {
-      console.log(value);
       if (value) {
         bool = true;
         break;
