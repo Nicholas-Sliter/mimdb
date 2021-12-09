@@ -25,7 +25,7 @@ import imageCompression from "browser-image-compression";
 import ImageSelector from "./FilmSubmission/ImageSelector";
 import ImageSelectorTabs from "./FilmSubmission/ImageSelectorTabs";
 
-export default function Submit({ complete }) {
+export default function Submit({ allCourses=[], complete }) {
   const [errorObject, setErrorObject] = useState({
     title: false,
     logLine: false,
@@ -177,11 +177,11 @@ export default function Submit({ complete }) {
 
     const submitContent = {
       title: title,
-      overview: logLine,
+      overview: overview,
       term: semester,
       duration: `${duration} min`,
       vimeoId: vimeoId,
-      description: overview,
+      description: logLine,
       inputDirectorList: inputDirectorList,
       inputActorList: inputActorList,
       genreList: genreList,
@@ -265,7 +265,7 @@ export default function Submit({ complete }) {
         <OptionSelectCard
           title="Course"
           useDropdown
-          initialOptions={courses}
+          initialOptions={allCourses}
           selectedOptions={courseList}
           onChangeFunction={setCourseList}
           limit={2}
