@@ -14,7 +14,6 @@ export default function TextInput({ name, setFunc, moreText, id, validator, erro
   };
 
   const updateErrorMessage = (input) => {
-    console.log({ ...errorObject, [id]: !validateInput(input) });
     setErrorObject({ ...errorObject, [id]: !validateInput(input) })
   }
 
