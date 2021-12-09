@@ -17,7 +17,7 @@ import {
   validateFilmDuration,
   validateFilmVimeoId
 } from "../lib/frontend-utils";
-import ImageCrop from "./common/ImageCrop";
+import ImageCrop from "./FilmSubmission/ImageCrop";
 import Group from "./common/Group";
 import FlexGroup from "./common/FlexGroup";
 import imageCompression from "browser-image-compression";
