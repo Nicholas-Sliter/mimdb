@@ -1,8 +1,13 @@
 .group {
+    justify-content: center;
     padding: 1rem;
+    width: 100%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
     margin-top: 2rem;
     outline: solid 1px #e6e6e6;
     border-radius: 8px;
+    min-height: 12rem;
 }

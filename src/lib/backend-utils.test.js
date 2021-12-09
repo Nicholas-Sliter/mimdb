@@ -24,11 +24,11 @@ describe("Tests of database Film Table utility functions", () => {
 
     beforeAll(async () => {
         sampleFilm = films[0];
-        sampleFilm = (({ director_ids, course_CRNs, ...rest }) => ({ rest }))(sampleFilm);
+        sampleFilm = (({ director_ids, course_CRNs, directors_slugs, ...rest }) => ({ rest }))(sampleFilm);
         sampleFilm = sampleFilm.rest;
         // boolean false and true gets turned into 0 and 1 by postgresSQL functions
         sampleFilm.video = sampleFilm.video === false ? 0 : 1;
-        sampleFilm.approveBoolean = sampleFilm.approveBoolean === false? 0 : 1;
+        sampleFilm.approved = sampleFilm.approved === false? 0 : 1;
 
         let set = new Set(films.map((film) => film.genre).flat());
         allGenres = [...set];
@@ -148,9 +148,9 @@ describe("Tests of database Film Table utility functions", () => {
     });
 
     test("updateFilmApproval: updates the film", async ()=>{
-        const newFilm = { ...sampleFilm, approveBoolean: 0 };
+        const newFilm = { ...sampleFilm, approved: 0 };
 
-        const updated = await updateFilmApproval(newFilm.slug, newFilm.approveBoolean);
+        const updated = await updateFilmApproval(newFilm.slug, newFilm.approved);
 
         expect(updated).toBeTruthy();
         const updatedFilm = await getFilmById(newFilm.id);
@@ -160,9 +160,9 @@ describe("Tests of database Film Table utility functions", () => {
     });
 
     test("updateFilmApproval: returns false on bad id", async ()=>{
-        const newFilm = { ...sampleFilm, approveBoolean: 0 };
+        const newFilm = { ...sampleFilm, approved: 0 };
 
-        const updated = await updateFilmApproval("", newFilm.approveBoolean);
+        const updated = await updateFilmApproval("", newFilm.approved);
 
         expect(updated).toBeFalsy();
     });

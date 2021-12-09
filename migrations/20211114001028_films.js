@@ -39,7 +39,7 @@ exports.up = function(knex) {
   })
   .createTable("Directors", table => {
     table.string("director_name");
-    table.integer("director_id").unique().notNullable();
+    table.increments("director_id").unique().notNullable();
     table.string("director_slug").unique();
     table.string("director_bio");
     table.string("director_midd_email");
@@ -51,9 +51,9 @@ exports.up = function(knex) {
   .createTable("CourseFilm", table => {
     // Affiliation table for Course and Film, two foreign keys
     table.integer("film_id");
-    table.string("course_number");
+    table.string("courseFilm_name");
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
-    table.foreign("course_number").references("Course.course_number").onDelete("CASCADE");
+    table.foreign("courseFilm_name").references("Course.course_name").onDelete("CASCADE");
   })
   .createTable("DirectorsFilm", table => {
     // Affiliation table for Directors and Film, two foreign keys
@@ -63,13 +63,13 @@ exports.up = function(knex) {
     table.foreign("director_id").references("Directors.director_id").onDelete("CASCADE");
   })
   .createTable("Poster", table => {
-    table.integer("film_slug").unique().notNullable();
-    table.string("poster_data").notNullable();  //base64 string
+    table.string("film_slug").unique().notNullable();
+    table.text("poster_data").notNullable();  //base64 string
     table.foreign("film_slug").references("Film.slug").onDelete("CASCADE");
   })
   .createTable("Backdrop", table => {
-    table.integer("film_slug").unique().notNullable();
-    table.string("backdrop_data").notNullable();  //base64 string
+    table.string("film_slug").unique().notNullable();
+    table.text("backdrop_data").notNullable();  //base64 string
     table.foreign("film_slug").references("Film.slug").onDelete("CASCADE");
   })
 };

@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
   const [discover, setDiscover] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const featured = useFeatured(2,loading);
+  const featured = useFeatured(2, loading);
 
   //get genres and courses from /api/genres and /api/courses
   useEffect(async () => {
@@ -23,7 +23,6 @@ function MyApp({ Component, pageProps }) {
     if (!genreRes.ok || !courseRes.ok) {
       throw new Error("Failed to fetch genre and course information from api");
     }
-
     const genres = await genreRes.json();
     const courses = await courseRes.json();
 

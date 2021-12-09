@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 
 import style from "../../styles/FilmSubmission/OptionSelectCard.module.scss";
-import { FiXCircle } from "react-icons/fi";
+import ErrorMessage from "../common/ErrorMessage";
 
 export default function OptionSelectCard({
   title,
@@ -15,6 +15,7 @@ export default function OptionSelectCard({
   useDropdown = true,
   validator = (t) => "", // eslint-disable-line no-unused-vars
   limit = null,
+  allowEmpty = false
 }) {
   const [value, setValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
@@ -55,8 +56,11 @@ export default function OptionSelectCard({
   };
 
   const addOption = (option) => {
+    if (selectedOptions.length+1 > 0 && errorMessage!=="") {
+      setErrorMessage("");
+    }
     if (limit && selectedOptions.length + 1 > limit) {
-      errorMessageTimeout("You can only select " + limit + " options");
+      errorMessageTimeout(`You can only select ${  limit  } options`);
       return false;
     }
     //add the option to the list of selected options
@@ -64,6 +68,9 @@ export default function OptionSelectCard({
   };
 
   const removeOption = (option) => {
+    if (selectedOptions.length-1 === 0 && !allowEmpty) {
+      setErrorMessage("This field cannot be empty");
+    }
     onChangeFunction(
       selectedOptions.filter((selectedOption) => selectedOption !== option)
     );
@@ -71,7 +78,7 @@ export default function OptionSelectCard({
 
   const validateInput = (input) => {
     const error = validator(input);
-    console.log(error);
+    //console.log(error);
     if (error) {
       errorMessageTimeout(error);
       return false;
@@ -125,13 +132,6 @@ export default function OptionSelectCard({
     setValue(event.target.value.toString());
   };
 
-  const errorMessageComponent = errorMessage ? (
-    <span className={style.error}>
-      <FiXCircle className={style.icon} />
-      {errorMessage}
-    </span>
-  ) : null;
-
   const optionsDropdown = (
     <div className={style.inputContainer}>
       <input
@@ -164,7 +164,7 @@ export default function OptionSelectCard({
   );
 
   const renderSelectedOptions = selectedOptions.map((option) =>
-    option && option !== "" ? (
+    (option && option !== "" ? (
       <span
         className={style.selectedOption}
         key={option}
@@ -172,15 +172,17 @@ export default function OptionSelectCard({
       >
         {option}
       </span>
-    ) : null
+    ) : null)
   );
 
   return (
     <div className={style.card}>
       <div className={style.title}>{title}</div>
       {optionsDropdown}
-      {errorMessageComponent}
       <div className={style.selectedOptionList}>{renderSelectedOptions}</div>
+      <div className={style.error}>
+        <ErrorMessage className={style.error} message={errorMessage} />
+      </div>
     </div>
   );
 }

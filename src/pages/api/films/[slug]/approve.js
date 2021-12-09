@@ -18,9 +18,7 @@ const handler = nc().put( async (req, res) => {
       })
       return;
     }
-
     const success = await updateFilmApproval(slug, true);
-
     if (success) {
       res.status(200).json({
         message: "Successfully approved film",

@@ -28,7 +28,7 @@ export function getLastTerm(){
 
 
 export function convertTermToString(term){
-  const year = "20" + term.slice(1);
+  const year = `20${  term.slice(1)}`;
   let season = "";
   if (term.includes("F")){
     season = "Fall";
@@ -75,7 +75,7 @@ export function validateFilmTitle(title) {
     return "Title is too long";
   }
   //check for invalid characters with regex, allow letters, numbers, spaces, dashes, and punctuation
-  if (!/^[a-zA-Z0-9 -]+$/.test(title)) {
+  if (!/^[a-zA-Z0-9 -?!]+$/.test(title)) {
     return "Title contains invalid characters";
   }
 
@@ -83,7 +83,7 @@ export function validateFilmTitle(title) {
 }
 
 export function validateFilmSemester(semester) {
-  if (semester.length === 3) {
+  if (semester.length !== 3) {
     return "A semester must have a length of 3";
   }
   //check that a semester is F, W, or S, followed by 2 numbers
@@ -161,9 +161,6 @@ export function validateFilmOverview(overview) {
 }
 
 export function validateFilmActors(actors) {
-  if (actors.length < 1) {
-    return "Actors are required";
-  }
   if (actors.length > 100) {
     return "Actors is too long";
   }
@@ -176,5 +173,33 @@ export function validateFilmActors(actors) {
     return "Actors must be separated by commas";
   }
 
+  return "";
+}
+
+export function validateFilmDuration(duration) {
+  if (duration < 1) {
+    return "Duration is required";
+  }
+  const durationInt = +duration;
+  if (!durationInt || !Number.isInteger(durationInt)) {
+    return "Duration must an integer";
+  }
+  if (durationInt > 1000) {
+    return "Duration is too long";
+  }
+  return "";
+}
+
+export function validateFilmVimeoId(vimeoId) {
+  // use regex to validate a vimeo id which is an 8 digit number
+  if (vimeoId.length < 1) {
+    return "Vimeo ID is required";
+  }
+  if (!/^[0-9]+$/.test(vimeoId)) {
+    return "Vimeo ID must be only digits";
+  }
+  if (vimeoId.lengh<2 || vimeoId.lengh>15) {
+    return "Vimeo ID must have valid length";
+  }
   return "";
 }

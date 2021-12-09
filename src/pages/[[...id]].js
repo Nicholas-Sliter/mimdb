@@ -2,18 +2,10 @@ import FilmRow from "../components/DisplayLayouts/FilmRow";
 import FilmController from "../components/DisplayLayouts/FilmController";
 import Layout from "../components/Layouts/Layout";
 
-import LoginWidget from "../components/LoginWidget";
-import SecureItem from "../components/SecureItem";
-
 import { useContext } from "react";
 
 import { DiscoverContext } from "../components/context/DiscoverContext";
 import { getLastTerm, convertTermToString } from "../lib/frontend-utils";
-
-
-import useFeatured from "../hooks/useFeatured";
-
-import styles from "../styles/Home.module.css";
 
 //need to remove films here and modify useFeatured
 export default function Home() {
@@ -25,8 +17,6 @@ export default function Home() {
 
   return (
     <Layout>
-      <LoginWidget />
-      <SecureItem />
       <FilmRow
         displayType="wide"
         films={discover.films}

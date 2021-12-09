@@ -1,0 +1,43 @@
+
+//@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800");
+
+
+
+.tabList {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   margin-bottom: 1rem;
+   padding-left: 0;
+   border-bottom: 1px solid #d0d0d0;
+
+
+   .tab{
+      font-family: 'Montserrat', helvetica, arial, sans-serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      list-style-type: none;
+      margin: 0;
+      padding: 0.4rem;
+      text-transform: capitalize;
+      outline: 1px solid #d0d0d0;
+      border-radius: 4px;
+      margin-right: 3px;
+
+      &:hover{
+         cursor: pointer;
+         background: #f5f5f5;
+      }
+
+
+   }
+
+   
+      .selected{
+         background: #f5f5f5;
+         border-bottom: 1px solid #e6e6e6;
+         outline: 3px solid #d0d0d0;
+      }
+
+
+}

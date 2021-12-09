@@ -1,8 +1,6 @@
 import nc from "next-connect";
-import { addActorFilm, addBackdropBySlug, addCourseFilm, addDirectorsFilm, addFilm, addGenreFilm, addNewCourse, addPosterBySlug, getCourseByCourseName, getDirector, getFilmBySlug } from "../../../lib/backend-utils";
+import { addActorFilm, addBackdropBySlug, addCourseFilm, addDirectorsFilm, addFilm, addGenreFilm, addPosterBySlug, getDirector, getFilmBySlug } from "../../../lib/backend-utils";
 import { convertToSlug } from "../../../lib/frontend-utils";
-
-import { default_grey_svg } from "../../../lib/frontend-utils";
 
 // Validates the inFilm object and add default empty picture paths
 // TODO: potentially in the future if we have time, we can develop the validation process into a smart match process.
@@ -19,6 +17,8 @@ const validateAndProcessNewFilm = async (inFilm) => {
       "vimeo_id": inFilm.vimeoId,
       "approved": false
     }
+
+    if (processedFilm.title.includes("/")) throw new Error("Suspicious. Why do you have a '/' in your title?");
 
     // check slug, increment if duplicates slug
     // let index = 0;
@@ -37,11 +37,10 @@ const validateAndProcessNewFilm = async (inFilm) => {
     
     // Generate vimeo boolean, simple
     processedFilm.video = processedFilm.vimeo_id && true;
-
     return processedFilm;
   }
   catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
 };
@@ -70,11 +69,6 @@ const handler = nc()
 
       // Add course relationship to the CourseFilm DB
       await Promise.all(newFilm.courseList.map(async (course_name) => {
-        const course = await getCourseByCourseName(course_name);
-        if (course.length===0) {
-          // The given course does not exist, so create one before establishing relationship
-          await addNewCourse({course_name:course_name, course_number:newFilm.courseId});
-        }
         addedFilm = await addCourseFilm(course_name, addedFilm.id);
       }));
 

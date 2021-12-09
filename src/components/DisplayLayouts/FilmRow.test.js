@@ -82,7 +82,7 @@ describe("Filmrow: Filmrow initialization", () => {
   });
 
 
-describe("Film Row Tests", () => {
+describe.skip("Film Row Tests", () => {
 
     test("Title of Row Shows Up", async () => {
 

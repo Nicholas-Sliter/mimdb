@@ -12,7 +12,6 @@ describe("Submit: Submitter tests", () => {
     logLine: "LogLine of the sample film",
     release_date: "F21",
     duration: "90",
-    courseId: "CSCI0312",
     vimeoId: "vimeoId",
     overview: "Overview of the sample film"
   };
@@ -26,14 +25,13 @@ describe("Submit: Submitter tests", () => {
 
 
 
-  test.only("Submit button posts new film", async () => {
+  test.skip("Submit button posts new film", async () => {
     const { container } = render(<Submit complete={handler} />);
 
     const titleEditor = container.querySelector("input[id=Title]");
     const logLineEditor = container.querySelector(`input[id=Log-Line]`);
     const dateEditor = container.querySelector("input[id=Semester]");
     const durationEditor = container.querySelector("input[id=Duration]");
-    const courseIdEditor = container.querySelector(`input[id=${"Course ID".replace(/\s/g, "")}]`);
     const vimeoIdEditor = container.querySelector(`input[id=${"Vimeo ID".replace(/\s/g, "")}]`);
     const overviewEditor = container.querySelector("textarea");
 
@@ -48,9 +46,6 @@ describe("Submit: Submitter tests", () => {
     });
     fireEvent.change(durationEditor, {
       target: { value: film.duration },
-    });
-    fireEvent.change(courseIdEditor, {
-      target: { value: film.courseId },
     });
     fireEvent.change(vimeoIdEditor, {
       target: { value: film.vimeoId },
@@ -70,7 +65,6 @@ describe("Submit: Submitter tests", () => {
     expect(newFilm.overview).toEqual(film.logLine);
     expect(newFilm.term).toEqual(film.release_date);
     expect(newFilm.duration).toEqual(film.duration);
-    expect(newFilm.courseId).toEqual(film.courseId);
     expect(newFilm.vimeoId).toEqual(film.vimeoId);
     expect(newFilm.description).toEqual(film.overview);
   });

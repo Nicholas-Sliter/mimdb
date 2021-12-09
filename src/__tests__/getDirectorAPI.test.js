@@ -1,7 +1,7 @@
 import { createMocks } from "node-mocks-http";
 import handler from "../pages/api/directors/[slug]/index";
 
-describe("getDirectorAPI", () => {
+describe.skip("getDirectorAPI", () => {
    it("should return a director when given a valid slug", async () => {
       const { req, res } = createMocks({
          method: "GET",

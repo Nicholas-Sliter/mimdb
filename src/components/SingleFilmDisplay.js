@@ -60,41 +60,41 @@ export default function SingleFilmDisplay({ film }) {
         <img src={poster} className={styles.poster} />
       </div>
       <div className={styles.content}>
-        <h1 className={styles.filmTitle}>{film.title}</h1>
+        <h1 className={styles.filmTitle } data-testid="filmTitle">{film.title}</h1>
         <span className={styles.course}>Course: 
           <Link
             href={`/films/course/${encodeURIComponent(course)}`}
             passHref
             key={course}
             >
-              <p> {course}</p>
+              <p className={styles.courseLink} data-testid="filmCourse">{course}</p>
           </Link> 
         </span>
-        <span className={styles.term}>Term: {film.term}</span>
-        <span className={styles.genre}>{film.genre.join(", ")}</span>
-        <span className={styles.duration}>{film.duration}</span>
+        <span className={styles.term} data-testid="filmTerm">Term: {film.term}</span>
+        <span className={styles.genre} data-testid="filmGenre">{film.genre.join(", ")}</span>
+        <span className={styles.duration} data-testid="filmDur">{film.duration}</span>
         <div />
         <h4 className={styles.directors}>
           Directed by:
-          <ul className={styles.directorsList}>{directors}</ul>
+          <ul className={styles.directorsList} data-testid="filmDir">{directors}</ul>
         </h4>
         <div />
         <div className={styles.video}>
           <ReactPlayer width="100%" height="100%" url={vimeo_url} controls />
         </div>
         <div className={styles.details}>
-          <p className={styles.overview}>{film.overview}</p>
+          <p className={styles.overview} data-testid="filmOver">{film.overview}</p>
         </div>
 
         <div className={styles.largeColumnC}>
           <div className={styles.contributorsContainer}>
             <div className={styles.actors}>
               <h3>Actors</h3>
-              <ul>{actors}</ul>
+              <ul data-testid="filmActors">{actors}</ul>
             </div>
             <div className={styles.contributors}>
               <h3>Contributors</h3>
-              <ul>{contributors}</ul>
+              <ul data-testid="filmContrib">{contributors}</ul>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ const handler = nc().get(async (req, res) => {
 
   if (!director) {
     res.status(404).json({
-      error: "No director with slug " + slug,
+      error: `No director with slug ${slug}`,
     });
     return;
   }
