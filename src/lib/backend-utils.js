@@ -479,6 +479,12 @@ export function validateFilterTerm(filterTerm) {
   return filters.includes(filterTerm);
 }
 
+export async function getNextFilmId() {
+  const film_id = await knex("Film").max("id");
+  console.log("hereeeeee", film_id[0]);
+  return film_id[0]["max(`id`)"] + 1;
+}
+
 /**
  * Add the validated [film] into the Film database
  * @param {Object} film
@@ -867,11 +873,4 @@ export async function processDirector(director) {
 export async function addDirector(director) {
   const newIDs = await knex("Directors").insert(director);
   return newIDs.length ? await _getFullDirectorById(newIDs[0]) : null;
-}
-
-
-export async function getNextFilmId() {
-  const film_id = await knex("Film").max("id");
-  console.log("hereeeeee", film_id[0]);
-  return film_id[0]['max(`id`)'] + 1;
 }
