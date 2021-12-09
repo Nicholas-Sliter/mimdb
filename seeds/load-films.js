@@ -70,7 +70,7 @@ exports.seed = async function (knex) {
       contributorsMap.push({ film_id: film.id, contributor_name: name });
     });
     film.course.forEach((course_name) => {
-      courseMap.push({ film_id: film.id, course_name: course_name });
+      courseMap.push({ film_id: film.id, courseFilm_name: course_name });
     });
     film.director_ids.forEach((id) => {
       directorsMap.push({ film_id: film.id, director_id: id });

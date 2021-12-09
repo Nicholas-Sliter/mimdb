@@ -38,7 +38,7 @@ export async function getGenres(id) {
  */
 export async function getCourse(id) {
   const courses = await knex
-    .select("course_name")
+    .select("courseFilm_name")
     .from("CourseFilm")
     .where({ film_id: id });
   return courses.map((entry) => entry.course_name);
@@ -269,7 +269,7 @@ export async function getFilmsByCourse(course) {
   const film_ids = await knex
     .select("film_id")
     .from("CourseFilm")
-    .where({ course_name: course });
+    .where({ courseFilm_name: course });
   return film_ids;
 }
 
@@ -551,7 +551,7 @@ export async function addNewCourse(new_course) {
  * @returns the updated film object
  */
 export async function addCourseFilm(course_name, film_id) {
-  await knex("CourseFilm").insert({ film_id: film_id, course_name: course_name });
+  await knex("CourseFilm").insert({ film_id: film_id, courseFilm_name: course_name });
   return await getFilmById(film_id);
 }
 
