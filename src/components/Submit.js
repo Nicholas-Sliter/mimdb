@@ -8,14 +8,13 @@ import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
 import { validateFilmGenre } from "../lib/frontend-utils";
-import ImageCrop from "./common/ImageCrop";
+import ImageCrop from "./FilmSubmission/ImageCrop";
 import Group from "./common/Group";
 import FlexGroup from "./common/FlexGroup";
 import imageCompression from "browser-image-compression";
 import ImageSelector from "./FilmSubmission/ImageSelector";
+import ImageSelectorTabs from "./FilmSubmission/ImageSelectorTabs";
 
-// import ReactCrop from "react-image-crop";
-// import "react-image-crop/dist/ReactCrop.css";
 
 export default function Submit({ complete }) {
   const { genres, courses } = useContext(GenreCourseContext);
@@ -39,7 +38,15 @@ export default function Submit({ complete }) {
   const [croppedPoster, setCroppedPoster] = useState(null);
   const [croppedBackdrop, setCroppedBackdrop] = useState(null);
 
-  const images = ["/defaults/pink-pink.svg", "/defaults/purple-pink.svg", "/defaults/green-blue.svg", "/defaults/blue-lightblue.svg", "/defaults/posters/deep-blue.svg"];
+  const images = [
+    "/defaults/pink-pink.svg",
+    "/defaults/purple-pink.svg",
+    "/defaults/green-blue.svg",
+    "/defaults/blue-lightblue.svg",
+    "/defaults/posters/deep-blue.svg",
+    "/defaults/posters/sunny-morning.svg",
+    "/defaults/posters/saint-petersburg.svg",
+  ];
 
   const [selectedPoster, setSelectedPoster] = useState(images[0]);
   const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
@@ -194,11 +201,18 @@ export default function Submit({ complete }) {
       </FlexGroup>
       <Group>
         <h3> Upload poster or select a default gradient </h3>
-        <input
-          id="poster-upload"
-          type="file"
-          onChange={handlePosterUploadChange}
-        />
+        <ImageSelectorTabs name="Poster">
+          <input
+            id="poster-upload"
+            type="file"
+            onChange={handlePosterUploadChange}
+          />
+          <ImageSelector
+            images={images}
+            selectedImage={selectedPoster}
+            onImageSelect={handleSelectGradientPoster}
+          ></ImageSelector>
+        </ImageSelectorTabs>
       </Group>
       <Group>
         <h3> Crop your poster </h3>
