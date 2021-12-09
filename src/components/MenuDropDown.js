@@ -1,4 +1,4 @@
-import Link from "next/link";
+//import Link from "next/link";
 import Category from "./Category";
 import { useContext } from "react";
 import { GenreCourseContext} from  "./context/GenreCourseContext";

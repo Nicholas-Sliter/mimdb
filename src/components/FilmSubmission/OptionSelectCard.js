@@ -77,7 +77,7 @@ export default function OptionSelectCard({
 
   const validateInput = (input) => {
     const error = validator(input);
-    console.log(error);
+    //console.log(error);
     if (error) {
       errorMessageTimeout(error);
       return false;
