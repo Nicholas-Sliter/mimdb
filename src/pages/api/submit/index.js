@@ -37,11 +37,11 @@ const validateAndProcessNewFilm = async (inFilm) => {
     
     // Generate vimeo boolean, simple
     processedFilm.video = processedFilm.vimeo_id && true;
-
+    console.log("processedFilm", processedFilm);
     return processedFilm;
   }
   catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
 };

@@ -122,6 +122,7 @@ $grey-background: #e5e6e6;
       z-index: 99;
     }
 
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); /* Remove mobile tap-highlight */
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
