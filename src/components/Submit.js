@@ -225,28 +225,31 @@ export default function Submit({ complete }) {
         ></ImageCrop>
       </Group>
       <Group>
-        <h3> Upload backdrop </h3>
-        <input
-          id="backdrop-upload"
-          type="file"
-          onChange={handleBackdropUploadChange}
-        />
-        <ImageCrop
+        <h3> Upload backdrop or select a default gradient </h3>
+        <ImageSelectorTabs name="Backdrop">
+          <input
+            id="backdrop-upload"
+            type="file"
+            onChange={handleBackdropUploadChange}
+          />
+          <ImageSelector
+            images={images}
+            selectedImage={selectedBackdrop}
+            onImageSelect={handleSelectGradientBackdrop}
+          ></ImageSelector>
+        </ImageSelectorTabs>
+      </Group>
+
+      <Group>
+        <h3> Crop your backdrop </h3>
+                <ImageCrop
           image={backdrop}
           aspect={21 / 9}
           croppedImage={croppedBackdrop}
           setCroppedImage={setCroppedBackdrop}
         ></ImageCrop>
-      </Group>
+        </Group>
 
-      <Group>
-        <ImageSelector
-          images={images}
-          selectedImage={selectedPoster}
-          onImageSelect={handleSelectGradientPoster}
-        ></ImageSelector>
-        {poster ? <img src={poster} /> : null}
-      </Group>
       <div className={styles.groupButton}>
         <button
           className={styles.largeButton}
