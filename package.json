@@ -35,7 +35,6 @@
     "react-image-crop": "^9.0.5",
     "react-player": "^2.9.0",
     "react-select": "^5.2.1",
-    "react-tabs": "^3.2.3",
     "sass": "^1.43.4",
     "sqlite3": "^5.0.2"
   },
