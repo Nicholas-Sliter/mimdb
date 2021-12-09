@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 
-export default function Director({ genres, courses }) {
+export default function Director() {
   const router = useRouter();
   const { slug } = router.query;
   

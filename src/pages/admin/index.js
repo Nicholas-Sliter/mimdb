@@ -1,4 +1,4 @@
-import Layout from '../../components/Layouts/Layout'
+import Layout from "../../components/Layouts/Layout";
 import AdminPage from "../../components/AdminPage";
 
 import { useEffect, useState } from "react";

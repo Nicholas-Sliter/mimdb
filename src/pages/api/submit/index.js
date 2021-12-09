@@ -2,8 +2,6 @@ import nc from "next-connect";
 import { addActorFilm, addBackdropBySlug, addCourseFilm, addDirectorsFilm, addFilm, addGenreFilm, addPosterBySlug, getDirector, getFilmBySlug } from "../../../lib/backend-utils";
 import { convertToSlug } from "../../../lib/frontend-utils";
 
-import { default_grey_svg } from "../../../lib/frontend-utils";
-
 // Validates the inFilm object and add default empty picture paths
 // TODO: potentially in the future if we have time, we can develop the validation process into a smart match process.
 const validateAndProcessNewFilm = async (inFilm) => {
