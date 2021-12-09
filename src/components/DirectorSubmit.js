@@ -1,5 +1,6 @@
 import router from "next/router";
 import { useState } from "react";
+import { FiAlertTriangle } from "react-icons/fi";
 import styles from "../styles/SubmitPage.module.scss";
 import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";
@@ -25,7 +26,14 @@ export default function DirectorSubmit({complete}) {
       director_personal_email_is_private: isPersonalEmailPrivate,
       director_midd_email_is_private: isMiddEmailPrivate
     };
-    complete(submitDirector);
+    const {ok, error} = await complete(submitDirector);
+    if (ok){
+      alert("Submission Successful!");
+      router.push("/intro");
+    }
+    else {
+      alert("Director submission not sucsessful due to an error: ", error);
+    }
   }
 
   return (

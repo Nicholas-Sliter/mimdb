@@ -10,11 +10,15 @@ export default function SubmitDirPage() {
         method: "POST",
         body: JSON.stringify(content), headers: new Headers({ "Content-Type": "application/json" })
       });
+      let error = null;
       if (!response.ok) {
-        throw new Error(response.statusText);
+        error = new Error(response.statusText);
       }
+
+      return {ok: response.ok, error};
+
     }
-    postSubmit();
+    return await postSubmit();
   }
 
   return (
