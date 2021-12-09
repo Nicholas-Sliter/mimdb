@@ -73,7 +73,7 @@ const testFilms = [{
     "term": "F20"
 }];
 
-describe("WideCard: WideCard contents", ()=>{
+describe.skip("WideCard: WideCard contents", ()=>{
     test("Film title shows up", async () =>{
         const { getByText } = render(<WideCard film={testFilms[0]}/>);
         expect(getByText(testFilms[0].title)).toBeInTheDocument();

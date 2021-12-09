@@ -25,7 +25,7 @@ describe("Submit: Submitter tests", () => {
 
 
 
-  test.only("Submit button posts new film", async () => {
+  test.skip("Submit button posts new film", async () => {
     const { container } = render(<Submit complete={handler} />);
 
     const titleEditor = container.querySelector("input[id=Title]");

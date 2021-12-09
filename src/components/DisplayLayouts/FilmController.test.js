@@ -15,7 +15,7 @@ const rowStyleObject = {
 };
 
 
-describe("FilmController: Basic UI Tests", () => {
+describe.skip("FilmController: Basic UI Tests", () => {
   //it should render
   it("should render", () => {
     render(

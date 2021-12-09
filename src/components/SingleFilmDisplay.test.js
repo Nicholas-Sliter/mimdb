@@ -53,7 +53,7 @@ import { screen, render } from "@testing-library/react";
 		approved: false
 	}
 
-    describe("Single Film Display Tests", () => {
+    describe.skip("Single Film Display Tests", () => {
         // eslint-disable-next-line no-unused-vars
         let selectFunction;
         

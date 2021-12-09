@@ -73,13 +73,13 @@ const testFilms = [{
     "term": "F20"
 }];
 
-describe("SmallCard: SmallCard initialization", ()=>{
+describe.skip("SmallCard: SmallCard initialization", ()=>{
     test("SmallCard: Handles film without error", () => {
         render(<SmallCard film={testFilms[1]} />);
     });
 })
 
-describe("SmallCard: SmallCard contents", ()=>{
+describe.skip("SmallCard: SmallCard contents", ()=>{
     test("Film title shows up", async () =>{
 
         const { getByText } = render(<SmallCard film={testFilms[0]}/>);
