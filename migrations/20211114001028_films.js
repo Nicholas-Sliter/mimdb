@@ -64,12 +64,12 @@ exports.up = function(knex) {
   })
   .createTable("Poster", table => {
     table.string("film_slug").unique().notNullable();
-    table.string("poster_data").notNullable();  //base64 string
+    table.text("poster_data").notNullable();  //base64 string
     table.foreign("film_slug").references("Film.slug").onDelete("CASCADE");
   })
   .createTable("Backdrop", table => {
     table.string("film_slug").unique().notNullable();
-    table.string("backdrop_data").notNullable();  //base64 string
+    table.text("backdrop_data").notNullable();  //base64 string
     table.foreign("film_slug").references("Film.slug").onDelete("CASCADE");
   })
 };
