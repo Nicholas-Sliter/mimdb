@@ -10,6 +10,7 @@ import styles from "../../styles/Home.module.css";
 
 export default function SubmitPage() {
   const [directorNames, setDirectorNames] = useState([]);
+  const [courses, setCourses] = useState([]);
 
   useEffect(async () => {
     const directorNameRes = await fetch("/api/directors");
@@ -17,6 +18,14 @@ export default function SubmitPage() {
       throw new Error("Failed to fetch director name information from api");
     }
     const director_names = await directorNameRes.json();
+
+    const allCoursesRes = await fetch("/api/courses/all");
+    if (!allCoursesRes.ok) {
+      throw new Error("Failed to fetch director name information from api");
+    }
+    const allCourses = await allCoursesRes.json();
+
+    setCourses(allCourses);
     setDirectorNames(director_names);
   }, []);
 
@@ -46,7 +55,7 @@ export default function SubmitPage() {
       <Header />
       <main>
         <DirectorNameContext.Provider value={DirectorNameContextObject}>
-          <Submit complete={submitComplete}/>
+          <Submit allCourses={courses} complete={submitComplete}/>
         </DirectorNameContext.Provider>
       </main>
 

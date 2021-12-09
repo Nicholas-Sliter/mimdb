@@ -150,6 +150,17 @@ export async function getAllCourses() {
 }
 
 /**
+ * Get the list of the names of all courses present in the database
+ *
+ * @returns an array of all course names for all films in the database
+ */
+ export async function getReallyAllCourses() {
+  const allCourseEntries = await knex.select("course_name")
+    .from("Course")
+  return allCourseEntries.map((entry) => entry.course_name);
+}
+
+/**
  * An internal helper function that fills a film object
  * with genre, course, directors, actors, and contributors information.
  *
