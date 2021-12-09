@@ -205,10 +205,7 @@ export async function getRandFilms(number) {
  * @returns the film associated with id id
  */
 export async function getFilmById(id) {
-  console.log("getFilmById1", id);
   const [film] = await knex("Film").select().where({ id: id });
-  console.log("getFilmById2", film);
-  console.log("fillfilm: ", film ? await fillFilm(film) : null)
   return film ? await fillFilm(film) : null;
 }
 
@@ -222,8 +219,7 @@ export async function getFilmBySlug(slug) {
   console.log("getFilmBySlug1", slug);
   const [film] = await knex("Film").select().where({ slug: slug });
   console.log("getFilmBySlug2", slug);
-  console.log("getFilmBySlug3", film);
-  console.log("getFilmBySlug2", film ? await fillFilm(film) : null);
+  console.log("getFilmBySlug2", await fillFilm(film));
   return film ? await fillFilm(film) : null;
 }
 
@@ -490,13 +486,10 @@ export function validateFilterTerm(filterTerm) {
  */
 export async function addFilm(film) {
   console.log("before await", film);
-  
   const nextId = await getNextFilmId();
   console.log("nextID:", nextId);
   film.id = nextId;
   const newIDs = await knex("Film").insert(film);
-  console.log("after await", newIDs);
-  console.log("return", await getFilmById(newIDs[0]));
   return await getFilmById(newIDs[0]);
 }
 
@@ -875,7 +868,6 @@ export async function addDirector(director) {
   const newIDs = await knex("Directors").insert(director);
   return newIDs.length ? await _getFullDirectorById(newIDs[0]) : null;
 }
-
 
 
 export async function getNextFilmId() {
