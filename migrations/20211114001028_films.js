@@ -63,12 +63,12 @@ exports.up = function(knex) {
     table.foreign("director_id").references("Directors.director_id").onDelete("CASCADE");
   })
   .createTable("Poster", table => {
-    table.integer("film_slug").unique().notNullable();
+    table.string("film_slug").unique().notNullable();
     table.string("poster_data").notNullable();  //base64 string
     table.foreign("film_slug").references("Film.slug").onDelete("CASCADE");
   })
   .createTable("Backdrop", table => {
-    table.integer("film_slug").unique().notNullable();
+    table.string("film_slug").unique().notNullable();
     table.string("backdrop_data").notNullable();  //base64 string
     table.foreign("film_slug").references("Film.slug").onDelete("CASCADE");
   })
