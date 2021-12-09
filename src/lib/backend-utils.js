@@ -145,7 +145,7 @@ export async function getAllGenres() {
 export async function getAllCourses() {
   const allCourseEntries = await knex.select("course_name")
     .from("Course")
-    .whereBetween("approved_film_count", [1, Number.MAX_SAFE_INTEGER]);
+    .whereBetween("approved_film_count", [1, 10000]);
   return allCourseEntries.map((entry) => entry.course_name);
 }
 
