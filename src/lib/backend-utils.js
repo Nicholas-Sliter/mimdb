@@ -864,3 +864,10 @@ export async function addDirector(director) {
   const newIDs = await knex("Directors").insert(director);
   return newIDs.length ? await _getFullDirectorById(newIDs[0]) : null;
 }
+
+
+
+export async function getNextFilmId() {
+  const film_id = await knex("Film").max("id");
+  return film_id[0].max + 1;
+}
