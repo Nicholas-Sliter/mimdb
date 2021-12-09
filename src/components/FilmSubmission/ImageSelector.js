@@ -8,7 +8,6 @@ export default function ImageSelector({images, selectedImage, onImageSelect}) {
     <div className={styles.imageSelector}>
       {images.map((image) => {
         const imageClass = (image !== selectedImage) ? styles.image : styles.image + " " + styles.selected;
-        console.log(imageClass);
         const imagePartial = image.split(".")[0].split("/") ?? [""];
         const imageName = imagePartial[imagePartial.length - 1] ?? "";
         
