@@ -15,7 +15,7 @@ import {
   validateFilmSemester,
   validateFilmCourse,
   validateFilmDuration,
-  validateFilmVimeoId
+  validateFilmVimeoId,
 } from "../lib/frontend-utils";
 import ImageCrop from "./FilmSubmission/ImageCrop";
 import Group from "./common/Group";
@@ -24,22 +24,19 @@ import imageCompression from "browser-image-compression";
 import ImageSelector from "./FilmSubmission/ImageSelector";
 import ImageSelectorTabs from "./FilmSubmission/ImageSelectorTabs";
 
-
-
 export default function Submit({ complete }) {
-  const [errorObject, setErrorObject] = useState(
-    {
-      title: false,
-      logLine: false,
-      semester: false,
-      duration: false,
-      vimeoId: false,
-      overview: false,
-      genreList: false,
-      courseList: false,
-      inputActorList: false,
-      empty: true,
-    });
+  const [errorObject, setErrorObject] = useState({
+    title: false,
+    logLine: false,
+    semester: false,
+    duration: false,
+    vimeoId: false,
+    overview: false,
+    genreList: false,
+    courseList: false,
+    inputActorList: false,
+    empty: true,
+  });
 
   const { genres, courses } = useContext(GenreCourseContext);
 
@@ -75,15 +72,10 @@ export default function Submit({ complete }) {
   const [selectedPoster, setSelectedPoster] = useState(images[0]);
   const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
 
-
-
   useEffect(() => {
     const emptyTimer = setTimeout(() => updateEmpty(), 2000);
     return () => clearTimeout(emptyTimer);
   }, []);
-
-
-
 
   const getEmpty = () => {
     //check if any of the state fields are empty
@@ -105,26 +97,25 @@ export default function Submit({ complete }) {
     }
   };
 
-
   const updateEmpty = () => {
     const bool = getEmpty();
     setErrorObject({ ...errorObject, empty: bool });
   };
 
-
-
   const reduceErrorObject = (errorObject) => {
     let bool = false;
-    [errorObject].forEach((value) => {(value) ? bool = true : null});
+    for (const [key, value] of Object.entries(errorObject)) {
+      if (value) {
+        bool = true;
+        break;
+      }
+    }
     return bool;
-  }
-
+  };
 
   const setErrorObjectWrapper = (errorObject) => {
     setErrorObject(errorObject);
-  }
-
-
+  };
 
   const fileToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -178,13 +169,11 @@ export default function Submit({ complete }) {
     setBackdrop(URL.createObjectURL(compressed));
   };
 
-
   async function createSubmission() {
     //validate all fields
     if (reduceErrorObject(errorObject)) {
       return;
     }
-
 
     const submitContent = {
       title: title,
