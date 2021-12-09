@@ -10,8 +10,6 @@ import SecureItem from "../../components/SecureItem";
 export default function Admin() {
   const [films, setFilms] = useState([]);
   const [outdated, setOutdated] = useState(true);
-  
-  let denied = false;
 
   // fetch ALL films
   useEffect(() => {
