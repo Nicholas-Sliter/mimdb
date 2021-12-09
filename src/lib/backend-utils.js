@@ -489,7 +489,7 @@ export async function getNextFilmId() {
 export async function addFilm(film) {
   const nextId = await getNextFilmId();
   film.id = nextId;
-  const newIDs = await knex("Film").insert(film);
+  await knex("Film").insert(film);
   return await getFilmBySlug(film.slug);
 }
 
@@ -865,6 +865,6 @@ export async function processDirector(director) {
  * @returns the inserted new film object.
  */
 export async function addDirector(director) {
-  const newIDs = await knex("Directors").insert(director);
-  return newIDs.length ? await _getFullDirectorById(newIDs[0]) : null;
+  await knex("Directors").insert(director);
+  return await _getFullDirectorBySlug(director.director_slug);
 }
