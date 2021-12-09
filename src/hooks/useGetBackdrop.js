@@ -10,7 +10,7 @@ export default function useGetBackdrop(slug) {
   const [backdropData, setBackdropData] = useState(default_grey_svg);
   
   useEffect(async () => {
-    if (slug==='temp') {
+    if (slug==="temp") {
       setBackdropData(default_grey_svg);
       return;
     }

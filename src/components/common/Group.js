@@ -1,4 +1,4 @@
-import styles from '../../styles/components/Group.module.scss';
+import styles from "../../styles/components/Group.module.scss";
 
 export default function Group({children}){
       return (

@@ -325,7 +325,7 @@ export default function Submit({ complete }) {
             images={images}
             selectedImage={selectedPoster}
             onImageSelect={handleSelectGradientPoster}
-          ></ImageSelector>
+           />
         </ImageSelectorTabs>
       </Group>
       <Group>
@@ -336,7 +336,7 @@ export default function Submit({ complete }) {
           croppedImage={croppedPoster}
           setCroppedImage={setCroppedPoster}
           large
-        ></ImageCrop>
+         />
       </Group>
       <Group>
         <h3> Upload backdrop or select a default gradient </h3>
@@ -350,7 +350,7 @@ export default function Submit({ complete }) {
             images={images}
             selectedImage={selectedBackdrop}
             onImageSelect={handleSelectGradientBackdrop}
-          ></ImageSelector>
+           />
         </ImageSelectorTabs>
       </Group>
 
@@ -361,7 +361,7 @@ export default function Submit({ complete }) {
           aspect={21 / 9}
           croppedImage={croppedBackdrop}
           setCroppedImage={setCroppedBackdrop}
-        ></ImageCrop>
+         />
       </Group>
 
       <div className={styles.groupButton}>

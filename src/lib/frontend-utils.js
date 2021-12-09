@@ -28,7 +28,7 @@ export function getLastTerm(){
 
 
 export function convertTermToString(term){
-  const year = "20" + term.slice(1);
+  const year = `20${  term.slice(1)}`;
   let season = "";
   if (term.includes("F")){
     season = "Fall";

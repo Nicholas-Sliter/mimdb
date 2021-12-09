@@ -59,7 +59,7 @@ export default function OptionSelectCard({
       setErrorMessage("");
     }
     if (limit && selectedOptions.length + 1 > limit) {
-      errorMessageTimeout("You can only select " + limit + " options");
+      errorMessageTimeout(`You can only select ${  limit  } options`);
       return false;
     }
     //add the option to the list of selected options
