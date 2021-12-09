@@ -75,8 +75,7 @@ export default function Submit({ complete }) {
   const [selectedBackdrop, setSelectedBackdrop] = useState(images[0]);
 
   useEffect(() => {
-    const empty = updateEmpty();
-    updateValid(empty);
+    updateValid(updateEmpty());
   }, [title, logLine, semester, duration, vimeoId, overview, genreList, courseList, inputDirectorList, inputActorList, croppedBackdrop, croppedPoster]);
 
   const getEmpty = () => {
@@ -106,11 +105,7 @@ export default function Submit({ complete }) {
   };
 
   const updateValid = (emptyBool) => {
-    if (reduceErrorObject(errorObject) || emptyBool) {
-      setIsValid(false);
-    } else {
-      setIsValid(true);
-    }
+    setIsValid(!reduceErrorObject(errorObject) && !emptyBool);
   };
 
 
@@ -127,7 +122,7 @@ export default function Submit({ complete }) {
 
   const setErrorObjectWrapper = (errorObject) => {
     setErrorObject(errorObject);
-    updateValid();
+    updateValid(updateEmpty());
   };
 
   const fileToBase64 = (file) => {
