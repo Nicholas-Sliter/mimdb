@@ -75,7 +75,7 @@ export function validateFilmTitle(title) {
     return "Title is too long";
   }
   //check for invalid characters with regex, allow letters, numbers, spaces, dashes, and punctuation
-  if (!/^[a-zA-Z0-9 -]+$/.test(title)) {
+  if (!/^[a-zA-Z0-9 -?!]+$/.test(title)) {
     return "Title contains invalid characters";
   }
 
