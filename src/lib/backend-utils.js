@@ -41,7 +41,7 @@ export async function getCourse(id) {
     .select("courseFilm_name")
     .from("CourseFilm")
     .where({ film_id: id });
-  return courses.map((entry) => entry.course_name);
+  return courses.map((entry) => entry.courseFilm_name);
 }
 
 /**
