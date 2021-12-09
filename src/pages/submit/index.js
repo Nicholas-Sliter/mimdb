@@ -7,18 +7,21 @@ import styles from "../../styles/Home.module.css";
 
 export default function SubmitPage() {
 
-  const submitComplete = (content) => {
+  const submitComplete = async (content) => {
     const postSubmit = async () => {
       const response = await fetch("/api/submit", {
         method: "POST",
         body: JSON.stringify(content),
         headers: new Headers({ "Content-Type": "application/json" })
       });
+      let error=null;
       if (!response.ok) {
-        throw new Error(response.statusText);
+        error = new Error(response.statusText);
       }
+
+      return ({ok:response.ok, error});
     }
-    postSubmit();
+    return await postSubmit();
   }
 
   return (
