@@ -104,3 +104,8 @@
     justify-content: center;
     margin-top: 2vw;
 }
+
+.inputGroup {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
