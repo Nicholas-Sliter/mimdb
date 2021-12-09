@@ -220,7 +220,7 @@ export async function getFilmBySlug(slug) {
   const [film] = await knex("Film").select().where({ slug: slug });
   console.log("getFilmBySlug2", slug);
   console.log("getFilmBySlug3", film);
-  console.log("getFilmBySlug2", await fillFilm(film));
+  console.log("getFilmBySlug2", film ? await fillFilm(film) : null);
   return film ? await fillFilm(film) : null;
 }
 
