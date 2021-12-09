@@ -189,7 +189,14 @@ export default function Submit({ complete }) {
       poster: croppedPoster,
       backdrop: croppedBackdrop,
     };
-    complete(submitContent);
+    const {ok, error} = await complete(submitContent);
+    if (ok) {
+      alert("Submission successful!", router.push("/"));
+    }
+    else {
+      alert("Submission not successful due to error: ", error);
+    }
+
   }
 
   return (
