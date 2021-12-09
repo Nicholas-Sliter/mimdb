@@ -58,7 +58,7 @@ import { screen, render } from "@testing-library/react";
         let selectFunction;
         
     
-        test("Heading", async () => {
+        test("Layout", async () => {
         selectFunction = jest.fn();
     
           render(<SingleFilmDisplay film={movie}/>);
