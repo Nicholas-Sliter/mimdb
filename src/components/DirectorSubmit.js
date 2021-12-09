@@ -1,6 +1,5 @@
 import router from "next/router";
 import { useState } from "react";
-import { FiAlertTriangle } from "react-icons/fi";
 import styles from "../styles/SubmitPage.module.scss";
 import TextArea from "./FilmSubmission/TextArea";
 import TextInput from "./FilmSubmission/TextInput";

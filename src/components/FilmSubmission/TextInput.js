@@ -3,14 +3,22 @@ import styles from "../../styles/components/TextInput.module.scss";
 import ErrorMessage from "../common/ErrorMessage";
 import { useState } from "react";
 
-export default function TextInput({ name, setFunc, moreText, id, validator, errorObject, setErrorObject }) {
+export default function TextInput({
+  name,
+  setFunc, 
+  moreText, 
+  id, 
+  validator = (t) => "", // eslint-disable-line no-unused-vars
+  errorObject = {}, 
+  setErrorObject = () => {}
+}) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const validateInput = (input) => {
     const error = validator(input);
     //console.log(error);
     setErrorMessage(error);
-    return (error==="");
+    return (error === "");
   };
 
   const updateErrorMessage = (input) => {

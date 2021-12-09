@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { DirectorNameContext } from "../../components/context/DirectorNameContext";
 import CustomHead from "../../components/CustomHead";
 import Header from "../../components/Header";
 import Submit from "../../components/Submit";
@@ -5,7 +7,19 @@ import Submit from "../../components/Submit";
 import styles from "../../styles/Home.module.css";
 
 
+
 export default function SubmitPage() {
+  const [directorNames, setDirectorNames] = useState([]);
+
+  useEffect(async () => {
+    const directorNameRes = await fetch("/api/directors");
+    if (!directorNameRes.ok) {
+      throw new Error("Failed to fetch director name information from api");
+    }
+    const director_names = await directorNameRes.json();
+    setDirectorNames(director_names);
+  }, []);
+
 
   const submitComplete = async (content) => {
     const postSubmit = async () => {
@@ -24,13 +38,16 @@ export default function SubmitPage() {
     return await postSubmit();
   }
 
+  const DirectorNameContextObject = { director_names: directorNames };
+  
   return (
     <div className={styles.container}>
       <CustomHead />
       <Header />
       <main>
-        
-        <Submit complete={submitComplete}/>
+        <DirectorNameContext.Provider value={DirectorNameContextObject}>
+          <Submit complete={submitComplete}/>
+        </DirectorNameContext.Provider>
       </main>
 
       <footer>

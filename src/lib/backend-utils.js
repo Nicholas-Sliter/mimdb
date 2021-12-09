@@ -401,17 +401,6 @@ async function _getFullDirectorBySlug(slug) {
   return null;
 }
 
-/** Get full director (backend function, never call directly from API)
- *
- * @param {integer} id the director id
- * @returns the entire director object from the database with all fields
- */
-
-async function _getFullDirectorById(id) {
-  const director = await knex("Directors").select().where({ director_id: id });
-  return (director && director.length) ? director[0] : null;
-}
-
 function _filterDirector(director) {
   // check privacy boolean (check if we should remove email)
   // and remove any private fields
