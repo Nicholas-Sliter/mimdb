@@ -8,11 +8,8 @@ export default function TextArea({ name, setFunc, moreText, id, validator, error
   const validateInput = (input) => {
     const error = validator(input);
     console.log(error);
-    if (error) {
-      setErrorMessage(error);
-      return false;
-    }
-    return true;
+    setErrorMessage(error);
+    return (error==="");
   };
 
   const updateErrorMessage = (input) => {
@@ -22,12 +19,12 @@ export default function TextArea({ name, setFunc, moreText, id, validator, error
   return (
     <div className={styles.largeTextarea}>
       <label htmlFor={name}> {`${name}:`} </label><br />
-      <ErrorMessage message={errorMessage} />
       <textarea
         id={name}
         placeholder={`Film ${name} (${moreText})`}
         onChange={(event) => {setFunc(event.target.value); updateErrorMessage(event.target.value)}}
       />
+      <ErrorMessage message={errorMessage} />
     </div>
   )
 }

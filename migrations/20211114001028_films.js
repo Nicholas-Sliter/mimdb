@@ -51,9 +51,9 @@ exports.up = function(knex) {
   .createTable("CourseFilm", table => {
     // Affiliation table for Course and Film, two foreign keys
     table.integer("film_id");
-    table.string("course_number");
+    table.string("course_name");
     table.foreign("film_id").references("Film.id").onDelete("CASCADE");
-    table.foreign("course_number").references("Course.course_number").onDelete("CASCADE");
+    table.foreign("course_name").references("Course.course_name").onDelete("CASCADE");
   })
   .createTable("DirectorsFilm", table => {
     // Affiliation table for Directors and Film, two foreign keys

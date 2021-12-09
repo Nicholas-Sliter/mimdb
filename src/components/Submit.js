@@ -3,17 +3,20 @@ import { useState } from "react";
 import styles from "../styles/SubmitPage.module.css";
 import OptionSelectCard from "./FilmSubmission/OptionSelectCard";
 import TextArea from "./FilmSubmission/TextArea";
-//import { validateFilmSemester } from "../lib/frontend-utils";
 import TextInput from "./FilmSubmission/TextInput";
 import { useContext } from "react";
 import { GenreCourseContext } from "./context/GenreCourseContext";
-import {validateFilmTitle, 
-        validateFilmGenre, 
-        validateFilmActors, 
-        validateFilmLogLine, 
-        validateFilmOverview,
-        validateFilmSemester,
-        validateFilmCourse} from "../lib/frontend-utils";
+import {
+  validateFilmTitle,
+  validateFilmGenre,
+  validateFilmActors,
+  validateFilmLogLine,
+  validateFilmOverview,
+  validateFilmSemester,
+  validateFilmCourse,
+  validateFilmDuration,
+  validateFilmVimeoId
+} from "../lib/frontend-utils";
 import ImageCrop from "./common/ImageCrop";
 import Group from "./common/Group";
 import FlexGroup from "./common/FlexGroup";
@@ -25,16 +28,17 @@ import imageCompression from "browser-image-compression";
 
 export default function Submit({ complete }) {
   const [errorObject, setErrorObject] = useState(
-    {title: false, 
-    logLine: false,
-    semester: false,
-    duration: false,
-    courseId: false,
-    vimeoId: false,
-    overview: false,
-    genreList: false,
-    courseList: false,
-    inputActorList: false})
+    {
+      title: false,
+      logLine: false,
+      semester: false,
+      duration: false,
+      vimeoId: false,
+      overview: false,
+      genreList: false,
+      courseList: false,
+      inputActorList: false
+    })
 
   const { genres, courses } = useContext(GenreCourseContext);
 
@@ -42,7 +46,6 @@ export default function Submit({ complete }) {
   const [logLine, setLogLine] = useState("");
   const [semester, setSemester] = useState("");
   const [duration, setDuration] = useState("");
-  const [courseId, setCourseId] = useState("");
   const [vimeoId, setVimeoId] = useState("");
   const [overview, setOverview] = useState("");
   const [genreList, setGenreList] = useState([]);
@@ -60,7 +63,7 @@ export default function Submit({ complete }) {
 
 
   const handlePosterUploadChange = async (e) => {
-    const options = { 
+    const options = {
       maxSizeMB: 1.5
     }
     const orig = e.target.files[0];
@@ -68,18 +71,13 @@ export default function Submit({ complete }) {
     setPoster(URL.createObjectURL(compressed));
   };
 
-    const handleBackdropUploadChange = async (e) => {
-      const options = { 
-        maxSizeMB: 3
-      }
-      const orig = e.target.files[0];
-      const compressed = await imageCompression(orig, options);
-      setBackdrop(URL.createObjectURL(compressed));
-    };
-
-  const handleCropImageButton = () => {
-    //console.log(crop);
-    //setPoster(crop);
+  const handleBackdropUploadChange = async (e) => {
+    const options = {
+      maxSizeMB: 3
+    }
+    const orig = e.target.files[0];
+    const compressed = await imageCompression(orig, options);
+    setBackdrop(URL.createObjectURL(compressed));
   };
 
   async function createSubmission() {
@@ -87,13 +85,11 @@ export default function Submit({ complete }) {
       title: title,
       overview: logLine,
       term: semester,
-      duration: duration,
-      courseId: courseId,
+      duration: `${duration} min`,
       vimeoId: vimeoId,
       description: overview,
       inputDirectorList: inputDirectorList,
       inputActorList: inputActorList,
-      //inputContribList: inputContribList,
       genreList: genreList,
       courseList: courseList,
       poster: croppedPoster,
@@ -103,7 +99,7 @@ export default function Submit({ complete }) {
   }
 
   const checkErrors = (id) => {
-    
+
   }
 
   return (
@@ -111,17 +107,37 @@ export default function Submit({ complete }) {
       <h1 style={{ color: "#203569", marginLeft: "2vw" }}>Submit Your Film</h1>
       <FlexGroup>
         <div>
-          <TextInput name="Title" setFunc={setTitle} id={"title"} validator={validateFilmTitle} errorObject={errorObject} setErrorObject={setErrorObject}/>
-          <TextInput name="Log-Line" setFunc={setLogLine} id={"logLine"} validator={validateFilmLogLine} errorObject={errorObject} setErrorObject={setErrorObject}/>
-          <TextInput name="Course ID" setFunc={setCourseId} id={"courseId"} validator={validateFilmCourse} errorObject={errorObject} setErrorObject={setErrorObject}/>
+          <TextInput 
+            name="Title" 
+            setFunc={setTitle} 
+            id={"title"} 
+            validator={validateFilmTitle} 
+            errorObject={errorObject} 
+            setErrorObject={setErrorObject} 
+          />
+          <TextInput 
+            name="Log-Line" 
+            setFunc={setLogLine} 
+            id={"logLine"} 
+            validator={validateFilmLogLine} 
+            errorObject={errorObject} 
+            setErrorObject={setErrorObject} 
+          />
+          <TextInput 
+            name="Vimeo ID"
+            setFunc={setVimeoId}
+            validator={validateFilmVimeoId} 
+            errorObject={errorObject} 
+            setErrorObject={setErrorObject} 
+          />
         </div>
         <div>
           <TextInput
             name={"Semester"}
             setFunc={setSemester}
             moreText="eg. F21, W22, S22, etc."
-            id={"semester"} 
-            validator={validateFilmSemester} 
+            id={"semester"}
+            validator={validateFilmSemester}
             errorObject={errorObject}
             setErrorObject={setErrorObject}
           />
@@ -129,13 +145,15 @@ export default function Submit({ complete }) {
             name={"Duration"}
             setFunc={setDuration}
             moreText="Minutes"
-            id={"duration"} 
+            id={"duration"}
+            validator={validateFilmDuration}
+            errorObject={errorObject}
+            setErrorObject={setErrorObject}
           />
-          <TextInput name="Vimeo ID" setFunc={setVimeoId}/>
         </div>
       </FlexGroup>
       <Group>
-        <TextArea name="Overview" setFunc={setOverview} id={"overview"} validator={validateFilmOverview} errorObject={errorObject} setErrorObject={setErrorObject}/>
+        <TextArea name="Overview" setFunc={setOverview} id={"overview"} validator={validateFilmOverview} errorObject={errorObject} setErrorObject={setErrorObject} />
       </Group>
       <FlexGroup>
         <OptionSelectCard

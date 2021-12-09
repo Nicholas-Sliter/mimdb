@@ -83,7 +83,8 @@ export function validateFilmTitle(title) {
 }
 
 export function validateFilmSemester(semester) {
-  if (semester.length === 3) {
+  console.log(semester.length);
+  if (semester.length !== 3) {
     return "A semester must have a length of 3";
   }
   //check that a semester is F, W, or S, followed by 2 numbers
@@ -176,5 +177,30 @@ export function validateFilmActors(actors) {
     return "Actors must be separated by commas";
   }
 
+  return "";
+}
+
+export function validateFilmDuration(duration) {
+  if (duration < 1) {
+    return "Duration is required";
+  }
+  const durationInt = +duration;
+  if (!durationInt || !Number.isInteger(durationInt)) {
+    return "Duration must an integer";
+  }
+  if (durationInt > 1000) {
+    return "Duration is too long";
+  }
+  return "";
+}
+
+export function validateFilmVimeoId(vimeoId) {
+  // use regex to validate a vimeo id which is an 8 digit number
+  if (vimeoId.length < 1) {
+    return "Vimeo ID is required";
+  }
+  if (!/^[0-9]{8}$/.test(vimeoId)) {
+    return "Vimeo ID must be 8 digit";
+  }
   return "";
 }
