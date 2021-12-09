@@ -1,14 +1,56 @@
-[
+[   {
+        "course_name": "Aesthetics of the Moving Image",
+        "course_number": "FMMC 0101",
+        "course_description": "This course is designed to improve your ability to watch, reflect on, and write about moving images. The course will be grounded in the analysis of cinema (feature films, documentaries, avant-garde, and animation) with special focus on film style and storytelling techniques. Study will extend to new audio-visual media as well, and will be considered from formal, cultural, and theoretical perspectives.",
+        "approved_film_count": 0
+    },
     {
-        "course_name": "Sight and Sound",
+        "course_name": "Filmmaking",
         "course_number": "FMMC 0105",
-        "course_description": "*Sight and Sound I* In this course students will gain a theoretical understanding of the ways moving images and sounds communicate, as well as practical experience creating time-based work. We will study examples of moving images as we use cameras, sound recorders, and non-linear editing software to produce our own series of short works. Emphasis will be placed on understanding the possibilities of the medium through experimentation, analysis, and detailed feedback while exploring different facets of cinematic communication. Open to FMMC majors only. (FMMC 0101, or FMMC 0102, or approval of instructor) 3 hrs. lect./3 hrs. lab",
+        "course_description": "The purpose of the course is to gain a theoretical understanding of the ways moving images and sounds communicate, and practical experience creating time-based work. We will study texts on theories of moving images and examine examples as we use cameras, sound recorders, and non-linear editing software to produce a series of short exercises that require organizing images and sounds in ways that convey information and express feelings.",
         "approved_film_count": 12
+    },
+    {
+        "course_name": "The Documentary Film",
+        "course_number": "FMMC 0232",
+        "course_description": "Documentary film combines nonfiction with an aesthetic aspiration. This course will explore the achievement in the documentary, raising issues about the influence of documentary upon political persuasion, historical memory, the status of film as evidence, and its utility as a means of investigation. Questions will be posed, such as: Can documentary achieve a distinctive understanding of a phenomenon? How does nonfiction address/guide the relationship between sound, image, and subject? The course will offer a historical perspective, as well as study contemporary works, with the aim of preparing students to both understand and produce documentary films.",
+        "approved_film_count": 0
+    },
+    {
+        "course_name": "Editing the Moving Image",
+        "course_number": "FMMC 0301",
+        "course_description": "Advanced Independent work in Film and Media Culture* Consult with a Film and Media Culture faculty member for guidelines.",
+        "approved_film_count": 0
+    },
+    {
+        "course_name": "Directing for the Screen    ",
+        "course_number": "FMMC 0320",
+        "course_description": "In this course we will examine the creative processes involved in directing dramatic material for the screen, with emphasis on the specificity of our medium. Through rigorous analysis of existing media, we will understand the dramatic and interpretative choices made by film writers, directors, and editors. Through hands-on exercises, we will develop scene analysis techniques, rehearsal methodologies, and pre-visualization strategies.",
+        "approved_film_count": 0
+    },
+    {
+        "course_name": "Videographic Film Studies",
+        "course_number": "FMMC 0334",
+        "course_description": "Digital video technologies—such as DVDs, digital editing software, and online streaming—now enable film and media scholars to “write” with the same materials that constitute their object of study: moving images and sounds. But such a change means rethinking the rhetorical modes traditionally used in scholarly writing, and incorporating more aesthetic and poetic elements alongside explanation and analysis. In this hands-on course, we will both study and produce new videographic forms of criticism often known as “video essays,” exploring how such work can both produce knowledge and create an aesthetic impact.",
+        "approved_film_count": 0
+    },
+    {
+        "course_name": "Advanced Filmmaking",
+        "course_number": "FMMC 0335",
+        "course_description": "Working from the foundations laid in Sight and Sound I we will produce narrative, documentary and experimental films. Throughout the semester we will develop film scripts, floor plans, shot lists and storyboards. We will cast actors, hold rehearsals and conduct interviews. We will discuss works in progress, discuss the short film form and constantly edit our ideas until they are compact, emotional and meaningful. We will work collaboratively on a group project and individually on each of our own films. And we will share our best work in a public screening at the end of the semester.",
+        "approved_film_count": 0
     },
     {
         "course_name": "Independent Project",
         "course_number": "FMMC 0507",
-        "course_description": "*Advanced Independent work in Film and Media Culture* Consult with a Film and Media Culture faculty member for guidelines.",
+        "course_description": "Advanced Independent work in Film and Media Culture* Consult with a Film and Media Culture faculty member for guidelines.",
         "approved_film_count": 1
+    },
+    {
+        "course_name": "Senior Tutorial",
+        "course_number": "FMMC 0700",
+        "course_description": "All FMMC majors must complete this course in their senior year, during which they undertake the process of devising, researching, and developing the early drafts and materials for an independent project in Film and Media in their choice of medium and format. Students will be poised to produce and complete these projects during Winter Term, via an optional but recommended independent study. Prerequisites for projects in specific formats are outlined on the departmental website.",
+        "approved_film_count": 0
     }
+
 ]
