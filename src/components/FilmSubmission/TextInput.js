@@ -21,7 +21,7 @@ export default function TextInput({ name, setFunc, moreText, id, validator, erro
 
   return (
     <div className={styles.textInput}>
-      <span htmlFor={name}> {`${name}:`} </span>
+      <span className={styles.title} htmlFor={name}> {`${name}:`} </span>
       <input
         type="text"
         id={name.replace(/\s/g, "")}
