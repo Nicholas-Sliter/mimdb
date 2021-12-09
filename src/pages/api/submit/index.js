@@ -58,6 +58,7 @@ const handler = nc()
 
       // Add director relationship to the DirectorsFilm DB
       await Promise.all(newFilm.inputDirectorList.map(async (director_name) => {
+        console.log("b1", director_name);
         const director = await getDirector(director_name);
         if (director.length===0) {
           res.status(500).json({
@@ -65,33 +66,43 @@ const handler = nc()
           });
           return;
         }
+        console.log("b2", director);
         addedFilm = await addDirectorsFilm(director_name, addedFilm.id);
+        console.log("b3", addedFilm);
       }));
 
       // Add course relationship to the CourseFilm DB
       await Promise.all(newFilm.courseList.map(async (course_name) => {
+        console.log("b4", course_name);
         addedFilm = await addCourseFilm(course_name, addedFilm.id);
+        console.log("b5", addedFilm);
       }));
 
       // Add actors to the Actors DB
       await Promise.all(newFilm.inputActorList.map(async (actor_name) => {
+        console.log("b6", actor_name);
         addedFilm = await addActorFilm(actor_name, addedFilm.id);
+        console.log("b7", addedFilm);
       }));
 
       // Add genre to the Genre DB
       await Promise.all(newFilm.genreList.map(async (genre_name) => {
+        console.log("b8", genre_name);
         addedFilm = await addGenreFilm(genre_name, addedFilm.id);
+        console.log("b9", addedFilm);
       }));
 
       // Add poster to Poster DB
 
       // Testing place holder
       addedFilm = await addPosterBySlug(newFilm.poster, processedFilm.slug);
+      console.log("b10", addedFilm);
       //addedFilm = await addPosterBySlug(default_grey_svg, processedFilm.slug)  
       
       // Testing place holder
       // Add backdrop to Backdrop DB
       addedFilm = await addBackdropBySlug(newFilm.backdrop, processedFilm.slug);
+      console.log("b11", addedFilm);
       //addedFilm = await addBackdropBySlug(default_grey_svg, processedFilm.slug) 
       res.status(200).json(addedFilm);
     } else {
