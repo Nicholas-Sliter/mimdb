@@ -490,6 +490,10 @@ export function validateFilterTerm(filterTerm) {
  */
 export async function addFilm(film) {
   console.log("before await", film);
+  
+  const nextId = await getNextFilmId();
+  console.log("nextID:", nextId);
+  film.id = nextId;
   const newIDs = await knex("Film").insert(film);
   console.log("after await", newIDs);
   console.log("return", await getFilmById(newIDs[0]));
@@ -876,5 +880,6 @@ export async function addDirector(director) {
 
 export async function getNextFilmId() {
   const film_id = await knex("Film").max("id");
-  return film_id[0].max + 1;
+  console.log("hereeeeee", film_id[0]);
+  return film_id[0]['max(`id`)'] + 1;
 }
