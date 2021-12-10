@@ -485,12 +485,9 @@ export async function getNextFilmId() {
     } else if (film_id[0]["max(`id`)"]) {
       // Local structure
       return film_id[0]["max(`id`)"] + 1;
-    } else {
-      return 1;
     }
-  } else {
-    return 0;
   }
+  return 1;
 }
 
 /**
