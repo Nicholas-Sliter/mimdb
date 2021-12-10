@@ -480,7 +480,7 @@ export async function getNextFilmId() {
   const film_id = await knex("Film").max("id");
   console.log("film_id: ", film_id);
   console.log("now: ", (film_id[0].max, film_id[0]["max(`id`)"]));
-  return ((film_id[0].max ?? film_id[0]["max(`id`)"]) + 1);
+  return film_id ? ((film_id[0].max ?? film_id[0]["max(`id`)"]) + 1) : 1;
 }
 
 /**
