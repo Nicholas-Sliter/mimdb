@@ -478,9 +478,19 @@ export function validateFilterTerm(filterTerm) {
 
 export async function getNextFilmId() {
   const film_id = await knex("Film").max("id");
-  console.log("film_id: ", film_id);
-  console.log("now: ", film_id[0] ? ((film_id[0].max ?? film_id[0]["max(`id`)"]) + 1) : 1);
-  return film_id[0] ? ((film_id[0].max ?? film_id[0]["max(`id`)"]) + 1) : 1;
+  if (film_id && film_id[0]) {
+    if (film_id[0].max){
+      // Production structure
+      return film_id[0].max + 1;
+    } else if (film_id[0]["max(`id`)"]) {
+      // Local structure
+      return film_id[0]["max(`id`)"] + 1;
+    } else {
+      return 1;
+    }
+  } else {
+    return 0;
+  }
 }
 
 /**
