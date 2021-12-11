@@ -41,12 +41,16 @@ export default function FilmRow({
 
 
    return (
-      <div className={styles.container}>
-         <h2 className={styles.title} data-testid = "title">{title}</h2>
-         <div className={rowStyle}>
-            {cards}
-         </div>
-      </div>
+     <div className={styles.container}>
+       {films ? (
+         <>
+           <h2 className={styles.title} data-testid="title">
+             {title}
+           </h2>
+           <div className={rowStyle}>{cards}</div>{" "}
+         </>
+       ) : null}
+     </div>
    );
 
 
